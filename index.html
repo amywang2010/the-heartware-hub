@@ -604,9 +604,20 @@
   }
 
   /* ── PAGE SECTIONS (hidden by default) ── */
-  .page-section { display: none; }
-  .page-section.active { display: block; }
-  #home { display: block; }
+  .page-section {
+    display: none !important;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .page-section.active {
+    display: block !important;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+    pointer-events: auto;
+  }
 
   /* ── NOTIFICATION TOAST ── */
   .toast {
@@ -868,7 +879,7 @@
 
 <!-- Header -->
 <header role="navigation" aria-label="Main navigation">
-  <a href="#" class="logo-area" onclick="showPage('home')">
+  <a href="javascript:void(0)" class="logo-area" onclick="showPage('home')">
     <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/wAARCAJYBBoDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAcIBAUGAwIB/8QAVhAAAQMDAQUFAwYLBAYHBwUAAAECAwQFEQYHEiExQRNRYXGBCCKRFCMyQqGxFTM1N1Jyc3Wys8E2YoLRFiQlQ3SSNFNWk5Si8BcYVWNlwtJEVIOEo//EABkBAQADAQEAAAAAAAAAAAAAAAACAwQBBf/EACgRAQACAgICAgIBBQEBAAAAAAABAgMREjEEISJBMlETFCMzQmFScf/aAAwDAQACEQMRAD8ApkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q==" alt="Heartware Hub Logo" class="logo-img"/>
     <div class="logo-text">
       <span class="logo-name" data-i18n="site_name">The Heartware Hub</span>
@@ -876,13 +887,13 @@
     </div>
   </a>
   <nav aria-label="Primary navigation">
-    <a href="#" class="nav-link active" onclick="showPage('home')" data-i18n="nav_home">Home</a>
-    <a href="#" class="nav-link" onclick="showPage('about')" data-i18n="nav_about">About Us</a>
-    <a href="#" class="nav-link" onclick="showPage('health')" data-i18n="nav_health">Health Hub</a>
-    <a href="#" class="nav-link" onclick="showPage('safety')" data-i18n="nav_safety">Safety &amp; Fraud</a>
-    <a href="#" class="nav-link" onclick="showPage('alzheimers')" data-i18n="nav_alz">Alzheimer's</a>
-    <a href="#" class="nav-link" onclick="showPage('events')" data-i18n="nav_events">Events</a>
-    <a href="#" class="nav-link" onclick="showPage('games')">🧩 Brain Games</a>
+    <a href="javascript:void(0)" class="nav-link active" onclick="showPage('home')" data-i18n="nav_home">Home</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showPage('about')" data-i18n="nav_about">About Us</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showPage('health')" data-i18n="nav_health">Health Hub</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showPage('safety')" data-i18n="nav_safety">Safety &amp; Fraud</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showPage('alzheimers')" data-i18n="nav_alz">Alzheimer's</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showPage('events')" data-i18n="nav_events">Events</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showPage('games')">🧩 Brain Games</a>
     <button class="nav-btn" onclick="handleAccountNav()" id="nav-account-btn" data-i18n="nav_login">Sign In</button>
   </nav>
 </header>
@@ -900,8 +911,8 @@
     </h1>
     <p class="hero-sub" data-i18n="hero_sub">Your all-in-one centre for health information, community events, brain games, and connection — designed with love for seniors and their families.</p>
     <div class="hero-buttons">
-      <a href="#" class="btn-primary" onclick="showPage('events')" data-i18n="hero_btn1">Browse Upcoming Events</a>
-      <a href="#" class="btn-outline" onclick="showPage('health')" data-i18n="hero_btn2">Explore Health Resources</a>
+      <a href="javascript:void(0)" class="btn-primary" onclick="showPage('events')" data-i18n="hero_btn1">Browse Upcoming Events</a>
+      <a href="javascript:void(0)" class="btn-outline" onclick="showPage('health')" data-i18n="hero_btn2">Explore Health Resources</a>
     </div>
   </section>
 
@@ -938,37 +949,37 @@
           <div class="card-icon">🏥</div>
           <h3 data-i18n="card1_h">Health Information</h3>
           <p data-i18n="card1_p">Trusted articles and guides on heart health, diabetes, mobility, nutrition, and more — written clearly for seniors.</p>
-          <a href="#" class="card-link" onclick="showPage('health')"><span data-i18n="card_explore">Explore</span> →</a>
+          <a href="javascript:void(0)" class="card-link" onclick="showPage('health')"><span data-i18n="card_explore">Explore</span> →</a>
         </div>
         <div class="card">
           <div class="card-icon">🛡️</div>
           <h3 data-i18n="card2_h">Fraud Protection</h3>
           <p data-i18n="card2_p">Learn to recognize phone scams, email fraud, and deceptive schemes — with interactive tools to test your knowledge.</p>
-          <a href="#" class="card-link" onclick="showPage('safety')"><span data-i18n="card_explore">Explore</span> →</a>
+          <a href="javascript:void(0)" class="card-link" onclick="showPage('safety')"><span data-i18n="card_explore">Explore</span> →</a>
         </div>
         <div class="card">
           <div class="card-icon">🧩</div>
           <h3 data-i18n="card3_h">Brain Games</h3>
           <p data-i18n="card3_p">Fun memory games, word puzzles, and trivia designed to keep your mind sharp and spirits high. New games added weekly.</p>
-          <a href="#" class="card-link" onclick="showPage('games')"><span data-i18n="card_explore">Explore</span> →</a>
+          <a href="javascript:void(0)" class="card-link" onclick="showPage('games')"><span data-i18n="card_explore">Explore</span> →</a>
         </div>
         <div class="card">
           <div class="card-icon">📅</div>
           <h3 data-i18n="card4_h">Events &amp; Programs</h3>
           <p data-i18n="card4_p">Join in-person and virtual events across the GTA — fitness classes, socials, cooking demos, and learning sessions.</p>
-          <a href="#" class="card-link" onclick="showPage('events')"><span data-i18n="card_explore">Explore</span> →</a>
+          <a href="javascript:void(0)" class="card-link" onclick="showPage('events')"><span data-i18n="card_explore">Explore</span> →</a>
         </div>
         <div class="card">
           <div class="card-icon">🔬</div>
           <h3 data-i18n="card5_h">Alzheimer's Research</h3>
           <p data-i18n="card5_p">Stay informed with the latest research, caregiver resources, and local support organizations for dementia and Alzheimer's.</p>
-          <a href="#" class="card-link" onclick="showPage('alzheimers')"><span data-i18n="card_explore">Explore</span> →</a>
+          <a href="javascript:void(0)" class="card-link" onclick="showPage('alzheimers')"><span data-i18n="card_explore">Explore</span> →</a>
         </div>
         <div class="card">
           <div class="card-icon">🤝</div>
           <h3 data-i18n="card6_h">Volunteer With Us</h3>
           <p data-i18n="card6_p">Share your time and skills to support seniors in your community. Every hour you give makes a real difference.</p>
-          <a href="#" class="card-link" onclick="showPage('about')"><span data-i18n="card_explore">Explore</span> →</a>
+          <a href="javascript:void(0)" class="card-link" onclick="showPage('about')"><span data-i18n="card_explore">Explore</span> →</a>
         </div>
       </div>
     </div>
@@ -1021,7 +1032,7 @@
         </div>
       </div>
       <div style="text-align:center;margin-top:32px;">
-        <a href="#" class="btn-primary" onclick="showPage('events')" data-i18n="all_events_btn">View All Events</a>
+        <a href="javascript:void(0)" class="btn-primary" onclick="showPage('events')" data-i18n="all_events_btn">View All Events</a>
       </div>
     </div>
   </section>
@@ -1042,7 +1053,7 @@
             <span class="fraud-tag" data-i18n="ftag5">Grandparent Scam</span>
           </div>
         </div>
-        <a href="#" class="btn-primary" onclick="showPage('safety')" style="flex-shrink:0;" data-i18n="fraud_btn">Learn More</a>
+        <a href="javascript:void(0)" class="btn-primary" onclick="showPage('safety')" style="flex-shrink:0;" data-i18n="fraud_btn">Learn More</a>
       </div>
     </div>
   </section>
@@ -1155,7 +1166,7 @@
                 <span class="wtm-auc-label">Peak AUC</span>
               </div>
             </div>
-            <p style="font-size:0.95rem;color:var(--text-body);margin:12px 0;">Window to the Mind is a deep learning model trained to detect Alzheimer's disease from retinal images — turning a simple, non-invasive eye scan into a powerful diagnostic tool. An AUC of 0.9971 means the model correctly distinguishes Alzheimer's from healthy retinas with near-perfect accuracy — placing it among the highest-performing models of its kind anywhere in the published literature.</p>
+            <p style="font-size:0.95rem;color:#ffffff;margin:12px 0;">Window to the Mind is a deep learning model trained to detect Alzheimer's disease from retinal images — turning a simple, non-invasive eye scan into a powerful diagnostic tool. An AUC of 0.9971 means the model correctly distinguishes Alzheimer's from healthy retinas with near-perfect accuracy — placing it among the highest-performing models of its kind anywhere in the published literature.</p>
             <a href="https://huggingface.co/spaces/AmyWang2010/alzheimers-retinal-detector" target="_blank" rel="noopener" class="wtm-btn">
               🤗 Try Window to the Mind on Hugging Face →
             </a>
@@ -1232,7 +1243,7 @@
           </ul>
           <div style="margin-top:24px;padding:20px;background:var(--lavender);border-radius:12px;">
             <p style="font-weight:700;color:var(--purple-deep);margin-bottom:8px;">Questions? Reach us:</p>
-            <p style="color:var(--text-muted);font-size:0.95rem;">📧 hello@heartwarehub.ca<br/>📧 volunteer@heartwarehub.ca<br/>🏫 St. Robert Catholic High School, Toronto</p>
+            <p style="color:var(--text-muted);font-size:0.95rem;">📧 heartwaredigitalplatform@gmail.com<br/>📧 amywangofficial@gmail.com<br/>🏫 St. Robert Catholic High School, Toronto</p>
           </div>
           <div style="margin-top:16px;padding:16px 20px;background:linear-gradient(135deg,var(--purple-deep),#5c3a9f);border-radius:12px;">
             <p style="color:var(--gold);font-weight:700;font-size:0.9rem;margin-bottom:4px;">🇨🇦 Canada Service Corps Partner</p>
@@ -1495,12 +1506,12 @@
         <h2>Explore All Health Topics</h2>
       </div>
       <div class="health-grid">
-        <div class="health-card" onclick="document.getElementById('article-heart').scrollIntoView({behavior:'smooth'})"><div class="icon">❤️</div><h4>Heart Health</h4><p>Blood pressure, cholesterol, exercise</p></div>
-        <div class="health-card" onclick="document.getElementById('article-diabetes').scrollIntoView({behavior:'smooth'})"><div class="icon">🩸</div><h4>Diabetes</h4><p>Blood sugar, feet, medication</p></div>
-        <div class="health-card" onclick="document.getElementById('article-bone').scrollIntoView({behavior:'smooth'})"><div class="icon">🦴</div><h4>Bone &amp; Joint</h4><p>Osteoporosis, arthritis, falls</p></div>
+        <div class="health-card" onclick="showPageAndScroll('health','article-heart')"><div class="icon">❤️</div><h4>Heart Health</h4><p>Blood pressure, cholesterol, exercise</p></div>
+        <div class="health-card" onclick="showPageAndScroll('health','article-diabetes')"><div class="icon">🩸</div><h4>Diabetes</h4><p>Blood sugar, feet, medication</p></div>
+        <div class="health-card" onclick="showPageAndScroll('health','article-bone')"><div class="icon">🦴</div><h4>Bone &amp; Joint</h4><p>Osteoporosis, arthritis, falls</p></div>
         <div class="health-card" onclick="showPage('alzheimers')"><div class="icon">🧠</div><h4>Brain Health</h4><p>Dementia prevention, memory</p></div>
-        <div class="health-card" onclick="document.getElementById('article-mental').scrollIntoView({behavior:'smooth'})"><div class="icon">😊</div><h4>Mental Wellness</h4><p>Depression, loneliness, support</p></div>
-        <div class="health-card" onclick="document.getElementById('article-nutrition').scrollIntoView({behavior:'smooth'})"><div class="icon">🥦</div><h4>Nutrition</h4><p>Eating well after 65</p></div>
+        <div class="health-card" onclick="showPageAndScroll('health','article-mental')"><div class="icon">😊</div><h4>Mental Wellness</h4><p>Depression, loneliness, support</p></div>
+        <div class="health-card" onclick="showPageAndScroll('health','article-nutrition')"><div class="icon">🥦</div><h4>Nutrition</h4><p>Eating well after 65</p></div>
         <div class="health-card"><div class="icon">😴</div><h4>Sleep</h4><p>Sleep hygiene for aging adults</p></div>
         <div class="health-card"><div class="icon">🏃</div><h4>Mobility &amp; Fitness</h4><p>Safe exercise for all levels</p></div>
       </div>
@@ -2017,7 +2028,7 @@
 
         <div style="margin-top:24px;padding:20px;background:var(--lavender);border-radius:12px;text-align:center;">
           <p style="font-weight:700;color:var(--purple-deep);margin-bottom:6px;">🤝 Interested in Amy's Research?</p>
-          <p style="color:var(--text-muted);font-size:0.95rem;">For research inquiries, collaboration opportunities, or to learn more about the science behind The Heartware Hub, reach out at <strong>hello@heartwarehub.ca</strong>.</p>
+          <p style="color:var(--text-muted);font-size:0.95rem;">For research inquiries, collaboration opportunities, or to learn more about the science behind The Heartware Hub, reach out at <strong>heartwaredigitalplatform@gmail.com</strong>.</p>
         </div>
       </div>
     </div>
@@ -2085,9 +2096,9 @@
     <div class="container">
       <!-- Game Tabs -->
       <div class="games-nav" role="tablist" aria-label="Choose a game">
-        <button class="game-tab-btn active" onclick="switchGame('memory')" role="tab">🃏 Memory Match</button>
-        <button class="game-tab-btn" onclick="switchGame('word')" role="tab">📝 Word Puzzle</button>
-        <button class="game-tab-btn" onclick="switchGame('trivia')" role="tab">🧠 Health Trivia</button>
+        <button class="game-tab-btn active" onclick="switchGame('memory',this)" role="tab">🃏 Memory Match</button>
+        <button class="game-tab-btn" onclick="switchGame('word',this)" role="tab">📝 Word Puzzle</button>
+        <button class="game-tab-btn" onclick="switchGame('trivia',this)" role="tab">🧠 Health Trivia</button>
       </div>
 
       <!-- ── MEMORY MATCH ── -->
@@ -2181,11 +2192,11 @@
             <div class="account-name" id="acct-name-display">—</div>
             <div class="account-email" id="acct-email-display">—</div>
             <hr style="border:none;border-top:1.5px solid var(--lavender);margin:14px 0;"/>
-            <button class="account-nav-link active" onclick="switchAccountPanel('overview')">📊 Overview</button>
-            <button class="account-nav-link" onclick="switchAccountPanel('games')">🎮 My Game Scores</button>
-            <button class="account-nav-link" onclick="switchAccountPanel('saved')">🔖 Saved Articles</button>
-            <button class="account-nav-link" onclick="switchAccountPanel('rsvps')">📅 My RSVPs</button>
-            <button class="account-nav-link" onclick="switchAccountPanel('settings')">⚙️ Settings</button>
+            <button class="account-nav-link active" onclick="switchAccountPanel('overview',this)">📊 Overview</button>
+            <button class="account-nav-link" onclick="switchAccountPanel('games',this)">🎮 My Game Scores</button>
+            <button class="account-nav-link" onclick="switchAccountPanel('saved',this)">🔖 Saved Articles</button>
+            <button class="account-nav-link" onclick="switchAccountPanel('rsvps',this)">📅 My RSVPs</button>
+            <button class="account-nav-link" onclick="switchAccountPanel('settings',this)">⚙️ Settings</button>
             <hr style="border:none;border-top:1.5px solid var(--lavender);margin:14px 0;"/>
             <button class="account-nav-link" onclick="signOut()" style="color:#c0392b;">🚪 Sign Out</button>
           </div>
@@ -2312,12 +2323,12 @@
     <div class="footer-col">
       <h4 data-i18n="footer_pages">Pages</h4>
       <ul>
-        <li><a href="#" onclick="showPage('home')" data-i18n="nav_home">Home</a></li>
-        <li><a href="#" onclick="showPage('about')" data-i18n="nav_about">About Us</a></li>
-        <li><a href="#" onclick="showPage('health')" data-i18n="nav_health">Health Hub</a></li>
-        <li><a href="#" onclick="showPage('safety')" data-i18n="nav_safety">Safety &amp; Fraud</a></li>
-        <li><a href="#" onclick="showPage('alzheimers')" data-i18n="nav_alz">Alzheimer's</a></li>
-        <li><a href="#" onclick="showPage('events')" data-i18n="nav_events">Events</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('home')" data-i18n="nav_home">Home</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('about')" data-i18n="nav_about">About Us</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('health')" data-i18n="nav_health">Health Hub</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('safety')" data-i18n="nav_safety">Safety &amp; Fraud</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('alzheimers')" data-i18n="nav_alz">Alzheimer's</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('events')" data-i18n="nav_events">Events</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -2326,7 +2337,7 @@
         <li><a href="tel:18884958501" data-i18n="footer_antifraud">Anti-Fraud: 1-888-495-8501</a></li>
         <li><a href="tel:18006168816" data-i18n="footer_alzsoc">Alzheimer Soc: 1-800-616-8816</a></li>
         <li><a href="tel:14164924228" data-i18n="footer_211">211 Toronto Helpline</a></li>
-        <li><a href="#" onclick="openLogin()" data-i18n="nav_login">Member Sign In</a></li>
+        <li><a href="javascript:void(0)" onclick="openLogin()" data-i18n="nav_login">Member Sign In</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -2366,7 +2377,7 @@
         <input type="password" id="si-pass" autocomplete="current-password"/>
       </div>
       <button class="submit-btn" onclick="doSignIn()" data-i18n="signin_btn">Sign In</button>
-      <p style="text-align:center;margin-top:14px;font-size:14px;color:var(--text-muted);" data-i18n="no_account">Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--purple-mid);font-weight:700;" data-i18n="reg_link">Register free →</a></p>
+      <p style="text-align:center;margin-top:14px;font-size:14px;color:var(--text-muted);" data-i18n="no_account">Don't have an account? <a href="javascript:void(0)" onclick="switchTab('register')" style="color:var(--purple-mid);font-weight:700;" data-i18n="reg_link">Register free →</a></p>
     </div>
     <!-- Register -->
     <div class="tab-panel" id="panel-register">
@@ -2391,7 +2402,7 @@
 <!-- Toast -->
 <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ═══ TRANSLATIONS ═══
 const translations = {
   en: {
@@ -2444,7 +2455,7 @@ const translations = {
     vwhy1:"Make meaningful connections in your community", vwhy2:"Use your skills — teaching, tech, cooking, companionship",
     vwhy3:"Flexible hours — evenings, weekends, and virtual options", vwhy4:"Receive a volunteer certificate and reference letter",
     vwhy5:"Be part of a growing, passionate team",
-    vol_contact_h:"Questions? Reach us at:", vol_contact:"📧 volunteer@heartwarehub.ca\n📞 (416) 555-0190",
+    vol_contact_h:"Questions? Reach us at:", vol_contact:"📧 amywangofficial@gmail.com\n📞 (416) 555-0190",
     vol_form_h:"Sign Up to Volunteer", vol_success:"🎉 Thank you! We'll be in touch within 2 business days.",
     label_name:"Full Name", label_email:"Email Address", label_phone:"Phone Number", label_area:"Area of Interest",
     label_msg:"Tell Us About Yourself", label_password:"Password",
@@ -2493,7 +2504,7 @@ const translations = {
     footer_desc:"A welcoming digital home for seniors in Toronto and across Canada — connecting you to health, community, and care.",
     footer_pages:"Pages", footer_help:"Get Help", footer_contact:"Contact Us",
     footer_antifraud:"Anti-Fraud: 1-888-495-8501", footer_alzsoc:"Alzheimer Soc: 1-800-616-8816",
-    footer_211:"211 Toronto Helpline", footer_volmail:"volunteer@heartwarehub.ca",
+    footer_211:"211 Toronto Helpline", footer_volmail:"amywangofficial@gmail.com",
     footer_privacy:"Privacy Policy", footer_access:"Accessibility",
     footer_copy:"© 2025 The Heartware Hub · Toronto, Ontario · Made with 💜 for seniors everywhere",
     modal_title:"Welcome Back", modal_sub:"Sign in or create your free account.",
@@ -2667,7 +2678,7 @@ const translations = {
     vwhy1:"在社区中建立有意义的联系", vwhy2:"运用您的技能 —— 教学、技术、烹饪、陪伴",
     vwhy3:"灵活的时间安排 —— 晚上、周末和线上选项", vwhy4:"获得志愿者证书和推荐信",
     vwhy5:"成为充满激情的成长团队的一部分",
-    vol_contact_h:"有问题？联系我们:", vol_contact:"📧 volunteer@heartwarehub.ca\n📞 (416) 555-0190",
+    vol_contact_h:"有问题？联系我们:", vol_contact:"📧 amywangofficial@gmail.com\n📞 (416) 555-0190",
     vol_form_h:"注册成为志愿者", vol_success:"🎉 谢谢！我们将在2个工作日内与您联系。",
     label_name:"全名", label_email:"电子邮件地址", label_phone:"电话号码",
     label_area:"兴趣领域", label_msg:"介绍一下您自己", label_password:"密码",
@@ -2716,7 +2727,7 @@ const translations = {
     footer_desc:"多伦多和全加拿大长者的温馨数字家园 —— 连接健康、社区和关爱。",
     footer_pages:"页面", footer_help:"获取帮助", footer_contact:"联系我们",
     footer_antifraud:"反欺诈: 1-888-495-8501", footer_alzsoc:"阿尔茨海默协会: 1-800-616-8816",
-    footer_211:"211多伦多热线", footer_volmail:"volunteer@heartwarehub.ca",
+    footer_211:"211多伦多热线", footer_volmail:"amywangofficial@gmail.com",
     footer_privacy:"隐私政策", footer_access:"无障碍",
     footer_copy:"© 2025 心件中心 · 多伦多，安大略省 · 用💜为长者们制作",
     modal_title:"欢迎回来", modal_sub:"登录或创建您的免费账户。",
@@ -2752,17 +2763,39 @@ function setFont(size) {
 }
 
 function showPage(page) {
-  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  // Hide ALL page sections completely
+  document.querySelectorAll('.page-section').forEach(s => {
+    s.classList.remove('active');
+    s.style.display = 'none';
+    s.style.visibility = 'hidden';
+  });
+  // Show ONLY the target page
   const target = document.getElementById(page);
-  if(target) { target.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+  if(target) {
+    target.classList.add('active');
+    target.style.display = 'block';
+    target.style.visibility = 'visible';
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  // Update active nav link
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  const t = translations[currentLang];
   const map = {home:'nav_home',about:'nav_about',health:'nav_health',safety:'nav_safety',alzheimers:'nav_alz',events:'nav_events'};
   if(map[page]) {
     document.querySelectorAll('.nav-link').forEach(l => {
       if(l.getAttribute('data-i18n') === map[page]) l.classList.add('active');
     });
   }
+}
+
+function showPageAndScroll(page, sectionId) {
+  showPage(page);
+  // Wait a tick for the page to become visible before scrolling
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const el = document.getElementById(sectionId);
+      if(el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
 }
 
 function openLogin() { document.getElementById('modal-overlay').classList.add('open'); }
@@ -2931,20 +2964,17 @@ function resetQuiz() {
 
 document.addEventListener('DOMContentLoaded', renderQuizQuestion);
 </script>
-</body>
-</html>
-
 <script>
 // ══════════════════════════════════════════
 // GAME ENGINE
 // ══════════════════════════════════════════
 
 // ── Switch game tabs ──
-function switchGame(name) {
+function switchGame(name, btn) {
   document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.game-tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('game-'+name).classList.add('active');
-  event.target.classList.add('active');
+  if(btn) btn.classList.add('active');
   if(name==='memory' && !memInitialized) initMemory();
   if(name==='word' && !wordInitialized) newWordPuzzle();
   if(name==='trivia' && !trivInitialized) initTrivia();
@@ -3236,11 +3266,11 @@ function updateNavButton() {
   else { btn.setAttribute('data-i18n','nav_login'); btn.textContent = translations[currentLang]?.nav_login || 'Sign In'; }
 }
 
-function switchAccountPanel(name) {
+function switchAccountPanel(name, btn) {
   document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.account-nav-link').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
-  event.target.classList.add('active');
+  if(btn) btn.classList.add('active');
   if(name==='overview') loadOverviewStats();
   if(name==='saved') renderSavedList();
   if(name==='rsvps') renderRsvpList();
@@ -3401,6 +3431,18 @@ window.doRegister = function() {
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
+  // Force-initialize page visibility — hide all, show home only
+  document.querySelectorAll('.page-section').forEach(s => {
+    s.style.display = 'none';
+    s.style.visibility = 'hidden';
+    s.classList.remove('active');
+  });
+  const home = document.getElementById('home');
+  if(home) {
+    home.style.display = 'block';
+    home.style.visibility = 'visible';
+    home.classList.add('active');
+  }
   renderQuizQuestion();
   updateNavButton();
 });
