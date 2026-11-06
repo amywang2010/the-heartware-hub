@@ -1,0 +1,143 @@
+{
+  "model": {
+    "n": 600,
+    "fit_band_hz": [
+      60.0,
+      700.0
+    ],
+    "murmur_band_hz": [
+      150,
+      400
+    ],
+    "thickness_grid_mm": [
+      8.0,
+      46.0,
+      0.5
+    ],
+    "wiener_lambda": 0.02,
+    "segment_ms": 60,
+    "seed": 20261106
+  },
+  "corrected": {
+    "n": 600,
+    "thickness_rmse": 3.66,
+    "thickness_bias": 1.51,
+    "thickness_r": 0.747,
+    "thickness_within_5mm": 0.863,
+    "gain_db": 1.93,
+    "cells": [
+      {
+        "bmi": 22.2,
+        "raw": -9.31,
+        "corrected": -8.34,
+        "n": 200
+      },
+      {
+        "bmi": 29.0,
+        "raw": -10.01,
+        "corrected": -8.09,
+        "n": 200
+      },
+      {
+        "bmi": 36.1,
+        "raw": -11.04,
+        "corrected": -8.14,
+        "n": 200
+      }
+    ],
+    "spread": 0.25
+  },
+  "raw": {
+    "n": 600,
+    "thickness_rmse": 3.66,
+    "thickness_bias": 1.51,
+    "thickness_r": 0.747,
+    "thickness_within_5mm": 0.863,
+    "gain_db": 0.0,
+    "cells": [
+      {
+        "bmi": 22.2,
+        "raw": -9.31,
+        "corrected": -9.31,
+        "n": 200
+      },
+      {
+        "bmi": 29.0,
+        "raw": -10.01,
+        "corrected": -10.01,
+        "n": 200
+      },
+      {
+        "bmi": 36.1,
+        "raw": -11.04,
+        "corrected": -11.04,
+        "n": 200
+      }
+    ],
+    "spread": 1.73
+  },
+  "ablations": [
+    {
+      "name": "No correction",
+      "detail": "the recording as the ear receives it",
+      "gain_db": 0.0,
+      "spread": 1.73
+    },
+    {
+      "name": "One fixed thickness",
+      "detail": "20 mm assumed for every patient",
+      "gain_db": 1.82,
+      "spread": 1.69
+    },
+    {
+      "name": "Resonance ignored",
+      "detail": "absorption modelled, the wall's resonance not",
+      "gain_db": 0.51,
+      "spread": 0.6
+    },
+    {
+      "name": "Estimated per recording",
+      "detail": "this work: the wall recovered from the signal",
+      "gain_db": 1.93,
+      "spread": 0.25
+    }
+  ],
+  "robustness": [
+    {
+      "label": "absorption +20 %",
+      "rmse": 3.2,
+      "gain_db": 1.92,
+      "spread": 0.94
+    },
+    {
+      "label": "absorption \u221220 %",
+      "rmse": 2.94,
+      "gain_db": 1.78,
+      "spread": 0.9
+    },
+    {
+      "label": "exponent +15 %",
+      "rmse": 3.23,
+      "gain_db": 1.93,
+      "spread": 0.93
+    },
+    {
+      "label": "exponent \u221215 %",
+      "rmse": 2.94,
+      "gain_db": 1.78,
+      "spread": 0.92
+    },
+    {
+      "label": "resonance Q \u221230 %",
+      "rmse": 4.24,
+      "gain_db": 2.31,
+      "spread": 1.13
+    },
+    {
+      "label": "resonance Q +30 %",
+      "rmse": 2.53,
+      "gain_db": 1.43,
+      "spread": 0.78
+    }
+  ]
+}

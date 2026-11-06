@@ -3,743 +3,434 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Heartware — hear the heart, not the body</title>
-<meta name="description" content="Heartware is a 39 mm insert that replaces the back plate of the stethoscope already in the clinic. It estimates how this patient's chest wall filtered the sound and takes that filter back out.">
-<meta name="theme-color" content="#0B0509">
+<title>A stethoscope insert that corrects for the chest wall · Heartware</title>
+<meta name="description" content="Heartware is a modular insert that measures the chest wall from the recording and inverts it, so every body gives the same heart and lung signal.">
+<meta property="og:title" content="A stethoscope insert that corrects for the chest wall · Heartware">
+<meta property="og:description" content="Heartware is a modular insert that measures the chest wall from the recording and inverts it, so every body gives the same heart and lung signal.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Heartware — hear the heart, not the body">
-<meta property="og:description" content="A retrofit acoustic insert for the stethoscope you already own. Two microphones, one physics correction, and a reading that refuses to be invented.">
-<meta property="og:url" content="https://heart-ware.org/">
-<meta property="og:image" content="https://heart-ware.org/assets/img/logo-full.png">
-<link rel="icon" href="./assets/img/logo-mark.png">
-<link rel="apple-touch-icon" href="./assets/img/logo-mark.png">
+<link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/site.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Heartware","slogan":"Innovating Cardiac Care","url":"https://heart-ware.org/","logo":"https://heart-ware.org/assets/img/logo-full.png","email":"heartwaredigitalplatform@gmail.com","description":"Heartware builds a retrofit acoustic insert that corrects stethoscope recordings for the chest wall.","foundingLocation":{"@type":"Place","name":"Ontario, Canada"},"founder":{"@type":"Person","name":"Amy Wang"}}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
-<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
-
-<header class="nav" id="nav">
-  <a class="brand" href="#top" aria-label="Heartware home">
-    <img class="brand__mark" src="./assets/img/logo-mark-light.png" alt="" width="319" height="182">
-    <span class="brand__word">Heart<span>ware</span></span>
-  </a>
-  <nav class="nav-links" id="nav-links" aria-label="Sections">
-    <a href="#problem">Problem</a>
-    <a href="#correction">Correction</a>
-    <a href="#part">The part</a>
-    <a href="#app">App</a>
-    <a href="#evidence">Evidence</a>
-    <a href="#comparison">Comparison</a>
-    <a href="#team">Team</a>
-  </nav>
-  <a class="nav-cta" href="#contact">Talk to us</a>
-  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
-    <span></span><span></span>
-  </button>
+<body data-page="home">
+<header class="nav" data-open="false">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="Heartware, home">
+      <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
+      <span class="brand__word"><b>Heart</b>ware</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-label="Menu"><span></span></button>
+    <nav class="nav__links" aria-label="Primary">
+        <a href="technology.html">Technology</a>
+        <a href="product.html">Product</a>
+        <a href="clinical.html">Clinical impact</a>
+        <a href="evidence.html">Evidence</a>
+        <a href="partnerships.html">Partnerships</a>
+        <a href="about.html">About</a>
+        <a class="nav__cta" href="contact.html">Talk to us</a>
+    </nav>
+  </div>
 </header>
+<main>
 
-<main id="main">
-
-<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
-<section class="hero" id="top">
-  <div class="hero-pin">
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <div class="hero-veil" aria-hidden="true"></div>
-    <div class="spot" id="spot" aria-hidden="true"><div class="spot-heart" id="spot-heart"></div></div>
-
-    <div class="hero-content">
-      <div class="hero-copy" id="hero-copy-1">
-        <p class="hero-eyebrow"><i></i> A retrofit for the stethoscope in your hand</p>
-        <h1><span class="line">Hear the heart.</span><span class="line"><em>Not</em> the body.</span></h1>
-        <p class="hero-sub">Heartware is a 39&nbsp;mm insert that replaces the back plate of the stethoscope you already own. It works out how this patient’s chest wall filtered the sound, and takes that filter back out.</p>
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="#evidence">See what we measured <span class="btn__arrow">→</span></a>
-          <a class="btn btn--ghost" href="#correction">How the correction works</a>
-        </div>
-      </div>
-
-      <div class="hero-copy hero-copy--2" id="hero-copy-2">
-        <p class="kicker">The same lesion, two bodies</p>
-        <h2 class="h2">Fat, muscle, rib and lung<br>sit between the valve<br>and the <em>diaphragm</em>.</h2>
-        <p class="hero-sub">They take the top off the murmur, and how much they take changes from patient to patient. Turning the volume up raises the loss with the signal. Dividing the loss out does not.</p>
-      </div>
-    </div>
-
-    <div class="hero-stats" aria-label="Key figures">
-      <div class="hero-stat"><b>44<span>%</span></b><small>of significant valve disease found by auscultation in patients over 65</small></div>
-      <div class="hero-stat"><b>5<span>min</span></b><small>to fit, with the stethoscope already in the room</small></div>
-      <div class="hero-stat"><b>9<span>g</span></b><small>added to the head. The instrument feels the same</small></div>
-      <div class="hero-stat"><b>$38</b><small>in parts at 500 units. A digital stethoscope costs $199–500</small></div>
-    </div>
-
-    <div class="hero-cue" aria-hidden="true"><i></i> Scroll</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ TICKER ══════════════════════════════ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span>20 Hz – 2 kHz</span><span>24-bit capture</span><span>dual MEMS</span><span>Bluetooth 5.3</span><span>14 mm deep</span><span>IPX4 seal</span><span>39 mm across</span><span>built in Ontario</span>
-    <span>20 Hz – 2 kHz</span><span>24-bit capture</span><span>dual MEMS</span><span>Bluetooth 5.3</span><span>14 mm deep</span><span>IPX4 seal</span><span>39 mm across</span><span>built in Ontario</span>
-  </div>
-</div>
-
-<!-- ══════════════════════════════ PROBLEM ══════════════════════════════ -->
-<section class="band band--cream" id="problem">
+<section class="hero">
   <div class="wrap">
-    <span class="sec-num">01 — The problem</span>
-    <div class="problem-grid">
-      <div class="big-figure" data-reveal>
-        <div class="big-figure__num" data-count="44" data-suffix="">44<sup>%</sup></div>
-        <p class="big-figure__cap">of significant valve disease, in <b>251 patients over 65</b>, found by two experienced general practitioners listening with a stethoscope — against blinded echocardiography.</p>
-        <div class="splitbar">
-          <div class="splitbar__track">
-            <span class="found">44% found</span>
-            <span class="missed">56% missed</span>
-          </div>
-          <div class="splitbar__keys"><span>Aus­cultation</span><span>Echocardiography as truth</span></div>
-        </div>
-      </div>
-
-      <div class="problem-copy" data-reveal data-delay="1">
-        <h2 class="h2">The instrument hears the chest wall <em>first</em>.</h2>
-        <p>A murmur is made at a valve and heard at the skin. Between those two points sit fat, muscle, rib and lung. Each one absorbs a different amount of the sound, and none of them absorbs it evenly across frequency: the high components go first, so what reaches the diaphragm is quieter and has a different shape.</p>
-        <blockquote class="pullquote">Two patients with the same leak can arrive at the chestpiece with spectra that differ more than their lesions do.</blockquote>
-        <p>That is not a failure of listening. It is a filter nobody measured. A clinician comparing today’s murmur with a remembered one has no way to subtract the difference, and a threshold tuned on one body quietly misfires on the next.</p>
-        <p>In the OxVALVE primary-care cohort, auscultation found 44% of significant valve disease at 69% specificity, and the authors call it a poor screening tool above a BMI of 25. The doctors were not the problem. The instrument was handed a body to listen through.</p>
-        <p class="cite">Gardezi SKM, et al. Cardiac auscultation poorly predicts the presence of valvular heart disease in asymptomatic primary care patients. <i>Heart</i>. 2018;104(22):1832–1835. <a href="https://doi.org/10.1136/heartjnl-2018-313082" target="_blank" rel="noopener">doi:10.1136/heartjnl-2018-313082</a></p>
-      </div>
-    </div>
-
-    <div class="burden-row">
-      <div data-reveal><b>19.8<span>M</span></b><small>deaths from cardiovascular disease in 2022</small></div>
-      <div data-reveal data-delay="1"><b>75<span>%</span></b><small>of those deaths happen in low- and middle-income countries</small></div>
-      <div data-reveal data-delay="2"><b>55<span>M</span></b><small>people living with rheumatic heart disease</small></div>
-      <div data-reveal data-delay="3"><b>360<span>k</span></b><small>deaths from rheumatic heart disease every year</small></div>
-    </div>
-    <p class="cite">World Health Organization fact sheets: cardiovascular diseases (2024) and rheumatic heart disease (24 January 2025); GBD 2021.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ CORRECTION ══════════════════════════════ -->
-<section class="band band--dark" id="correction">
-  <div class="wrap">
-    <span class="sec-num">02 — The correction</span>
-    <div class="section-head section-head--split">
+    <div class="hero__grid">
       <div>
-        <h2 class="h2">Amplification is a constant.<br>The loss is <em>not</em>.</h2>
-      </div>
-      <p class="lede">Every digital stethoscope answers a quiet murmur with more gain. Gain raises the murmur and the attenuation together, so the file gets louder and the spectrum stays wrong. Heartware estimates the path for that recording and divides it out.</p>
-    </div>
-
-    <div class="filter-grid">
-      <div class="step-list">
-        <article class="step" data-reveal>
-          <h3>Measure on two channels</h3>
-          <p>One port faces the body and carries the physiological signal. A second, behind a sealed cavity, samples the room. The reference is what lets the app separate a patient from a corridor, instead of guessing.</p>
-          <div class="eq"><span><i>y</i>(<i>t</i>) = (<i>h</i> ∗ <i>s</i>)(<i>t</i>) + <i>n</i>(<i>t</i>)</span><small>signal at the chestpiece</small></div>
-        </article>
-
-        <article class="step" data-reveal data-delay="1">
-          <h3>Model the path, not the patient</h3>
-          <p>The chest wall is a frequency-dependent loss whose parameters are physical: how far the sound travelled through soft tissue, and how much that tissue absorbs per unit of distance. Nothing is fitted to outcome labels, so the model cannot inherit a training population.</p>
-          <div class="eq"><span>|<i>H</i>(<i>f</i>; <i>θ</i>)| = exp[−<i>α</i>(<i>f</i>) · <i>d</i>]</span><small><i>θ</i> = {<i>α</i>, <i>d</i>}</small></div>
-        </article>
-
-        <article class="step" data-reveal data-delay="2">
-          <h3>Invert with a floor, not a knob</h3>
-          <p>A naive reciprocal turns noise into treble. The inversion is regularised, so gain is applied only where the estimate is supported, and the residual is carried with the reading rather than hidden behind it.</p>
-          <div class="eq"><span>Ŝ(<i>f</i>) = <span class="frac"><span><i>H</i>*(<i>f</i>)</span><span class="frac-b">|<i>H</i>(<i>f</i>)|² + <i>λ</i></span></span> · <i>Y</i>(<i>f</i>)</span><small>regularised inverse</small></div>
-        </article>
-
-        <article class="step" data-reveal data-delay="3">
-          <h3>Refuse when the evidence is thin</h3>
-          <p>Per-band signal-to-noise is estimated from both channels before anything is interpreted. If a band is not supported, the app asks for the recording again. A confident number from a bad recording is worse than no number at all.</p>
-          <div class="eq"><span>SNR<sub>b</sub> &lt; <i>τ</i> ⇒ repeat</span><small>gate, per band</small></div>
-        </article>
-      </div>
-
-      <div class="demo-card" data-reveal data-delay="1">
-        <p class="kicker">Interactive</p>
-        <h3>Move the chest wall</h3>
-        <p>Drag the slider. At 12 mm the murmur arrives nearly intact. At 48 mm the band above 200 Hz is buried — and a fixed gain cannot tell those two recordings apart.</p>
-        <div class="demo-canvas-wrap">
-          <canvas id="fig-spectrum" width="620" height="400" role="img" aria-label="Modelled murmur spectrum before and after correction at the selected chest-wall thickness"></canvas>
+        <p class="eyebrow">Stethoscope insert · prototype</p>
+        <h1>
+          <span class="line">Every body changes</span>
+          <span class="line">the <em>sound</em>.</span>
+          <span class="line">The stethoscope</span>
+          <span class="line">shouldn't.</span>
+        </h1>
+        <p class="hero__sub">
+          Heartware is an insert that replaces the back plate of the stethoscope already
+          in the room. It measures the chest wall from the recording itself, inverts it,
+          and returns the sound that reached the chestpiece — not the sound the body
+          made on the way.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="evidence.html">
+            See the evidence
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="technology.html">How the correction works</a>
         </div>
-        <div class="slider-row">
-          <label for="chestwall">Soft-tissue path length</label>
-          <output id="chestwall-out" for="chestwall">28 mm</output>
+        <div class="hero__meta">
+          <div><b>Fits</b>44–48 mm chestpieces</div>
+          <div><b>Adds</b>14 mm · 45 g</div>
+          <div><b>Parts</b>$38.25 at 500 units</div>
         </div>
-        <input type="range" id="chestwall" min="12" max="55" step="1" value="28" aria-describedby="chestwall-help">
-        <div class="readouts">
-          <div><span>Loss at 250 Hz</span><b id="attn-250">—</b></div>
-          <div><span>Recovered by inversion</span><b id="attn-rec" class="hot">—</b></div>
-          <div><span>Fixed +20 dB gain</span><b id="attn-gain">—</b></div>
-        </div>
-        <p class="note" id="chestwall-help"><b>One absorption coefficient, one path.</b> The curve is a shape, not a prediction for a particular patient. On the phone, the same inversion runs per recording, from the recording itself.</p>
       </div>
-    </div>
-  </div>
-</section>
+      <figure class="hero__figure">
+        <svg class="chestwall" viewBox="0 0 560 560" role="img" aria-label="A cross-section through the chest wall: the stethoscope head on the skin, and the sound losing its high frequencies as it crosses fat, muscle and rib.">
+  <defs>
+    <clipPath id="cw">
+      <rect x="24" y="104" width="404" height="356" rx="8"/>
+    </clipPath>
+  </defs>
 
-<!-- ══════════════════════════════ FILM ══════════════════════════════ -->
-<section class="band band--darker" id="film">
-  <div class="wrap">
-    <div class="section-head section-head--split">
-      <div>
-        <span class="sec-num">The film</span>
-        <h2 class="h2">Forty-two seconds, from the chest wall to the <em>reading</em>.</h2>
-      </div>
-      <p class="lede">The insert in nine parts, the correction running on the signal, and the screen a clinician actually reads. No music, no voice, no claim the data does not carry.</p>
-    </div>
-    <figure class="film-frame" data-reveal style="margin:0">
-      <div class="demo-card" style="padding:0;overflow:hidden">
-        <video id="film-video" controls playsinline preload="none" poster="./assets/img/film-poster.webp" width="1280" height="720" style="width:100%;height:auto;display:block">
-          <source src="./assets/film/heartware.mp4" type="video/mp4">
-          Your browser cannot play this video. <a href="./assets/film/heartware.mp4">Download it instead</a>.
-        </video>
-      </div>
-      <figcaption style="margin-top:.9rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--text-dim);display:flex;justify-content:space-between;gap:1rem">
-        <span>Heartware, 2026</span><span>42.6 s · 1280 × 720 · no audio</span>
-      </figcaption>
-    </figure>
-  </div>
-</section>
+  <g clip-path="url(#cw)">
+    <path d="M28 104 C 160 100 360 108 492 104 L 492 118 C 360 122 160 114 28 118 Z" fill="#F6D8CE"/>
+    <path d="M28 118 C 160 113 360 123 492 118 L 492 210 C 360 215 160 205 28 210 Z" fill="#FBE8DF"/>
+    <path d="M28 210 C 160 205 360 215 492 210 L 492 284 C 360 289 160 279 28 284 Z" fill="#E9B4A6"/>
+    <path d="M28 284 C 160 281 360 287 492 284 L 492 318 C 360 321 160 315 28 318 Z" fill="#D8C9C2"/>
+    <path d="M28 318 C 160 314 360 322 492 318 L 492 340 C 360 344 160 336 28 340 Z" fill="#F3E9E4"/>
+    <path d="M28 340 C 160 334 360 346 492 340 L 492 460 C 360 466 160 454 28 460 Z" fill="#DCE4F1"/>
+  </g>
+  <rect x="24" y="104" width="404" height="356" rx="8" fill="none" stroke="#173D7A" stroke-width="1" opacity="0.18"/>
 
-<!-- ══════════════════════════════ THE PART ══════════════════════════════ -->
-<section class="band band--cream" id="part">
-  <div class="wrap">
-    <span class="sec-num">03 — The part</span>
-    <div class="section-head section-head--split">
-      <div>
-        <h2 class="h2">A part, not <em>another</em> instrument.</h2>
-      </div>
-      <p class="lede">The head of a stethoscope is a sealed acoustic chamber with a screw-on back plate. Heartware is that plate. The diaphragm, the bell, the tubing and the weight in your hand do not change, so there is nothing new to learn and nothing extra to carry.</p>
-    </div>
+  <!-- the sound, losing its top end -->
+  <g stroke="#C8102E" fill="none" stroke-linecap="round">
+    <path d="M150 120 C 184 158 116 196 150 232 C 184 268 116 306 150 342" stroke-width="2.8" opacity="0.9"/>
+    <path d="M196 120 C 230 158 162 196 196 232 C 230 268 162 306 196 342" stroke-width="2.1" opacity="0.55"/>
+    <path d="M242 120 C 276 158 208 196 242 232 C 276 268 208 306 242 342" stroke-width="1.4" opacity="0.3"/>
+  </g>
 
-    <div class="part-grid">
-      <figure class="exploded" data-reveal>
-        <img src="./assets/img/exploded.svg" alt="Exploded diagram of the stethoscope chestpiece: diaphragm, housing, insert board with two microphone ports, battery, and back plate." width="720" height="660">
-        <figcaption>Exploded view. The original back plate is the only part that leaves the assembly.</figcaption>
+  <!-- stethoscope head -->
+  <g stroke="#173D7A" fill="none" stroke-width="2">
+    <circle cx="150" cy="74" r="32" fill="#FFFCFA"/>
+    <circle cx="150" cy="74" r="21" opacity="0.5"/>
+    <path d="M150 42 L150 10" stroke-linecap="round"/>
+  </g>
+  <circle cx="150" cy="74" r="5" fill="#C8102E"/>
+
+  <!-- labels -->
+  <g font-family="'Instrument Sans', sans-serif" font-size="19" fill="#0F1A2C">
+    <g stroke="#0F1A2C" stroke-width="1" opacity="0.28">
+      <path d="M436 112 H 468"/>
+      <path d="M306 165 H 468"/>
+      <path d="M306 248 H 468"/>
+      <path d="M306 301 H 468"/>
+    </g>
+    <text x="476" y="119">Skin</text>
+    <text x="476" y="172">Fat</text>
+    <text x="476" y="255">Muscle</text>
+    <text x="476" y="308">Rib</text>
+  </g>
+
+  <g font-family="'JetBrains Mono', monospace" font-size="13" fill="#C8102E" letter-spacing="1.5">
+    <text x="24" y="504">−25 dB AT 300 Hz</text>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="12" fill="#173D7A" opacity="0.55" letter-spacing="1.3">
+    <text x="24" y="534">WHAT A 38 MM WALL TAKES OUT</text>
+  </g>
+</svg>
+        <figcaption class="hero__caption">One murmur, one recording,<br>two different chest walls</figcaption>
       </figure>
-
-      <ol class="parts" data-reveal data-delay="1">
-        <li><b>Diaphragm and bell</b><span>Stock. Untouched, same acoustic pathway as before.</span></li>
-        <li><b>Body-facing port</b><span>A MEMS microphone looking straight into the cup’s existing channel.</span></li>
-        <li><b>Reference port</b><span>A second microphone behind a sealed cavity, reading the room.</span></li>
-        <li><b>Capture board</b><span>Dual 24-bit microphones, 20 Hz – 2 kHz, 65 dB SNR.</span></li>
-        <li><b>Radio</b><span>nRF52840 over Bluetooth 5.3, to the phone already in your pocket.</span></li>
-        <li><b>Cell</b><span>60 mAh pouch, USB-C charged, about nine hours of streaming.</span></li>
-        <li><b>Seal</b><span>Silicone gasket and O-ring groove. IPX4, so it survives a wipe-down.</span></li>
-        <li><b>Housing</b><span>Machined aluminium, 38.9 mm across, 9 g, seated on the stock stem collar.</span></li>
-      </ol>
-    </div>
-
-    <div class="spec-strip">
-      <div data-reveal><span>Insert diameter</span><b>38.9 mm</b></div>
-      <div data-reveal data-delay="1"><span>Fits chestpieces</span><b>44–48 mm</b></div>
-      <div data-reveal data-delay="2"><span>Added to the head</span><b>14.0 mm</b></div>
-      <div data-reveal data-delay="3"><span>Added mass</span><b>9 g</b></div>
-    </div>
-
-    <div class="install">
-      <div class="install-step" data-reveal><span>01</span><h3>Unscrew</h3><p>The stock back plate comes off with the spanner already in the clinic drawer.</p></div>
-      <div class="install-step" data-reveal data-delay="1"><span>02</span><h3>Seat</h3><p>The insert drops into the chamber and the gasket seats on the original lip.</p></div>
-      <div class="install-step" data-reveal data-delay="2"><span>03</span><h3>Pair once</h3><p>The phone remembers the insert. Every reading after that is one press.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════ APP ══════════════════════════════ -->
-<section class="band band--red" id="app">
-  <div class="wrap">
-    <span class="sec-num" style="color:#FFD3DC">04 — The reading</span>
-    <div class="section-head section-head--split">
-      <div>
-        <h2 class="h2" style="color:#fff">A finding that carries<br>its own <em style="color:#FFD3DC">evidence</em>.</h2>
+<section style="padding-block:0">
+  <div class="wrap" style="padding-inline:0;max-width:100%">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__num"><span data-count="44">44</span><sup>%</sup></div>
+        <p class="stat__label">of significant valve disease found by auscultation in patients over 65 — and only below a BMI of 25.</p>
+        <p class="stat__src">Gardezi 2018 · n = 251</p>
       </div>
-      <p class="lede" style="color:rgba(255,255,255,.86)">A finding without a site, a band and a quality score is a guess with a typeface. The app returns all four — and returns nothing at all when the recording does not support a finding.</p>
-    </div>
-
-    <div class="app-grid">
-      <div class="phone-stage" data-reveal>
-        <div class="phone">
-          <img id="app-shot" src="./assets/img/app_heart.webp" alt="Heartware app showing a phonocardiogram with S1 and S2 marked, a systolic murmur graded 2 at the aortic site, and a signal quality of 0.94." width="560" height="1040">
-        </div>
+      <div class="stat">
+        <div class="stat__num"><span data-count="1.73" data-suffix=" dB">1.73 dB</span></div>
+        <p class="stat__label">how much the same murmur shifts between body types in our model, before correction.</p>
+        <p class="stat__src">In-silico · n = 600</p>
       </div>
-
-      <div class="app-copy" data-reveal data-delay="1">
-        <div class="tabs" role="tablist" aria-label="Examination site">
-          <button role="tab" id="tab-heart" aria-selected="true" aria-controls="panel-heart" data-shot="heart">Heart</button>
-          <button role="tab" id="tab-lungs" aria-selected="false" aria-controls="panel-lungs" data-shot="lungs" tabindex="-1">Lungs</button>
-          <button role="tab" id="tab-other" aria-selected="false" aria-controls="panel-other" data-shot="other" tabindex="-1">Other</button>
-        </div>
-
-        <div class="panel" id="panel-heart" role="tabpanel" aria-labelledby="tab-heart">
-          <h3>Systolic murmur, grade 2</h3>
-          <dl class="findings">
-            <div><dt>Site</dt><dd>Aortic area</dd></div>
-            <div><dt>Band</dt><dd>150–400 Hz · 0.21 s before S2</dd></div>
-            <div><dt>Likelihood</dt><dd>72%</dd></div>
-            <div><dt>Signal quality</dt><dd>0.94 · room removed</dd></div>
-          </dl>
-          <p>If the 150–400 Hz band is not supported, this row is not produced. You see the spectrum, the S1 and S2 marks and the correction applied — not a verdict.</p>
-        </div>
-
-        <div class="panel" id="panel-lungs" role="tabpanel" aria-labelledby="tab-lungs" hidden>
-          <h3>Crackles: none</h3>
-          <dl class="findings">
-            <div><dt>Site</dt><dd>Right base</dd></div>
-            <div><dt>Band</dt><dd>100–2000 Hz · 5 s window</dd></div>
-            <div><dt>Likelihood</dt><dd>3%</dd></div>
-            <div><dt>Signal quality</dt><dd>0.94</dd></div>
-          </dl>
-          <p>Lung fields use a wider band and a longer window than the heart. Absence of crackles is reported only when the window is clean, because a noisy window and a clear chest look identical to a threshold.</p>
-        </div>
-
-        <div class="panel" id="panel-other" role="tabpanel" aria-labelledby="tab-other" hidden>
-          <h3>Bowel sounds: normal, 9/min</h3>
-          <dl class="findings">
-            <div><dt>Site</dt><dd>Abdomen</dd></div>
-            <div><dt>Band</dt><dd>100–500 Hz · no bruit</dd></div>
-            <div><dt>Likelihood</dt><dd>4%</dd></div>
-            <div><dt>Signal quality</dt><dd>0.94</dd></div>
-          </dl>
-          <p>The same hardware, a different band. Auscultation is not only cardiac, and the insert does not decide for you which examination you are doing.</p>
-        </div>
-
-        <p class="app-note">The screen is the working interface. The signal in this capture is synthetic and labelled as such inside the app; patient recordings are not published.</p>
+      <div class="stat">
+        <div class="stat__num"><span data-count="0.25" data-suffix=" dB">0.25 dB</span></div>
+        <p class="stat__label">the same spread once the wall is estimated per recording and removed.</p>
+        <p class="stat__src">In-silico · n = 600</p>
       </div>
-    </div>
-
-    <div class="live-demo" data-reveal>
-      <div class="live-demo__head">
-        <div>
-          <p class="kicker" style="color:#FF9DB0">Live demo</p>
-          <h3>Press play. Drag the chest wall. Watch the murmur come back.</h3>
-        </div>
-        <span class="live-demo__badge">Synthetic signal · modelled, not a patient</span>
+      <div class="stat">
+        <div class="stat__num">0</div>
+        <p class="stat__label">trained parameters in the correction. There is no dataset for it to inherit a bias from.</p>
+        <p class="stat__src">Method</p>
       </div>
-
-      <div class="live-demo__stage">
-        <canvas id="pc-canvas" width="1100" height="260" role="img"
-          aria-label="Scrolling phonocardiogram. The faint trace is the recording as captured; the bright trace is the same recording after the path correction. The murmur becomes visible as the chest-wall thickness increases."></canvas>
-        <div class="live-demo__legend">
-          <span><i class="sw sw--raw"></i>As recorded</span>
-          <span><i class="sw sw--cor"></i>Corrected</span>
-          <span class="live-demo__hr"><b id="pc-hr">72</b> bpm</span>
-        </div>
-      </div>
-
-      <div class="live-demo__controls">
-        <button id="pc-play" class="btn btn--live" aria-pressed="false"><span>Play</span>
-          <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-
-        <div class="seg" role="group" aria-label="Which trace to show">
-          <button data-mode="raw" aria-pressed="false">As recorded</button>
-          <button data-mode="both" aria-pressed="true">Both</button>
-          <button data-mode="cor" aria-pressed="false">Corrected</button>
-        </div>
-
-        <div class="live-demo__wall">
-          <div class="slider-row">
-            <label for="pc-wall">Chest wall</label>
-            <output id="pc-wall-out" for="pc-wall">28 mm</output>
-          </div>
-          <input type="range" id="pc-wall" min="12" max="48" step="1" value="28" aria-label="Soft-tissue path length in millimetres">
-        </div>
-      </div>
-
-      <div class="readouts readouts--live">
-        <div><span>Band</span><b id="pc-band">150–400 Hz · clear</b></div>
-        <div><span>Path loss at 260 Hz</span><b id="pc-loss">−14 dB</b></div>
-        <div><span>Signal quality</span><b id="pc-q" class="hot">0.94</b></div>
-      </div>
-
-      <p class="note">The signal is generated by the model in this page: two valve closures, a systolic murmur, a room floor, and one absorption coefficient for the path. Nothing here is a patient recording, and the quality score is the model’s own band SNR — not a validated measure.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════ EVIDENCE ══════════════════════════════ -->
-<section class="band band--paper" id="evidence">
+<section>
   <div class="wrap">
-    <span class="sec-num">05 — Evidence</span>
-    <div class="section-head section-head--split">
+    <div class="head reveal">
       <div>
-        <h2 class="h2">What is measured.<br>What is <em>next</em>.</h2>
+        <p class="eyebrow">The measurement</p>
+        <h2>This is not a listening problem.<br>It is a <em>transfer function</em>.</h2>
       </div>
-      <p class="lede">Two kinds of number appear on this page. One is measured on hardware we built. The other is published, from studies of the exam as it is practised today. The distance between them is the work.</p>
+      <p class="lede">
+        A stethoscope hears the chest wall before it hears the heart. Fat, muscle and rib
+        attenuate the highs, resonate the lows and add a path of their own — so the same
+        valve arrives at a different amplitude in a 60 kg teenager and a 120 kg adult.
+        A clinician comparing that sound to a remembered one has no way to subtract the
+        difference.
+      </p>
     </div>
 
-    <div class="ev-grid">
-      <article class="ev-card ev-card--red" data-reveal>
-        <span class="ev-card__tag">Measured on the built part</span>
-        <b class="ev-num">3<span> revisions</span></b>
-        <p>Printed and machined housings, converging on a 38.9 mm insert that seats in 44–48 mm single- and double-head chestpieces, adds 14 mm and 9 g, and is retained by the stock stem collar.</p>
-      </article>
-      <article class="ev-card ev-card--navy" data-reveal data-delay="1">
-        <span class="ev-card__tag">Measured on the bench</span>
-        <b class="ev-num">2<span> × 24-bit</span></b>
-        <p>The microphone chain runs 20 Hz – 2 kHz at 65 dB SNR, with the reference channel behind a sealed cavity. It was tested against a driven speaker noise field and a mechanical chest simulator.</p>
-      </article>
-      <article class="ev-card" data-reveal data-delay="2">
-        <span class="ev-card__tag">A property of the method</span>
-        <b class="ev-num">0<span> trained parameters</span></b>
-        <p>Nothing in the correction is fitted to outcome labels. There is no learned layer that can encode who was in a dataset — the error is set by the model, and a reviewer can check the model.</p>
-      </article>
+    <div class="split split--top">
+      <div class="stack">
+        <p>
+          Digital stethoscopes do not correct this. They reproduce the wall faithfully, at
+          $250–600, which keeps them in cardiology departments while first contact happens
+          in primary care, nursing homes and home visits, where the acoustic stethoscope is
+          still the only instrument in the room.
+        </p>
+        <p>
+          The fix is not a better microphone or a louder speaker. It is knowing what the
+          wall did to the sound, and undoing it — per recording, from the recording.
+        </p>
+        <div class="note-box">
+          <b>What we do not claim.</b> No echocardiographic comparison has been run, so no
+          sensitivity, specificity or AUC is claimed anywhere on this site.
+        </div>
+      </div>
+      <figure class="figure reveal">
+        <img src="assets/figures/fig-01-transfer.png" alt="Four transfer curves showing the same heart sound attenuated differently by 12, 20, 28 and 38 mm of chest wall." loading="lazy">
+        <figcaption><b>FIG 01</b> The wall as a filter. A 38 mm wall loses 25 dB more than a 12 mm wall across the murmur band.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band-cream">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <p class="eyebrow">The method</p>
+        <h2>Measure the wall.<br>Then take it <em>out</em>.</h2>
+      </div>
+      <p class="lede">
+        Three things happen between the chestpiece and the screen. None of them is a
+        trained model, and none of them needs to know the patient's weight.
+      </p>
     </div>
 
-    <div class="ev-table" data-reveal>
-      <div class="ev-table__head">
-        <h3>Published reference points</h3>
-        <span>Not our device. The field this is measured against</span>
+    <div class="steps">
+      <div class="step reveal">
+        <svg viewBox="0 0 320 120" role="img" aria-label="Two microphones looking into the acoustic channel.">
+  <g stroke="#173D7A" fill="none" stroke-width="1.6">
+    <rect x="24" y="34" width="86" height="52" rx="10"/>
+    <circle cx="52" cy="60" r="7" fill="#C8102E" stroke="none"/>
+    <circle cx="52" cy="60" r="12"/>
+    <circle cx="84" cy="60" r="6"/>
+    <path d="M110 60 H 150" stroke-dasharray="3 4"/>
+  </g>
+  <path d="M150 82 C 162 82 164 38 176 38 C 188 38 190 82 202 82 C 214 82 216 38 228 38 C 240 38 242 80 254 80"
+        fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round"/>
+  <text x="24" y="20" font-family="'JetBrains Mono', monospace" font-size="9"
+        letter-spacing="1.5" fill="#173D7A">PORT · REFERENCE</text>
+</svg>
+        <h3>Characterise the path</h3>
+        <p>
+          The valve closures in the recording — S1 and S2 — are broadband transients. Their
+          shape has passed through the wall, so the wall is written into them. Heartware
+          fits the same physical model to those transients and recovers the thickness of the
+          path to within a few millimetres.
+        </p>
       </div>
-      <div class="ev-table__scroll">
-        <table>
-          <thead>
-            <tr><th scope="col">Measurement</th><th scope="col">Value</th><th scope="col">Source</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Auscultation sensitivity, asymptomatic patients over 65</th><td class="num">44%</td><td class="src">Gardezi 2018 · n = 251 · 36 with disease</td></tr>
-            <tr><th scope="row">Auscultation specificity, same cohort</th><td class="num">69%</td><td class="src">Gardezi 2018</td></tr>
-            <tr><th scope="row">Primary-care auscultation sensitivity in the AI trial</th><td class="num">41.2%</td><td class="src">Circulation 2023;148:A13244</td></tr>
-            <tr><th scope="row">AI-assisted digital stethoscope sensitivity</th><td class="num">94.1%</td><td class="src">Same trial · a different product, for scale</td></tr>
-          </tbody>
-        </table>
+      <div class="step reveal">
+        <svg viewBox="0 0 320 120" role="img" aria-label="The reference microphone measures the room, and the room is subtracted.">
+  <g stroke="#173D7A" fill="none" stroke-width="1.5" opacity="0.9">
+    <path d="M20 40 q 8 -14 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0"/>
+    <path d="M20 66 q 8 -10 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0" opacity="0.5"/>
+  </g>
+  <path d="M196 53 H 232" stroke="#C8102E" stroke-width="1.6"/>
+  <path d="M226 49 l 8 4 l -8 4" fill="none" stroke="#C8102E" stroke-width="1.6"/>
+  <path d="M244 66 q 8 -8 16 0 t 16 0 t 16 0 t 16 0" fill="none" stroke="#C8102E" stroke-width="2"/>
+  <text x="20" y="24" font-family="'JetBrains Mono', monospace" font-size="9"
+        letter-spacing="1.4" fill="#173D7A">ROOM · REFERENCE · CLEAN</text>
+</svg>
+        <h3>Separate the room</h3>
+        <p>
+          A second microphone sits behind a sealed cavity. It hears the room and not the
+          heart, so the room can be subtracted rather than filtered. The signal-quality
+          score is computed from the same two channels.
+        </p>
       </div>
-      <p class="ev-table__foot">None of these are our results. The last two rows are another company’s trial: when the same exam was captured electronically and read by an algorithm, sensitivity in that study went from 41.2% to 94.1% and specificity fell from 95.5% to 84.5%. Different product, different mechanism — but it sets the scale of what the exam can yield once the sound is no longer only in an ear.</p>
+      <div class="step reveal">
+        <svg viewBox="0 0 320 120" role="img" aria-label="The wall's transfer function is inverted, and the spectrum is flattened.">
+  <g stroke="#173D7A" fill="none" stroke-width="1.5">
+    <path d="M24 34 C 90 34 100 96 180 96 C 230 96 250 92 296 92" opacity="0.45"/>
+    <path d="M24 34 C 90 34 100 96 180 96 C 230 96 250 92 296 92" stroke="#173D7A" stroke-width="0"/>
+  </g>
+  <path d="M24 96 C 90 96 100 34 180 34 C 230 34 250 36 296 36"
+        fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="160" cy="64" r="4" fill="#C8102E"/>
+  <path d="M160 64 L 160 24" stroke="#C8102E" stroke-width="1" stroke-dasharray="2 3"/>
+  <text x="24" y="114" font-family="'JetBrains Mono', monospace" font-size="9"
+        letter-spacing="1.4" fill="#173D7A">BEFORE · AFTER</text>
+</svg>
+        <h3>Invert, or refuse</h3>
+        <p>
+          The wall's response is inverted with a regularised filter, so the correction stops
+          pushing where the noise floor sits. Below a quality threshold the app returns no
+          finding at all and asks for another recording.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <p class="eyebrow">Evidence</p>
+        <h2>The correction is arithmetic.<br>Arithmetic can be <em>checked</em>.</h2>
+      </div>
+      <p class="lede">
+        Four results from the model in this repository, with the figures, the sample size
+        and the failure cases. Every number regenerates from
+        <code>research/thoracic_model.py</code>.
+      </p>
     </div>
 
-    <div class="evidence-grid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start">
-      <div data-reveal>
-        <h3 style="font-size:1.5rem;margin-bottom:.9rem">The proof, in three rows</h3>
-        <div class="ladder">
-          <div>
-            <span>Measured</span>
-            <b>The instrument exists and fits</b>
-            <small>Three housing revisions. Real chestpieces. Real recordings taken from people across body types. More than 100 clinicians, students and volunteers have handled the unit.</small>
+    <div class="split split--top">
+      <figure class="figure reveal">
+        <img src="assets/figures/fig-03-body.png" alt="Murmur level by body type, before and after correction. Before, it falls with body size; after, it is flat." loading="lazy">
+        <figcaption><b>FIG 03</b> The same murmur across three body types: 1.73 dB of spread before, 0.25 dB after.</figcaption>
+      </figure>
+      <div class="stack">
+        <div class="cards" style="grid-template-columns:1fr">
+          <div class="card">
+            <span class="card__num">01 · RECOVERY</span>
+            <h3>3.7 mm</h3>
+            <p>RMS error recovering chest-wall thickness from the recording alone, across 600 synthetic subjects. 86% within 5 mm. Nothing about the patient is supplied to the estimator.</p>
           </div>
-          <div>
-            <span>Checked</span>
-            <b>The correction agrees with its own model</b>
-            <small>The inversion is implemented on the phone and verified against a synthetic chest-wall model for numerical agreement. It runs per recording, from the recording.</small>
-          </div>
-          <div>
-            <span>Not yet</span>
-            <b>Sensitivity against echocardiography</b>
-            <small>No paired corrected-versus-uncorrected recording has been scored against an echo yet. That is the one number this page does not have, and it is the study below.</small>
+          <div class="card">
+            <span class="card__num">02 · ABLATION</span>
+            <h3>1.69 → 0.25 dB</h3>
+            <p>Correcting with <em>one</em> assumed thickness — the obvious shortcut — barely improves on doing nothing. The per-recording estimate is what removes the body dependence.</p>
           </div>
         </div>
-      </div>
-
-      <div class="study" data-reveal data-delay="1">
-        <div>
-          <p class="kicker">The study</p>
-          <h3>One site. Paired recordings. Same-visit echo.</h3>
-          <p>Every patient is recorded twice at the same visit — insert in, insert out — and both recordings are scored against the same blinded echocardiogram. Same patient, same room, same ten minutes. The only thing that changes is the correction.</p>
-        </div>
-        <div>
-          <ol>
-            <li><b>Primary endpoint</b> — sensitivity of the corrected reading against the uncorrected reading, echo as reference.</li>
-            <li><b>Secondaries</b> — specificity, and the change in the disparity between body-composition groups.</li>
-            <li><b>Blinding</b> — the echocardiographer does not see the recordings; the readers do not see the echo.</li>
-            <li><b>Publication</b> — we publish it whether or not it favours us. If the correction does not move the finding, the product becomes a documentation device and we will say so.</li>
-          </ol>
-        </div>
+        <a class="btn btn--ghost" href="evidence.html">
+          All six figures and the claims ledger
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════ ACCESS ══════════════════════════════ -->
-<section class="band band--dark" id="access">
+<section class="band-warm">
   <div class="wrap">
-    <span class="sec-num">06 — Where it has been</span>
-    <div class="section-head section-head--split">
+    <div class="head reveal">
       <div>
-        <h2 class="h2">Built with people who examine patients for a <em>living</em>.</h2>
+        <p class="eyebrow">The part</p>
+        <h2>Not another instrument.<br>Six parts and a <em>collar</em>.</h2>
       </div>
-      <p class="lede">Not a survey of stakeholders. Hands on the unit, in clinics, on wards, and in front of the people whose ten minutes this has to fit inside.</p>
+      <p class="lede">
+        The insert threads into the cup of the stethoscope a clinic already owns. Interchangeable
+        collars seat it in 44, 46 and 48 mm heads; the acoustic path stays the manufacturer's.
+        Remove it and the instrument is exactly what it was.
+      </p>
     </div>
 
-    <div class="access-grid">
-      <article class="access-card" data-reveal>
-        <span class="access-card__kind">Clinical placement</span>
-        <h3>Xiangyang No. 1 People’s Hospital</h3>
-        <span class="place">Hubei, China</span>
-        <p>Clinical internship on the wards, where the physical exam was observed end to end: what a ten-minute visit actually leaves room for, where the stethoscope sits inside it, and why a device that adds a step does not get used.</p>
-      </article>
-
-      <article class="access-card" data-reveal data-delay="1">
-        <span class="access-card__kind">Design review</span>
-        <h3>100+ clinicians, students and volunteers</h3>
-        <span class="place">Ontario, Canada</span>
-        <p>Their feedback changed three things: the insert became a five-minute threaded retrofit instead of a clip-on, the output became a site plus a likelihood instead of one “abnormal” flag, and the app gained a refusal state.</p>
-      </article>
-
-      <article class="access-card" data-reveal data-delay="2">
-        <span class="access-card__kind">Clinical affairs</span>
-        <h3>Jiahe Wang, MLA/T</h3>
-        <span class="place">MLPAO registered</span>
-        <p>Registered medical laboratory assistant and technician. Owns the recording protocol — site, contact pressure, sequence — and runs the recording sessions to a clinical standard rather than a maker’s.</p>
-      </article>
-
-      <article class="access-card" data-reveal>
-        <span class="access-card__kind">Science</span>
-        <h3>Manolis Kellis</h3>
-        <span class="place">MIT · computational biology</span>
-        <p>Advises on the signal and the statistics: what a recording can support, and what it cannot. The rule that nothing is claimed without a measurement comes from this desk.</p>
-      </article>
-
-      <article class="access-card" data-reveal data-delay="1">
-        <span class="access-card__kind">Clinical review</span>
-        <h3>Practising clinicians</h3>
-        <span class="place">Interface and findings language</span>
-        <p>Read the app the way a clinician would. A reading has to read like a clinical note — a site, a band, a quality score — not like a dashboard selling something.</p>
-      </article>
-
-      <article class="access-card access-card--open" data-reveal data-delay="2">
-        <span class="access-card__kind">Open</span>
-        <h3>One echocardiography site</h3>
-        <span class="place">Recruiting now</span>
-        <p>The study above needs a cardiology or primary-care site already running echo. We have the device and the protocol. <a href="#contact" style="color:#FFC9D4">If that is you, we would like to talk.</a></p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ COMPARISON ══════════════════════════════ -->
-<section class="band band--cream" id="comparison">
-  <div class="wrap">
-    <span class="sec-num">07 — Comparison</span>
-    <div class="section-head section-head--split">
-      <div>
-        <h2 class="h2">What you pay, and what you <em>keep</em>.</h2>
+    <div class="drawings">
+      <div class="sheet reveal">
+        <span class="sheet__label">Fig. A · Section, exploded</span>
+        <svg viewBox="0 0 520 470" role="img" aria-label="Exploded section of the insert: six stacked parts, from the diaphragm face to the retention collar.">
+  <line x1="230" y1="40" x2="230" y2="430" stroke="#173D7A" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.4"/>
+  <rect x="155.0" y="60" width="150" height="10" rx="4" fill="#FFFCFA" stroke="#173D7A" stroke-width="1.4"/><path d="M309.0 65.0 H 317.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="321.0" y="69.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">DIAPHRAGM FACE</text><rect x="146.0" y="96" width="168" height="14" rx="4" fill="#FBE8DF" stroke="#173D7A" stroke-width="1.4"/><path d="M318.0 103.0 H 326.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="330.0" y="107.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">ACOUSTIC PORT</text><rect x="142.0" y="136" width="176" height="9" rx="4" fill="#FFFCFA" stroke="#173D7A" stroke-width="1.4"/><path d="M322.0 140.5 H 330.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="334.0" y="144.5" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">DUAL MEMS BOARD</text><rect x="164.0" y="171" width="132" height="12" rx="4" fill="#FBE8DF" stroke="#173D7A" stroke-width="1.4"/><path d="M300.0 177.0 H 308.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="312.0" y="181.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">BATTERY</text><rect x="139.0" y="209" width="182" height="16" rx="4" fill="#FFFCFA" stroke="#173D7A" stroke-width="1.4"/><path d="M325.0 217.0 H 333.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="337.0" y="221.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">BASE SHELL</text><rect x="170.0" y="251" width="120" height="8" rx="4" fill="#FBE8DF" stroke="#173D7A" stroke-width="1.4"/><path d="M294.0 255.0 H 302.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="306.0" y="259.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">RETENTION COLLAR</text>
+  <text x="30" y="448" font-family="'JetBrains Mono', monospace" font-size="9"
+        fill="#173D7A" letter-spacing="1.4">SECTION · SIX PARTS · NO ADHESIVE</text>
+</svg>
+        <span class="sheet__scale">No adhesive · no drilling</span>
       </div>
-      <p class="lede">The digital stethoscope market sells a new instrument, from $199 to $500, and in most cases a subscription on top for the interpretation. Heartware sells a part that fits the one you have.</p>
-    </div>
-
-    <div class="price-bars">
-      <div class="bar-row bar-row--us" data-reveal>
-        <span class="bar-name">Heartware insert<em>parts, at 500 units</em></span>
-        <div class="bar-track"><span class="bar" style="width:7.65%"></span></div>
-        <span class="bar-price">$38.25<small>component cost</small></span>
-      </div>
-      <div class="bar-row" data-reveal>
-        <span class="bar-name">Eko CORE 300</span>
-        <div class="bar-track"><span class="bar" style="width:39.8%"></span></div>
-        <span class="bar-price">$199</span>
-      </div>
-      <div class="bar-row" data-reveal>
-        <span class="bar-name">Eko CORE attachment</span>
-        <div class="bar-track"><span class="bar" style="width:51.8%"></span></div>
-        <span class="bar-price">$259</span>
-      </div>
-      <div class="bar-row" data-reveal>
-        <span class="bar-name">3M Littmann CORE</span>
-        <div class="bar-track"><span class="bar" style="width:75.8%"></span></div>
-        <span class="bar-price">$379</span>
-      </div>
-      <div class="bar-row" data-reveal>
-        <span class="bar-name">Eko CORE 500</span>
-        <div class="bar-track"><span class="bar" style="width:89.8%"></span></div>
-        <span class="bar-price">$449</span>
-      </div>
-      <div class="bar-row" data-reveal>
-        <span class="bar-name">Littmann 3200<em>discontinued</em></span>
-        <div class="bar-track"><span class="bar" style="width:100%"></span></div>
-        <span class="bar-price">$500<small>list</small></span>
-      </div>
-    </div>
-
-    <div class="table-scroll" data-reveal>
-      <table class="compare">
-        <caption>Manufacturer prices, checked November 2026. The Heartware figure is component cost at 500 units, not a retail price.</caption>
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col" class="hl">Heartware</th>
-            <th scope="col">Eko CORE attachment</th>
-            <th scope="col">Eko CORE 500</th>
-            <th scope="col">Littmann 3200</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">What you buy</th><td class="hl">A back plate</td><td>A clip-on unit</td><td>A whole stethoscope</td><td>A whole stethoscope</td></tr>
-          <tr><th scope="row">Keeps your chestpiece</th><td class="hl"><span class="yes-mark">Yes</span></td><td>Headset only</td><td class="no-mark">No</td><td class="no-mark">No</td></tr>
-          <tr><th scope="row">Change to the head</th><td class="hl">14 mm, 9 g</td><td>Clips tube to head</td><td>Replaces the head</td><td>Replaces the head</td></tr>
-          <tr><th scope="row">The mechanism</th><td class="hl">Path inversion</td><td>Up to 40× gain</td><td>Up to 40× gain</td><td>Up to 24× gain</td></tr>
-          <tr><th scope="row">Corrects for the body</th><td class="hl"><span class="yes-mark">Yes</span></td><td class="no-mark">No</td><td class="no-mark">No</td><td class="no-mark">No</td></tr>
-          <tr><th scope="row">Refuses a bad recording</th><td class="hl"><span class="yes-mark">Yes, per band</span></td><td class="no-mark">No</td><td class="no-mark">No</td><td class="no-mark">No</td></tr>
-          <tr><th scope="row">Interpretation</th><td class="hl">On the phone, no subscription</td><td>Eko+ subscription</td><td>Eko+ subscription</td><td>Third-party software</td></tr>
-          <tr><th scope="row">Regulatory status</th><td class="hl">Research prototype</td><td>FDA cleared</td><td>FDA cleared</td><td>Class II</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="argument">
-      <div data-reveal>
-        <h3>Why the correction is the differentiator, not the microphone</h3>
-        <p>Any of these devices can put a clean, loud murmur on a phone. The problem they leave untouched is that the murmur arrived filtered by a body, and the filter varies by more than the lesion does. Forty times the gain on a signal that lost 30 dB above 200 Hz produces a loud recording of the wrong spectrum.</p>
-        <p>Which is also why we do not need a training population. The correction is the inversion of a physical model with two parameters, both properties of tissue and path, neither fitted to labels. There is no learned layer that can encode who happened to be in a dataset — the failure mode that makes clinicians suspicious of algorithmic auscultation in the first place.</p>
-      </div>
-      <div class="callout" data-reveal data-delay="1">
-        <h3>Where we are behind</h3>
-        <ul>
-          <li>No FDA or Health Canada clearance. Ours is a research prototype.</li>
-          <li>No echo-anchored accuracy in a clinic yet. The study above is how that changes, and it has not run.</li>
-          <li>No manufacturing partner. $38.25 is a costed BOM at 500 units, not a quote.</li>
-        </ul>
-        <p>Better here, in our own words, than in a reviewer’s footnote.</p>
-      </div>
-    </div>
-
-    <p class="cite">Prices: ekohealth.com store and 3M literature, November 2026 (CORE 300 $199, CORE attachment $259, 3M Littmann CORE $379, CORE 500 $449; Littmann 3200 list $500, discontinued). Parts: internal BOM, 500-unit volume. Prior-generation context: <i>Circulation</i>. 2023;148(suppl 1):A13244 — AI-assisted auscultation reached 94.1% sensitivity against 41.2% for primary-care auscultation, with specificity falling from 95.5% to 84.5%.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ ROADMAP ══════════════════════════════ -->
-<section class="band band--dark" id="roadmap">
-  <div class="wrap">
-    <span class="sec-num">08 — Next</span>
-    <div class="section-head">
-      <h2 class="h2">Three things have to be true<br>before this is a <em>product</em>.</h2>
-    </div>
-    <div class="road-grid">
-      <article data-reveal>
-        <span class="when">Now</span>
-        <h3>Bench and body</h3>
-        <p>Repeatability across operators, fit across chestpiece models, and a photograph of the insert seated in a real head — because a render is not a prototype.</p>
-      </article>
-      <article data-reveal data-delay="1">
-        <span class="when">Next twelve months</span>
-        <h3>Paired recording and echo</h3>
-        <p>One clinic partner, one protocol, corrected and uncorrected recordings scored against the same echocardiogram. This is the study that turns a classification result into a diagnostic claim.</p>
-      </article>
-      <article data-reveal data-delay="2">
-        <span class="when">Then</span>
-        <h3>Manufacture and clearance</h3>
-        <p>A contract manufacturer for the housing and board, a quality system, and a regulatory pathway. The BOM says this is affordable; a production line is what makes it real.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ TEAM ══════════════════════════════ -->
-<section class="band band--darker" id="team">
-  <div class="wrap">
-    <span class="sec-num">09 — Team</span>
-    <div class="section-head">
-      <h2 class="h2">Who is doing this.</h2>
-    </div>
-    <div class="team-grid">
-      <article class="person" data-reveal>
-        <h3>Amy Wang</h3>
-        <p class="role">Founder and CEO</p>
-        <p>Built the device, the correction and the application. Leads the clinical partnerships and the validation work. Founder of Heartware, the cardiac-care programme this company grew out of.</p>
-      </article>
-      <article class="person" data-reveal data-delay="1">
-        <h3>Jiahe Wang</h3>
-        <p class="role">Clinical affairs · MLA/T, MLPAO</p>
-        <p>Registered medical laboratory technician. Runs the recording protocol and reviews findings against clinical presentation.</p>
-      </article>
-      <article class="person" data-reveal data-delay="2">
-        <h3>Advisors</h3>
-        <p class="role">Science and clinical</p>
-        <p>Manolis Kellis (MIT, computational biology), Grace Yu, and practising clinicians who review the app’s findings and the recording protocol.</p>
-      </article>
-    </div>
-    <blockquote class="quote" data-reveal>“Where others strive to meet the standard, Amy sets it.”
-      <footer>Manolis Kellis · Professor of Computer Science, MIT</footer>
-    </blockquote>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ CONTACT ══════════════════════════════ -->
-<section class="band band--dark contact" id="contact" style="padding-bottom:clamp(5rem,11vw,9rem)">
-  <div class="wrap">
-    <span class="sec-num">10 — Contact</span>
-    <div class="contact-grid">
-      <div class="contact-copy" data-reveal>
-        <h2>If you run a clinic, a trial, or a <em>production line</em>, we would like to hear from you.</h2>
-        <p>We are looking for one clinical partner for the paired recording-and-echo study, and for a manufacturer who can take a machined housing to a moulded part.</p>
-        <div class="contact-actions">
-          <a class="btn btn--primary" href="mailto:heartwaredigitalplatform@gmail.com?subject=Heartware%20—%20clinical%20partnership">Email the team <span class="btn__arrow">→</span></a>
-          <a class="btn btn--ghost" href="#evidence">Read the evidence position</a>
+      <div class="stack">
+        <div class="sheet reveal">
+          <span class="sheet__label">Fig. B · Front</span>
+          <svg viewBox="0 0 360 360" role="img" aria-label="Front view of the insert: a circular plate with a collar, a retention latch and the acoustic port.">
+  <g stroke="#173D7A" fill="none" stroke-width="1.5">
+    <circle cx="180" cy="180" r="132" stroke-dasharray="5 6" opacity="0.45"/>
+    <circle cx="180" cy="180" r="118" fill="#FFFCFA"/>
+    <circle cx="180" cy="180" r="96"/>
+    <circle cx="180" cy="180" r="86" opacity="0.5"/>
+    <path d="M180 62 v 22 M180 276 v 22 M62 180 h 22 M276 180 h 22" opacity="0.4"/>
+  </g>
+  <circle cx="180" cy="180" r="14" fill="#C8102E"/>
+  <circle cx="180" cy="180" r="24" fill="none" stroke="#173D7A" stroke-width="1.2"/>
+  <g fill="#173D7A">
+    <circle cx="255" cy="105" r="4"/><circle cx="105" cy="105" r="4"/>
+    <circle cx="255" cy="255" r="4"/><circle cx="105" cy="255" r="4"/>
+  </g>
+  <rect x="168" y="44" width="24" height="12" rx="4" fill="#C8102E"/>
+  <g font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#173D7A" letter-spacing="1.2">
+    <text x="180" y="352" text-anchor="middle">SCALE 1:1 · 44–48 MM SEAT</text>
+  </g>
+</svg>
         </div>
+        <a class="btn btn--ghost" href="product.html">The full specification</a>
       </div>
-      <dl class="contact-facts" data-reveal data-delay="1">
-        <div><dt>Email</dt><dd><a href="mailto:heartwaredigitalplatform@gmail.com">heartwaredigitalplatform@gmail.com</a></dd></div>
-        <div><dt>Based</dt><dd>Ontario, Canada · for-profit</dd></div>
-        <div><dt>Open to</dt><dd>Clinical study partners<br>Contract manufacturing<br>Investors and grant programmes</dd></div>
-        <div><dt>Status</dt><dd>Working prototype, research use<br>No regulatory clearance</dd></div>
-      </dl>
     </div>
   </div>
 </section>
 
+<section>
+  <div class="wrap">
+    <div class="cta reveal">
+      <div>
+        <h2>One clinic, one protocol, one echocardiogram.</h2>
+        <p>
+          The engineering record exists: three printed revisions, a working microphone chain,
+          an app that gates its own output. What is missing is the study that turns a
+          correction into a clinical claim — paired recordings and echo in a site that
+          already reads echoes.
+        </p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--light" href="partnerships.html">Pilot and partnership</a>
+        <a class="btn btn--ghost" href="contact.html">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
-
 <footer class="footer">
   <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="#top" aria-label="Heartware home" style="margin-bottom:1.1rem">
-          <img class="brand__mark" src="./assets/img/logo-mark-light.png" alt="" width="319" height="182">
-          <span class="brand__word">Heart<span>ware</span></span>
-        </a>
-        <p class="footer-tag">Innovating Cardiac Care</p>
-        <p class="footer-note">A retrofit insert for auscultation. Working prototype, research use only. Not a medical device; not cleared by the FDA or Health Canada. Nothing on this page is a diagnosis or a substitute for clinical judgement.</p>
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/img/logo-full.png" alt="Heartware" width="196" height="160">
+        <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
       </div>
       <div>
-        <h4>References</h4>
-        <ol class="refs">
-          <li>Gardezi SKM, et al. Cardiac auscultation poorly predicts the presence of valvular heart disease in asymptomatic primary care patients. <i>Heart</i>. 2018;104(22):1832–1835. <a href="https://doi.org/10.1136/heartjnl-2018-313082" target="_blank" rel="noopener">doi</a></li>
-          <li>Melbye H, et al. Diagnostic accuracy of heart auscultation for detecting valve disease: a systematic review. <i>BMJ Open</i>. 2023;13(3):e068121. <a href="https://doi.org/10.1136/bmjopen-2022-068121" target="_blank" rel="noopener">doi</a></li>
-          <li>Schirmer H, Melbye H. Heart murmurs in the general population: diagnostic value and prevalence from the Tromsø Study. <i>Heart</i>. 2025. <a href="https://doi.org/10.1136/heartjnl-2024-325499" target="_blank" rel="noopener">doi</a></li>
-          <li>World Health Organization. Cardiovascular diseases, fact sheet. <a href="https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)" target="_blank" rel="noopener">who.int</a></li>
-          <li>World Health Organization. Rheumatic heart disease, fact sheet, 24 January 2025. <a href="https://www.who.int/news-room/fact-sheets/detail/rheumatic-heart-disease" target="_blank" rel="noopener">who.int</a></li>
-          <li><i>Circulation</i>. 2023;148(suppl 1):A13244. Real-world evaluation of an AI-enabled digital stethoscope for undiagnosed valvular heart disease in primary care. <a href="https://doi.org/10.1161/circ.148.suppl_1.13244" target="_blank" rel="noopener">doi</a></li>
-          <li>Wilson EB. Probable inference, the law of succession, and statistical inference. <i>J Am Stat Assoc</i>. 1927;22(158):209–212.</li>
-        </ol>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="product.html">The insert</a></li>
+          <li><a href="product.html#specs">Specifications</a></li>
+          <li><a href="evidence.html">Evidence</a></li>
+        </ul>
       </div>
       <div>
-        <h4>Sections</h4>
-        <ul class="footer-links">
-          <li><a href="#problem">The problem</a></li>
-          <li><a href="#correction">The correction</a></li>
-          <li><a href="#part">The part</a></li>
-          <li><a href="#app">The app</a></li>
-          <li><a href="#evidence">Evidence</a></li>
-          <li><a href="#access">Where it has been</a></li>
-          <li><a href="#comparison">Comparison</a></li>
-          <li><a href="#team">Team</a></li>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clinical.html">Clinical impact</a></li>
+          <li><a href="partnerships.html">Partnerships</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
+          <li><a href="contact.html">Request a pilot</a></li>
+          <li><a href="evidence.html#method">Method and code</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-base">
-      <span>© 2026 Heartware</span>
-      <span>Ontario, Canada · heartwaredigitalplatform@gmail.com</span>
+    <div class="footer__base">
+      <span>© <span data-year>2026</span> Heartware. Prototype — not a medical device. Not for diagnostic use.</span>
+      <span>Boston, Massachusetts</span>
     </div>
   </div>
 </footer>
-
-<script type="importmap">
-{"imports":{"three":"./assets/vendor/three.module.min.js"}}
-</script>
-<script src="./assets/js/site.js" defer></script>
-<script src="./assets/js/pcdemo.js" defer></script>
-<script type="module" src="./assets/js/hero3d.js"></script>
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/explorer.js" defer></script>
+<script src="assets/js/app.js" defer></script>
 </body>
 </html>

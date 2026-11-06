@@ -1,49 +1,61 @@
 # heart-ware.org
 
-Static site for Heartware. No build step, no framework, no trackers. GitHub Pages
-serves `main` at the repository root, with `CNAME` pointing heart-ware.org here.
+Static site for Heartware. No framework, no trackers. GitHub Pages serves `main`
+at the repository root, with `CNAME` pointing heart-ware.org here.
+
+## Pages
+
+```
+index.html          positioning, the measurement, the method, the proof strip
+technology.html     capture → room rejection → correction → analysis → interface
+product.html        drawings, specification, the working app demo, cost
+clinical.html       the four patient stories, advisors
+evidence.html       six figures, the claims ledger, milestones, method
+partnerships.html   pilot, distribution, OEM, unit economics
+about.html          reasoning and team
+contact.html        who to write to, and what to say
+404.html            not-found page
+```
 
 ## Layout
 
 ```
-index.html              the page
-404.html                not-found page
-assets/css/site.css     all styles
-assets/js/site.js       charts, reveals, tabs, the chest-wall demo
-assets/js/hero3d.js     the three.js chestpiece in the hero
-assets/vendor/          three.js r169 (module build) + RoomEnvironment
-assets/img/             app captures (from the film), exploded view (SVG), poster
-assets/film/            the 42.6 s film, 1280×720, no audio
+assets/css/base.css     tokens, type, layout, header, footer
+assets/css/pages.css    page components: pipeline, explorer, phone, ledger, timeline
+assets/js/site.js       nav, reveals, tabs, counters
+assets/js/explorer.js   the thoracic-correction demonstration
+assets/js/app.js        the companion-app demonstration
+assets/img/             the logo, in its original colours
+assets/figures/         the six figures on the Evidence page
+research/               the model, the experiment, the plotting code
+tools/                  the page builder and the line artwork
 ```
 
-## Editing the validation numbers
+## The numbers
 
-All three intervals come from `VALIDATION` at the top of `assets/js/site.js`.
-Enter the confusion matrix there:
+Every figure on the Evidence page is produced by:
 
-```js
-counts: { tp: 0, fn: 0, tn: 0, fp: 0 },
+```bash
+python research/thoracic_model.py     # writes research/results.json
+python research/make_figures.py       # writes assets/figures/*.png
 ```
 
-When all four are numbers, every interval is recomputed from those counts in the
-browser with the Wilson score method, the point estimate appears as a tick on each
-bar, and the hard-coded `reported` values stay as the check. If the counts are
-absent, the page shows the reported intervals only.
+Nothing on the site is typed by hand from memory. If a number is not in
+`research/results.json` or in the published reference it cites, it should not be
+on a page. The claims ledger on `evidence.html` is the contract: if a claim is
+not in that table, it is not made anywhere on the site.
 
-## Local preview
+The model validates the *arithmetic* of the inversion. It is not patient data and
+supports no diagnostic claim. Sensitivity and specificity against echocardiography
+require a paired-recording study that has not been run.
 
+## Editing the pages
+
+The eight pages share one shell (header, footer, fonts) and are generated from
+`tools/pages.py` and `tools/build.py`:
+
+```bash
+cd tools && python pages.py
 ```
-python -m http.server 8123
-```
 
-Then open <http://localhost:8123/>. The hero imports three.js as an ES module, so it
-must be served over http rather than opened from disk.
-
-## Honesty rules used on this page
-
-- Every performance number is either a published result (cited, with DOI) or ours
-  (labelled as validated on held-out recordings, not against echocardiography).
-- The physics figures are labelled as a model, not a measurement.
-- The device is described as a research prototype; no clearance is implied.
-- Prices are manufacturer prices, with the date checked, and our figure is a
-  component cost rather than a retail price.
+Editing the HTML directly also works, but re-running the builder overwrites it.
