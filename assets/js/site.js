@@ -112,14 +112,15 @@ function onScroll() {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-navToggle?.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', String(open));
-});
-$$('#nav-links a').forEach(a => a.addEventListener('click', () => {
-  navLinks.classList.remove('open');
-  navToggle?.setAttribute('aria-expanded', 'false');
-}));
+function setMenu(open) {
+  navLinks.classList.toggle('open', open);
+  navToggle?.setAttribute('aria-expanded', String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+navToggle?.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+$$('#nav-links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
 /* active section */
 const sectionIds = ['problem', 'physics', 'device', 'app', 'evidence', 'comparison', 'team'];
