@@ -1025,3 +1025,222 @@ img, video { image-rendering: auto; }
 /* sections were 7.5rem apart at desktop, which read as empty page rather than
    as room. 4.5rem holds the rhythm without the gaps. */
 section { padding-block: clamp(3rem, 4.6vw, 4.6rem); }
+
+/* =========================================================================
+   R3 — size, matter, and fewer tells.
+
+   R2 fixed the palette but kept the furniture: 14 px captions, hairlines
+   everywhere, evenly split columns, and a headline sized to fit a box rather
+   than to carry the page. R3 is the pass where the page gets loud where it
+   should be loud, quiet where it should be quiet, and large everywhere text
+   is meant to be read.
+   ========================================================================= */
+
+:root {
+  --rule: 2px solid var(--ink);
+  --rule-soft: 1px solid rgba(16, 21, 26, 0.22);
+  --measure: 60ch;
+}
+
+body {
+  font-size: clamp(1.14rem, 0.30vw + 1.06rem, 1.28rem);
+  line-height: 1.62;
+  letter-spacing: 0.004em;
+}
+
+p { max-width: var(--measure); }
+
+/* nothing structural is a hairline any more */
+.ledger, .ledger__row, .app-row, .plates__note, .note-box, .figure, .table tr {
+  border-color: rgba(16, 21, 26, 0.22);
+}
+
+.ledger { border-top: var(--rule); }
+.ledger__row { border-bottom: 1px solid rgba(16, 21, 26, 0.16); }
+.plates__note { border-top: var(--rule); padding-top: 1.2rem; }
+
+/* captions were 0.64 rem, which is 10 px at the default size. */
+.figcap,
+.reel figcaption,
+.figcaption,
+figcaption {
+  font-size: 0.8rem;
+  letter-spacing: 0.09em;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+}
+
+/* the section index: a numeral hung in the margin, not a pill or a dash */
+.eyebrow b {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 0.72;
+  letter-spacing: -0.04em;
+  color: var(--red);
+  display: inline-block;
+  margin-right: 0.6rem;
+  transform: translateY(0.22rem);
+}
+
+.eyebrow::before { width: 22px; height: 3px; }
+
+/* headlines carry the page */
+.hero h1 {
+  font-size: clamp(2.9rem, 6.1vw, 5.5rem);
+  line-height: 0.93;
+  letter-spacing: -0.048em;
+  font-weight: 600;
+  margin-bottom: 1.6rem;
+}
+
+.hero h1 .line { display: block; }
+
+.hero__sub {
+  font-size: 1.24rem;
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+h2 {
+  font-size: clamp(2rem, 3.5vw, 3.15rem);
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+}
+
+h3 {
+  font-size: 1.42rem;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.lede {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  max-width: 42ch;
+}
+
+/* figures get room, and lose the box */
+.figure { border: 0; background: none; padding: 0; }
+.figure figcaption {
+  font-size: 0.8rem;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: var(--rule-soft);
+  color: var(--muted);
+}
+.figure figcaption b {
+  color: var(--ink);
+  letter-spacing: 0.12em;
+  margin-right: 0.5rem;
+}
+
+/* the numbers band */
+.stat__num {
+  font-size: clamp(2.7rem, 4.6vw, 4.4rem);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+.stat__label { font-size: 1.02rem; line-height: 1.45; }
+.stat__src { font-size: 0.78rem; letter-spacing: 0.1em; }
+
+/* a photograph never sits in a grey box with a border */
+.shot { background: #0E0C0B; }
+.shot img { filter: contrast(1.04) saturate(1.02); }
+
+/* the plate: dark image, annotation in the margin, caption like a lab print */
+.plate--dark .shot { background: #0E0C0B; }
+
+/* the black band is a statement, so set it like one */
+.band h2 { font-size: clamp(2.1rem, 4.2vw, 3.9rem); letter-spacing: -0.045em; }
+.band p { font-size: 1.16rem; }
+
+/* steps: no equal thirds. The first one is twice the width of the other two. */
+.steps {
+  grid-template-columns: 1.45fr 1fr 1fr !important;
+  gap: clamp(1.4rem, 3vw, 3rem) !important;
+}
+.steps .step h3 { margin-top: 1rem; }
+.steps .step p { font-size: 1.02rem; }
+
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr !important; }
+  .hero h1 { font-size: clamp(2.4rem, 10.4vw, 3.6rem); }
+}
+
+/* a running footer rule of small print, so the caveat is not a boxed apology */
+.smallprint {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 78ch;
+}
+
+/* the index strip that replaces the turntable: real numbers, set enormous */
+.ledgerline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+}
+.ledgerline > div {
+  padding: 1.5rem 1.1rem 1.6rem 0;
+  border-right: 1px solid rgba(243, 239, 231, 0.18);
+}
+.ledgerline > div:last-child { border-right: 0; }
+.ledgerline .n {
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.2vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  display: block;
+}
+.ledgerline .k {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243, 239, 231, 0.55);
+  display: block;
+  margin-top: 0.55rem;
+}
+@media (max-width: 760px) {
+  .ledgerline { grid-template-columns: 1fr 1fr; }
+  .ledgerline > div:nth-child(2) { border-right: 0; }
+}
+
+/* on the red band both buttons are white and sit on one line */
+.band--red .btn--light { background: #F7F3EC; color: var(--ink); }
+.band--red .btn--on-red {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  background: transparent;
+}
+.band--red .btn--on-red:hover { background: rgba(255, 255, 255, 0.12); }
+.cta__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+
+.compare__bar { border-radius: 0; background: rgba(16, 21, 26, 0.08); height: 22px; }
+.compare__bar span { border-radius: 0; background: var(--ink); opacity: 0.55; }
+.compare__row--us .compare__bar span { opacity: 1; }
+
+.band--red .cta__actions { flex-direction: row; align-items: center; gap: 0.9rem; }
+@media (max-width: 760px) { .band--red .cta__actions { flex-direction: column; align-items: flex-start; } }
+
+/* the cost bars are data, not an animation: they read at first paint */
+.compare__bar span { transform: none !important; }
+
+/* on a phone the claim comes before the object */
+@media (max-width: 900px) {
+  .hero__grid { display: flex; flex-direction: column; }
+  .hero__figure { order: 2; margin-top: 2rem; }
+  .hero__grid > div:first-child { order: 1; }
+  .shot--hero { aspect-ratio: 4 / 3; }
+}

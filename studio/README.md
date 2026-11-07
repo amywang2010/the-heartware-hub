@@ -5,9 +5,14 @@ The photographs and the product loop on the site are rendered here, from
 `eigenpulse-cuff`; that model was rejected, so this is a separate build.
 
 ```bash
-node studio/render.mjs stills   # five stills, PNG, into assets/img
-node studio/render.mjs video    # 150 frames at 25 fps, h264, 6 s loop
+node studio/render.mjs stills          # four stills plus one depth map each
+node studio/render.mjs stills macro    # one view only
+python studio/post.py                  # focus blur, grade, grain, vignette
 ```
+
+`render.mjs video` still exists and still writes a turntable, but the site no
+longer uses it: a rotating object on a black band read as a 360 viewer, not as
+a product, and it was the first thing anyone asked about.
 
 Rendering needs a Chromium with WebGL. There is no GPU on this machine, so it
 falls back to SwiftShader: about 40 s per still and about 6 minutes for the loop.
@@ -44,6 +49,22 @@ nRF52840, and a lid with the LED ring and the etched mark.
 6. **The first explode offsets were applied twice** to parts that were also in
    the index-based bands, which threw the cell and the lid out of the frame.
 
+The two things that finally made the stills read as photographs rather than as
+a CAD viewer were the dark table (a cream background with even light is the
+signature of a default scene) and `post.py`: a real depth map, so the rim falls
+out of focus the way a lens does, then film grain weighted to the midtones and a
+vignette. The renders before that pass are still in the commit history and they
+look like screen captures.
+
+## A view that does not exist
+
+`explode` was meant to be a parts breakdown. Two procedural attempts (by child
+index, then by bounding-box height) both tore the assembly into pieces floating
+outside the frame, because the parts live under nested groups with their own
+transforms. A real exploded drawing needs an authored offset per part. Until
+then the page uses the macro and installed views and does not claim to show a
+breakdown.
+
 ## What is still not a photograph
 
 These are renders. They are not photographs of a physical prototype, because
@@ -54,4 +75,6 @@ the metal reads slightly flat), a depth-of-field pass (the corners are as sharp
 as the centre), and surface imperfection maps (dust, machining marks, a used
 diaphragm). Those three would close most of the remaining gap.
 
-The loop is a turntable at 25 fps, 1280x720, 640 KB. It has no audio.
+There is no physical prototype in this repository to photograph. Until there
+is, the model is the only honest source for these images, and the captions say
+so.

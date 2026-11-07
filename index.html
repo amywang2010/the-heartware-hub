@@ -41,22 +41,23 @@
   <div class="wrap">
     <div class="hero__grid">
       <div>
-        <p class="eyebrow">Stethoscope insert · prototype</p>
+        <p class="eyebrow">Stethoscope insert · prototype 4</p>
         <h1>
-          <span class="line">Every body changes</span>
-          <span class="line">the <em>sound</em>.</span>
-          <span class="line">The stethoscope</span>
-          <span class="line">shouldn't.</span>
+          <span class="line">One murmur.</span>
+          <span class="line">Two patients.</span>
+          <span class="line">Two different</span>
+          <span class="line">sounds.</span>
         </h1>
         <p class="hero__sub">
-          Heartware is an insert that replaces the back plate of the stethoscope already
-          in the room. It measures the chest wall from the recording itself, inverts it,
-          and returns the sound that reached the chestpiece — not the sound the body
-          made on the way.
+          The same grade 2 murmur arrives at the earpieces 1.73 dB apart in a 60 kg
+          body and a 120 kg one — a third of the band a clinician is listening in.
+          Heartware is a 14 mm insert that replaces the back plate of the stethoscope
+          already in the room, measures the wall from the sound itself, and takes it
+          back out. Same patient, same murmur, 0.25 dB apart.
         </p>
         <div class="hero__actions">
           <a class="btn btn--solid" href="evidence.html">
-            See the evidence
+            Read the measurement
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a class="btn btn--ghost" href="technology.html">How the correction works</a>
@@ -69,54 +70,34 @@
       </div>
       <figure class="hero__figure">
         <div class="shot shot--hero">
-          <img src="assets/img/product-hero.jpg" alt="Heartware insert seated in a stethoscope chestpiece, photographed on paper" width="2000" height="2400">
+          <img src="assets/img/product-hero.jpg" alt="The Heartware insert seated under a stethoscope chestpiece, rendered from the CAD model" width="1000" height="1200">
         </div>
-        <figcaption class="figcap">Prototype 3 · stock chestpiece, replaceable insert</figcaption>
+        <figcaption class="figcap">Rev D · rendered from the CAD model, not a photograph</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="reel">
-  <figure class="reveal" style="margin:0">
-    <video src="assets/img/product-loop.mp4" autoplay muted loop playsinline poster="assets/img/product-hero.jpg" aria-label="The insert turning on its axis, fitted in the chestpiece"></video>
-    <figcaption>Prototype 3 · chestpiece and insert, one turn</figcaption>
-  </figure>
-</section>
-
-<section style="padding-block:0">
-  <div class="wrap" style="padding-inline:0;max-width:100%">
-    <div class="stats">
-      <div class="stat">
-        <div class="stat__num"><span data-count="44">44</span><sup>%</sup></div>
-        <p class="stat__label">of significant valve disease found by auscultation in patients over 65 — and only below a BMI of 25.</p>
-        <p class="stat__src">Gardezi 2018 · n = 251</p>
-      </div>
-      <div class="stat">
-        <div class="stat__num"><span data-count="1.73" data-suffix=" dB">1.73 dB</span></div>
-        <p class="stat__label">how much the same murmur shifts between body types in our model, before correction.</p>
-        <p class="stat__src">In-silico · n = 600</p>
-      </div>
-      <div class="stat">
-        <div class="stat__num"><span data-count="0.25" data-suffix=" dB">0.25 dB</span></div>
-        <p class="stat__label">the same spread once the wall is estimated per recording and removed.</p>
-        <p class="stat__src">In-silico · n = 600</p>
-      </div>
-      <div class="stat">
-        <div class="stat__num">0</div>
-        <p class="stat__label">trained parameters in the correction. There is no dataset for it to inherit a bias from.</p>
-        <p class="stat__src">Method</p>
-      </div>
+<section class="band" style="padding-block:clamp(3rem,5vw,4.4rem)">
+  <div class="wrap">
+    <p class="eyebrow" style="margin-bottom:2rem">What is on this page, in numbers</p>
+    <div class="ledgerline">
+      <div><span class="n">1.73 → 0.25</span><span class="k">dB, murmur spread before and after, n = 600</span></div>
+      <div><span class="n">3.7 mm</span><span class="k">RMS error recovering chest wall thickness</span></div>
+      <div><span class="n">6.0 dB</span><span class="k">room rejected by the reference capsule</span></div>
+      <div><span class="n">0</span><span class="k">trained parameters in the correction</span></div>
     </div>
   </div>
 </section>
+
+
 
 <section>
   <div class="wrap">
     <div class="head reveal">
       <div>
-        <p class="eyebrow">The measurement</p>
-        <h2>This is not a listening problem.<br>It is a <em>transfer function</em>.</h2>
+        <p class="eyebrow"><b>01</b> The measurement</p>
+        <h2>This is not a listening problem. It is a transfer function.</h2>
       </div>
       <p class="lede">
         A stethoscope hears the chest wall before it hears the heart. Fat, muscle and rib
@@ -139,10 +120,11 @@
           The fix is not a better microphone or a louder speaker. It is knowing what the
           wall did to the sound, and undoing it — per recording, from the recording.
         </p>
-        <div class="note-box">
-          <b>What we do not claim.</b> No echocardiographic comparison has been run, so no
-          sensitivity, specificity or AUC is claimed anywhere on this site.
-        </div>
+        <p class="smallprint">
+          No echocardiographic comparison has been run. No sensitivity, specificity or
+          AUC is claimed anywhere on this site, and no patient recording is shown.
+          Everything measured here is measured on the model in research/.
+        </p>
       </div>
       <figure class="figure reveal">
         <img src="assets/figures/fig-01-transfer.png" alt="Four transfer curves showing the same heart sound attenuated differently by 12, 20, 28 and 38 mm of chest wall." loading="lazy">
@@ -156,8 +138,8 @@
   <div class="wrap">
     <div class="head reveal">
       <div>
-        <p class="eyebrow">The method</p>
-        <h2>Measure the wall.<br>Then take it <em>out</em>.</h2>
+        <p class="eyebrow"><b>02</b> The method</p>
+        <h2>Measure the wall. Then take it out.</h2>
       </div>
       <p class="lede">
         Three things happen between the chestpiece and the screen. None of them is a
@@ -235,8 +217,8 @@
   <div class="wrap">
     <div class="head reveal">
       <div>
-        <p class="eyebrow">Evidence</p>
-        <h2>The correction is arithmetic.<br>Arithmetic can be <em>checked</em>.</h2>
+        <p class="eyebrow"><b>03</b> Evidence</p>
+        <h2>The correction is arithmetic. Arithmetic can be checked.</h2>
       </div>
       <p class="lede">
         Four results from the model in this repository, with the figures, the sample size
@@ -276,7 +258,7 @@
   <div class="wrap">
     <div class="head reveal">
       <div>
-        <p class="eyebrow">The part</p>
+        <p class="eyebrow"><b>04</b> The part</p>
         <h2>Not another instrument.<br>Six parts and a <em>collar</em>.</h2>
       </div>
       <p class="lede">
@@ -289,9 +271,9 @@
     <div class="plates">
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-explode.jpg" alt="The insert taken apart: collar, acoustic base, microphone board, cell, logic board and lid, in stack order." width="2200" height="1650" loading="lazy">
+          <img src="assets/img/product-installed.jpg" alt="The insert seated in the chestpiece, on its tube." width="1000" height="800" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. A · Six parts, stack order</figcaption>
+        <figcaption class="figcap">Fig. A · Reflector, seated in the rim</figcaption>
       </figure>
       <div class="plates__note">
         <p>
@@ -320,7 +302,7 @@
       </div>
       <div class="cta__actions">
         <a class="btn btn--light" href="partnerships.html">Pilot and partnership</a>
-        <a class="btn btn--ghost" href="contact.html">Talk to us</a>
+        <a class="btn btn--ghost btn--on-red" href="contact.html">Talk to us</a>
       </div>
     </div>
   </div>

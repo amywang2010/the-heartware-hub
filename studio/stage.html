@@ -43,11 +43,32 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xefe9e1);
+/* A lit table in a dark room, not an object floating on a swatch. The gradient
+   is the falloff of one soft lamp over the surface, and it is what stops the
+   metal reading as a CAD viewer screenshot. */
+scene.background = (() => {
+  const c = document.createElement('canvas');
+  c.width = 1024; c.height = 1024;
+  const g = c.getContext('2d');
+  const bg = g.createLinearGradient(0, 0, 0, 1024);
+  bg.addColorStop(0.00, '#241C17');
+  bg.addColorStop(0.42, '#171210');
+  bg.addColorStop(0.72, '#0D0B0A');
+  bg.addColorStop(1.00, '#080706');
+  g.fillStyle = bg; g.fillRect(0, 0, 1024, 1024);
+  const pool = g.createRadialGradient(560, 430, 20, 560, 430, 640);
+  pool.addColorStop(0, 'rgba(255,232,205,0.30)');
+  pool.addColorStop(0.45, 'rgba(255,226,196,0.09)');
+  pool.addColorStop(1, 'rgba(255,226,196,0)');
+  g.fillStyle = pool; g.fillRect(0, 0, 1024, 1024);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+})();
 
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.02).texture;
-scene.environmentIntensity = 0.85;
+scene.environmentIntensity = 0.7;
 
 /* ---------- textures ---------------------------------------------------- */
 function canvas(size, draw) {
@@ -325,18 +346,11 @@ const assembly = new THREE.Group();
 assembly.add(stock);
 assembly.add(insert);
 
-if (EXPLODE > 0) {
-  const band = (obj, i) => { if (obj) obj.position.y -= i * 13 * EXPLODE; };
-  const kids = insert.children;
-  // group by physical stack: base group 0, mic board 1, cell 2, main board 3, lid 4
-  kids.slice(0, 5).forEach((o) => band(o, 0));
-  band(micBoard, 1);
-  band(cavityWell, 1);
-  kids.filter((o) => o.material === M.cell || o === kids[kids.length - 9]).forEach((o) => band(o, 2));
-  band(soc, 3);
-  kids.slice(-4).forEach((o) => band(o, 4));
-  stock.position.y += 3 * EXPLODE;
-}
+/* The exploded view is not rendered. Two attempts to spread the stack
+   procedurally (by child index, then by bounding-box height) both tore the
+   assembly apart, because the parts live under nested groups with their own
+   transforms. A real exploded drawing needs an authored offset per part, which
+   this model does not have yet. The stills use the underside view instead. */
 
 assembly.rotation.y = TURN * Math.PI * 2;
 assembly.rotation.z = -0.03;
@@ -381,17 +395,20 @@ softbox.rotation.x = Math.PI / 2.4;
 scene.add(softbox);
 
 /* ---------- shadow catcher ------------------------------------------------ */
-const catcher = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.ShadowMaterial({ opacity: 0.19 }));
-catcher.rotation.x = -Math.PI / 2;
-catcher.position.y = -29.2;
-catcher.receiveShadow = true;
-scene.add(catcher);
+const table = new THREE.Mesh(
+  new THREE.PlaneGeometry(1600, 1600),
+  new THREE.MeshStandardMaterial({ color: 0x2A221C, roughness: 0.42, metalness: 0.45 })
+);
+table.rotation.x = -Math.PI / 2;
+table.position.y = -29.2;
+table.receiveShadow = true;
+scene.add(table);
 
 const blob = canvas(512, (g, s) => {
   const grad = g.createRadialGradient(s / 2, s / 2, 8, s / 2, s / 2, s / 2);
-  grad.addColorStop(0, 'rgba(70,58,48,0.34)');
-  grad.addColorStop(0.5, 'rgba(70,58,48,0.13)');
-  grad.addColorStop(1, 'rgba(70,58,48,0)');
+  grad.addColorStop(0, 'rgba(0,0,0,0.62)');
+  grad.addColorStop(0.5, 'rgba(0,0,0,0.22)');
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
   g.fillStyle = grad;
   g.fillRect(0, 0, s, s);
 });
@@ -406,11 +423,11 @@ scene.add(softShadow);
 /* ---------- camera -------------------------------------------------------- */
 const camera = new THREE.PerspectiveCamera(24, W / H, 1, 900);
 const positions = {
-  hero:      { pos: [72, 26, 112],  fov: 25, target: [6, -16, 2] },
-  macro:     { pos: [40, -6, 70],   fov: 19, target: [3, -18, 0] },
-  installed: { pos: [-50, 34, 92],  fov: 22, target: [4, -13, 0] },
-  explode:   { pos: [78, 6, 128],   fov: 25, target: [4, -34, 0] },
-  back:      { pos: [6, 78, 40],    fov: 22, target: [0, -18, 0] }
+  hero:      { pos: [96, 40, 150],  fov: 26, target: [0, -8, 0] },
+  macro:     { pos: [46, -4, 84],   fov: 20, target: [0, -16, 0] },
+  installed: { pos: [-64, 40, 118], fov: 24, target: [2, -8, 0] },
+  explode:   { pos: [104, 10, 176], fov: 27, target: [2, -12, 0] },
+  back:      { pos: [8, 96, 54],    fov: 24, target: [0, -14, 0] }
 };
 const cfg = positions[VIEW] || positions.hero;
 camera.position.set(...cfg.pos);
@@ -418,8 +435,37 @@ camera.fov = cfg.fov;
 camera.lookAt(new THREE.Vector3(...cfg.target));
 camera.updateProjectionMatrix();
 
-renderer.render(scene, camera);
-window.__ready = true;
+/* ---------- depth pass ---------------------------------------------------- */
+/* A depth map so the stills can be focus-blurred after the fact. Linear view
+   depth, normalised to the range the camera actually spans here. */
+const depthMat = new THREE.ShaderMaterial({
+  vertexShader: `
+    varying float vD;
+    void main() {
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      vD = -mv.z;
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: `
+    varying float vD;
+    void main() {
+      float d = clamp((vD - 40.0) / 240.0, 0.0, 1.0);
+      gl_FragColor = vec4(d, d, d, 1.0);
+    }`
+});
+
+if (P.get('depth')) {
+  const bg = scene.background;
+  scene.background = null;
+  scene.overrideMaterial = depthMat;
+  renderer.setClearColor(0xffffff, 1);
+  renderer.render(scene, camera);
+  renderer.setClearColor(0x000000, 1);
+  window.__ready = true;
+} else {
+  renderer.render(scene, camera);
+  window.__ready = true;
+}
 window.__shoot = (t) => {
   assembly.rotation.y = t * Math.PI * 2;
   renderer.render(scene, camera);

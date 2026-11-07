@@ -54,12 +54,16 @@ async function shoot(page, url, file, timeout = 180000) {
   return errs;
 }
 
-async function stills(browser) {
+async function stills(browser, only) {
   for (const s of STILLS) {
+    if (only && only !== s.view) continue;
     const page = await browser.newPage({ viewport: { width: s.w, height: s.h } });
     const q = new URLSearchParams({ view: s.view, w: s.w, h: s.h, explode: s.explode || 0 });
     const file = path.join(OUT, `product-${s.view}.png`);
     await shoot(page, `http://localhost:${PORT}/studio/stage.html?${q}`, file);
+    q.set('depth', '1');
+    await shoot(page, `http://localhost:${PORT}/studio/stage.html?${q}`,
+      path.join(OUT, `product-${s.view}.depth.png`), 120000);
     console.log('still', path.basename(file), s.w + 'x' + s.h);
     await page.close();
   }
@@ -99,7 +103,7 @@ async function main() {
   });
   const what = process.argv[2] || 'stills';
   try {
-    if (what === 'stills' || what === 'all') await stills(browser);
+    if (what === 'stills' || what === 'all') await stills(browser, process.argv[3]);
     if (what === 'video' || what === 'all') await video(browser);
   } finally {
     await browser.close();
