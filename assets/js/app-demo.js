@@ -73,15 +73,25 @@ function wallFromRatio(r) {
   return last[1];
 }
 
-function calibrate() {
-  const rate = 44100;
+let LOOKUP_RATE = 0;
+
+function calibrate(rate) {
   const pairs = [];
-  for (let d = 9; d <= 48; d += 3) {
-    const res = analyseBuffer(demoSignal(rate, 1.6, d), rate, { N: 1024, maxWindows: 4 });
+  /* Same FFT size as the live analysis, or the bin count inside each band
+     changes and the inverse lands in the wrong place. */
+  for (let d = 9; d <= 45; d += 3) {
+    const res = analyseBuffer(demoSignal(rate, 5, d), rate, { noSpectrum: true });
     pairs.push([res.murmur / (res.heart + 1e-9), d]);
   }
   pairs.sort((a, b) => b[0] - a[0]);
   LOOKUP = pairs;
+  LOOKUP_RATE = rate;
+}
+
+/* The forward model's filter depends on the sample rate, so the inverse has to
+   be fitted at the rate the browser actually gives us, not at 44.1 kHz. */
+function ensureLookup(rate) {
+  if (!LOOKUP || Math.abs(LOOKUP_RATE - rate) > 1) calibrate(rate);
 }
 
 /* ---------- analysis ------------------------------------------------------ */
@@ -163,7 +173,13 @@ function drawScope() {
     const w = Math.floor(state.ctx ? state.ctx.sampleRate * 0.55 : 24000);
     const span = Math.max(1, state.demo.samples.length - w);
     const at = Math.floor((performance.now() / 5200) % 1 * span);
-    data = state.demo.samples.subarray(at, at + w);
+    const slice = state.demo.samples.subarray(at, at + w);
+    /* the take is quiet once the wall has taken its cut; the scope is a
+       display, so it scales to fill rather than showing a flat line */
+    let peak = 1e-6;
+    for (let i = 0; i < slice.length; i++) peak = Math.max(peak, Math.abs(slice[i]));
+    data = new Float32Array(slice.length);
+    for (let i = 0; i < slice.length; i++) data[i] = (slice[i] / peak) * 0.42;
   } else if (state.analyser) {
     data = new Float32Array(state.analyser.fftSize);
     state.analyser.getFloatTimeDomainData(data);
@@ -171,11 +187,15 @@ function drawScope() {
   if (!data) return;
 
   const n = Math.min(data.length, Math.floor(data.length * 0.55));
+  /* one point per pixel: 26,000 samples across 500 px draws a solid block,
+     not a waveform */
+  const step = Math.max(1, Math.floor(n / Math.max(w, 1)));
   g.beginPath();
-  for (let i = 0; i < n; i++) {
+  let first = true;
+  for (let i = 0; i < n; i += step) {
     const x = (i / n) * w;
-    const y = h / 2 - data[i] * h * 1.9;
-    i ? g.lineTo(x, y) : g.moveTo(x, y);
+    const y = h / 2 - data[i] * h * 1.1;
+    if (first) { g.moveTo(x, y); first = false; } else g.lineTo(x, y);
   }
   g.strokeStyle = state.verdict === 'refused' ? '#8A7F74' : red;
   g.lineWidth = 1.6;
@@ -220,7 +240,7 @@ function drawSpectrum(res) {
   };
 
   plot((m) => m, 'rgba(244,240,232,0.42)', 1.2);
-  plot((m, f) => m * correctionGain(f, state.wall) / 12, red, 1.8);
+  plot((m, f) => m * Math.min(correctionGain(f, state.wall), 6) / 2.4, red, 1.8);
 
   g.fillStyle = 'rgba(244,240,232,0.4)';
   g.font = '10px Archivo, sans-serif';
@@ -371,6 +391,14 @@ function renderTakes() {
 function demoSignal(rate, seconds, wallMm) {
   const n = Math.floor(rate * seconds);
   const out = new Float32Array(n);
+  /* Seeded, so the calibration and the take are the same signal twice. A
+     random murmur made the estimate jump by tens of millimetres between runs,
+     which reads as a broken instrument rather than a noisy one. */
+  let seed = (wallMm * 2654435761) >>> 0;
+  const rnd = () => {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
   let phase = 0;
   for (let i = 0; i < n; i++) {
     const t = i / rate;
@@ -384,9 +412,9 @@ function demoSignal(rate, seconds, wallMm) {
     if (beat > 0.06 && beat < 0.28) {
       phase += 0.11;
       const env = Math.sin((Math.PI * (beat - 0.06)) / 0.22);
-      s += (Math.sin(phase * 7.3) * 0.5 + (Math.random() - 0.5)) * 0.16 * env;
+      s += (Math.sin(phase * 7.3) * 0.5 + (rnd() - 0.5)) * 0.16 * env;
     }
-    s += (Math.random() - 0.5) * 0.012;
+    s += (rnd() - 0.5) * 0.012;
     out[i] = s * 0.9;
   }
   /* the wall: one-pole low-pass whose corner falls with thickness */
@@ -463,6 +491,7 @@ function init() {
   demo.addEventListener('click', async () => {
     await ensureContext();
     const rate = state.ctx.sampleRate;
+    ensureLookup(rate);
     const wallMm = 34;
     const samples = demoSignal(rate, 5, wallMm);
     const src = state.ctx.createBufferSource();
@@ -471,7 +500,7 @@ function init() {
     src.buffer = b;
     src.connect(state.ctx.destination);
     src.start();
-    const res = analyseBuffer(samples, rate, { maxWindows: 10 });
+    const res = analyseBuffer(samples, rate);
     state.demo = { samples, wall: wallMm, res };
     state.analyser = null;
     state.quality = res.quality;
@@ -480,37 +509,79 @@ function init() {
     paintVerdict();
     drawMeter();
     drawSpectrum(res);
-    $('#app-note').textContent = 'Playing a generated grade 2 murmur through a 34 mm wall. The trace is that signal, analysed by the same code as the microphone path.';
+    $('#app-note').textContent = "Playing a generated grade 2 murmur through a modelled chest wall. The trace is that signal, analysed by the same code as the microphone path; the estimate is the estimator's own and lands a few millimetres off.";
     demo.disabled = true;
     setTimeout(() => { demo.disabled = false; }, 5200);
   });
 
-  if (!LOOKUP) calibrate();
+  if (!LOOKUP) calibrate(44100);
   renderTakes();
   loop();
 }
 
 /* Offline analysis of a buffer, by the same band arithmetic as the live path. */
+/* Band energies from the time-domain signal, not from one window of an FFT.
+   One 93 ms window lands wherever it lands in the cardiac cycle; filtering the
+   whole take into three bands and taking RMS is what makes the estimate the
+   same number twice. */
+function biquad(type, f, Q, rate) {
+  const w = (2 * Math.PI * f) / rate;
+  const c = Math.cos(w), al = Math.sin(w) / (2 * Q);
+  let b0, b1, b2, a0, a1, a2;
+  if (type === 'lp') {
+    b0 = (1 - c) / 2; b1 = 1 - c; b2 = (1 - c) / 2;
+    a0 = 1 + al; a1 = -2 * c; a2 = 1 - al;
+  } else if (type === 'hp') {
+    b0 = (1 + c) / 2; b1 = -(1 + c); b2 = (1 + c) / 2;
+    a0 = 1 + al; a1 = -2 * c; a2 = 1 - al;
+  } else {
+    b0 = al; b1 = 0; b2 = -al;
+    a0 = 1 + al; a1 = -2 * c; a2 = 1 - al;
+  }
+  return { b0: b0 / a0, b1: b1 / a0, b2: b2 / a0, a1: a1 / a0, a2: a2 / a0, x1: 0, x2: 0, y1: 0, y2: 0 };
+}
+
+function rms(samples, filters) {
+  /* Each stage keeps its own history. Sharing the delay line between two
+     cascaded biquads silently turns the filter into noise. */
+  filters.forEach((f) => { f.x1 = f.x2 = f.y1 = f.y2 = 0; });
+  let sum = 0;
+  for (let i = 0; i < samples.length; i++) {
+    let x = samples[i];
+    for (const f of filters) {
+      const y = f.b0 * x + f.b1 * f.x1 + f.b2 * f.x2 - f.a1 * f.y1 - f.a2 * f.y2;
+      f.x2 = f.x1; f.x1 = x; f.y2 = f.y1; f.y1 = y; x = y;
+    }
+    sum += x * x;
+  }
+  return Math.sqrt(sum / samples.length);
+}
+
 function analyseBuffer(samples, rate, opts = {}) {
-  /* Average the magnitude spectrum over the whole buffer. One 93 ms window
-     lands wherever it lands in the cardiac cycle; averaging is what makes the
-     band ratio stable enough to invert. */
-  const N = opts.N || 2048;
-  const MAXW = opts.maxWindows || 8;
+  const heart = rms(samples, [biquad('hp', 20, 0.7, rate), biquad('lp', 150, 0.7, rate)]);
+  const murmur = rms(samples, [biquad('bp', 260, 1.6, rate), biquad('bp', 260, 1.6, rate)]);
+  const noise = rms(samples, [biquad('bp', 1100, 1.2, rate)]);
+  const ratio = murmur / (heart + 1e-9);
+  const wall = wallFromRatio(ratio);
+
+  /* display spectrum: one averaged FFT, only for the trace */
+  if (opts.noSpectrum) return { freq: null, mag: null, heart, murmur, noise, wall,
+    quality: Math.round(100 * Math.min(1, heart / (heart + noise * 2.2 + 1e-9))), total: heart + murmur + noise };
+  const N = 2048;
   const win = new Float32Array(N);
   for (let i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / (N - 1));
   const bins = new Float32Array(N / 2);
   let windows = 0;
-  const stride = Math.max(N, Math.floor((samples.length - N) / MAXW) || N);
-  for (let start = 0; start + N <= samples.length && windows < MAXW; start += stride) {
+  const stride = Math.max(N, Math.floor(samples.length / 8) || N);
+  for (let start = 0; start + N <= samples.length && windows < 8; start += stride) {
     windows++;
     for (let k = 0; k < N / 2; k++) {
       let re = 0, im = 0;
       for (let i = 0; i < N; i++) {
-        const s = samples[start + i] * win[i];
+        const s2 = samples[start + i] * win[i];
         const a = (-2 * Math.PI * k * i) / N;
-        re += s * Math.cos(a);
-        im += s * Math.sin(a);
+        re += s2 * Math.cos(a);
+        im += s2 * Math.sin(a);
       }
       bins[k] += Math.sqrt(re * re + im * im) / (N / 4);
     }
@@ -525,12 +596,12 @@ function analyseBuffer(samples, rate, opts = {}) {
   }
   const mag = new Float32Array(bins.length);
   for (let i = 0; i < bins.length; i++) mag[i] = Math.min(1, bins[i] / peak);
-  const heart = bandEnergy(freq, mag, ...BANDS.heart);
-  const murmur = bandEnergy(freq, mag, ...BANDS.murmur);
-  const noise = bandEnergy(freq, mag, ...BANDS.noise);
-  const wall = wallFromRatio(murmur / (heart + 1e-9));
-  const quality = Math.round(100 * Math.min(1, heart / (heart + noise * 2.2 + 1e-9)));
-  return { freq, mag, heart, murmur, noise, quality, wall, total: heart + murmur + noise };
+
+  return {
+    freq, mag, heart, murmur, noise, wall,
+    quality: Math.round(100 * Math.min(1, heart / (heart + noise * 2.2 + 1e-9))),
+    total: heart + murmur + noise
+  };
 }
 
 if (document.readyState !== 'loading') init();

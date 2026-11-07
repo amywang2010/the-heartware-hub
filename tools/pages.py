@@ -1661,7 +1661,7 @@ APP_PAGE = """
     <p class="lede">
       This is the companion app, running in this page. Open the microphone and it will show you
       what your own chest wall does to a heart sound; press the generated signal and it will
-      show you a grade 2 murmur through 34 mm, corrected, without a patient in the room.
+      run a generated grade 2 murmur through a modelled chest wall and correct it, without a patient in the room.
     </p>
   </div>
 </section>
