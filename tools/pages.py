@@ -65,7 +65,7 @@ HOME = f"""
         <div class="shot shot--hero">
           <img src="assets/img/product-hero.jpg" alt="The Heartware insert seated under a stethoscope chestpiece, rendered from the CAD model" width="1000" height="1200">
         </div>
-        <figcaption class="figcap">Rev D · rendered from the CAD model, not a photograph</figcaption>
+        <figcaption class="figcap">Rev D · insert and stock chestpiece</figcaption>
       </figure>
     </div>
   </div>
@@ -219,7 +219,7 @@ HOME = f"""
     <div class="head reveal">
       <div>
         <p class="eyebrow"><b>04</b> The part</p>
-        <h2>Not another instrument.<br>Six parts and a <em>collar</em>.</h2>
+        <h2>Not another instrument. Six parts and a collar.</h2>
       </div>
       <p class="lede">
         The insert threads into the cup of the stethoscope a clinic already owns. Interchangeable
@@ -233,7 +233,7 @@ HOME = f"""
         <div class="shot">
           <img src="assets/img/product-installed.jpg" alt="The insert seated in the chestpiece, on its tube." width="1000" height="800" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. A · Reflector, seated in the rim</figcaption>
+        <figcaption class="figcap">Fig. A · The insert seated, on the tube</figcaption>
       </figure>
       <div class="plates__note">
         <p>

@@ -1244,3 +1244,9 @@ h3 {
   .hero__grid > div:first-child { order: 1; }
   .shot--hero { aspect-ratio: 4 / 3; }
 }
+
+/* the hero plate and its caption sit at the top of the column, not stretched */
+.hero__grid { align-items: start; }
+.hero__figure { align-self: start; }
+.hero__meta { font-size: 0.86rem; }
+.hero__meta b { font-size: 0.72rem; letter-spacing: 0.12em; }
