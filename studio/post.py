@@ -19,11 +19,11 @@ IMG = ROOT / "assets" / "img"
 
 # view -> (focus plane in normalised depth, blur strength in px at 1/2 scale)
 SHOTS = {
-    "hero": (0.455, 22),
-    "macro": (0.400, 26),
-    "installed": (0.470, 20),
-    "explode": (0.520, 18),
-    "back": (0.430, 18),
+    "hero": (0.470, 5.0),
+    "unit": (0.500, 4.0),
+    "cut": (0.480, 5.0),
+    "macro": (0.430, 6.5),
+    "installed": (0.470, 4.5),
 }
 
 LEVELS = 9
@@ -60,6 +60,15 @@ def dof(rgb: Image.Image, depth: Image.Image, focus: float, strength: float) -> 
 
     have = mask_sum > 1e-4
     out[have] = acc[have] / mask_sum[have][..., None]
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
+
+
+def sharpen(rgb: Image.Image, amount: float = 1.9, radius: float = 1.4) -> Image.Image:
+    """A lens resolves detail; a WebGL frame at this size looks soft next to one."""
+    blur = rgb.filter(ImageFilter.GaussianBlur(radius))
+    a = np.asarray(rgb, dtype=np.float32)
+    b = np.asarray(blur, dtype=np.float32)
+    out = a + amount * (a - b)
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
 
 
@@ -104,6 +113,7 @@ def main():
         half = rgb.resize((rgb.width // 2, rgb.height // 2), Image.LANCZOS)
         depth = Image.open(dep)
         out = dof(half, depth, focus, strength)
+        out = sharpen(out)
         out = grade(out)
         out = grain(out)
         out = vignette(out)

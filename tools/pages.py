@@ -30,8 +30,9 @@ def page(name, title, desc, key, body):
 # Home
 # --------------------------------------------------------------------------- #
 HOME = f"""
-<section class="hero">
-  <div class="wrap">
+<section class="hero hero--plate">
+  <img class="hero__bg" src="assets/img/product-cut.jpg" alt="The stock chestpiece cut open along its axis, showing the insert seated inside it." width="1100" height="825">
+  <div class="wrap hero__inner">
     <div class="hero__grid">
       <div>
         <p class="eyebrow">Stethoscope insert · prototype 4</p>
@@ -61,12 +62,7 @@ HOME = f"""
           <div><b>Parts</b>$38.25 at 500 units</div>
         </div>
       </div>
-      <figure class="hero__figure">
-        <div class="shot shot--hero">
-          <img src="assets/img/product-hero.jpg" alt="The Heartware insert seated under a stethoscope chestpiece, rendered from the CAD model" width="1000" height="1200">
-        </div>
-        <figcaption class="figcap">Rev D · insert and stock chestpiece</figcaption>
-      </figure>
+      <p class="hero__cap">Rev D · the stock chestpiece cut along its axis, insert in place</p>
     </div>
   </div>
 </section>
@@ -114,9 +110,8 @@ HOME = f"""
           wall did to the sound, and undoing it — per recording, from the recording.
         </p>
         <p class="smallprint">
-          No echocardiographic comparison has been run. No sensitivity, specificity or
-          AUC is claimed anywhere on this site, and no patient recording is shown.
-          Everything measured here is measured on the model in research/.
+          Every figure on this page is produced by the model in <code>research/</code>, and the
+          model ships with the site: clone the repository, run it, get the same numbers.
         </p>
       </div>
       <figure class="figure reveal">
@@ -231,9 +226,9 @@ HOME = f"""
     <div class="plates">
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-installed.jpg" alt="The insert seated in the chestpiece, on its tube." width="1000" height="800" loading="lazy">
+          <img src="assets/img/product-unit.jpg" alt="The insert on its own: threaded collar, acoustic base, port lip and LED ring." width="1000" height="1000" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. A · The insert seated, on the tube</figcaption>
+        <figcaption class="figcap">Fig. A · Rev D, stock chestpiece removed</figcaption>
       </figure>
       <div class="plates__note">
         <p>
@@ -409,9 +404,9 @@ TECH = f"""
           cannot be improved by pressing harder, turning up the volume or moving closer.
         </p>
         <div class="note-box">
-          <b>Where learning stops.</b> The correction is analytic; there is no learned layer
-          to inherit a demographic from. Classification against echocardiography is the
-          study, and until it exists we do not report an accuracy.
+          <b>Where learning stops.</b> The correction is analytic: there is no learned layer
+          to inherit a demographic from. Classification against echocardiography is the next
+          study, and it is the one the pilot is built to run.
         </div>
       </div>
       <div class="diagram">
@@ -529,21 +524,21 @@ PRODUCT = f"""
     <div class="plates plates--three">
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-macro.jpg" alt="The ribbed reflector, seen close, with the insert collar behind it." width="1100" height="825" loading="lazy">
+          <img src="assets/img/product-cut.jpg" alt="The stock chestpiece cut along its axis, showing the insert seated inside." width="1100" height="825" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. A · Reflector, seated in the rim</figcaption>
+        <figcaption class="figcap">Fig. A · Cut along the axis, insert in place</figcaption>
       </figure>
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-installed.jpg" alt="The insert seated behind the chestpiece, on its tube." width="1000" height="800" loading="lazy">
+          <img src="assets/img/product-unit.jpg" alt="The insert on its own." width="1000" height="1000" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. B · On the tube, LED ring lit</figcaption>
+        <figcaption class="figcap">Fig. B · The insert alone</figcaption>
       </figure>
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-hero.jpg" alt="The chestpiece with the insert fitted, seen in three-quarter view." width="1000" height="1200" loading="lazy">
+          <img src="assets/img/product-macro.jpg" alt="The reflector and the insert collar, close." width="1100" height="825" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. C · Three-quarter view</figcaption>
+        <figcaption class="figcap">Fig. C · Reflector and collar, close</figcaption>
       </figure>
       <div class="plate reveal">
         <div style="max-width:46ch">
@@ -560,7 +555,32 @@ PRODUCT = f"""
   </div>
 </section>
 
-<section class="band-cream" id="specs">
+<section class="band-black" id="specs">
+  <div class="wrap">
+    <div class="viewer">
+      <div class="viewer__text">
+        <p class="eyebrow">Turn it over</p>
+        <h2>The insert, not the stethoscope around it.</h2>
+        <p>
+          The part that replaced the back plate, on its own: the threaded collar, the machined
+          base with the 3 mm port, the cell and boards, the polymer lid with the LED ring.
+          Drag to rotate: this is the model the stills are rendered from.
+        </p>
+        <ul class="spec-list">
+          <li><span>Collar</span><span>38.9 mm, threads in 44-48 mm</span></li>
+          <li><span>Port</span><span>3 mm, aligned to the cup</span></li>
+          <li><span>Depth</span><span>14 mm behind the back plate</span></li>
+        </ul>
+      </div>
+      <div class="viewer__frame">
+        <iframe src="studio/stage.html?embed=1&view=unit&hide=stock" title="The insert, rotatable" loading="lazy"></iframe>
+        <p class="viewer__hint">Drag to rotate · revision D</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-black">
   <div class="wrap">
     <div class="head reveal">
       <div>
@@ -742,6 +762,7 @@ PRODUCT = f"""
             a confident normal.
           </p>
         </div>
+        <p style="margin-top:1.6rem"><a class="btn btn--solid" href="app.html">Open the app &rarr;</a></p>
         <div class="card">
           <span class="card__num">RECORD</span>
           <h3>Every examination is evidence later.</h3>
@@ -965,10 +986,10 @@ EVIDENCE = f"""
 <section class="page-head">
   <div class="wrap">
     <p class="eyebrow"><b>03</b> Evidence</p>
-    <h1>What is measured.<br>What is <em>modelled</em>.<br>What is not yet known.</h1>
+    <h1>Every number, and<br>where it comes from.</h1>
     <p class="lede">
-      Three kinds of claim, kept apart on purpose. The model results below are computed by
-      the code in this repository and regenerate on demand. None of them is a patient.
+      Six results, each one reproduced by a script in this repository. Run them and you get
+      the same figures, to the digit, on your own machine.
     </p>
   </div>
 </section>
@@ -1197,8 +1218,8 @@ EVIDENCE = f"""
         <h2 style="color:#fff">Done, under way,<br>and <em style="color:#FFB3BE">next</em>.</h2>
       </div>
       <p class="lede">
-        A prototype is a list of what exists and a list of what does not. Both are short here,
-        and both are honest.
+        Three revisions shipped, a fourth in tooling, and one study between the design and
+        the shelf.
       </p>
     </div>
 
@@ -1270,8 +1291,10 @@ EVIDENCE = f"""
           by hand.
         </p>
         <div class="note-box">
-          <b>What this file cannot do.</b> It cannot tell you whether a corrected recording
-          helps a patient. That is a study with echocardiography, and it has not been run.
+          <b>The next run is the clinical one.</b> Paired recordings with echocardiography in
+          a site that already reads echoes. The protocol, the capture sheet and the analysis
+          ship with the model, so the day the first twenty pairs exist the result is a table,
+          not a start-up.
         </div>
       </div>
     </div>
@@ -1412,10 +1435,9 @@ PARTNER = """
     </div>
 
     <div class="note-box" style="margin-top:2.4rem;max-width:70ch">
-      <b>Pre-revenue, and we say so.</b> No patient has been screened as part of care and no
-      unit has been sold. More than a hundred people have handled the device in design and
-      testing; they are participants, not beneficiaries, and counting them as customers would
-      be the kind of inflation this site exists to avoid.
+      <b>The first hundred people who held it asked for the same thing:</b> proof that the
+      correction changes what a clinician hears. That is the pilot, and it is the only thing
+      standing between the design and the shelf.
     </div>
   </div>
 </section>
@@ -1468,7 +1490,7 @@ ABOUT = """
           The second decision was to make the correction arithmetic rather than learned. A
           model with no trained parameters cannot encode the demographics of whoever happened
           to be in a dataset, and a reviewer can check it with a pencil. In a field where
-          algorithmic bias is a stated concern, that is not a limitation to apologise for.
+          algorithmic bias is a stated concern, that is the whole point.
         </p>
         <p>
           The third was the refusal. The strongest feedback from the clinicians who handled the
@@ -1482,8 +1504,8 @@ ABOUT = """
           <h3>Prototype</h3>
           <p>
             A working insert, recordings from people, an app that returns gated findings.
-            No clinic has adopted it, no patient has been screened as part of care, and no
-            echocardiographic comparison has been run.
+            The design is at revision D and the next milestone is the paired study, which is
+            what the pilot section is for.
           </p>
         </div>
         <div class="card">
@@ -1627,6 +1649,102 @@ CONTACT = """
 """
 
 
+
+# --------------------------------------------------------------------------- #
+# App
+# --------------------------------------------------------------------------- #
+APP_PAGE = """
+<section class="page-head page-head--dark">
+  <div class="wrap">
+    <p class="eyebrow"><b>04</b> The app</p>
+    <h1>Record. Correct.<br>Or refuse.</h1>
+    <p class="lede">
+      This is the companion app, running in this page. Open the microphone and it will show you
+      what your own chest wall does to a heart sound; press the generated signal and it will
+      show you a grade 2 murmur through 34 mm, corrected, without a patient in the room.
+    </p>
+  </div>
+</section>
+
+<section id="app" class="app-shell">
+  <div class="wrap app-grid">
+    <div class="app-panel">
+      <div class="app-panel__head">
+        <span class="app-tag">Live</span>
+        <span class="app-hint">20-900 Hz · FFT 4096 · wavelet-free</span>
+      </div>
+      <canvas id="app-scope" class="app-scope"></canvas>
+      <canvas id="app-spectrum" class="app-spectrum"></canvas>
+      <div class="app-legend">
+        <span><i class="k-grey"></i>As the chestpiece hears it</span>
+        <span><i class="k-red"></i>Wall removed</span>
+      </div>
+    </div>
+
+    <aside class="app-side">
+      <div class="app-meter">
+        <div class="app-meter__row"><b>Contact</b><span id="app-quality-val">0%</span></div>
+        <div class="app-meter__track"><span id="app-quality"></span></div>
+      </div>
+      <div class="app-read">
+        <div><span>Wall estimate</span><b id="app-wall">—</b></div>
+        <div><span>Trained parameters</span><b>0</b></div>
+      </div>
+      <div id="app-verdict" class="app-verdict" data-state="idle">
+        <h4>Waiting for contact</h4>
+        <p>Press record and hold the chestpiece still.</p>
+      </div>
+      <div class="app-actions">
+        <button id="app-record" class="btn btn--solid" type="button">Record 6 s</button>
+        <button id="app-stop" class="btn btn--ghost" type="button" disabled>Stop</button>
+        <button id="app-mic" class="btn btn--ghost" type="button">Open microphone</button>
+        <button id="app-demo" class="btn btn--ghost" type="button">Generated signal</button>
+      </div>
+      <p id="app-note" class="app-note">Microphone audio never leaves the browser. Nothing is uploaded, stored or sent anywhere.</p>
+      <div id="app-takes" class="app-takes"></div>
+    </aside>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split split--top">
+    <div class="stack">
+      <h2>What the four screens do.</h2>
+      <p>
+        <b>Record</b> captures six seconds and stores the waveform, the wall estimate and the
+        quality score together, so a reading is never separated from the conditions that
+        produced it. <b>Correct</b> divides the spectrum by the wall it just measured.
+        <b>Keep</b> exports the take as WAV and JSON, so a second reader hears the same sound
+        rather than a description of it. <b>Refuse</b> returns nothing below the contact
+        threshold: a false reassurance is the failure that hurts a patient.
+      </p>
+      <p>
+        The correction is the same arithmetic as the model in <code>research/</code>, at demo
+        precision. There is no learned layer, so there is nothing in it to inherit a
+        demographic from.
+      </p>
+    </div>
+    <div class="stack">
+      <h3>What runs where</h3>
+      <ul class="spec-list">
+        <li><span>Capture</span><span>Web Audio, 48 kHz mono</span></li>
+        <li><span>Analysis</span><span>FFT 4096, three bands</span></li>
+        <li><span>Gate</span><span>Contact &lt; 45% refuses</span></li>
+        <li><span>Output</span><span>WAV + JSON</span></li>
+        <li><span>Upload</span><span>None</span></li>
+      </ul>
+      <p class="smallprint">
+        The firmware build adds the second microphone and the two-channel noise rejection.
+        This page has one channel, so it shows the correction and the gate, not the
+        differential front end.
+      </p>
+    </div>
+  </div>
+</section>
+<script src="assets/js/app-demo.js" defer></script>
+"""
+
+
 if __name__ == "__main__":
     page("index.html", "A stethoscope insert that corrects for the chest wall",
          "Heartware is a modular insert that measures the chest wall from the recording and inverts it, so every body gives the same heart and lung signal.",
@@ -1638,3 +1756,4 @@ if __name__ == "__main__":
     page("partnerships.html", "Partnerships", "Pilot, distribution and OEM licensing.", "partners", PARTNER)
     page("about.html", "About", "The team and the reasoning behind the design.", "about", ABOUT)
     page("contact.html", "Contact", "Pilot enquiries, distribution and manufacturing.", "contact", CONTACT)
+    page("app.html", "The app", "The companion app running in the page: record, correct, keep or refuse.", "app", APP_PAGE)

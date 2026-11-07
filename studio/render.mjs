@@ -25,11 +25,13 @@ const FFMPEG =
   'C:/Users/Okapi/eigenpulse-cuff/viz/bin/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe';
 
 const STILLS = [
-  { view: 'hero', w: 2000, h: 2400 },
+  /* the page needs to show the product: the cutaway and the unit, not four
+     angles of a stethoscope head */
+  { view: 'hero', w: 2000, h: 2400, cut: 1 },
+  { view: 'cut', w: 2200, h: 1650, cut: 1 },
+  { view: 'unit', w: 2000, h: 2000, hide: 'stock' },
   { view: 'macro', w: 2200, h: 1650 },
-  { view: 'installed', w: 2000, h: 1600 },
-  { view: 'explode', w: 2200, h: 1650, explode: 1 },
-  { view: 'back', w: 1800, h: 1800 }
+  { view: 'installed', w: 2000, h: 1600 }
 ];
 
 function serve() {
@@ -58,7 +60,9 @@ async function stills(browser, only) {
   for (const s of STILLS) {
     if (only && only !== s.view) continue;
     const page = await browser.newPage({ viewport: { width: s.w, height: s.h } });
-    const q = new URLSearchParams({ view: s.view, w: s.w, h: s.h, explode: s.explode || 0 });
+    const q = new URLSearchParams({ view: s.view, w: s.w, h: s.h });
+    if (s.cut) q.set('cut', '1');
+    if (s.hide) q.set('hide', s.hide);
     const file = path.join(OUT, `product-${s.view}.png`);
     await shoot(page, `http://localhost:${PORT}/studio/stage.html?${q}`, file);
     q.set('depth', '1');

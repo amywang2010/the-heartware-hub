@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 NAV = [
     ("technology.html", "Technology"),
     ("product.html", "Product"),
+    ("app.html", "The app"),
     ("clinical.html", "Clinical impact"),
     ("evidence.html", "Evidence"),
     ("partnerships.html", "Partnerships"),

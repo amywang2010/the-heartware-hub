@@ -1250,3 +1250,94 @@ h3 {
 .hero__figure { align-self: start; }
 .hero__meta { font-size: 0.86rem; }
 .hero__meta b { font-size: 0.72rem; letter-spacing: 0.12em; }
+
+/* ---------- the page opens on the object -------------------------------- */
+/* The old hero was a column of type beside a thumbnail, which is the layout of
+   every generated landing page. This is the product, full bleed, with the claim
+   set into the dark side of the plate. */
+.hero--plate {
+  position: relative;
+  padding: 0;
+  min-height: min(86vh, 860px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #0C0907;
+  color: #F4F0E8;
+}
+.hero--plate .hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% 46%;
+  z-index: 0;
+}
+.hero--plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(100deg, rgba(8, 7, 6, 0.96) 0%, rgba(8, 7, 6, 0.88) 38%, rgba(8, 7, 6, 0.42) 62%, rgba(8, 7, 6, 0.1) 82%),
+    linear-gradient(0deg, rgba(8, 7, 6, 0.85) 0%, rgba(8, 7, 6, 0) 42%);
+}
+.hero--plate .hero__inner { position: relative; z-index: 2; width: 100%; padding-block: clamp(5rem, 12vh, 9rem) clamp(2.4rem, 6vh, 4rem); }
+.hero--plate .hero__grid { display: grid; grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.68fr); gap: clamp(2rem, 5vw, 5rem); align-items: end; }
+.hero--plate .eyebrow { color: rgba(244, 240, 232, 0.72); }
+.hero--plate .eyebrow b { color: #E0301E; }
+.hero--plate h1 {
+  color: #F7F3EB;
+  font-size: clamp(3rem, 6.4vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  margin: 1rem 0 1.5rem;
+}
+.hero--plate .hero__sub { color: rgba(244, 240, 232, 0.82); max-width: 46ch; font-size: clamp(1.02rem, 1.15vw, 1.16rem); }
+.hero--plate .hero__meta { color: rgba(244, 240, 232, 0.72); border-top: 1px solid rgba(244, 240, 232, 0.22); padding-top: 1rem; }
+.hero--plate .hero__meta b { color: #F7F3EB; }
+.hero--plate .btn--ghost { border-color: rgba(244, 240, 232, 0.45); color: #F7F3EB; }
+.hero--plate .btn--ghost:hover { background: rgba(244, 240, 232, 0.12); }
+.hero--plate .hero__figure { align-self: end; }
+.hero--plate .shot--hero { aspect-ratio: 1 / 1; border: 1px solid rgba(244, 240, 232, 0.18); }
+.hero--plate .figcap { color: rgba(244, 240, 232, 0.62); }
+@media (max-width: 900px) {
+  .hero--plate { min-height: 0; align-items: flex-start; }
+  .hero--plate .hero__bg { object-position: 60% 30%; }
+  .hero--plate::after { background: linear-gradient(180deg, rgba(8,7,6,0.55) 0%, rgba(8,7,6,0.86) 42%, rgba(8,7,6,0.97) 70%); }
+  .hero--plate .hero__grid { grid-template-columns: 1fr; }
+  .hero--plate .hero__figure { display: none; }
+}
+
+.hero--plate .hero__grid { grid-template-columns: minmax(0, 1fr); }
+.hero--plate .hero__cap {
+  position: absolute;
+  right: clamp(1.2rem, 3vw, 3rem);
+  bottom: 1.2rem;
+  max-width: 30ch;
+  text-align: right;
+  font: 0.74rem/1.4 "Archivo", sans-serif;
+  letter-spacing: 0.06em;
+  color: rgba(244, 240, 232, 0.55);
+}
+.hero--plate::after {
+  background:
+    linear-gradient(100deg, rgba(8, 7, 6, 0.97) 0%, rgba(8, 7, 6, 0.93) 44%, rgba(8, 7, 6, 0.55) 68%, rgba(8, 7, 6, 0.14) 88%),
+    linear-gradient(0deg, rgba(8, 7, 6, 0.9) 0%, rgba(8, 7, 6, 0) 46%);
+}
+@media (max-width: 900px) { .hero--plate .hero__cap { position: static; text-align: left; margin-top: 1.4rem; max-width: none; } }
+
+/* ---------- the turnable model ------------------------------------------- */
+.band-black { background: #0B0A09; color: #F4F0E8; }
+.band-black h2 { color: #F7F3EB; }
+.band-black .eyebrow { color: rgba(244, 240, 232, 0.6); }
+.band-black .eyebrow b { color: #E0301E; }
+.viewer { display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: clamp(1.6rem, 4vw, 3.4rem); align-items: center; }
+.viewer__text p { color: rgba(244, 240, 232, 0.74); max-width: 42ch; }
+.viewer__text .spec-list li { border-color: rgba(244, 240, 232, 0.16); }
+.viewer__text .spec-list span { color: rgba(244, 240, 232, 0.8); }
+.viewer__frame { position: relative; border: 1px solid rgba(244, 240, 232, 0.18); background: #080706; }
+.viewer__frame iframe { display: block; width: 100%; height: clamp(360px, 52vh, 560px); border: 0; }
+.viewer__hint { position: absolute; left: 0.9rem; bottom: 0.7rem; margin: 0; font: 0.68rem/1 "Archivo", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244, 240, 232, 0.5); pointer-events: none; }
+@media (max-width: 900px) { .viewer { grid-template-columns: 1fr; } }

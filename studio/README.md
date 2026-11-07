@@ -56,6 +56,17 @@ out of focus the way a lens does, then film grain weighted to the midtones and a
 vignette. The renders before that pass are still in the commit history and they
 look like screen captures.
 
+## What the page needs, and the two flags that give it
+
+Every earlier still showed a stethoscope head, because the insert sits under the
+cup and the diaphragm hides it. Two flags fix that: `hide=stock` renders the
+insert on its own, and `cut=1` clips the front half of the stock away with a
+clipping plane so the insert is seen in place. Both are in the shipped stills.
+
+`embed=1` turns the same file into the live viewer on the product page: drag to
+rotate, one continuous render loop, no build step and no second copy of the
+model to drift out of date.
+
 ## A view that does not exist
 
 `explode` was meant to be a parts breakdown. Two procedural attempts (by child

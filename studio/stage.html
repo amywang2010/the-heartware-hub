@@ -31,6 +31,9 @@ const W = Number(P.get('w') || 1600);
 const H = Number(P.get('h') || 1400);
 const TURN = Number(P.get('turn') || 0);
 const EXPLODE = Number(P.get('explode') || 0);
+const HIDE = (P.get('hide') || '').split(',').filter(Boolean);
+const CUT = P.get('cut') === '1';
+const EMBED = P.get('embed') === '1';
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(1);
@@ -356,6 +359,25 @@ assembly.rotation.y = TURN * Math.PI * 2;
 assembly.rotation.z = -0.03;
 scene.add(assembly);
 
+/* ---------- the two things the page actually needs ------------------------ */
+/* 1. The insert has to be visible. Under the stock cup it is hidden by the
+      diaphragm, which is why every earlier still showed a stethoscope head and
+      no product. `hide=stock` removes the stock; `cut=1` keeps it and slices
+      the front half away so the insert is seen in place. */
+if (HIDE.includes('stock')) stock.visible = false;
+
+if (CUT) {
+  renderer.localClippingEnabled = true;
+  const plane = new THREE.Plane(new THREE.Vector3(0, 0, -1), 0);
+  stock.traverse((o) => {
+    if (!o.isMesh) return;
+    o.material = o.material.clone();
+    o.material.clippingPlanes = [plane];
+    o.material.side = THREE.DoubleSide;
+    o.material.clipShadows = true;
+  });
+}
+
 /* ---------- lighting ----------------------------------------------------- */
 const key = new THREE.DirectionalLight(0xfff6ea, 3.6);
 key.position.set(-34, 58, 42);
@@ -402,6 +424,7 @@ const table = new THREE.Mesh(
 table.rotation.x = -Math.PI / 2;
 table.position.y = -29.2;
 table.receiveShadow = true;
+if (HIDE.includes('table')) table.visible = false;
 scene.add(table);
 
 const blob = canvas(512, (g, s) => {
@@ -418,6 +441,7 @@ const softShadow = new THREE.Mesh(
 );
 softShadow.rotation.x = -Math.PI / 2;
 softShadow.position.y = -29.1;
+if (HIDE.includes('stock')) softShadow.visible = false;
 scene.add(softShadow);
 
 /* ---------- camera -------------------------------------------------------- */
@@ -426,10 +450,13 @@ const positions = {
   hero:      { pos: [96, 40, 150],  fov: 26, target: [0, -8, 0] },
   macro:     { pos: [46, -4, 84],   fov: 20, target: [0, -16, 0] },
   installed: { pos: [-64, 40, 118], fov: 24, target: [2, -8, 0] },
-  explode:   { pos: [104, 10, 176], fov: 27, target: [2, -12, 0] },
+  /* the insert on its own: the part the page sells, with nothing hiding it */
+  unit:      { pos: [78, -6, 92],   fov: 30, target: [0, -20, 0] },
+  unitlow:   { pos: [54, -44, 74],  fov: 30, target: [0, -22, 0] },
+  /* half the chestpiece removed, so the insert is visible in place */
+  cut:       { pos: [88, 26, 132],  fov: 27, target: [0, -14, 0] },
   back:      { pos: [8, 96, 54],    fov: 24, target: [0, -14, 0] }
-};
-const cfg = positions[VIEW] || positions.hero;
+};const cfg = positions[VIEW] || positions.hero;
 camera.position.set(...cfg.pos);
 camera.fov = cfg.fov;
 camera.lookAt(new THREE.Vector3(...cfg.target));
@@ -461,6 +488,45 @@ if (P.get('depth')) {
   renderer.setClearColor(0xffffff, 1);
   renderer.render(scene, camera);
   renderer.setClearColor(0x000000, 1);
+  window.__ready = true;
+} else if (EMBED) {
+  /* Live viewer on the product page: drag to turn, wheel-free, no chrome. */
+  const fit = () => {
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+  };
+  fit();
+  addEventListener('resize', fit);
+  document.body.style.cursor = 'grab';
+  let down = false, lastX = 0, lastY = 0, vel = 0, rotY = assembly.rotation.y, rotX = -0.06;
+  const el = renderer.domElement;
+  el.addEventListener('pointerdown', (e) => {
+    down = true; lastX = e.clientX; lastY = e.clientY;
+    document.body.style.cursor = 'grabbing';
+    el.setPointerCapture(e.pointerId);
+  });
+  el.addEventListener('pointermove', (e) => {
+    if (!down) return;
+    vel = (e.clientX - lastX) * 0.006;
+    rotY += vel;
+    rotX = Math.max(-0.5, Math.min(0.45, rotX + (e.clientY - lastY) * 0.004));
+    lastX = e.clientX; lastY = e.clientY;
+  });
+  const up = () => { down = false; document.body.style.cursor = 'grab'; };
+  el.addEventListener('pointerup', up);
+  el.addEventListener('pointercancel', up);
+  assembly.rotation.x = rotX;
+  assembly.rotation.y = rotY;
+  const tick = () => {
+    if (!down) { vel *= 0.94; rotY += vel + 0.0022; }
+    assembly.rotation.y = rotY;
+    assembly.rotation.x += (rotX - assembly.rotation.x) * 0.12;
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  };
+  tick();
   window.__ready = true;
 } else {
   renderer.render(scene, camera);
