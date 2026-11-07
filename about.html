@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About · Heartware</title>
-<meta name="description" content="Why the correction is a physical part, and what is still missing.">
+<meta name="description" content="Why a physical part, who built it, and where it is now.">
 <meta property="og:title" content="About · Heartware">
-<meta property="og:description" content="Why the correction is a physical part, and what is still missing.">
+<meta property="og:description" content="Why a physical part, who built it, and where it is now.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -24,8 +24,7 @@
 <header class="nav" data-open="false">
   <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="brand__word">Heartware</span>
+      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
     </a>
     <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
@@ -36,83 +35,69 @@
         <a href="clinical.html">In the clinic</a>
         <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="btn btn--sm" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm btn--wine" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="phero">
-  <div class="deco blob" style="right:-5rem;top:-5rem;width:20rem;height:20rem;background:var(--mint);opacity:.7"></div>
-  <div class="wrap">
-    <span class="kicker">About</span>
-    <h1 class="display">It started with two recordings that should have matched.</h1>
-    <p class="lede">Same murmur, same grade, two patients. One was audible at the door, one needed the room quiet and the chestpiece pressed hard. The difference was not the heart. It was the tissue in front of it.</p>
+<section class="ptop">
+  <div class="wrap split split--64 split--top">
+    <div>
+      <span class="kicker kicker--plain">About</span>
+      <h1 class="display">It started with two recordings that should have matched.</h1>
+      <p class="lede">Same murmur, same grade, two patients. One was audible at the door, one needed the room quiet and the chestpiece pressed hard. The difference was not the heart. It was the tissue in front of it.</p>
+    </div>
+    <figure class="pic pic--blush">
+      <div class="pic__box" style="aspect-ratio:1"><img src="assets/img/product-cut.jpg" alt="Studio render of the sectioned insert" width="1200" height="1200"></div>
+      <figcaption>Rev D in section, seated in a head.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap tiles">
-    <div class="card card--butter w7">
+<section class="sec--tight">
+  <div class="wrap split split--75 split--top">
+    <div>
       <h2 class="display display--sm">Why a physical part, and not an app</h2>
-      <p class="stack" style="margin-top:1rem">The chest wall is a filter, and it sits between the heart and every microphone you could put on the skin. Software can only correct it if it knows what the filter was, and the only place that information exists is the recording itself.</p>
-      <p>So the device measures the wall, and the software divides by it. Putting a second microphone behind a sealed cavity is what makes the room noise cancel; putting it in a phone case would not.</p>
-      <h2 class="display display--sm" style="margin-top:1.6rem">Why it is not a model</h2>
-      <p>A learned correction would need recordings paired with imaging from thousands of bodies, and it would be impossible to say which part of the answer came from the physics and which from the training set. This one is a division. It can be checked with a calculator.</p>
+      <p class="small" style="margin-top:.7rem">The chest wall is a filter, and it sits between the heart and every microphone you could put on the skin. Software can correct it only if it knows what the filter was, and the only place that information exists is the recording itself. So the device measures the wall, and the software divides by it.</p>
+      <h2 class="display display--sm" style="margin-top:1.8rem">Why it is not a model</h2>
+      <p class="small" style="margin-top:.7rem">A learned correction would need recordings paired with imaging from thousands of bodies, and it would be impossible to say which part of the answer came from the physics and which from the training set. This is one division, and it can be checked with a calculator.</p>
     </div>
-    <div class="card card--lilac w5">
-      <h2 class="display display--sm">Where it is now</h2>
-      <div class="rows" style="margin-top:1rem">
-        <div class="row"><span class="row__k">Rev D</span><p class="row__v">Printed, hand fitted, workable</p></div>
-        <div class="row"><span class="row__k">Hands on it</span><p class="row__v">More than 100 people</p></div>
-        <div class="row"><span class="row__k">The evidence</span><p class="row__v">Simulation and bench</p></div>
-        <div class="row"><span class="row__k">The study</span><p class="row__v">Not started</p></div>
-        <div class="row"><span class="row__k">Tooling</span><p class="row__v">Not paid for</p></div>
-      </div>
+    <div class="rows">
+      <div class="row"><span class="row__k">Rev D</span><span class="row__v">Printed, hand fitted, workable.</span></div>
+      <div class="row"><span class="row__k">Hands on it</span><span class="row__v">More than 100 people.</span></div>
+      <div class="row"><span class="row__k">The evidence</span><span class="row__v">Simulation and bench.</span></div>
+      <div class="row"><span class="row__k">The study</span><span class="row__v">Not started.</span></div>
+      <div class="row"><span class="row__k">Tooling</span><span class="row__v">Not paid for.</span></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<section class="sec band--paper2">
   <div class="wrap">
-    <div class="head head--one">
-      <div>
-        <span class="kicker kicker--red">The people</span>
-        <h2 class="display display--md">Small, and clear about who does what.</h2>
-      </div>
-    </div>
-    <div class="people">
-      <article class="person"><h3>Founder &middot; system design</h3><p>Acoustic path, correction, app and the manufacturing envelope. Built the current insert and wrote the analysis that sets its error budget.</p></article>
-      <article class="person"><h3>Co-founder &middot; clinical protocol</h3><p>MLPAO-registered medical laboratory assistant and technician. Owns how a recording is taken: which site, at what contact pressure, and who runs the sessions.</p></article>
-      <article class="person"><h3>Advisor &middot; computational biology</h3><p>Professor of computational biology. Advises on signal and statistical methodology: what can be claimed from a recording, and what cannot.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="band band--ink sec">
-  <div class="wrap">
-    <div class="head">
-      <div><span class="kicker" style="background:var(--butter);color:var(--ink)">How we work</span>
-      <h2 class="display display--md">Three rules, and a fourth.</h2></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="step__n">1</span><div><h3>Measure before claiming</h3><p>Every number on this site has a method and a sample size next to it, including the ones that do not flatter us.</p></div></div>
-      <div class="step"><span class="step__n">2</span><div><h3>Refusing is a feature</h3><p>A device that always answers is a device that sometimes lies. The app returns nothing when contact is poor.</p></div></div>
-      <div class="step"><span class="step__n">3</span><div><h3>Say what is not done</h3><p>The clinical study, the tooling, the photograph and the regulatory route are all openly missing.</p></div></div>
-      <div class="step"><span class="step__n">4</span><div><h3>Ship the prototype, not a promise</h3><p>The part exists, fits real heads and can be held. That is the whole of the claim.</p></div></div>
+    <h2 class="display display--md" style="max-width:16ch">The people who built it.</h2>
+    <p class="small" style="margin-top:.8rem;max-width:44ch">Engineering, clinical protocol and review. Everyone on this list has handled the device or read the analysis.</p>
+    <div class="tiles" style="margin-top:2rem">
+      <div class="w4"><h3 class="display display--sm">Amy Wang</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Founder, system design</p><p class="small" style="margin-top:.5rem">Acoustic path, correction, app and the manufacturing envelope.</p></div>
+      <div class="w4"><h3 class="display display--sm">Jiahe Wang</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Co-founder, clinical protocol</p><p class="small" style="margin-top:.5rem">MLPAO-registered medical laboratory technician. Owns how a recording is taken.</p></div>
+      <div class="w4"><h3 class="display display--sm">Manolis Kellis</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Advisor, MIT</p><p class="small" style="margin-top:.5rem">Signal and statistical methodology: what can be claimed from a recording.</p></div>
+      <div class="w4"><h3 class="display display--sm">Dr. He Huan</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Clinical advisor</p><p class="small" style="margin-top:.5rem">Reviews the findings language and the recording protocol.</p></div>
+      <div class="w4"><h3 class="display display--sm">Dr. Yu Dongping</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Clinical advisor</p><p class="small" style="margin-top:.5rem">Reviews the site-of-recording taxonomy and what the app should refuse to report.</p></div>
+      <div class="w4"><h3 class="display display--sm">Grace Yu</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Advisor, interface</p><p class="small" style="margin-top:.5rem">Reviews the interface and the language of the findings.</p></div>
     </div>
   </div>
 </section>
 </main>
 
 <footer class="foot">
+  <svg class="foot__heart" viewBox="0 0 48 44" aria-hidden="true"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
   <div class="wrap">
     <div class="foot__top">
-      <div>
+      <div class="foot__brand">
         <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
-          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="brand__word">Heartware</span>
+          <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
         </a>
+        <p class="foot__tag">Innovating cardiac care</p>
         <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
       <nav class="foot__cols" aria-label="Footer">

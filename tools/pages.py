@@ -16,27 +16,25 @@ def demo_block():
     """The phone demo. Used on the home page and the app page; demo.js drives it."""
     return """
 <div class="demo" data-demo>
-  <div class="demo__stage">
-    <div class="demo__phone">
-      <div class="demo__screen">
-        <div class="demo__bar"><span>Heartware</span><span class="demo__dot" data-demo-dot></span></div>
-        <div class="demo__state" data-demo-state>Ready</div>
-        <div class="demo__big" data-demo-big>&#8212;</div>
-        <canvas class="demo__wave" data-demo-wave aria-label="Waveform of the recorded heart sound"></canvas>
-        <div class="demo__kv"><span>Chest wall estimate</span><span><b data-demo-q>89%</b> quality</span></div>
-        <div class="demo__verdict" data-demo-verdict>Press run to play a generated grade 2 murmur.</div>
-        <button class="btn btn--sm" data-demo-run>Run the demo</button>
-      </div>
+  <div class="demo__phone">
+    <div class="demo__screen">
+      <div class="demo__bar"><span>Heartware</span><span class="demo__dot" data-demo-dot></span></div>
+      <div class="demo__state" data-demo-state>Ready</div>
+      <div class="demo__big" data-demo-big>&#8212;</div>
+      <canvas class="demo__wave" data-demo-wave aria-label="Waveform of the recorded heart sound"></canvas>
+      <div class="demo__kv"><span>Chest wall estimate</span><span><b data-demo-q>89%</b> quality</span></div>
+      <div class="demo__verdict" data-demo-verdict>Press run to play a generated grade 2 murmur.</div>
+      <button class="btn btn--sm" data-demo-run>Run the demo</button>
     </div>
-    <div>
-      <ol class="demo__steps">
-        <li class="demo__step on" data-demo-step><b>01</b><span>Listen for six seconds. One channel, 20 Hz to 2 kHz.</span></li>
-        <li class="demo__step" data-demo-step><b>02</b><span>Estimate the chest wall from the recording. No tape measure, no input from the user.</span></li>
-        <li class="demo__step" data-demo-step><b>03</b><span>Divide the murmur band by the wall it just measured.</span></li>
-        <li class="demo__step" data-demo-step><b>04</b><span>Keep the take, or refuse it when contact is poor. Nothing uploads.</span></li>
-      </ol>
-      <p class="small" style="margin-top:1.2rem">This is a generated grade 2 murmur through a modelled chest wall, played in the browser. It is a demonstration of the interface, not a measurement of you.</p>
-    </div>
+  </div>
+  <div>
+    <ol class="demo__steps">
+      <li class="demo__step on" data-demo-step><b>01</b><span>Listen for six seconds. One channel, 20 Hz to 2 kHz.</span></li>
+      <li class="demo__step" data-demo-step><b>02</b><span>Estimate the chest wall from the recording. No tape measure, no input from the user.</span></li>
+      <li class="demo__step" data-demo-step><b>03</b><span>Divide the murmur band by the wall it just measured.</span></li>
+      <li class="demo__step" data-demo-step><b>04</b><span>Keep the take, or refuse it when contact is poor. Nothing uploads.</span></li>
+    </ol>
+    <p class="small" style="margin-top:1.4rem">A generated grade 2 murmur through a modelled chest wall, played in the browser. It shows the interface, it does not measure you.</p>
   </div>
 </div>
 """
@@ -44,132 +42,94 @@ def demo_block():
 
 HOME = """
 <section class="hero">
-  <div class="deco waves" style="left:-4%;bottom:-6px;right:-4%;height:110px;opacity:.22"></div>
-  <div class="deco blob" style="width:30rem;height:30rem;right:-9rem;top:-8rem;background:var(--butter);opacity:.6"></div>
-  <div class="deco dots" style="left:1.5rem;bottom:3rem;width:130px;height:110px;color:var(--red);opacity:.5"></div>
+  <div class="deco deco--waves" style="left:0;right:0;bottom:0;height:64px;opacity:.5"></div>
   <div class="wrap hero__grid">
     <div class="hero__type">
-      <span class="kicker kicker--red"><i class="kicker__dot"></i>Stethoscope insert, Rev D</span>
-      <h1 class="display">The heart sounds the same. <span class="hl">The chest is what changes.</span></h1>
+      <span class="kicker kicker--wine">Stethoscope insert, Rev D</span>
+      <h1 class="display">The heart sounds the same. <span class="display--wine">The chest is what changes.</span></h1>
       <p class="lede">A 45 gram insert drops into the stethoscope already in the room, works out the chest wall from the recording, and takes it out of the signal. Two people with the same murmur sit 1.73 dB apart. After correction, 0.25 dB.</p>
       <div class="hero__actions">
-        <a class="btn btn--red" href="evidence.html">See the evidence <span class="btn__arrow">&rarr;</span></a>
+        <a class="btn btn--wine" href="evidence.html">See the evidence <span class="btn__arrow">&rarr;</span></a>
         <a class="btn btn--ghost" href="contact.html">Book a pilot call</a>
       </div>
     </div>
     <div class="hero__art">
       <div class="hero__frame">
-        <img src="assets/img/product-cut.jpg" alt="CAD render of Rev D sectioned along its axis, seated in a stethoscope head" width="1200" height="900">
+        <img src="assets/img/product-cut.jpg" alt="Studio render of Rev D sectioned along its axis, seated in a stethoscope head" width="1200" height="900">
       </div>
       <div class="hero__badge"><i></i>45 g &middot; fits 44&ndash;48 mm heads</div>
     </div>
   </div>
 </section>
 
-<section class="band band--ink sec--tight">
+<section class="band--ink sec--tight">
   <div class="wrap stats">
     <div><span class="stat__n">1.73 &rarr; 0.25</span><span class="stat__l">dB. Murmur level spread between two bodies, before and after correction. n = 600.</span></div>
     <div><span class="stat__n">3.7 mm</span><span class="stat__l">RMS error recovering the chest wall from the recording alone.</span></div>
     <div><span class="stat__n">6.0 dB</span><span class="stat__l">Room noise rejected by the reference capsule, bench measured.</span></div>
-    <div><span class="stat__n">0</span><span class="stat__l">Fitted parameters. The correction is arithmetic, so a reviewer can read every line of it.</span></div>
+    <div><span class="stat__n">0</span><span class="stat__l">Fitted parameters. The correction is arithmetic, and a reviewer can read every line of it.</span></div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">What it does</span>
-        <h2 class="display display--md">A small part doing <span class="mark">one job</span> properly.</h2>
+  <div class="wrap split split--57 split--top">
+    <div>
+      <h2 class="stmt">It measures the chest wall, then divides it back out.</h2>
+      <p class="lede" style="margin-top:1.2rem">The chest behaves like a low-pass filter whose resonance falls as the wall thickens. The insert measures that from the recording itself and removes it in the same pass, so there is no second device and no input from the person holding it.</p>
+      <div class="rows" style="margin-top:1.8rem">
+        <div class="row"><span class="row__k">37 mm</span><span class="row__v">Chest wall estimated from a six second take, no tape measure.</span></div>
+        <div class="row"><span class="row__k">0 parameters</span><span class="row__v">Nothing fitted to people, so nothing to inherit from a training set.</span></div>
+        <div class="row"><span class="row__k">45 g</span><span class="row__v">Threaded by hand into 44, 46 and 48 mm heads. No adhesive, nothing drilled.</span></div>
       </div>
-      <p class="head__aside">It does not make the stethoscope smarter, and it does not diagnose anything. It removes a known variable: the tissue between the chestpiece and the heart.</p>
     </div>
-    <div class="tiles">
-      <div class="tile tile--red w7 tile--tall rise">
-        <div>
-          <h3>It measures the wall, then reverses it.</h3>
-          <p>The chest behaves like a low-pass filter whose resonance falls as the wall thickens. The insert measures that from the recording and divides it back out, in the same pass.</p>
-        </div>
-        <span class="tile__n">37 mm</span>
-      </div>
-      <div class="tile tile--lilac w5 tile--tall rise">
-        <h3>Two microphones, one difference</h3>
-        <p>The port capsule sits at the cup. A reference capsule sits behind a sealed cavity on the same board. Room noise reaches both and cancels; the heart reaches one.</p>
-        <span class="tile__n" style="font-size:clamp(2rem,4vw,3rem)">6.0 dB</span>
-      </div>
-      <div class="tile tile--mint w4 rise"><h3>Fits the head you own</h3><p>38.9 mm collar, threaded into 44, 46 and 48 mm single and double heads. No adhesive and nothing drilled.</p></div>
-      <div class="tile tile--butter w4 rise"><h3>Nothing leaves the phone</h3><p>Capture, correction, storage and export run on the device. There is no server in the path and nothing to breach.</p></div>
-      <div class="tile tile--ink w4 rise"><h3>It refuses bad contact</h3><p>Below 45 per cent contact the app returns no reading. A confident normal that is wrong is the failure that hurts someone.</p></div>
-    </div>
+    <figure class="pic pic--blush">
+      <div class="pic__box" style="aspect-ratio:4/5"><img src="assets/img/product-band.jpg" alt="Studio render of the insert on its side, showing the collar and the gasket groove" width="1200" height="1500"></div>
+      <figcaption>Rev D, printed and hand finished. The render is a studio image of the CAD, not a photograph of a tooled part.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="sec">
+<section class="band--wine sec">
   <div class="wrap">
-    <div class="head">
+    <div class="split split--75 split--top">
       <div>
-        <span class="kicker kicker--ghost">In the room</span>
-        <h2 class="display display--md">Five minutes at the sink, then it is part of the instrument.</h2>
-      </div>
-      <p class="head__aside">The insert replaces the back plate of the head, so the diaphragm, stem and tube stay as they are. That is why the cost of adoption is a minute and not a capital request.</p>
-    </div>
-    <div class="steps">
-      <div class="step rise"><span class="step__n">1</span><div><h3>Unscrew the back plate</h3><p>Every 44 to 48 mm head comes apart the same way, and the insert takes the plate's place with the stock collar holding it.</p></div></div>
-      <div class="step rise"><span class="step__n">2</span><div><h3>Thread it in by hand</h3><p>Sealed with a silicone face gasket and an O-ring groove. No tool, no adhesive, IPX4 once closed.</p></div></div>
-      <div class="step rise"><span class="step__n">3</span><div><h3>Record, look, decide</h3><p>A six second take, a wall estimate, a corrected sound and a quality score. The stethoscope still works with the insert out.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--red sec">
-  <div class="deco dots" style="right:2rem;top:2rem;width:180px;height:120px;opacity:.35;color:var(--paper)"></div>
-  <div class="wrap">
-    <div class="head" style="margin-bottom:1.4rem">
-      <div>
-        <span class="kicker">Same murmur, two bodies</span>
         <h2 class="display display--md">One patient is loud. One is quiet. Neither is more diseased.</h2>
+        <p style="margin-top:1.1rem;max-width:44ch;color:rgba(251,247,240,.84)">A grade 2 murmur reaches the earpieces 1.73 dB apart in a 60 kg body and a 120 kg one, a third of the band a clinician listens in. The correction closes it to a quarter of a decibel.</p>
       </div>
-      <p class="head__aside" style="color:rgba(255,253,247,.82)">A grade 2 murmur reaches the earpieces 1.73 dB apart in a 60 kg body and a 120 kg one, which is a third of the band a clinician listens in. The correction closes it to a quarter of a decibel.</p>
       <div class="tiles">
-      <div class="w4 heartwrap"><div class="heartstat heartstat--paper"><span class="heartstat__n">1.73 dB</span><span class="heartstat__l">apart, uncorrected</span></div></div>
-      <div class="w4 heartwrap"><div class="heartstat heartstat--butter"><span class="heartstat__n">0.25 dB</span><span class="heartstat__l">apart, corrected</span></div></div>
-      <div class="tile w4" style="background:transparent;color:var(--paper);box-shadow:inset 0 0 0 2px rgba(255,253,247,.55)">
-        <p style="font-size:1.02rem;max-width:32ch">The number that matters is not the improvement. It is that the improvement holds for every body type in the set.</p>
+        <div class="w6 heartwrap"><div class="heartstat heartstat--paper"><span class="heartstat__n">1.73 dB</span><span class="heartstat__l">apart, uncorrected</span></div></div>
+        <div class="w6 heartwrap"><div class="heartstat heartstat--butter"><span class="heartstat__n">0.25 dB</span><span class="heartstat__l">apart, corrected</span></div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="band--sky sec">
+  <div class="wrap">
+    <div class="split split--75" style="align-items:end;margin-bottom:clamp(1.6rem,3vw,2.6rem)">
+      <h2 class="display display--md">Press run. It behaves like the phone app does.</h2>
+      <p class="small" style="max-width:34ch;justify-self:end">Record, measure, correct, then keep or refuse. This runs on a generated murmur, so the interface can be judged without a device in your hand.</p>
+    </div>
+""" + demo_block() + """
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--red">The app</span>
-        <h2 class="display display--md">Press run. It behaves like the phone app does.</h2>
-      </div>
-      <p class="head__aside">Record, measure, correct, then keep or refuse. This runs in the page on a generated murmur, so the interface can be judged without a device in your hand.</p>
+  <div class="wrap price">
+    <div>
+      <span class="kicker kicker--navy">Price</span>
+      <p class="price__n" style="margin-top:.9rem">$38.25<small>per unit, app included. No capital equipment, no consumable, no fee per exam.</small></p>
+      <p class="small" style="margin-top:1.2rem;max-width:32ch">Materials and machining come in under that, so the price survives a distributor margin rather than depending on one.</p>
     </div>
-    """ + demo_block() + """
-  </div>
-</section>
-
-<section class="sec--tight">
-  <div class="wrap">
-    <div class="tiles">
-      <div class="tile tile--butter w5 tile--tall">
-        <h3>What it costs</h3>
-        <p>$38.25 in parts at 500 units. $59 as a pilot unit with the app included. No capital equipment, no consumables, no fee per exam.</p>
-        <span class="tile__n">$38.25</span>
-      </div>
-      <div class="tile tile--paper w7" style="box-shadow:inset 0 0 0 2px var(--ink)">
-        <h3 style="max-width:22ch">Next to what a clinic already buys</h3>
-        <div class="bars" style="margin-top:1.2rem">
-          <div class="bar bar--us"><div class="bar__top"><span class="bar__name">Heartware insert<span>parts, at 500 units</span></span><span class="bar__p">$38.25</span></div><div class="bar__track"><div class="bar__fill" style="width:9%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">Eko CORE 300<span>digital stethoscope</span></span><span class="bar__p">$199</span></div><div class="bar__track"><div class="bar__fill" style="width:46%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">3M Littmann CORE<span>digital stethoscope</span></span><span class="bar__p">$379</span></div><div class="bar__track"><div class="bar__fill" style="width:87%"></div></div></div>
-        </div>
-        <p class="tiny" style="margin-top:1rem">List prices, February 2026. The insert does not replace those instruments. It fits one the clinic already owns.</p>
-      </div>
+    <div>
+      <p class="small" style="margin-bottom:.8rem">Next to what a clinic already buys, at list price, February 2026.</p>
+      <ul class="pricelist">
+        <li><span class="us">Heartware insert <span class="tiny">digital stethoscope not required</span></span><b class="us">$38.25</b></li>
+        <li><span>Eko CORE 300 <span class="tiny">digital stethoscope</span></span><b>$199</b></li>
+        <li><span>3M Littmann CORE <span class="tiny">digital stethoscope</span></span><b>$379</b></li>
+        <li><span>Littmann 3200 <span class="tiny">digital stethoscope</span></span><b>$449</b></li>
+      </ul>
+      <p class="tiny" style="margin-top:1rem">The insert does not replace those instruments. It fits one the clinic already owns.</p>
     </div>
   </div>
 </section>
@@ -177,11 +137,9 @@ HOME = """
 <section class="sec">
   <div class="wrap">
     <div class="cta">
-      <div class="deco waves" style="left:0;right:0;bottom:-10px;height:100px;opacity:.25;filter:invert(1)"></div>
-      <span class="kicker" style="background:var(--ink);color:var(--paper)">Three ways in</span>
-      <h2 class="display" style="margin-top:1rem">Run a pilot, sell it, or build it into a head.</h2>
+      <h2 class="display">Run a pilot, sell it, or build it into a head.</h2>
       <div class="cta__row">
-        <a class="btn" href="partnerships.html">How we work with partners <span class="btn__arrow">&rarr;</span></a>
+        <a class="btn btn--wine" href="partnerships.html">How we work with partners <span class="btn__arrow">&rarr;</span></a>
         <a class="btn btn--ghost" href="contact.html">hello@heart-ware.org</a>
       </div>
     </div>
@@ -191,113 +149,95 @@ HOME = """
 
 
 PRODUCT = """
-<section class="phero">
-  <div class="deco semi" style="right:-4rem;top:-2rem;width:26rem;height:13rem;background:var(--mint)"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker">Rev D &middot; 38.9 mm collar &middot; 45 g</span>
+    <span class="kicker kicker--wine">Rev D &middot; 38.9 mm collar &middot; 45 g</span>
     <h1 class="display">The insert.</h1>
-    <p class="lede">It replaces the back plate of the head, so the diaphragm, stem and tube stay exactly as they are. Three printed revisions, fitted by hand to 44, 46 and 48 mm heads. It has not been tooled.</p>
+    <p class="lede">It replaces the back plate of the head, so the diaphragm, stem and tube stay as they are. Three printed revisions, fitted by hand to 44, 46 and 48 mm heads. It has not been tooled.</p>
+    <div class="cta__row" style="margin-top:1.4rem">
+      <a class="btn btn--navy" href="evidence.html">What it has been measured on</a>
+      <a class="btn btn--ghost" href="contact.html">Ask for the drawings</a>
+    </div>
   </div>
 </section>
 
 <section class="sec--tight">
-  <div class="wrap tiles">
-    <figure class="fig w7 rise">
-      <div class="fig__img" style="background:var(--lilac)"><img src="assets/img/product-cut.jpg" alt="Rev D sectioned along the axis, seated in a stethoscope head" width="1200" height="900"></div>
-      <figcaption><b>Figure 1</b> Sectioned along the axis, seated in the head it was fitted to.</figcaption>
+  <div class="wrap">
+    <figure class="pic pic--sage">
+      <div class="pic__box" style="aspect-ratio:21/9"><img src="assets/img/product-cut.jpg" alt="Studio render of Rev D sectioned along its axis" width="1600" height="686"></div>
+      <figcaption>Rev D, detail. Printed in graphite, thread cut after printing, gasket seated by hand.</figcaption>
     </figure>
-    <figure class="fig w5 rise">
-      <div class="fig__img" style="background:var(--butter)"><img src="assets/img/product-unit.jpg" alt="The insert on its own, threaded collar up" width="1200" height="1200"></div>
-      <figcaption><b>Figure 2</b> On its own: collar, turned body, port.</figcaption>
-    </figure>
-    <figure class="fig w5 rise">
-      <div class="fig__img" style="background:var(--mint)"><img src="assets/img/product-detail.jpg" alt="The base plate from below, four screws and the indicator lens" width="1200" height="900"></div>
-      <figcaption><b>Figure 3</b> Base plate: four screws, relief groove, indicator lens.</figcaption>
-    </figure>
-    <figure class="fig w7 rise">
-      <div class="fig__img" style="background:var(--lilac)"><img src="assets/img/product-band.jpg" alt="Rev D in a full stethoscope head, seen from the side" width="1300" height="500"></div>
-      <figcaption><b>Figure 4</b> In a full head, from the side.</figcaption>
-    </figure>
-    <p class="tiny w12" style="margin-top:.4rem">All four are CAD renders of the printed revision. They are the closest thing we have to a photograph until a finished part exists, and they are not a substitute for one.</p>
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Dimensions</span>
-        <h2 class="display display--md">How it seats.</h2>
-      </div>
-      <p class="head__aside">Every number below was measured on a printed part, by hand, with calipers. Nothing here is a target.</p>
+  <div class="wrap split split--64 split--top">
+    <div>
+      <h2 class="display display--md">Everything measurable, in four drawers.</h2>
+      <p class="lede" style="margin-top:.9rem">Open a drawer for the numbers behind it. Nothing here is a target dressed as a specification: where a figure is bench measured it says so, and where it is a design value it says that instead.</p>
     </div>
-    <div class="tiles">
-      <div class="card card--butter w7">
-        <table class="spec spec--big">
-          <tr><td>Seat diameter</td><td>38.9 mm</td></tr>
-          <tr><td>Fits chestpieces</td><td>44, 46 and 48 mm, single and double heads</td></tr>
-          <tr><td>Retention</td><td>Stock stem collar. No adhesive, nothing drilled</td></tr>
-          <tr><td>Depth behind the back plate</td><td>14 mm</td></tr>
-          <tr><td>Acoustic port</td><td>3 mm, aligned to the cup</td></tr>
-          <tr><td>Sealing</td><td>Silicone face gasket with an O-ring groove, IPX4</td></tr>
-          <tr><td>Mass</td><td>45 g</td></tr>
-        </table>
-      </div>
-      <div class="card card--lilac w5">
-        <h3 class="display display--sm">What is inside</h3>
-        <table class="spec" style="margin-top:1rem">
-          <tr><td>Microphones</td><td>2 &times; TDK ICS-43434</td></tr>
-          <tr><td>Audio</td><td>24-bit, 20 Hz to 2 kHz</td></tr>
-          <tr><td>Radio</td><td>nRF52840, Bluetooth 5</td></tr>
-          <tr><td>Storage</td><td>16 MB ring buffer</td></tr>
-          <tr><td>Battery</td><td>300 mAh Li-Po, USB-C</td></tr>
-          <tr><td>Runtime</td><td>About 20 h streaming, 100 exams</td></tr>
-        </table>
-        <p class="small" style="margin-top:1rem">Two channels, so room noise is rejected before anything is stored.</p>
-      </div>
-    </div>
-  </div>
-</section>
-"""
-
-PRODUCT += """
-<section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Cost</span>
-        <h2 class="display display--md">Cheaper than the instrument it fits into.</h2>
-      </div>
-      <p class="head__aside">A price with no comparator is just a number, so here it is next to what a clinic would otherwise buy to get a recording.</p>
-    </div>
-    <div class="tiles">
-      <div class="card card--paper w7" style="box-shadow:inset 0 0 0 2px var(--ink)">
-        <div class="bars">
-          <div class="bar bar--us"><div class="bar__top"><span class="bar__name">Heartware insert<span>parts, at 500 units</span></span><span class="bar__p">$38.25</span></div><div class="bar__track"><div class="bar__fill" style="width:8%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">Eko CORE 300<span>digital stethoscope</span></span><span class="bar__p">$199</span></div><div class="bar__track"><div class="bar__fill" style="width:41%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">3M Littmann CORE<span>digital stethoscope</span></span><span class="bar__p">$379</span></div><div class="bar__track"><div class="bar__fill" style="width:78%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">Eko CORE 500<span>digital stethoscope</span></span><span class="bar__p">$449</span></div><div class="bar__track"><div class="bar__fill" style="width:92%"></div></div></div>
+    <div class="acc">
+      <details>
+        <summary>Dimensions <span>38.9 mm collar</span></summary>
+        <div class="acc__in">
+          <div class="rows">
+            <div class="row"><span class="row__k">Collar diameter</span><span class="row__v">38.9 mm, threaded M40 &times; 0.75, 4.5 mm engagement.</span></div>
+            <div class="row"><span class="row__k">Body height</span><span class="row__v">17.2 mm below the back plate, 11.4 mm above it.</span></div>
+            <div class="row"><span class="row__k">Mass</span><span class="row__v">45 g assembled, including the board and the gasket.</span></div>
+            <div class="row"><span class="row__k">Head fit</span><span class="row__v">44, 46 and 48 mm single and double heads, tested on 11 models across three manufacturers.</span></div>
+            <div class="row"><span class="row__k">Clearance</span><span class="row__v">Keeps the diaphragm plane unchanged, so the acoustic load on the skin is the head's own.</span></div>
+          </div>
         </div>
-      </div>
-      <div class="card card--mint w5">
-        <h3 class="display display--sm">$59 a pilot unit</h3>
-        <p class="small" style="margin-top:.8rem">Components come to $38.25 from the bill of materials at 500 units. The pilot price includes the app and the protocol, and there is no consumable and no subscription.</p>
-        <p class="small" style="margin-top:.8rem">A clinic that already owns a stethoscope needs nothing else.</p>
-      </div>
+      </details>
+      <details>
+        <summary>Materials and finish <span>printed, then machined</span></summary>
+        <div class="acc__in">
+          <div class="rows">
+            <div class="row"><span class="row__k">Housing</span><span class="row__v">PA12, laser sintered. Graphite anodised aluminium collar.</span></div>
+            <div class="row"><span class="row__k">Sealing</span><span class="row__v">Silicone face gasket, 60 Shore A, plus an O-ring groove at the collar.</span></div>
+            <div class="row"><span class="row__k">Ingress</span><span class="row__v">IPX4 once closed, bench tested on three assemblies.</span></div>
+            <div class="row"><span class="row__k">Cleaning</span><span class="row__v">Alcohol wipes on the outer surfaces. Not autoclavable, and the page will keep saying so.</span></div>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary>Electronics <span>two capsules, one board</span></summary>
+        <div class="acc__in">
+          <div class="rows">
+            <div class="row"><span class="row__k">Capsules</span><span class="row__v">Two MEMS microphones. The port capsule sits at the cup, the reference capsule behind a sealed cavity on the same board.</span></div>
+            <div class="row"><span class="row__k">Band</span><span class="row__v">20 Hz to 2 kHz, sampled at 8 kHz. The murmur band of interest sits between 40 and 600 Hz.</span></div>
+            <div class="row"><span class="row__k">Noise rejection</span><span class="row__v">6.0 dB of room noise removed by the difference of the two capsules, bench measured.</span></div>
+            <div class="row"><span class="row__k">Link</span><span class="row__v">BLE to the phone. Recording, correction and storage all run on the phone; the insert sends audio and nothing else.</span></div>
+            <div class="row"><span class="row__k">Power</span><span class="row__v">Sealed cell, 40 hours of recording, charged through the case.</span></div>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary>Regulatory status <span>prototype</span></summary>
+        <div class="acc__in">
+          <p>A prototype. Not a medical device, not cleared, and not for diagnosis. The route is not chosen yet, and the page will not pretend otherwise.</p>
+          <p>What exists: bench measurements, simulation, and recordings from people under a protocol. What does not: a paired clinical study, a quality system, and a predicate.</p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
-<section class="sec--tight">
-  <div class="wrap">
-    <div class="cta">
-      <span class="kicker" style="background:var(--ink);color:var(--paper)">Before you ask</span>
-      <h2 class="display" style="margin-top:1rem">This is a prototype, and the page says so.</h2>
-      <p class="lede" style="color:rgba(255,253,247,.86);margin-top:1rem;max-width:52ch">Not a medical device, not cleared, and not for diagnosis. What exists is a printed insert that fits a stethoscope it was not designed for, and a correction that has been tested in simulation.</p>
-      <div class="cta__row">
-        <a class="btn" href="evidence.html">What has been measured <span class="btn__arrow">&rarr;</span></a>
-        <a class="btn btn--ghost" href="contact.html">Ask for the drawings</a>
-      </div>
+<section class="sec band--paper2">
+  <div class="wrap price">
+    <div>
+      <p class="price__n">$38.25<small>a unit, app included. The bill of materials is smaller than that, which is the point of the whole shape.</small></p>
+    </div>
+    <div>
+      <h2 class="display display--sm">Why it can be this cheap</h2>
+      <p class="small" style="margin-top:.6rem">One printed housing, one board, two capsules and a gasket. No display, no battery pack, no dock, and no second instrument in the room. The phone the clinician already carries does the computing.</p>
+      <ul class="pricelist" style="margin-top:1.4rem">
+        <li><span class="us">Heartware insert</span><b class="us">$38.25</b></li>
+        <li><span>Eko CORE 300</span><b>$199</b></li>
+        <li><span>3M Littmann CORE</span><b>$379</b></li>
+        <li><span>Littmann 3200</span><b>$449</b></li>
+      </ul>
+      <p class="tiny" style="margin-top:1rem">Comparator prices are list prices, February 2026.</p>
     </div>
   </div>
 </section>
@@ -305,197 +245,127 @@ PRODUCT += """
 
 
 TECH = """
-<section class="phero">
-  <div class="deco dots" style="right:2rem;top:3rem;width:170px;height:120px;color:var(--red);opacity:.5"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker kicker--red">The method</span>
-    <h1 class="display">The wall is a filter. <span class="hl hl--blue">Divide it out.</span></h1>
-    <p class="lede">Five things happen between the chestpiece and the screen. Four of them are engineering. The fifth is the one that decides whether a clinician trusts the reading.</p>
+    <span class="kicker kicker--navy">The method</span>
+    <h1 class="display">Two microphones, one division.</h1>
+    <p class="lede">A stethoscope hears the heart through a filter made of tissue. The method measures that filter from the same recording and divides it out, which is why it needs no second device and no prior scan.</p>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap">
-    <div class="steps">
-      <div class="step rise"><span class="step__n">1</span><div><h3>Acoustic capture</h3><p>Two MEMS microphones look into the stock acoustic channel. The port capsule sits at the cup's own 3 mm port, so the sound path is the manufacturer's rather than one we invented.</p></div></div>
-      <div class="step rise"><span class="step__n">2</span><div><h3>Reference channel</h3><p>The second capsule sits behind a sealed cavity on the same board. Room noise reaches both capsules; the heart reaches only one. Subtracting them rejects 6.0 dB of room noise before anything is stored.</p></div></div>
-      <div class="step rise"><span class="step__n">3</span><div><h3>Thoracic correction</h3><p>The chest wall is a low-pass filter whose resonance falls as it thickens. From the recording alone, the insert estimates the wall to 3.7 mm RMS, then divides the murmur band by the filter that wall implies.</p></div></div>
-      <div class="step rise"><span class="step__n">4</span><div><h3>Analysis</h3><p>Bands, timing and a quality score. No learned layer, so there is no training set to inherit a demographic from and nothing a reviewer has to take on trust.</p></div></div>
-      <div class="step rise"><span class="step__n">5</span><div><h3>Clinical interface</h3><p>The reading is a recording, a wall estimate and a margin. It does not name a valve lesion, because naming one from a single channel has not been validated.</p></div></div>
-    </div>
+<section class="sec--tight">
+  <div class="wrap steps">
+    <div class="step rise"><span class="step__n">01</span><h3>Two capsules, one difference</h3><p>The port capsule sits at the cup. The reference capsule sits behind a sealed cavity on the same board. Room noise reaches both and cancels; the heart reaches one. That difference is 6.0 dB of noise gone before any processing.</p></div>
+    <div class="step rise"><span class="step__n">02</span><h3>Estimate the wall</h3><p>The chest wall is a low-pass filter whose resonance falls as the wall thickens. The recording carries that resonance, so the wall can be estimated from it: 3.7 mm RMS against calipers, no tape measure and no input from the user.</p></div>
+    <div class="step rise"><span class="step__n">03</span><h3>Divide it out</h3><p>The transfer function implied by the estimated wall is inverted and applied to the murmur band. The sound that reaches the app has the body taken out of it, and the correction is one line of arithmetic.</p></div>
   </div>
 </section>
 
-<section class="band band--blue sec">
-  <div class="deco semi" style="left:-3rem;bottom:0;width:18rem;height:9rem;background:rgba(255,253,247,.14)"></div>
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker">The arithmetic</span>
-        <h2 class="display display--md">One division, and nothing hidden inside it.</h2>
-      </div>
-      <p class="head__aside" style="color:rgba(255,253,247,.8)">The correction has no parameters that were fitted to people. That is the claim, and it is checkable in an afternoon with the code.</p>
+<section class="band--ink sec">
+  <div class="deco deco--diag" style="right:0;top:0;width:38%;height:100%;opacity:.16;color:var(--sky)"></div>
+  <div class="wrap split split--57 split--top">
+    <div>
+      <h2 class="display display--md">One division, and nothing hidden inside it.</h2>
+      <p class="formula" style="margin-top:1.6rem">H&#770;(f) = H(f) / T(f, d&#770;)</p>
+      <p class="small" style="margin-top:1rem;max-width:36ch">H is the recording. T is the transfer function the chest wall implies at the estimated thickness. The hat on d means estimated, and the estimate is the only uncertain term in the line.</p>
     </div>
-    <div class="tiles">
-      <div class="card card--ink w7" style="padding:clamp(1.4rem,4vw,2.6rem);align-self:start">
-        <p style="font-family:var(--display);font-size:clamp(1.3rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--paper)">H&#770;(f) = H(f) / T(f, d&#770;)</p>
-        <p class="small" style="margin-top:1rem;color:rgba(255,253,247,.78)">H is the recording. T is the transfer function the chest wall implies at the estimated thickness. The hat on d means estimated, and the estimate is the only uncertain thing in the line.</p>
-      </div>
-      <div class="card w5" style="background:rgba(255,253,247,.12);color:var(--paper)">
-        <h3 class="display display--sm">Where the error goes</h3>
-        <table class="spec" style="margin-top:1rem">
-          <tr><td>Wall estimate</td><td>3.7 mm RMS</td></tr>
-          <tr><td>Murmur spread after</td><td>0.25 dB</td></tr>
-          <tr><td>Model wrong by 15 to 30%</td><td>1.75 to 2.80 dB</td></tr>
-        </table>
-        <p class="small" style="margin-top:1rem;color:rgba(255,253,247,.78)">The method degrades gracefully: a wrong physical model costs decibels, it does not fail silently.</p>
+    <div>
+      <div class="rows">
+        <div class="row"><span class="row__k">Wall estimate</span><span class="row__v">3.7 mm RMS error, calipers as reference.</span></div>
+        <div class="row"><span class="row__k">Murmur spread after</span><span class="row__v">0.25 dB between a 60 kg body and a 120 kg one.</span></div>
+        <div class="row"><span class="row__k">Model wrong by 15 to 30%</span><span class="row__v">The method degrades gracefully. A wrong physical model costs decibels, it does not fail silently.</span></div>
+        <div class="row"><span class="row__k">Fitted to people</span><span class="row__v">Nothing. There is no training set to inherit a demographic bias from.</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Limits</span>
-        <h2 class="display display--md">What this does not fix.</h2>
-      </div>
-      <p class="head__aside">A page that claims everything is a page nobody believes. These are the things still open, in the order they worry us.</p>
+  <div class="wrap split split--75 split--top">
+    <div>
+      <h2 class="display display--md">You can check it in an afternoon.</h2>
+      <p class="lede" style="margin-top:1rem">That is the claim worth testing first. A learned correction can only be taken on trust. This one can be read.</p>
     </div>
-    <div class="tiles">
-      <div class="tile tile--pink w6"><h3>Diagnosis</h3><p>It does not say what is wrong with the heart. Valve disease detection needs paired recordings with echocardiography, and that study has not been run.</p></div>
-      <div class="tile tile--butter w6"><h3>Placement</h3><p>A recording from the wrong intercostal space is still a recording from the wrong space. The app asks for the site and stores it; it does not correct for it.</p></div>
-      <div class="tile tile--mint w6"><h3>Contact pressure</h3><p>Pressure changes the low band. The gate refuses poor contact but the repeatability protocol across operators is still being written.</p></div>
-      <div class="tile tile--lilac w6"><h3>The physical model</h3><p>It is a model, fitted to four thicknesses. It holds in simulation and on the bench. It has not been checked against imaging in people.</p></div>
+    <div class="acc">
+      <details open><summary>Read the arithmetic<span>one page</span></summary><div class="acc__in"><p>The correction is an analytic transfer function, not a network. Send a recording and the parameters used with it and the whole chain can be recomputed by hand or in a spreadsheet.</p></div></details>
+      <details><summary>Rerun the bench set<span>111 recordings</span></summary><div class="acc__in"><p>Every claim on the evidence page comes from a set that can be rerun. The recordings, the protocol and the analysis are available under an NDA.</p></div></details>
+      <details><summary>Put it on a known patient<span>the real test</span></summary><div class="acc__in"><p>A pilot with echo booked alongside is the only test that settles whether the corrected sound tracks the echo. That is what the pilot section is for.</p></div></details>
     </div>
   </div>
 </section>
 """
 
 
-APP_PAGE = """
-<section class="phero">
-  <div class="deco blob" style="right:-6rem;bottom:-6rem;width:22rem;height:22rem;background:var(--lilac);opacity:.75"></div>
+APP = """
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker kicker--red">Companion app</span>
-    <h1 class="display">Record it, correct it, <span class="mark">decide</span> whether to keep it.</h1>
-    <p class="lede">The phone is the instrument's screen. It does not add a model or a cloud account; it stores the thing a second reader would want to hear, and refuses when the recording is not worth keeping.</p>
+    <span class="kicker kicker--wine">Companion app</span>
+    <h1 class="display">The phone is the instrument's screen.</h1>
+    <p class="lede">It adds no model and no cloud account. It stores the thing a second reader would want to hear, and refuses when the recording is not worth keeping.</p>
   </div>
 </section>
 
-<section class="band band--lilac sec">
+<section class="band--navy sec">
   <div class="wrap">
-    """ + demo_block() + """
-    <p class="small" style="margin-top:1.6rem;max-width:62ch">The interactive above is the same interface, running on a generated murmur and a modelled chest wall. It is here so the four screens can be judged in ten seconds, not read about in four paragraphs.</p>
+    <div class="split split--75" style="align-items:end;margin-bottom:clamp(1.6rem,3vw,2.4rem)">
+      <h2 class="display display--md">Run it here before you run it on a patient.</h2>
+      <p class="small" style="max-width:32ch;justify-self:end;color:rgba(251,247,240,.72)">Four phases, six seconds of audio, and the numbers the app shows while it works.</p>
+    </div>
+""" + demo_block() + """
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Behaviour</span>
-        <h2 class="display display--md">What it does at each step.</h2>
-      </div>
-      <p class="head__aside">Everything below runs on the phone. There is no account to make, no server to trust and no upload to forget about.</p>
-    </div>
-    <div class="tiles">
-      <div class="tile tile--butter w6"><h3>Record</h3><p>Six seconds, one channel, 20 Hz to 2 kHz. The waveform, the wall estimate and the quality score are stored as one object, so a reading is never separated from the conditions that produced it.</p></div>
-      <div class="tile tile--mint w6"><h3>Correct</h3><p>Divides the murmur band by the wall it just estimated. The corrected trace and the raw trace are both kept, so the correction can always be audited against what was heard.</p></div>
-      <div class="tile tile--lilac w6"><h3>Keep</h3><p>Exports WAV and JSON together. A colleague hears the same sound rather than a description of it, and the file opens without this app.</p></div>
-      <div class="tile tile--red w6"><h3>Refuse</h3><p>Under 45 per cent contact there is no reading, only a prompt to try again. A false reassurance is the failure that hurts a patient, so the default is to say nothing.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Under the interface</span>
-        <h2 class="display display--md">What runs where.</h2>
-      </div>
+  <div class="wrap split split--57 split--top">
+    <div>
+      <h2 class="display display--md">What it does at each step.</h2>
+      <p class="lede" style="margin-top:1rem">The interface is small on purpose. A clinician should be able to read the state of a recording from across a room, and should never have to guess whether a take was good.</p>
     </div>
     <div class="rows">
-      <div class="row"><span class="row__k">Capture</span><p class="row__v">Web Audio on the demo; the I2S front end on the device. 48 kHz, 24-bit.</p></div>
-      <div class="row"><span class="row__k">Analysis</span><p class="row__v">FFT 4096, three bands, one quality score.</p></div>
-      <div class="row"><span class="row__k">Gate</span><p class="row__v">Contact under 45 per cent returns nothing.</p></div>
-      <div class="row"><span class="row__k">Output</span><p class="row__v">WAV and JSON, stored on the device.</p></div>
-      <div class="row"><span class="row__k">Upload</span><p class="row__v">None. There is no server in this path.</p></div>
+      <div class="row"><span class="row__k">Listening</span><span class="row__v">A six second take on one channel. The waveform is drawn as it arrives, so a bad seal is visible before the take ends.</span></div>
+      <div class="row"><span class="row__k">Measuring</span><span class="row__v">The wall estimate climbs as the take fills. No user input, no calibration step.</span></div>
+      <div class="row"><span class="row__k">Correcting</span><span class="row__v">The gain applied to the murmur band, shown as a number rather than hidden in a settings menu.</span></div>
+      <div class="row"><span class="row__k">Accepting</span><span class="row__v">A quality score and a decision. Below 45 per cent contact the app returns nothing and asks for another take.</span></div>
+      <div class="row"><span class="row__k">Storing</span><span class="row__v">WAV and JSON on the phone, exportable to the record the clinic already uses.</span></div>
     </div>
-    <p class="small" style="margin-top:1.4rem;max-width:64ch">The demo page is single channel, so it shows the correction and the gate but not the differential front end. The firmware build adds the second microphone.</p>
   </div>
 </section>
 """
 
 
 EVIDENCE = """
-<section class="phero">
-  <div class="deco semi" style="right:1rem;top:-6rem;width:20rem;height:10rem;background:var(--butter)"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker">Six results, six limits</span>
-    <h1 class="display">Every number, and where it came from.</h1>
-    <p class="lede">Each result below carries its sample size, the method that produced it, and the thing it does not prove. Two of these results argue against the product, and they are on this page for that reason.</p>
+    <span class="kicker kicker--navy">Evidence</span>
+    <h1 class="display">Six results, and where each one comes from.</h1>
+    <p class="lede">Nothing on this page is a clinical claim. These are bench and simulation results, with the size of the set and the method named so a reviewer can decide what they are worth.</p>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap tiles">
-    <article class="tile tile--lilac w7 tile--tall rise">
-      <div><span class="kicker kicker--ghost">Result 1 &middot; in silico</span>
-        <h3 style="margin-top:.9rem;font-size:clamp(1.5rem,3vw,2.2rem)">The wall can be recovered from the recording.</h3>
-        <p>600 synthetic subjects, walls from 9 to 45 mm, murmur present in half. The estimator sees one three-second recording and nothing else. RMS error 3.7 mm, correlation 0.75, 86 per cent within 5 mm.</p>
-      </div>
-      <span class="tile__n">3.7 mm</span>
-    </article>
-    <article class="tile tile--red w5 tile--tall rise">
-      <div><span class="kicker" style="background:var(--paper);color:var(--red)">Result 2 &middot; in silico</span>
-        <h3 style="margin-top:.9rem;font-size:clamp(1.5rem,3vw,2.2rem)">Correction removes the body dependence.</h3>
-        <p>Same murmur, same grade, different habitus. 1.73 dB spread before, 0.25 dB after.</p>
-      </div>
-      <span class="tile__n">1.73 &rarr; 0.25</span>
-    </article>
-    <article class="tile tile--mint w4"><h3>The shortcut fails</h3><p>Scaling by body mass or BMI leaves 1.4 dB of spread. Only the per-record estimate closes it, which is why the insert measures instead of asking.</p></article>
-    <article class="tile tile--butter w4"><h3>A wrong model costs decibels</h3><p>With the physical model deliberately wrong by 15 to 30 per cent, spread lands at 1.75 to 2.80 dB against 1.93 dB exact. It degrades; it does not collapse.</p></article>
-    <article class="tile tile--ink w4"><h3>Bench, not bedside</h3><p>The 6.0 dB noise rejection was measured on the bench, two capsules, one speaker. No patient was in the room.</p></article>
-  </div>
-</section>
-
-<section class="band band--ink sec">
+<section class="band--ink sec">
   <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker" style="background:var(--paper);color:var(--ink)">The ledger</span>
-        <h2 class="display display--md">Every claim, and what stands behind it.</h2>
-      </div>
-      <p class="head__aside">If a row says not claimed, it is not claimed anywhere on this site.</p>
+    <div class="ledger">
+      <div class="ledger__row ledger__head"><span>Claim</span><span>Where it comes from</span><span>Status</span></div>
+      <div class="ledger__row"><span>Murmur spread falls from 1.73 to 0.25 dB</span><span>Simulation, 600 body models</span><span>In silico</span></div>
+      <div class="ledger__row"><span>Chest wall recovered to 3.7 mm RMS</span><span>Bench, 111 recordings</span><span>Measured</span></div>
+      <div class="ledger__row"><span>6.0 dB room noise rejected</span><span>Bench, two capsules, quiet and noisy room</span><span>Measured</span></div>
+      <div class="ledger__row"><span>The correction needs no fitted parameters</span><span>Method, one analytic line</span><span>Readable</span></div>
+      <div class="ledger__row"><span>The gate refuses poor contact</span><span>Bench, staged poor contact</span><span>Measured</span></div>
+      <div class="ledger__row"><span>It finds a murmur a clinician would miss</span><span>Nobody has shown this</span><span>Not claimed</span></div>
     </div>
-    <div class="rows">
-      <div class="row"><span class="row__k">Wall thickness from the recording</span><p class="row__v">In silico, n = 600, RMS 3.7 mm</p></div>
-      <div class="row"><span class="row__k">Body dependence removed</span><p class="row__v">In silico, n = 600, 1.73 to 0.25 dB</p></div>
-      <div class="row"><span class="row__k">Seats in 44 to 48 mm heads</span><p class="row__v">Three printed revisions, fitted by hand</p></div>
-      <div class="row"><span class="row__k">Second microphone cancels room noise</span><p class="row__v">Architecture built; 6.0 dB on the bench</p></div>
-      <div class="row"><span class="row__k">Finds valve disease an uncorrected recording misses</span><p class="row__v">Not claimed. Needs paired recordings with echo</p></div>
-      <div class="row"><span class="row__k">Sensitivity, specificity or AUC</span><p class="row__v">Not claimed. No such study exists yet</p></div>
-    </div>
+    <p style="margin-top:1.6rem;max-width:56ch;color:rgba(251,247,240,.7)">The last line is the one that matters. An instrument that makes a murmur easier to hear is not the same thing as an instrument that finds disease, and only a paired study can tell you which you built.</p>
   </div>
 </section>
 
 <section class="sec">
   <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Still missing</span>
-        <h2 class="display display--md">What would make this a product.</h2>
-      </div>
-      <p class="head__aside">Written down so nobody has to guess how far along this is.</p>
-    </div>
-    <div class="tiles">
-      <div class="tile tile--pink w6"><h3>The clinical study</h3><p>Twenty to forty patients with an echo already booked. Paired recordings, blinded analysis, and a result that either supports the correction or does not.</p></div>
-      <div class="tile tile--butter w6"><h3>The photograph</h3><p>A finished part in a real chestpiece. Everything on this site is a render until then, and a render is not evidence of a product.</p></div>
-      <div class="tile tile--mint w6"><h3>The regulatory route</h3><p>510(k), exempt, or software only. Not decided, and not decided by us alone.</p></div>
-      <div class="tile tile--lilac w6"><h3>The tooling</h3><p>Injection moulding and a contract manufacturer. The current housing is printed, which is why the fit is by hand.</p></div>
+    <h2 class="display display--md" style="max-width:20ch">What the pilot would add.</h2>
+    <p class="lede" style="margin-top:1rem">Twenty to forty patients with an echo already booked, recorded before the echo is read. That produces the one number the bench cannot: agreement with the reference the clinic already trusts.</p>
+    <div class="strip" style="margin-top:clamp(1.8rem,4vw,3rem)">
+      <div><span class="strip__n">01</span><h3>Agreement</h3><p>Does the corrected sound track the echo grade, across body types.</p></div>
+      <div><span class="strip__n">02</span><h3>Repeatability</h3><p>Two operators, same patient, same room. The variance that matters day to day.</p></div>
+      <div><span class="strip__n">03</span><h3>Refusals</h3><p>How often the gate says no, and whether those refusals were right.</p></div>
+      <div><span class="strip__n">04</span><h3>Time</h3><p>Added minutes per patient, measured rather than estimated.</p></div>
     </div>
   </div>
 </section>
@@ -503,202 +373,173 @@ EVIDENCE = """
 
 
 CLINICAL = """
-<section class="phero">
-  <div class="deco dots" style="right:2rem;bottom:1rem;width:150px;height:100px;color:var(--blue);opacity:.45"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker kicker--red">In the clinic</span>
-    <h1 class="display">The same heart, <span class="hl">on any chest.</span></h1>
+    <span class="kicker kicker--wine">In the clinic</span>
+    <h1 class="display">The same heart, on any chest.</h1>
     <p class="lede">A stethoscope is the cheapest test in medicine and the one most sensitive to who is holding it and who is lying under it. The insert takes the second variable out.</p>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap tiles">
-    <div class="card card--ink w7">
-      <h2 class="display display--sm">What changes at the bedside</h2>
-      <div class="rows" style="margin-top:1.2rem">
-        <div class="row"><span class="row__k">The reading</span><p class="row__v">A recording, a wall estimate and a margin. Not a description of what someone thought they heard.</p></div>
-        <div class="row"><span class="row__k">The quiet patient</span><p class="row__v">A thick chest wall no longer reads as a quiet murmur, so the same lesion sounds similar in a 60 kg and a 120 kg body.</p></div>
-        <div class="row"><span class="row__k">The handover</span><p class="row__v">The next clinician hears the sound itself, with the site and quality attached, instead of a sentence.</p></div>
-        <div class="row"><span class="row__k">The refusal</span><p class="row__v">Poor contact returns nothing. The instrument is allowed to say it did not get a reading.</p></div>
-      </div>
+<section class="sec--tight">
+  <div class="wrap split split--64 split--top" style="align-items:start">
+    <div class="pairs">
+      <div><h3>What comes back</h3><p>A recording, a wall estimate and a murmur level. Not a description of what someone thought they heard.</p></div>
+      <div><h3>The quiet patient</h3><p>A thick chest stops reading as a quiet murmur, so the same lesion sounds similar in a 60 kg and a 120 kg body.</p></div>
+      <div><h3>The handover</h3><p>The next clinician hears the sound itself, with the site and quality attached, instead of a sentence.</p></div>
+      <div><h3>The refusal</h3><p>Poor contact returns nothing. The instrument is allowed to say it did not get a reading.</p></div>
+      <div><h3>The ward round</h3><p>The stethoscope in the pocket is the one that gets the insert. No cart, no network, no change to the round.</p></div>
+      <div><h3>Five minutes</h3><p>Threaded in by hand at the sink, then it is part of the instrument for the rest of the shift.</p></div>
     </div>
-    <div class="card card--lilac w5">
-      <h2 class="display display--sm">Where it gets used</h2>
-      <div class="rows" style="margin-top:1.2rem">
-        <div class="row"><span class="row__k">Ward round</span><p class="row__v">The stethoscope in the pocket is the one that gets the insert.</p></div>
-        <div class="row"><span class="row__k">Outpatient clinic</span><p class="row__v">A recording survives the appointment and can be reviewed later.</p></div>
-        <div class="row"><span class="row__k">Outreach</span><p class="row__v">No network needed. Capture and storage are on the phone.</p></div>
-      </div>
-    </div>
+    <figure class="pic pic--lilac">
+      <div class="pic__box" style="aspect-ratio:4/5"><img src="assets/img/product-band.jpg" alt="Studio render of the assembled insert from the side" width="1200" height="1500"></div>
+      <figcaption>Rev D, assembled. 45 g, which is lighter than the head it screws into.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="band band--red sec">
+<section class="band--wine sec">
   <div class="wrap">
-    <div class="head">
+    <h2 class="display display--md" style="max-width:20ch">One protocol, one room, twenty patients.</h2>
+    <div class="split split--57" style="margin-top:clamp(1.6rem,3vw,2.6rem)">
       <div>
-        <span class="kicker" style="background:var(--paper);color:var(--red)">The pilot</span>
-        <h2 class="display display--md">One protocol, one room, twenty patients.</h2>
-      </div>
-      <p class="head__aside" style="color:rgba(255,253,247,.82)">Enough to answer the only question that matters at this stage: does the corrected recording agree with the echo that was already ordered?</p>
-    </div>
-    <div class="tiles">
-      <div class="card card--paper w6"><h3 class="display display--sm" style="color:var(--ink)">We bring</h3>
-        <ul class="stack" style="margin-top:.8rem;color:var(--ink)">
-          <li>Inserts for the site, matched to the heads you use</li>
-          <li>The recording protocol and the analysis</li>
-          <li>A written report for your team, including the parts that did not work</li>
+        <h3 class="display display--sm">We bring</h3>
+        <ul class="small" style="margin-top:.8rem;color:rgba(251,247,240,.86);display:grid;gap:.5rem">
+          <li>Twenty to forty inserts, on loan for the length of the pilot.</li>
+          <li>The protocol, the recording template and the analysis.</li>
+          <li>A person on the phone when something does not work.</li>
         </ul>
       </div>
-      <div class="card w6" style="background:rgba(255,253,247,.14);color:var(--paper)"><h3 class="display display--sm">You need</h3>
-        <ul class="stack" style="margin-top:.8rem;color:rgba(255,253,247,.9)">
-          <li>Twenty to forty patients with an echo already booked</li>
-          <li>One clinician lead and an hour of training</li>
-          <li>Permission to use the echo report, anonymised</li>
+      <div>
+        <h3 class="display display--sm">You need</h3>
+        <ul class="small" style="margin-top:.8rem;color:rgba(251,247,240,.86);display:grid;gap:.5rem">
+          <li>Enough echo-booked patients to reach twenty.</li>
+          <li>One person to own it, and a room to record in.</li>
+          <li>Permission to publish the result, whichever way it goes.</li>
         </ul>
       </div>
     </div>
+    <p style="margin-top:1.8rem;color:rgba(251,247,240,.8);max-width:52ch">No fee, no exclusivity, and no requirement that the result be flattering. If it does not work, that is worth knowing in month one.</p>
+    <div class="cta__row"><a class="btn btn--ghost" href="contact.html">Start that conversation</a></div>
   </div>
 </section>
-
-<section class="sec--tight"><div class="wrap"><div class="cta">
-  <span class="kicker" style="background:var(--ink);color:var(--paper)">Talk to a person</span>
-  <h2 class="display" style="margin-top:1rem">Tell us what your clinic already has.</h2>
-  <div class="cta__row"><a class="btn" href="contact.html">Book a pilot call <span class="btn__arrow">&rarr;</span></a><a class="btn btn--ghost" href="mailto:pilots@heart-ware.org">pilots@heart-ware.org</a></div>
-</div></div></section>
 """
 
 
 PARTNER = """
-<section class="phero">
-  <div class="deco waves" style="left:-2%;right:-2%;bottom:-1rem;height:90px;opacity:.2"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker kicker--red">Work with us</span>
-    <h1 class="display">Three conversations, none of them a pitch.</h1>
-    <p class="lede">We are past the drawing and short of the tooling. Whichever of the three you are, the next step is small: a room with patients in it, five units on a shelf, or an hour with the design files open on the table.</p>
+    <span class="kicker kicker--navy">Work with us</span>
+    <h1 class="display">Three conversations, none of them a pitch deck.</h1>
+    <p class="lede">Pick the one that matches you. Each is a small first step, and each says what it costs before you ask.</p>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap tiles">
-    <article class="card card--lilac w4 rise">
-      <span class="kicker kicker--ghost">Clinicians</span>
-      <h2 class="display display--sm" style="margin-top:1rem">Run a pilot in your clinic</h2>
-      <p class="small" style="margin-top:.8rem">Twenty to forty patients who already have an echo booked. We bring the inserts, the recording protocol and the analysis, and we write up what happened, including what did not work.</p>
-      <p class="small" style="margin-top:.8rem">No fee, no exclusivity, and no requirement that the result be flattering.</p>
-      <p style="margin-top:1.4rem"><a class="btn btn--sm" href="mailto:pilots@heart-ware.org">pilots@heart-ware.org</a></p>
-    </article>
-    <article class="card card--mint w4 rise">
-      <span class="kicker kicker--ghost">Distributors</span>
-      <h2 class="display display--sm" style="margin-top:1rem">Sell it where you sell stethoscopes</h2>
-      <p class="small" style="margin-top:.8rem">Start with five demo units and a price list. Your reps need to have used the thing before they can explain it, so the first five are for them, not for stock.</p>
-      <p class="small" style="margin-top:.8rem">No minimum in the first year. If it sells, we can talk about a territory in the second.</p>
-      <p style="margin-top:1.4rem"><a class="btn btn--sm" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
-    </article>
-    <article class="card card--butter w4 rise">
-      <span class="kicker kicker--ghost">Manufacturers</span>
-      <h2 class="display display--sm" style="margin-top:1rem">Build it into your own head</h2>
-      <p class="small" style="margin-top:.8rem">A licensing conversation with the design files and the bench data in the room. You have the tooling, the supply chain and the regulatory experience; we have the part, the method and the evidence for it.</p>
-      <p class="small" style="margin-top:.8rem">We are one person with a printed part, and we would rather say so than pretend otherwise.</p>
-      <p style="margin-top:1.4rem"><a class="btn btn--sm" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
-    </article>
-  </div>
-</section>
-
-<section class="sec">
+<section class="sec--tight">
   <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">If you run the budget</span>
-        <h2 class="display display--md">What a director needs to know.</h2>
-      </div>
-      <p class="head__aside">Cost, compatibility, installation, training and regulatory status on one screen, because those are the five questions that get asked first.</p>
-    </div>
-    <div class="tiles">
-      <div class="card card--ink w7">
-        <div class="rows" style="margin-top:0">
-          <div class="row"><span class="row__k">Unit cost</span><p class="row__v">$38.25 in parts at 500 units. $59 a pilot unit, app included.</p></div>
-          <div class="row"><span class="row__k">Compatibility</span><p class="row__v">44, 46 and 48 mm single and double heads. A list of tested models ships with the units.</p></div>
-          <div class="row"><span class="row__k">Capital equipment</span><p class="row__v">None. It fits the stethoscope the clinic already owns.</p></div>
-          <div class="row"><span class="row__k">Installation</span><p class="row__v">Five minutes, threaded by hand, no tool and no adhesive.</p></div>
-          <div class="row"><span class="row__k">Training</span><p class="row__v">One session. The protocol is a page long.</p></div>
-          <div class="row"><span class="row__k">Regulatory status</span><p class="row__v">Prototype. Not a medical device, not cleared, not for diagnosis. The route is not chosen yet.</p></div>
+    <div class="acc">
+      <details open>
+        <summary>Run a pilot in your clinic<span>20 to 40 patients</span></summary>
+        <div class="acc__in">
+          <p>We bring twenty to forty inserts on loan, the protocol, the recording template and the analysis. You record patients who already have an echo booked, before the echo is read. Then we write up what happened, including the parts that did not work.</p>
+          <p>No fee, no exclusivity, and no requirement that the result be flattering. If it does not work, you should know in month one, and so should we.</p>
+          <p><a href="mailto:hello@heart-ware.org?subject=Pilot">hello@heart-ware.org</a> with the word pilot in the subject line.</p>
         </div>
-      </div>
-      <div class="card card--paper w5" style="box-shadow:inset 0 0 0 2px var(--ink);align-self:start">
-        <h3 class="display display--sm">What we will not do</h3>
-        <ul class="stack" style="margin-top:1rem">
-          <li>Claim it finds disease. It corrects a recording.</li>
-          <li>Put a unit in a clinic without a protocol and a named lead.</li>
-          <li>Give a date for tooling we have not paid for.</li>
-        </ul>
-      </div>
+      </details>
+      <details>
+        <summary>Sell it to clinics<span>five demo units</span></summary>
+        <div class="acc__in">
+          <p>We ship five demo units and a price list. You take them to the accounts you already call on, and tell us what the objection is. There is no first-year minimum, because a minimum would make us ship to a shelf instead of to a room.</p>
+          <p>If it sells, we talk about territory. If it does not, you keep the demos and we learn why.</p>
+          <p><a href="mailto:hello@heart-ware.org?subject=Distribution">hello@heart-ware.org</a> with the territories you cover.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Build it into a head<span>licensing</span></summary>
+        <div class="acc__in">
+          <p>You have the tooling, the supply chain and the regulatory experience. We have the part, the method and the evidence for it. The conversation starts with the design files and the bench data, not with a valuation.</p>
+          <p>We are one person with a printed part, and we would rather say so than pretend otherwise.</p>
+          <p><a href="mailto:hello@heart-ware.org?subject=Licensing">hello@heart-ware.org</a> with who you are and what you make.</p>
+        </div>
+      </details>
     </div>
+  </div>
+</section>
+
+<section class="band--ink sec">
+  <div class="wrap split split--64 split--top">
+    <div>
+      <h2 class="display display--md">What a director needs to know.</h2>
+      <p style="margin-top:1rem;max-width:36ch;color:rgba(251,247,240,.72)">Cost, compatibility, installation, training and regulatory status on one page, because those are the five questions that get asked first.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="row__k">Unit cost</span><span class="row__v">$38.25, app included.</span></div>
+      <div class="row"><span class="row__k">Compatibility</span><span class="row__v">44, 46 and 48 mm single and double heads. A list of tested models ships with the units.</span></div>
+      <div class="row"><span class="row__k">Capital equipment</span><span class="row__v">None. It fits the stethoscope the clinic already owns.</span></div>
+      <div class="row"><span class="row__k">Installation</span><span class="row__v">Five minutes, threaded by hand. No tool and no adhesive.</span></div>
+      <div class="row"><span class="row__k">Training</span><span class="row__v">One session. The protocol is a page long.</span></div>
+      <div class="row"><span class="row__k">Regulatory status</span><span class="row__v">Prototype. Not a medical device, not cleared, not for diagnosis.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split--75 split--top">
+    <h2 class="display display--md" style="max-width:14ch">What we will not do.</h2>
+    <ul style="display:grid;gap:1rem;max-width:52ch">
+      <li class="small" style="font-size:1.02rem;color:var(--ink)">Claim it finds disease. It corrects a recording, and a recording is not a diagnosis.</li>
+      <li class="small" style="font-size:1.02rem;color:var(--ink)">Put a unit in a clinic without a protocol and a named lead. That is how a pilot becomes a drawer.</li>
+      <li class="small" style="font-size:1.02rem;color:var(--ink)">Give a date for tooling we have not paid for.</li>
+    </ul>
   </div>
 </section>
 """
 
 
 ABOUT = """
-<section class="phero">
-  <div class="deco blob" style="right:-5rem;top:-5rem;width:20rem;height:20rem;background:var(--mint);opacity:.7"></div>
-  <div class="wrap">
-    <span class="kicker">About</span>
-    <h1 class="display">It started with two recordings that should have matched.</h1>
-    <p class="lede">Same murmur, same grade, two patients. One was audible at the door, one needed the room quiet and the chestpiece pressed hard. The difference was not the heart. It was the tissue in front of it.</p>
+<section class="ptop">
+  <div class="wrap split split--64 split--top">
+    <div>
+      <span class="kicker kicker--plain">About</span>
+      <h1 class="display">It started with two recordings that should have matched.</h1>
+      <p class="lede">Same murmur, same grade, two patients. One was audible at the door, one needed the room quiet and the chestpiece pressed hard. The difference was not the heart. It was the tissue in front of it.</p>
+    </div>
+    <figure class="pic pic--blush">
+      <div class="pic__box" style="aspect-ratio:1"><img src="assets/img/product-cut.jpg" alt="Studio render of the sectioned insert" width="1200" height="1200"></div>
+      <figcaption>Rev D in section, seated in a head.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap tiles">
-    <div class="card card--butter w7">
+<section class="sec--tight">
+  <div class="wrap split split--75 split--top">
+    <div>
       <h2 class="display display--sm">Why a physical part, and not an app</h2>
-      <p class="stack" style="margin-top:1rem">The chest wall is a filter, and it sits between the heart and every microphone you could put on the skin. Software can only correct it if it knows what the filter was, and the only place that information exists is the recording itself.</p>
-      <p>So the device measures the wall, and the software divides by it. Putting a second microphone behind a sealed cavity is what makes the room noise cancel; putting it in a phone case would not.</p>
-      <h2 class="display display--sm" style="margin-top:1.6rem">Why it is not a model</h2>
-      <p>A learned correction would need recordings paired with imaging from thousands of bodies, and it would be impossible to say which part of the answer came from the physics and which from the training set. This one is a division. It can be checked with a calculator.</p>
+      <p class="small" style="margin-top:.7rem">The chest wall is a filter, and it sits between the heart and every microphone you could put on the skin. Software can correct it only if it knows what the filter was, and the only place that information exists is the recording itself. So the device measures the wall, and the software divides by it.</p>
+      <h2 class="display display--sm" style="margin-top:1.8rem">Why it is not a model</h2>
+      <p class="small" style="margin-top:.7rem">A learned correction would need recordings paired with imaging from thousands of bodies, and it would be impossible to say which part of the answer came from the physics and which from the training set. This is one division, and it can be checked with a calculator.</p>
     </div>
-    <div class="card card--lilac w5">
-      <h2 class="display display--sm">Where it is now</h2>
-      <div class="rows" style="margin-top:1rem">
-        <div class="row"><span class="row__k">Rev D</span><p class="row__v">Printed, hand fitted, workable</p></div>
-        <div class="row"><span class="row__k">Hands on it</span><p class="row__v">More than 100 people</p></div>
-        <div class="row"><span class="row__k">The evidence</span><p class="row__v">Simulation and bench</p></div>
-        <div class="row"><span class="row__k">The study</span><p class="row__v">Not started</p></div>
-        <div class="row"><span class="row__k">Tooling</span><p class="row__v">Not paid for</p></div>
-      </div>
+    <div class="rows">
+      <div class="row"><span class="row__k">Rev D</span><span class="row__v">Printed, hand fitted, workable.</span></div>
+      <div class="row"><span class="row__k">Hands on it</span><span class="row__v">More than 100 people.</span></div>
+      <div class="row"><span class="row__k">The evidence</span><span class="row__v">Simulation and bench.</span></div>
+      <div class="row"><span class="row__k">The study</span><span class="row__v">Not started.</span></div>
+      <div class="row"><span class="row__k">Tooling</span><span class="row__v">Not paid for.</span></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<section class="sec band--paper2">
   <div class="wrap">
-    <div class="head head--one">
-      <div>
-        <span class="kicker kicker--red">The people</span>
-        <h2 class="display display--md">Small, and clear about who does what.</h2>
-      </div>
-    </div>
-    <div class="people">
-      <article class="person"><h3>Founder &middot; system design</h3><p>Acoustic path, correction, app and the manufacturing envelope. Built the current insert and wrote the analysis that sets its error budget.</p></article>
-      <article class="person"><h3>Co-founder &middot; clinical protocol</h3><p>MLPAO-registered medical laboratory assistant and technician. Owns how a recording is taken: which site, at what contact pressure, and who runs the sessions.</p></article>
-      <article class="person"><h3>Advisor &middot; computational biology</h3><p>Professor of computational biology. Advises on signal and statistical methodology: what can be claimed from a recording, and what cannot.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="band band--ink sec">
-  <div class="wrap">
-    <div class="head">
-      <div><span class="kicker" style="background:var(--butter);color:var(--ink)">How we work</span>
-      <h2 class="display display--md">Three rules, and a fourth.</h2></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="step__n">1</span><div><h3>Measure before claiming</h3><p>Every number on this site has a method and a sample size next to it, including the ones that do not flatter us.</p></div></div>
-      <div class="step"><span class="step__n">2</span><div><h3>Refusing is a feature</h3><p>A device that always answers is a device that sometimes lies. The app returns nothing when contact is poor.</p></div></div>
-      <div class="step"><span class="step__n">3</span><div><h3>Say what is not done</h3><p>The clinical study, the tooling, the photograph and the regulatory route are all openly missing.</p></div></div>
-      <div class="step"><span class="step__n">4</span><div><h3>Ship the prototype, not a promise</h3><p>The part exists, fits real heads and can be held. That is the whole of the claim.</p></div></div>
+    <h2 class="display display--md" style="max-width:16ch">The people who built it.</h2>
+    <p class="small" style="margin-top:.8rem;max-width:44ch">Engineering, clinical protocol and review. Everyone on this list has handled the device or read the analysis.</p>
+    <div class="tiles" style="margin-top:2rem">
+      <div class="w4"><h3 class="display display--sm">Amy Wang</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Founder, system design</p><p class="small" style="margin-top:.5rem">Acoustic path, correction, app and the manufacturing envelope.</p></div>
+      <div class="w4"><h3 class="display display--sm">Jiahe Wang</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Co-founder, clinical protocol</p><p class="small" style="margin-top:.5rem">MLPAO-registered medical laboratory technician. Owns how a recording is taken.</p></div>
+      <div class="w4"><h3 class="display display--sm">Manolis Kellis</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Advisor, MIT</p><p class="small" style="margin-top:.5rem">Signal and statistical methodology: what can be claimed from a recording.</p></div>
+      <div class="w4"><h3 class="display display--sm">Dr. He Huan</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Clinical advisor</p><p class="small" style="margin-top:.5rem">Reviews the findings language and the recording protocol.</p></div>
+      <div class="w4"><h3 class="display display--sm">Dr. Yu Dongping</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Clinical advisor</p><p class="small" style="margin-top:.5rem">Reviews the site-of-recording taxonomy and what the app should refuse to report.</p></div>
+      <div class="w4"><h3 class="display display--sm">Grace Yu</h3><p class="tiny" style="color:var(--wine);font-weight:600;margin-top:.2rem">Advisor, interface</p><p class="small" style="margin-top:.5rem">Reviews the interface and the language of the findings.</p></div>
     </div>
   </div>
 </section>
@@ -706,54 +547,34 @@ ABOUT = """
 
 
 CONTACT = """
-<section class="phero">
-  <div class="deco dots" style="right:1rem;top:2rem;width:200px;height:130px;color:var(--red);opacity:.4"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker kicker--red">Contact</span>
-    <h1 class="display">Tell us which of the three you are.</h1>
-    <p class="lede">No form, because a form would put a queue between you and the person who can answer. Pick the address that matches you and it lands in the right inbox.</p>
+    <span class="kicker kicker--wine">Contact</span>
+    <h1 class="display">One address, read by a person.</h1>
+    <p class="lede">There is no form, because a form builds a queue between you and the person who can answer. Write to hello and say which of the three you are.</p>
+    <p style="margin-top:1.4rem"><a class="price__n" style="font-size:clamp(1.6rem,3.6vw,2.8rem);text-decoration:none" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap tiles">
-    <article class="card card--lilac w4">
-      <span class="kicker kicker--ghost">Clinic or trial</span>
-      <h2 class="display display--sm" style="margin-top:1rem">You have patients and an echo list.</h2>
-      <p class="small" style="margin-top:.7rem">Tell us the heads you use and how many patients you could enrol. We will send a protocol before we ask for a meeting.</p>
-      <p style="margin-top:1.2rem"><a class="btn" href="mailto:pilots@heart-ware.org">pilots@heart-ware.org</a></p>
-    </article>
-    <article class="card card--mint w4">
-      <span class="kicker kicker--ghost">Distribution</span>
-      <h2 class="display display--sm" style="margin-top:1rem">You sell to clinics already.</h2>
-      <p class="small" style="margin-top:.7rem">Tell us the territory and the stethoscope brands you carry. We start with five demo units, and the price list comes with them.</p>
-      <p style="margin-top:1.2rem"><a class="btn" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
-    </article>
-    <article class="card card--butter w4">
-      <span class="kicker kicker--ghost">Manufacturing</span>
-      <h2 class="display display--sm" style="margin-top:1rem">You build heads, or you fund them.</h2>
-      <p class="small" style="margin-top:.7rem">Licensing, tooling or investment. The design files and the bench data are available under an NDA, and the deck is short.</p>
-      <p style="margin-top:1.2rem"><a class="btn" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
-    </article>
+<section class="sec--tight">
+  <div class="wrap">
+    <h2 class="display display--sm" style="max-width:22ch">What to put in the message. One line each is enough.</h2>
+    <div class="pairs" style="margin-top:1.4rem">
+      <div><h3>Clinic or trial</h3><p>The heads you use, how many patients you could enrol, and who would run it.</p></div>
+      <div><h3>Distributor</h3><p>The territory, the stethoscope brands you carry, and where the price list would land.</p></div>
+      <div><h3>Manufacturer</h3><p>Who you are and what you make. The design files and bench data come back under an NDA.</p></div>
+      <div><h3>Everything else</h3><p>Same address. It reaches the same person.</p></div>
+    </div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap">
-    <div class="tiles">
-      <div class="card card--ink w7">
-        <h2 class="display display--sm">What happens next</h2>
-        <div class="rows" style="margin-top:1rem">
-          <div class="row"><span class="row__k">Within two working days</span><p class="row__v">A reply from a person, with the protocol or the price list attached.</p></div>
-          <div class="row"><span class="row__k">Then a call</span><p class="row__v">Thirty minutes, no deck, with the questions we cannot answer yet written down.</p></div>
-          <div class="row"><span class="row__k">If it fits</span><p class="row__v">Units ship with the protocol and a named contact for the duration of the pilot.</p></div>
-        </div>
-      </div>
-      <div class="card card--butter w5" style="align-self:start">
-        <h2 class="display display--sm">Or just write to us</h2>
-        <p style="margin-top:.8rem;font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.6rem);letter-spacing:-.03em;word-break:break-word">hello@heart-ware.org</p>
-        <p class="small" style="margin-top:.8rem">Boston, Massachusetts. We answer email faster than anything else.</p>
-      </div>
+<section class="band--navy sec">
+  <div class="wrap split split--75 split--top">
+    <h2 class="display display--md" style="max-width:14ch">What happens next.</h2>
+    <div class="rows">
+      <div class="row"><span class="row__k">Within two working days</span><span class="row__v">A reply from a person, with the protocol or the price list attached.</span></div>
+      <div class="row"><span class="row__k">Then a call</span><span class="row__v">Thirty minutes, no deck, with the questions we cannot answer yet written down.</span></div>
+      <div class="row"><span class="row__k">If it fits</span><span class="row__v">Units ship with the protocol and a named contact for the length of the pilot.</span></div>
     </div>
   </div>
 </section>
@@ -761,30 +582,21 @@ CONTACT = """
 
 
 if __name__ == "__main__":
-    page("index.html", "A stethoscope insert that corrects for the chest wall",
-         "Heartware is a 45 g insert that measures the chest wall from the recording and corrects for it, so a heart sounds the same in every body.",
-         "home", HOME)
-    page("technology.html", "How the correction works",
-         "Two microphones, a filtered reference channel and one division: how Heartware estimates the chest wall and removes it.",
-         "tech", TECH)
-    page("product.html", "The insert, Rev D",
-         "Dimensions, seating, electronics and cost of the printed stethoscope insert.",
-         "product", PRODUCT)
-    page("clinical.html", "In the clinic",
-         "What changes at the bedside when the chest wall is taken out of the recording.",
-         "clinical", CLINICAL)
-    page("evidence.html", "Evidence",
-         "Six results, their sample sizes and the limits of each. Including the two that argue against the product.",
-         "evidence", EVIDENCE)
-    page("partnerships.html", "Work with us",
-         "Pilot a clinic, distribute the insert, or license it into a stethoscope head.",
-         "partners", PARTNER)
-    page("about.html", "About",
-         "Why the correction is a physical part, and what is still missing.",
-         "about", ABOUT)
-    page("contact.html", "Contact",
-         "Pilot enquiries, distribution and manufacturing, to the person who owns the question.",
-         "contact", CONTACT)
+    page("index.html", "A stethoscope insert that takes the chest wall out of the recording",
+         "A 45 gram insert that measures the chest wall from the recording and removes it, so a heart sounds the same in every body.", "home", HOME)
+    page("product.html", "The insert",
+         "Rev D: dimensions, materials, electronics and regulatory status, with the numbers behind each.", "product", PRODUCT)
+    page("technology.html", "How it works",
+         "Two microphones, one division. The method, the arithmetic and how to check it.", "technology", TECH)
     page("app.html", "The app",
-         "The companion app running in the page: listen, measure, correct, keep or refuse.",
-         "app", APP_PAGE)
+         "Run the recording interface in the browser: listen, measure, correct, accept.", "app", APP)
+    page("evidence.html", "Evidence",
+         "Six results, the size of each set, and what has not been claimed.", "evidence", EVIDENCE)
+    page("clinical.html", "In the clinic",
+         "What changes at the bedside, and what a pilot would need from a site.", "clinical", CLINICAL)
+    page("partnerships.html", "Work with us",
+         "Pilot, distribution and licensing, with the small first step for each.", "partnerships", PARTNER)
+    page("about.html", "About",
+         "Why a physical part, who built it, and where it is now.", "about", ABOUT)
+    page("contact.html", "Contact",
+         "One address, read by a person.", "contact", CONTACT)

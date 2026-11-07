@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How the correction works · Heartware</title>
-<meta name="description" content="Two microphones, a filtered reference channel and one division: how Heartware estimates the chest wall and removes it.">
-<meta property="og:title" content="How the correction works · Heartware">
-<meta property="og:description" content="Two microphones, a filtered reference channel and one division: how Heartware estimates the chest wall and removes it.">
+<title>How it works · Heartware</title>
+<meta name="description" content="Two microphones, one division. The method, the arithmetic and how to check it.">
+<meta property="og:title" content="How it works · Heartware">
+<meta property="og:description" content="Two microphones, one division. The method, the arithmetic and how to check it.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
-<body data-page="tech">
+<body data-page="technology">
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
     <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
@@ -24,8 +24,7 @@
 <header class="nav" data-open="false">
   <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="brand__word">Heartware</span>
+      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
     </a>
     <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
@@ -36,88 +35,71 @@
         <a href="clinical.html">In the clinic</a>
         <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="btn btn--sm" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm btn--wine" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="phero">
-  <div class="deco dots" style="right:2rem;top:3rem;width:170px;height:120px;color:var(--red);opacity:.5"></div>
+<section class="ptop">
   <div class="wrap">
-    <span class="kicker kicker--red">The method</span>
-    <h1 class="display">The wall is a filter. <span class="hl hl--blue">Divide it out.</span></h1>
-    <p class="lede">Five things happen between the chestpiece and the screen. Four of them are engineering. The fifth is the one that decides whether a clinician trusts the reading.</p>
+    <span class="kicker kicker--navy">The method</span>
+    <h1 class="display">Two microphones, one division.</h1>
+    <p class="lede">A stethoscope hears the heart through a filter made of tissue. The method measures that filter from the same recording and divides it out, which is why it needs no second device and no prior scan.</p>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap">
-    <div class="steps">
-      <div class="step rise"><span class="step__n">1</span><div><h3>Acoustic capture</h3><p>Two MEMS microphones look into the stock acoustic channel. The port capsule sits at the cup's own 3 mm port, so the sound path is the manufacturer's rather than one we invented.</p></div></div>
-      <div class="step rise"><span class="step__n">2</span><div><h3>Reference channel</h3><p>The second capsule sits behind a sealed cavity on the same board. Room noise reaches both capsules; the heart reaches only one. Subtracting them rejects 6.0 dB of room noise before anything is stored.</p></div></div>
-      <div class="step rise"><span class="step__n">3</span><div><h3>Thoracic correction</h3><p>The chest wall is a low-pass filter whose resonance falls as it thickens. From the recording alone, the insert estimates the wall to 3.7 mm RMS, then divides the murmur band by the filter that wall implies.</p></div></div>
-      <div class="step rise"><span class="step__n">4</span><div><h3>Analysis</h3><p>Bands, timing and a quality score. No learned layer, so there is no training set to inherit a demographic from and nothing a reviewer has to take on trust.</p></div></div>
-      <div class="step rise"><span class="step__n">5</span><div><h3>Clinical interface</h3><p>The reading is a recording, a wall estimate and a margin. It does not name a valve lesion, because naming one from a single channel has not been validated.</p></div></div>
-    </div>
+<section class="sec--tight">
+  <div class="wrap steps">
+    <div class="step rise"><span class="step__n">01</span><h3>Two capsules, one difference</h3><p>The port capsule sits at the cup. The reference capsule sits behind a sealed cavity on the same board. Room noise reaches both and cancels; the heart reaches one. That difference is 6.0 dB of noise gone before any processing.</p></div>
+    <div class="step rise"><span class="step__n">02</span><h3>Estimate the wall</h3><p>The chest wall is a low-pass filter whose resonance falls as the wall thickens. The recording carries that resonance, so the wall can be estimated from it: 3.7 mm RMS against calipers, no tape measure and no input from the user.</p></div>
+    <div class="step rise"><span class="step__n">03</span><h3>Divide it out</h3><p>The transfer function implied by the estimated wall is inverted and applied to the murmur band. The sound that reaches the app has the body taken out of it, and the correction is one line of arithmetic.</p></div>
   </div>
 </section>
 
-<section class="band band--blue sec">
-  <div class="deco semi" style="left:-3rem;bottom:0;width:18rem;height:9rem;background:rgba(255,253,247,.14)"></div>
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker">The arithmetic</span>
-        <h2 class="display display--md">One division, and nothing hidden inside it.</h2>
-      </div>
-      <p class="head__aside" style="color:rgba(255,253,247,.8)">The correction has no parameters that were fitted to people. That is the claim, and it is checkable in an afternoon with the code.</p>
+<section class="band--ink sec">
+  <div class="deco deco--diag" style="right:0;top:0;width:38%;height:100%;opacity:.16;color:var(--sky)"></div>
+  <div class="wrap split split--57 split--top">
+    <div>
+      <h2 class="display display--md">One division, and nothing hidden inside it.</h2>
+      <p class="formula" style="margin-top:1.6rem">H&#770;(f) = H(f) / T(f, d&#770;)</p>
+      <p class="small" style="margin-top:1rem;max-width:36ch">H is the recording. T is the transfer function the chest wall implies at the estimated thickness. The hat on d means estimated, and the estimate is the only uncertain term in the line.</p>
     </div>
-    <div class="tiles">
-      <div class="card card--ink w7" style="padding:clamp(1.4rem,4vw,2.6rem);align-self:start">
-        <p style="font-family:var(--display);font-size:clamp(1.3rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--paper)">H&#770;(f) = H(f) / T(f, d&#770;)</p>
-        <p class="small" style="margin-top:1rem;color:rgba(255,253,247,.78)">H is the recording. T is the transfer function the chest wall implies at the estimated thickness. The hat on d means estimated, and the estimate is the only uncertain thing in the line.</p>
-      </div>
-      <div class="card w5" style="background:rgba(255,253,247,.12);color:var(--paper)">
-        <h3 class="display display--sm">Where the error goes</h3>
-        <table class="spec" style="margin-top:1rem">
-          <tr><td>Wall estimate</td><td>3.7 mm RMS</td></tr>
-          <tr><td>Murmur spread after</td><td>0.25 dB</td></tr>
-          <tr><td>Model wrong by 15 to 30%</td><td>1.75 to 2.80 dB</td></tr>
-        </table>
-        <p class="small" style="margin-top:1rem;color:rgba(255,253,247,.78)">The method degrades gracefully: a wrong physical model costs decibels, it does not fail silently.</p>
+    <div>
+      <div class="rows">
+        <div class="row"><span class="row__k">Wall estimate</span><span class="row__v">3.7 mm RMS error, calipers as reference.</span></div>
+        <div class="row"><span class="row__k">Murmur spread after</span><span class="row__v">0.25 dB between a 60 kg body and a 120 kg one.</span></div>
+        <div class="row"><span class="row__k">Model wrong by 15 to 30%</span><span class="row__v">The method degrades gracefully. A wrong physical model costs decibels, it does not fail silently.</span></div>
+        <div class="row"><span class="row__k">Fitted to people</span><span class="row__v">Nothing. There is no training set to inherit a demographic bias from.</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">Limits</span>
-        <h2 class="display display--md">What this does not fix.</h2>
-      </div>
-      <p class="head__aside">A page that claims everything is a page nobody believes. These are the things still open, in the order they worry us.</p>
+  <div class="wrap split split--75 split--top">
+    <div>
+      <h2 class="display display--md">You can check it in an afternoon.</h2>
+      <p class="lede" style="margin-top:1rem">That is the claim worth testing first. A learned correction can only be taken on trust. This one can be read.</p>
     </div>
-    <div class="tiles">
-      <div class="tile tile--pink w6"><h3>Diagnosis</h3><p>It does not say what is wrong with the heart. Valve disease detection needs paired recordings with echocardiography, and that study has not been run.</p></div>
-      <div class="tile tile--butter w6"><h3>Placement</h3><p>A recording from the wrong intercostal space is still a recording from the wrong space. The app asks for the site and stores it; it does not correct for it.</p></div>
-      <div class="tile tile--mint w6"><h3>Contact pressure</h3><p>Pressure changes the low band. The gate refuses poor contact but the repeatability protocol across operators is still being written.</p></div>
-      <div class="tile tile--lilac w6"><h3>The physical model</h3><p>It is a model, fitted to four thicknesses. It holds in simulation and on the bench. It has not been checked against imaging in people.</p></div>
+    <div class="acc">
+      <details open><summary>Read the arithmetic<span>one page</span></summary><div class="acc__in"><p>The correction is an analytic transfer function, not a network. Send a recording and the parameters used with it and the whole chain can be recomputed by hand or in a spreadsheet.</p></div></details>
+      <details><summary>Rerun the bench set<span>111 recordings</span></summary><div class="acc__in"><p>Every claim on the evidence page comes from a set that can be rerun. The recordings, the protocol and the analysis are available under an NDA.</p></div></details>
+      <details><summary>Put it on a known patient<span>the real test</span></summary><div class="acc__in"><p>A pilot with echo booked alongside is the only test that settles whether the corrected sound tracks the echo. That is what the pilot section is for.</p></div></details>
     </div>
   </div>
 </section>
 </main>
 
 <footer class="foot">
+  <svg class="foot__heart" viewBox="0 0 48 44" aria-hidden="true"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
   <div class="wrap">
     <div class="foot__top">
-      <div>
+      <div class="foot__brand">
         <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
-          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="brand__word">Heartware</span>
+          <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
         </a>
+        <p class="foot__tag">Innovating cardiac care</p>
         <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
       <nav class="foot__cols" aria-label="Footer">

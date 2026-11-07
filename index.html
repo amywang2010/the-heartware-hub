@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A stethoscope insert that corrects for the chest wall · Heartware</title>
-<meta name="description" content="Heartware is a 45 g insert that measures the chest wall from the recording and corrects for it, so a heart sounds the same in every body.">
-<meta property="og:title" content="A stethoscope insert that corrects for the chest wall · Heartware">
-<meta property="og:description" content="Heartware is a 45 g insert that measures the chest wall from the recording and corrects for it, so a heart sounds the same in every body.">
+<title>A stethoscope insert that takes the chest wall out of the recording · Heartware</title>
+<meta name="description" content="A 45 gram insert that measures the chest wall from the recording and removes it, so a heart sounds the same in every body.">
+<meta property="og:title" content="A stethoscope insert that takes the chest wall out of the recording · Heartware">
+<meta property="og:description" content="A 45 gram insert that measures the chest wall from the recording and removes it, so a heart sounds the same in every body.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -24,8 +24,7 @@
 <header class="nav" data-open="false">
   <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="brand__word">Heartware</span>
+      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
     </a>
     <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
@@ -36,164 +35,124 @@
         <a href="clinical.html">In the clinic</a>
         <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="btn btn--sm" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm btn--wine" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
 <section class="hero">
-  <div class="deco waves" style="left:-4%;bottom:-6px;right:-4%;height:110px;opacity:.22"></div>
-  <div class="deco blob" style="width:30rem;height:30rem;right:-9rem;top:-8rem;background:var(--butter);opacity:.6"></div>
-  <div class="deco dots" style="left:1.5rem;bottom:3rem;width:130px;height:110px;color:var(--red);opacity:.5"></div>
+  <div class="deco deco--waves" style="left:0;right:0;bottom:0;height:64px;opacity:.5"></div>
   <div class="wrap hero__grid">
     <div class="hero__type">
-      <span class="kicker kicker--red"><i class="kicker__dot"></i>Stethoscope insert, Rev D</span>
-      <h1 class="display">The heart sounds the same. <span class="hl">The chest is what changes.</span></h1>
+      <span class="kicker kicker--wine">Stethoscope insert, Rev D</span>
+      <h1 class="display">The heart sounds the same. <span class="display--wine">The chest is what changes.</span></h1>
       <p class="lede">A 45 gram insert drops into the stethoscope already in the room, works out the chest wall from the recording, and takes it out of the signal. Two people with the same murmur sit 1.73 dB apart. After correction, 0.25 dB.</p>
       <div class="hero__actions">
-        <a class="btn btn--red" href="evidence.html">See the evidence <span class="btn__arrow">&rarr;</span></a>
+        <a class="btn btn--wine" href="evidence.html">See the evidence <span class="btn__arrow">&rarr;</span></a>
         <a class="btn btn--ghost" href="contact.html">Book a pilot call</a>
       </div>
     </div>
     <div class="hero__art">
       <div class="hero__frame">
-        <img src="assets/img/product-cut.jpg" alt="CAD render of Rev D sectioned along its axis, seated in a stethoscope head" width="1200" height="900">
+        <img src="assets/img/product-cut.jpg" alt="Studio render of Rev D sectioned along its axis, seated in a stethoscope head" width="1200" height="900">
       </div>
       <div class="hero__badge"><i></i>45 g &middot; fits 44&ndash;48 mm heads</div>
     </div>
   </div>
 </section>
 
-<section class="band band--ink sec--tight">
+<section class="band--ink sec--tight">
   <div class="wrap stats">
     <div><span class="stat__n">1.73 &rarr; 0.25</span><span class="stat__l">dB. Murmur level spread between two bodies, before and after correction. n = 600.</span></div>
     <div><span class="stat__n">3.7 mm</span><span class="stat__l">RMS error recovering the chest wall from the recording alone.</span></div>
     <div><span class="stat__n">6.0 dB</span><span class="stat__l">Room noise rejected by the reference capsule, bench measured.</span></div>
-    <div><span class="stat__n">0</span><span class="stat__l">Fitted parameters. The correction is arithmetic, so a reviewer can read every line of it.</span></div>
+    <div><span class="stat__n">0</span><span class="stat__l">Fitted parameters. The correction is arithmetic, and a reviewer can read every line of it.</span></div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">What it does</span>
-        <h2 class="display display--md">A small part doing <span class="mark">one job</span> properly.</h2>
-      </div>
-      <p class="head__aside">It does not make the stethoscope smarter, and it does not diagnose anything. It removes a known variable: the tissue between the chestpiece and the heart.</p>
-    </div>
-    <div class="tiles">
-      <div class="tile tile--red w7 tile--tall rise">
-        <div>
-          <h3>It measures the wall, then reverses it.</h3>
-          <p>The chest behaves like a low-pass filter whose resonance falls as the wall thickens. The insert measures that from the recording and divides it back out, in the same pass.</p>
-        </div>
-        <span class="tile__n">37 mm</span>
-      </div>
-      <div class="tile tile--lilac w5 tile--tall rise">
-        <h3>Two microphones, one difference</h3>
-        <p>The port capsule sits at the cup. A reference capsule sits behind a sealed cavity on the same board. Room noise reaches both and cancels; the heart reaches one.</p>
-        <span class="tile__n" style="font-size:clamp(2rem,4vw,3rem)">6.0 dB</span>
-      </div>
-      <div class="tile tile--mint w4 rise"><h3>Fits the head you own</h3><p>38.9 mm collar, threaded into 44, 46 and 48 mm single and double heads. No adhesive and nothing drilled.</p></div>
-      <div class="tile tile--butter w4 rise"><h3>Nothing leaves the phone</h3><p>Capture, correction, storage and export run on the device. There is no server in the path and nothing to breach.</p></div>
-      <div class="tile tile--ink w4 rise"><h3>It refuses bad contact</h3><p>Below 45 per cent contact the app returns no reading. A confident normal that is wrong is the failure that hurts someone.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--ghost">In the room</span>
-        <h2 class="display display--md">Five minutes at the sink, then it is part of the instrument.</h2>
-      </div>
-      <p class="head__aside">The insert replaces the back plate of the head, so the diaphragm, stem and tube stay as they are. That is why the cost of adoption is a minute and not a capital request.</p>
-    </div>
-    <div class="steps">
-      <div class="step rise"><span class="step__n">1</span><div><h3>Unscrew the back plate</h3><p>Every 44 to 48 mm head comes apart the same way, and the insert takes the plate's place with the stock collar holding it.</p></div></div>
-      <div class="step rise"><span class="step__n">2</span><div><h3>Thread it in by hand</h3><p>Sealed with a silicone face gasket and an O-ring groove. No tool, no adhesive, IPX4 once closed.</p></div></div>
-      <div class="step rise"><span class="step__n">3</span><div><h3>Record, look, decide</h3><p>A six second take, a wall estimate, a corrected sound and a quality score. The stethoscope still works with the insert out.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--red sec">
-  <div class="deco dots" style="right:2rem;top:2rem;width:180px;height:120px;opacity:.35;color:var(--paper)"></div>
-  <div class="wrap">
-    <div class="head" style="margin-bottom:1.4rem">
-      <div>
-        <span class="kicker">Same murmur, two bodies</span>
-        <h2 class="display display--md">One patient is loud. One is quiet. Neither is more diseased.</h2>
-      </div>
-      <p class="head__aside" style="color:rgba(255,253,247,.82)">A grade 2 murmur reaches the earpieces 1.73 dB apart in a 60 kg body and a 120 kg one, which is a third of the band a clinician listens in. The correction closes it to a quarter of a decibel.</p>
-      <div class="tiles">
-      <div class="w4 heartwrap"><div class="heartstat heartstat--paper"><span class="heartstat__n">1.73 dB</span><span class="heartstat__l">apart, uncorrected</span></div></div>
-      <div class="w4 heartwrap"><div class="heartstat heartstat--butter"><span class="heartstat__n">0.25 dB</span><span class="heartstat__l">apart, corrected</span></div></div>
-      <div class="tile w4" style="background:transparent;color:var(--paper);box-shadow:inset 0 0 0 2px rgba(255,253,247,.55)">
-        <p style="font-size:1.02rem;max-width:32ch">The number that matters is not the improvement. It is that the improvement holds for every body type in the set.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="kicker kicker--red">The app</span>
-        <h2 class="display display--md">Press run. It behaves like the phone app does.</h2>
-      </div>
-      <p class="head__aside">Record, measure, correct, then keep or refuse. This runs in the page on a generated murmur, so the interface can be judged without a device in your hand.</p>
-    </div>
-    
-<div class="demo" data-demo>
-  <div class="demo__stage">
-    <div class="demo__phone">
-      <div class="demo__screen">
-        <div class="demo__bar"><span>Heartware</span><span class="demo__dot" data-demo-dot></span></div>
-        <div class="demo__state" data-demo-state>Ready</div>
-        <div class="demo__big" data-demo-big>&#8212;</div>
-        <canvas class="demo__wave" data-demo-wave aria-label="Waveform of the recorded heart sound"></canvas>
-        <div class="demo__kv"><span>Chest wall estimate</span><span><b data-demo-q>89%</b> quality</span></div>
-        <div class="demo__verdict" data-demo-verdict>Press run to play a generated grade 2 murmur.</div>
-        <button class="btn btn--sm" data-demo-run>Run the demo</button>
-      </div>
-    </div>
+  <div class="wrap split split--57 split--top">
     <div>
-      <ol class="demo__steps">
-        <li class="demo__step on" data-demo-step><b>01</b><span>Listen for six seconds. One channel, 20 Hz to 2 kHz.</span></li>
-        <li class="demo__step" data-demo-step><b>02</b><span>Estimate the chest wall from the recording. No tape measure, no input from the user.</span></li>
-        <li class="demo__step" data-demo-step><b>03</b><span>Divide the murmur band by the wall it just measured.</span></li>
-        <li class="demo__step" data-demo-step><b>04</b><span>Keep the take, or refuse it when contact is poor. Nothing uploads.</span></li>
-      </ol>
-      <p class="small" style="margin-top:1.2rem">This is a generated grade 2 murmur through a modelled chest wall, played in the browser. It is a demonstration of the interface, not a measurement of you.</p>
+      <h2 class="stmt">It measures the chest wall, then divides it back out.</h2>
+      <p class="lede" style="margin-top:1.2rem">The chest behaves like a low-pass filter whose resonance falls as the wall thickens. The insert measures that from the recording itself and removes it in the same pass, so there is no second device and no input from the person holding it.</p>
+      <div class="rows" style="margin-top:1.8rem">
+        <div class="row"><span class="row__k">37 mm</span><span class="row__v">Chest wall estimated from a six second take, no tape measure.</span></div>
+        <div class="row"><span class="row__k">0 parameters</span><span class="row__v">Nothing fitted to people, so nothing to inherit from a training set.</span></div>
+        <div class="row"><span class="row__k">45 g</span><span class="row__v">Threaded by hand into 44, 46 and 48 mm heads. No adhesive, nothing drilled.</span></div>
+      </div>
     </div>
+    <figure class="pic pic--blush">
+      <div class="pic__box" style="aspect-ratio:4/5"><img src="assets/img/product-band.jpg" alt="Studio render of the insert on its side, showing the collar and the gasket groove" width="1200" height="1500"></div>
+      <figcaption>Rev D, printed and hand finished. The render is a studio image of the CAD, not a photograph of a tooled part.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band--wine sec">
+  <div class="wrap">
+    <div class="split split--75 split--top">
+      <div>
+        <h2 class="display display--md">One patient is loud. One is quiet. Neither is more diseased.</h2>
+        <p style="margin-top:1.1rem;max-width:44ch;color:rgba(251,247,240,.84)">A grade 2 murmur reaches the earpieces 1.73 dB apart in a 60 kg body and a 120 kg one, a third of the band a clinician listens in. The correction closes it to a quarter of a decibel.</p>
+      </div>
+      <div class="tiles">
+        <div class="w6 heartwrap"><div class="heartstat heartstat--paper"><span class="heartstat__n">1.73 dB</span><span class="heartstat__l">apart, uncorrected</span></div></div>
+        <div class="w6 heartwrap"><div class="heartstat heartstat--butter"><span class="heartstat__n">0.25 dB</span><span class="heartstat__l">apart, corrected</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band--sky sec">
+  <div class="wrap">
+    <div class="split split--75" style="align-items:end;margin-bottom:clamp(1.6rem,3vw,2.6rem)">
+      <h2 class="display display--md">Press run. It behaves like the phone app does.</h2>
+      <p class="small" style="max-width:34ch;justify-self:end">Record, measure, correct, then keep or refuse. This runs on a generated murmur, so the interface can be judged without a device in your hand.</p>
+    </div>
+
+<div class="demo" data-demo>
+  <div class="demo__phone">
+    <div class="demo__screen">
+      <div class="demo__bar"><span>Heartware</span><span class="demo__dot" data-demo-dot></span></div>
+      <div class="demo__state" data-demo-state>Ready</div>
+      <div class="demo__big" data-demo-big>&#8212;</div>
+      <canvas class="demo__wave" data-demo-wave aria-label="Waveform of the recorded heart sound"></canvas>
+      <div class="demo__kv"><span>Chest wall estimate</span><span><b data-demo-q>89%</b> quality</span></div>
+      <div class="demo__verdict" data-demo-verdict>Press run to play a generated grade 2 murmur.</div>
+      <button class="btn btn--sm" data-demo-run>Run the demo</button>
+    </div>
+  </div>
+  <div>
+    <ol class="demo__steps">
+      <li class="demo__step on" data-demo-step><b>01</b><span>Listen for six seconds. One channel, 20 Hz to 2 kHz.</span></li>
+      <li class="demo__step" data-demo-step><b>02</b><span>Estimate the chest wall from the recording. No tape measure, no input from the user.</span></li>
+      <li class="demo__step" data-demo-step><b>03</b><span>Divide the murmur band by the wall it just measured.</span></li>
+      <li class="demo__step" data-demo-step><b>04</b><span>Keep the take, or refuse it when contact is poor. Nothing uploads.</span></li>
+    </ol>
+    <p class="small" style="margin-top:1.4rem">A generated grade 2 murmur through a modelled chest wall, played in the browser. It shows the interface, it does not measure you.</p>
   </div>
 </div>
 
   </div>
 </section>
 
-<section class="sec--tight">
-  <div class="wrap">
-    <div class="tiles">
-      <div class="tile tile--butter w5 tile--tall">
-        <h3>What it costs</h3>
-        <p>$38.25 in parts at 500 units. $59 as a pilot unit with the app included. No capital equipment, no consumables, no fee per exam.</p>
-        <span class="tile__n">$38.25</span>
-      </div>
-      <div class="tile tile--paper w7" style="box-shadow:inset 0 0 0 2px var(--ink)">
-        <h3 style="max-width:22ch">Next to what a clinic already buys</h3>
-        <div class="bars" style="margin-top:1.2rem">
-          <div class="bar bar--us"><div class="bar__top"><span class="bar__name">Heartware insert<span>parts, at 500 units</span></span><span class="bar__p">$38.25</span></div><div class="bar__track"><div class="bar__fill" style="width:9%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">Eko CORE 300<span>digital stethoscope</span></span><span class="bar__p">$199</span></div><div class="bar__track"><div class="bar__fill" style="width:46%"></div></div></div>
-          <div class="bar"><div class="bar__top"><span class="bar__name">3M Littmann CORE<span>digital stethoscope</span></span><span class="bar__p">$379</span></div><div class="bar__track"><div class="bar__fill" style="width:87%"></div></div></div>
-        </div>
-        <p class="tiny" style="margin-top:1rem">List prices, February 2026. The insert does not replace those instruments. It fits one the clinic already owns.</p>
-      </div>
+<section class="sec">
+  <div class="wrap price">
+    <div>
+      <span class="kicker kicker--navy">Price</span>
+      <p class="price__n" style="margin-top:.9rem">$38.25<small>per unit, app included. No capital equipment, no consumable, no fee per exam.</small></p>
+      <p class="small" style="margin-top:1.2rem;max-width:32ch">Materials and machining come in under that, so the price survives a distributor margin rather than depending on one.</p>
+    </div>
+    <div>
+      <p class="small" style="margin-bottom:.8rem">Next to what a clinic already buys, at list price, February 2026.</p>
+      <ul class="pricelist">
+        <li><span class="us">Heartware insert <span class="tiny">digital stethoscope not required</span></span><b class="us">$38.25</b></li>
+        <li><span>Eko CORE 300 <span class="tiny">digital stethoscope</span></span><b>$199</b></li>
+        <li><span>3M Littmann CORE <span class="tiny">digital stethoscope</span></span><b>$379</b></li>
+        <li><span>Littmann 3200 <span class="tiny">digital stethoscope</span></span><b>$449</b></li>
+      </ul>
+      <p class="tiny" style="margin-top:1rem">The insert does not replace those instruments. It fits one the clinic already owns.</p>
     </div>
   </div>
 </section>
@@ -201,11 +160,9 @@
 <section class="sec">
   <div class="wrap">
     <div class="cta">
-      <div class="deco waves" style="left:0;right:0;bottom:-10px;height:100px;opacity:.25;filter:invert(1)"></div>
-      <span class="kicker" style="background:var(--ink);color:var(--paper)">Three ways in</span>
-      <h2 class="display" style="margin-top:1rem">Run a pilot, sell it, or build it into a head.</h2>
+      <h2 class="display">Run a pilot, sell it, or build it into a head.</h2>
       <div class="cta__row">
-        <a class="btn" href="partnerships.html">How we work with partners <span class="btn__arrow">&rarr;</span></a>
+        <a class="btn btn--wine" href="partnerships.html">How we work with partners <span class="btn__arrow">&rarr;</span></a>
         <a class="btn btn--ghost" href="contact.html">hello@heart-ware.org</a>
       </div>
     </div>
@@ -214,13 +171,14 @@
 </main>
 
 <footer class="foot">
+  <svg class="foot__heart" viewBox="0 0 48 44" aria-hidden="true"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
   <div class="wrap">
     <div class="foot__top">
-      <div>
+      <div class="foot__brand">
         <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
-          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="brand__word">Heartware</span>
+          <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
         </a>
+        <p class="foot__tag">Innovating cardiac care</p>
         <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
       <nav class="foot__cols" aria-label="Footer">
