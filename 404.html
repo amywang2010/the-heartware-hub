@@ -8,25 +8,18 @@
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<style>
-  .lost { min-height: 100svh; display: grid; place-items: center; padding: 2rem; text-align: center; }
-  .lost img { height: 64px; width: auto; margin: 0 auto 2rem; }
-  .lost h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 1rem; }
-  .lost p { color: var(--muted); max-width: 38ch; margin: 0 auto 2rem; }
-  .lost__links { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Gabarito:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<main class="lost">
-  <div>
-    <img src="assets/img/logo-mark.png" alt="">
-    <p class="eyebrow" style="justify-content:center">404</p>
-    <h1>That page isn't<br>in the record.</h1>
-    <p>The address you followed does not exist on this site. The evidence, the technology and the product all do.</p>
-    <div class="lost__links">
-      <a class="btn btn--solid" href="/">Back to the site</a>
+<main class="sec" style="min-height:86svh;display:grid;align-items:center">
+  <div class="wrap">
+    <div class="deco blob" style="width:26rem;height:26rem;right:-6rem;top:-6rem;background:var(--pink);opacity:.7"></div>
+    <span class="kicker kicker--red">404</span>
+    <h1 class="display" style="margin-top:1rem;max-width:16ch">That page is not in the record.</h1>
+    <p class="lede" style="margin-top:1.2rem">The address you followed does not exist. The insert, the method and the evidence all do.</p>
+    <div class="hero__actions">
+      <a class="btn btn--red" href="/">Back to the site <span class="btn__arrow">&rarr;</span></a>
       <a class="btn btn--ghost" href="/evidence.html">The evidence</a>
     </div>
   </div>

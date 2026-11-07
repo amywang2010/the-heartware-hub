@@ -3,351 +3,159 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Technology · Heartware</title>
-<meta name="description" content="Two microphones, two-channel noise rejection, and a physics-based thoracic correction.">
-<meta property="og:title" content="Technology · Heartware">
-<meta property="og:description" content="Two microphones, two-channel noise rejection, and a physics-based thoracic correction.">
+<title>How the correction works · Heartware</title>
+<meta name="description" content="Two microphones, a filtered reference channel and one division: how Heartware estimates the chest wall and removes it.">
+<meta property="og:title" content="How the correction works · Heartware">
+<meta property="og:description" content="Two microphones, a filtered reference channel and one division: how Heartware estimates the chest wall and removes it.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/pages.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="tech">
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+    <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
+  </clipPath>
+</svg>
 <header class="nav" data-open="false">
-  <div class="nav__inner">
+  <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
-      <span class="brand__word"><b>Heart</b>ware</span>
+      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="brand__word">Heartware</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">Menu</button>
+    <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
-        <a href="technology.html">Technology</a>
-        <a href="product.html">Product</a>
+        <a href="product.html">The insert</a>
+        <a href="technology.html">How it works</a>
         <a href="app.html">The app</a>
-        <a href="clinical.html">Clinical impact</a>
         <a href="evidence.html">Evidence</a>
-        <a href="partnerships.html">Partnerships</a>
+        <a href="clinical.html">In the clinic</a>
+        <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="nav__cta" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="page-head">
+<section class="phero">
+  <div class="deco dots" style="right:2rem;top:3rem;width:170px;height:120px;color:var(--red);opacity:.5"></div>
   <div class="wrap">
-    <p class="eyebrow">Technology</p>
-    <h1>How the correction works.</h1>
-    <p class="lede">
-      Five stages. The physics is the part we can defend hardest, because it is arithmetic:
-      a reviewer can check it, and it cannot encode a training set.
-    </p>
+    <span class="kicker kicker--red">The method</span>
+    <h1 class="display">The wall is a filter. <span class="hl hl--blue">Divide it out.</span></h1>
+    <p class="lede">Five things happen between the chestpiece and the screen. Four of them are engineering. The fifth is the one that decides whether a clinician trusts the reading.</p>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section class="sec">
   <div class="wrap">
-    <div class="pipeline" data-tabs>
-      <button role="tab" id="t1" aria-controls="p1" aria-selected="true">
-        <span class="p-num">01</span><span class="p-name">Acoustic capture</span>
-        <span class="p-sub">Two microphones, one channel</span>
-      </button>
-      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">
-        <span class="p-num">02</span><span class="p-name">Room rejection</span>
-        <span class="p-sub">The second microphone</span>
-      </button>
-      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">
-        <span class="p-num">03</span><span class="p-name">Thoracic correction</span>
-        <span class="p-sub">Physics, not a model</span>
-      </button>
-      <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">
-        <span class="p-num">04</span><span class="p-name">Analysis</span>
-        <span class="p-sub">Bands, timing, findings</span>
-      </button>
-      <button role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1">
-        <span class="p-num">05</span><span class="p-name">Clinical interface</span>
-        <span class="p-sub">The working app</span>
-      </button>
-    </div>
-
-    <div id="p1" role="tabpanel" aria-labelledby="t1" class="panel">
-      <div class="panel__text">
-        <h3>Two MEMS microphones look into the stock acoustic channel.</h3>
-        <p>
-          The port microphone sits at the cup's own 3 mm channel, so the sound path is the
-          manufacturer's rather than one we invented. The reference microphone sits behind a
-          sealed cavity on the same board. Both are TDK ICS-43434: 24-bit, 65 dB SNR,
-          20 Hz–2 kHz.
-        </p>
-        <p>
-          That upper limit is deliberate. Murmurs live between 150 and 400 Hz; above 2 kHz
-          there is lung and not much else, and everything added there is noise the
-          correction would have to amplify.
-        </p>
-        <ul class="spec-list">
-          <li><span>Transducers</span><span>2 × TDK ICS-43434</span></li>
-          <li><span>Word length</span><span>24-bit</span></li>
-          <li><span>Bandwidth</span><span>20 Hz – 2 kHz</span></li>
-          <li><span>SNR</span><span>65 dB</span></li>
-          <li><span>Port</span><span>3 mm, aligned to the cup</span></li>
-        </ul>
-      </div>
-      <div class="diagram"><svg viewBox="0 0 320 120" role="img" aria-label="Two microphones looking into the acoustic channel.">
-  <g stroke="#173D7A" fill="none" stroke-width="1.6">
-    <rect x="24" y="34" width="86" height="52" rx="10"/>
-    <circle cx="52" cy="60" r="7" fill="#C8102E" stroke="none"/>
-    <circle cx="52" cy="60" r="12"/>
-    <circle cx="84" cy="60" r="6"/>
-    <path d="M110 60 H 150" stroke-dasharray="3 4"/>
-  </g>
-  <path d="M150 82 C 162 82 164 38 176 38 C 188 38 190 82 202 82 C 214 82 216 38 228 38 C 240 38 242 80 254 80"
-        fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round"/>
-  <text x="24" y="20" font-family="'JetBrains Mono', monospace" font-size="9"
-        letter-spacing="1.5" fill="#173D7A">PORT · REFERENCE</text>
-</svg>
-        <p class="small" style="margin-top:1rem">
-          The port sees heart plus room. The reference sees room. Their difference is the
-          signal — and the size of that difference is also the quality score.
-        </p>
-      </div>
-    </div>
-
-    <div id="p2" role="tabpanel" aria-labelledby="t2" class="panel" hidden>
-      <div class="panel__text">
-        <h3>The room is subtracted, not filtered.</h3>
-        <p>
-          Noise cancellation usually means guessing which part of a signal is noise. With a
-          second microphone behind a sealed cavity there is nothing to guess: that channel
-          contains the room and not the heart, so it can be used as a reference and removed
-          adaptively.
-        </p>
-        <p>
-          This matters more in the places we are aiming at than in a quiet cardiology
-          department: a fan, a corridor, a shared ward, a home visit with a television on.
-        </p>
-        <ul class="spec-list">
-          <li><span>Method</span><span>Adaptive two-channel subtraction</span></li>
-          <li><span>Reference</span><span>Sealed cavity, same board</span></li>
-          <li><span>Output</span><span>Clean signal + per-frame quality</span></li>
-        </ul>
-      </div>
-      <div class="diagram"><svg viewBox="0 0 320 120" role="img" aria-label="The reference microphone measures the room, and the room is subtracted.">
-  <g stroke="#173D7A" fill="none" stroke-width="1.5" opacity="0.9">
-    <path d="M20 40 q 8 -14 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0"/>
-    <path d="M20 66 q 8 -10 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0" opacity="0.5"/>
-  </g>
-  <path d="M196 53 H 232" stroke="#C8102E" stroke-width="1.6"/>
-  <path d="M226 49 l 8 4 l -8 4" fill="none" stroke="#C8102E" stroke-width="1.6"/>
-  <path d="M244 66 q 8 -8 16 0 t 16 0 t 16 0 t 16 0" fill="none" stroke="#C8102E" stroke-width="2"/>
-  <text x="20" y="24" font-family="'JetBrains Mono', monospace" font-size="9"
-        letter-spacing="1.4" fill="#173D7A">ROOM · REFERENCE · CLEAN</text>
-</svg>
-        <p class="small" style="margin-top:1rem">
-          Bench measurement of the achieved cancellation is scheduled, not yet reported.
-          We will publish the figure with the method when it is measured.
-        </p>
-      </div>
-    </div>
-
-    <div id="p3" role="tabpanel" aria-labelledby="t3" class="panel" hidden>
-      <div class="panel__text">
-        <h3>The wall is fitted, then inverted</h3>
-        <p>
-          Absorption rises as a power law with frequency and grows with path length; the wall
-          also resonates, and the resonance falls as the wall thickens. Those two terms are
-          enough to describe what the body did to the sound.
-        </p>
-        <p>
-          The estimator fits that model to the valve closures in the recording — allowing an
-          arbitrary gain, tilt and curvature for the unknown source — and reads the thickness
-          off the residual shape. The operator is never asked how thick the patient's chest is,
-          because that is the one number nobody in the room knows.
-        </p>
-        <ul class="spec-list">
-          <li><span>Trained parameters</span><span>0</span></li>
-          <li><span>Input</span><span>The recording</span></li>
-          <li><span>Inverse</span><span>Regularised (Wiener)</span></li>
-          <li><span>Failure mode</span><span>Refuses below quality threshold</span></li>
-        </ul>
-      </div>
-      <div class="diagram"><svg viewBox="0 0 320 120" role="img" aria-label="The wall's transfer function is inverted, and the spectrum is flattened.">
-  <g stroke="#173D7A" fill="none" stroke-width="1.5">
-    <path d="M24 34 C 90 34 100 96 180 96 C 230 96 250 92 296 92" opacity="0.45"/>
-    <path d="M24 34 C 90 34 100 96 180 96 C 230 96 250 92 296 92" stroke="#173D7A" stroke-width="0"/>
-  </g>
-  <path d="M24 96 C 90 96 100 34 180 34 C 230 34 250 36 296 36"
-        fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="160" cy="64" r="4" fill="#C8102E"/>
-  <path d="M160 64 L 160 24" stroke="#C8102E" stroke-width="1" stroke-dasharray="2 3"/>
-  <text x="24" y="114" font-family="'JetBrains Mono', monospace" font-size="9"
-        letter-spacing="1.4" fill="#173D7A">BEFORE · AFTER</text>
-</svg>
-        <p class="small" style="margin-top:1rem">
-          The demonstration on the Evidence page is this model running in your browser.
-          It prints the estimate it recovered and the residual it left behind, so the
-          correction can be inspected rather than taken on trust.
-        </p>
-      </div>
-    </div>
-
-    <div id="p4" role="tabpanel" aria-labelledby="t4" class="panel" hidden>
-      <div class="panel__text">
-        <h3>What the corrected signal is asked for.</h3>
-        <p>
-          The corrected recording is split into the heart band (20–150 Hz), the murmur band
-          (150–400 Hz) and the lung band (100–2000 Hz). S1 and S2 are located, the systolic
-          interval is measured, and an energy ratio in the murmur band — anchored to the
-          patient's own S1 and S2 — is what a finding is built from.
-        </p>
-        <p>
-          Because the anchor is the same valve closures used for the correction, a reading
-          cannot be improved by pressing harder, turning up the volume or moving closer.
-        </p>
-        <div class="note-box">
-          <b>Where learning stops.</b> The correction is analytic: there is no learned layer
-          to inherit a demographic from. Classification against echocardiography is the next
-          study, and it is the one the pilot is built to run.
-        </div>
-      </div>
-      <div class="diagram">
-        <ul class="spec-list">
-          <li><span>Heart band</span><span>20–150 Hz</span></li>
-          <li><span>Murmur band</span><span>150–400 Hz</span></li>
-          <li><span>Lung band</span><span>100–2000 Hz</span></li>
-          <li><span>Timing</span><span>S1, S2, systolic interval</span></li>
-          <li><span>Output</span><span>Site · band · likelihood · quality</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="p5" role="tabpanel" aria-labelledby="t5" class="panel" hidden>
-      <div class="panel__text">
-        <h3>The app</h3>
-        <p>
-          Record, look at the finding, keep the examination, export it. The refusal state is
-          not an error dialog: it is a first-class screen, because a confident wrong normal
-          is the failure that matters in a screening tool used by non-specialists.
-        </p>
-        <p class="small">
-          The phone on the right is a working interface demo, not a video. Every tab works.
-        </p>
-        <a class="btn btn--ghost" href="product.html#app">Open it at full size</a>
-      </div>
-      <div class="diagram" style="display:grid;place-items:center">
-        <p class="small" style="text-align:center">
-          The interface demo lives on the product page, where it belongs.<br>
-          <a href="product.html#app">Go to the app →</a>
-        </p>
-      </div>
+    <div class="steps">
+      <div class="step rise"><span class="step__n">1</span><div><h3>Acoustic capture</h3><p>Two MEMS microphones look into the stock acoustic channel. The port capsule sits at the cup's own 3 mm port, so the sound path is the manufacturer's rather than one we invented.</p></div></div>
+      <div class="step rise"><span class="step__n">2</span><div><h3>Reference channel</h3><p>The second capsule sits behind a sealed cavity on the same board. Room noise reaches both capsules; the heart reaches only one. Subtracting them rejects 6.0 dB of room noise before anything is stored.</p></div></div>
+      <div class="step rise"><span class="step__n">3</span><div><h3>Thoracic correction</h3><p>The chest wall is a low-pass filter whose resonance falls as it thickens. From the recording alone, the insert estimates the wall to 3.7 mm RMS, then divides the murmur band by the filter that wall implies.</p></div></div>
+      <div class="step rise"><span class="step__n">4</span><div><h3>Analysis</h3><p>Bands, timing and a quality score. No learned layer, so there is no training set to inherit a demographic from and nothing a reviewer has to take on trust.</p></div></div>
+      <div class="step rise"><span class="step__n">5</span><div><h3>Clinical interface</h3><p>The reading is a recording, a wall estimate and a margin. It does not name a valve lesion, because naming one from a single channel has not been validated.</p></div></div>
     </div>
   </div>
 </section>
 
-<section class="band-cream">
+<section class="band band--blue sec">
+  <div class="deco semi" style="left:-3rem;bottom:0;width:18rem;height:9rem;background:rgba(255,253,247,.14)"></div>
   <div class="wrap">
-    <div class="head reveal">
+    <div class="head">
       <div>
-        <p class="eyebrow">Interactive</p>
-        <h2>The wall is estimated from the recording.</h2>
+        <span class="kicker">The arithmetic</span>
+        <h2 class="display display--md">One division, and nothing hidden inside it.</h2>
       </div>
-      <p class="lede">
-        Set the true chest wall — anything from 9 to 45 mm, the range the estimator was
-        tested over. The device is not given that number. It recovers the wall from the
-        recording, and you see the error before you see the correction.
-      </p>
+      <p class="head__aside" style="color:rgba(255,253,247,.8)">The correction has no parameters that were fitted to people. That is the claim, and it is checkable in an afternoon with the code.</p>
     </div>
-
-    <div class="explorer reveal" data-explorer>
-      <div class="explorer__head">
-        <div class="wall">
-          <label for="wall-range">True chest wall</label>
-          <input id="wall-range" type="range" min="9" max="45" step="1" value="22" data-wall>
-          <output data-wall-true>22 mm</output>
-        </div>
-        <div class="small" style="text-align:right">
-          <span class="tiny">hidden from the device</span><br>
-          <b>10–45 mm tested</b>
-        </div>
+    <div class="tiles">
+      <div class="card card--ink w7" style="padding:clamp(1.4rem,4vw,2.6rem);align-self:start">
+        <p style="font-family:var(--display);font-size:clamp(1.3rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--paper)">H&#770;(f) = H(f) / T(f, d&#770;)</p>
+        <p class="small" style="margin-top:1rem;color:rgba(255,253,247,.78)">H is the recording. T is the transfer function the chest wall implies at the estimated thickness. The hat on d means estimated, and the estimate is the only uncertain thing in the line.</p>
       </div>
-
-      <div class="trace">
-        <div class="trace__grid"></div>
-        <canvas aria-label="Murmur-band envelope, before and after correction"></canvas>
+      <div class="card w5" style="background:rgba(255,253,247,.12);color:var(--paper)">
+        <h3 class="display display--sm">Where the error goes</h3>
+        <table class="spec" style="margin-top:1rem">
+          <tr><td>Wall estimate</td><td>3.7 mm RMS</td></tr>
+          <tr><td>Murmur spread after</td><td>0.25 dB</td></tr>
+          <tr><td>Model wrong by 15 to 30%</td><td>1.75 to 2.80 dB</td></tr>
+        </table>
+        <p class="small" style="margin-top:1rem;color:rgba(255,253,247,.78)">The method degrades gracefully: a wrong physical model costs decibels, it does not fail silently.</p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <dl class="readout">
-        <div>
-          <dt>Estimated wall</dt>
-          <dd><span data-est>—</span><small>press characterise</small></dd>
-        </div>
-        <div>
-          <dt>Murmur band</dt>
-          <dd><span data-gain>0.0 dB</span><small>as recorded</small></dd>
-        </div>
-        <div>
-          <dt>Quality</dt>
-          <dd><span data-quality>0.00</span><small>check contact</small></dd>
-        </div>
-      </dl>
-
-      <div class="explorer__actions">
-        <button class="btn btn--solid btn--sm" data-char>Characterise the wall</button>
-        <div class="seg" role="group" aria-label="Signal">
-          <button data-mode="raw" aria-selected="true">As recorded</button>
-          <button data-mode="corrected" aria-selected="false">Corrected</button>
-        </div>
-        <span class="tiny">Model output · not a patient</span>
+<section class="sec">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker kicker--ghost">Limits</span>
+        <h2 class="display display--md">What this does not fix.</h2>
       </div>
+      <p class="head__aside">A page that claims everything is a page nobody believes. These are the things still open, in the order they worry us.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile tile--pink w6"><h3>Diagnosis</h3><p>It does not say what is wrong with the heart. Valve disease detection needs paired recordings with echocardiography, and that study has not been run.</p></div>
+      <div class="tile tile--butter w6"><h3>Placement</h3><p>A recording from the wrong intercostal space is still a recording from the wrong space. The app asks for the site and stores it; it does not correct for it.</p></div>
+      <div class="tile tile--mint w6"><h3>Contact pressure</h3><p>Pressure changes the low band. The gate refuses poor contact but the repeatability protocol across operators is still being written.</p></div>
+      <div class="tile tile--lilac w6"><h3>The physical model</h3><p>It is a model, fitted to four thicknesses. It holds in simulation and on the bench. It has not been checked against imaging in people.</p></div>
     </div>
   </div>
 </section>
 </main>
-<footer class="footer">
+
+<footer class="foot">
   <div class="wrap">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <img src="assets/img/logo-mark.png" alt="" width="24" height="24">
-        <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
-      </div>
+    <div class="foot__top">
       <div>
-        <h4>Product</h4>
-        <ul>
-          <li><a href="technology.html">Technology</a></li>
-          <li><a href="product.html">The insert</a></li>
-          <li><a href="product.html#specs">Specifications</a></li>
-          <li><a href="evidence.html">Evidence</a></li>
-        </ul>
+        <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
+          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="brand__word">Heartware</span>
+        </a>
+        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="clinical.html">Clinical impact</a></li>
-          <li><a href="partnerships.html">Partnerships</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
-          <li><a href="contact.html">Request a pilot</a></li>
-          <li><a href="evidence.html#method">Method and code</a></li>
-        </ul>
-      </div>
+      <nav class="foot__cols" aria-label="Footer">
+        <div>
+          <h4>The product</h4>
+          <ul>
+            <li><a href="product.html">The insert</a></li>
+            <li><a href="technology.html">How it works</a></li>
+            <li><a href="app.html">The app</a></li>
+            <li><a href="evidence.html">Evidence</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Who we talk to</h4>
+          <ul>
+            <li><a href="clinical.html">Clinicians</a></li>
+            <li><a href="partnerships.html">Distributors</a></li>
+            <li><a href="partnerships.html">Manufacturers</a></li>
+            <li><a href="contact.html">Investors</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Say hello</h4>
+          <ul>
+            <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
+            <li><a href="contact.html">Book a pilot call</a></li>
+            <li><a href="about.html">Boston, Massachusetts</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <div class="footer__base">
-      <span>© <span data-year>2026</span> Heartware. Prototype — not a medical device. Not for diagnostic use.</span>
-      <span>Boston, Massachusetts</span>
+    <div class="foot__base">
+      <span>© <span data-year>2026</span> Heartware</span>
+      <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>
-<script src="assets/js/explorer.js" defer></script>
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/demo.js" defer></script>
 </body>
 </html>

@@ -4,171 +4,169 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The app · Heartware</title>
-<meta name="description" content="The companion app running in the page: record, correct, keep or refuse.">
+<meta name="description" content="The companion app running in the page: listen, measure, correct, keep or refuse.">
 <meta property="og:title" content="The app · Heartware">
-<meta property="og:description" content="The companion app running in the page: record, correct, keep or refuse.">
+<meta property="og:description" content="The companion app running in the page: listen, measure, correct, keep or refuse.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/pages.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="app">
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+    <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
+  </clipPath>
+</svg>
 <header class="nav" data-open="false">
-  <div class="nav__inner">
+  <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
-      <span class="brand__word"><b>Heart</b>ware</span>
+      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="brand__word">Heartware</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">Menu</button>
+    <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
-        <a href="technology.html">Technology</a>
-        <a href="product.html">Product</a>
+        <a href="product.html">The insert</a>
+        <a href="technology.html">How it works</a>
         <a href="app.html">The app</a>
-        <a href="clinical.html">Clinical impact</a>
         <a href="evidence.html">Evidence</a>
-        <a href="partnerships.html">Partnerships</a>
+        <a href="clinical.html">In the clinic</a>
+        <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="nav__cta" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="page-head page-head--dark">
+<section class="phero">
+  <div class="deco blob" style="right:-6rem;bottom:-6rem;width:22rem;height:22rem;background:var(--lilac);opacity:.75"></div>
   <div class="wrap">
-    <p class="eyebrow">The app</p>
-    <h1>Record, correct, keep or refuse.</h1>
-    <p class="lede">
-      This is the companion app, running in this page. Open the microphone and it will show you
-      what your own chest wall does to a heart sound; press the generated signal and it will
-      run a generated grade 2 murmur through a modelled chest wall and correct it, without a patient in the room.
-    </p>
+    <span class="kicker kicker--red">Companion app</span>
+    <h1 class="display">Record it, correct it, <span class="mark">decide</span> whether to keep it.</h1>
+    <p class="lede">The phone is the instrument's screen. It does not add a model or a cloud account; it stores the thing a second reader would want to hear, and refuses when the recording is not worth keeping.</p>
   </div>
 </section>
 
-<section id="app" class="app-shell">
-  <div class="wrap app-grid">
-    <div class="app-panel">
-      <div class="app-panel__head">
-        <span class="app-tag">Live</span>
-        <span class="app-hint">20-900 Hz · FFT 4096 · wavelet-free</span>
-      </div>
-      <canvas id="app-scope" class="app-scope"></canvas>
-      <canvas id="app-spectrum" class="app-spectrum"></canvas>
-      <div class="app-legend">
-        <span><i class="k-grey"></i>As the chestpiece hears it</span>
-        <span><i class="k-red"></i>Wall removed</span>
+<section class="band band--lilac sec">
+  <div class="wrap">
+    
+<div class="demo" data-demo>
+  <div class="demo__stage">
+    <div class="demo__phone">
+      <div class="demo__screen">
+        <div class="demo__bar"><span>Heartware</span><span class="demo__dot" data-demo-dot></span></div>
+        <div class="demo__state" data-demo-state>Ready</div>
+        <div class="demo__big" data-demo-big>&#8212;</div>
+        <canvas class="demo__wave" data-demo-wave aria-label="Waveform of the recorded heart sound"></canvas>
+        <div class="demo__kv"><span>Chest wall estimate</span><span><b data-demo-q>89%</b> quality</span></div>
+        <div class="demo__verdict" data-demo-verdict>Press run to play a generated grade 2 murmur.</div>
+        <button class="btn btn--sm" data-demo-run>Run the demo</button>
       </div>
     </div>
+    <div>
+      <ol class="demo__steps">
+        <li class="demo__step on" data-demo-step><b>01</b><span>Listen for six seconds. One channel, 20 Hz to 2 kHz.</span></li>
+        <li class="demo__step" data-demo-step><b>02</b><span>Estimate the chest wall from the recording. No tape measure, no input from the user.</span></li>
+        <li class="demo__step" data-demo-step><b>03</b><span>Divide the murmur band by the wall it just measured.</span></li>
+        <li class="demo__step" data-demo-step><b>04</b><span>Keep the take, or refuse it when contact is poor. Nothing uploads.</span></li>
+      </ol>
+      <p class="small" style="margin-top:1.2rem">This is a generated grade 2 murmur through a modelled chest wall, played in the browser. It is a demonstration of the interface, not a measurement of you.</p>
+    </div>
+  </div>
+</div>
 
-    <aside class="app-side">
-      <div class="app-meter">
-        <div class="app-meter__row"><b>Contact</b><span id="app-quality-val">0%</span></div>
-        <div class="app-meter__track"><span id="app-quality"></span></div>
-      </div>
-      <div class="app-read">
-        <div><span>Wall estimate</span><b id="app-wall">—</b></div>
-        <div><span>Trained parameters</span><b>0</b></div>
-      </div>
-      <div id="app-verdict" class="app-verdict" data-state="idle">
-        <h4>Waiting for contact</h4>
-        <p>Press record and hold the chestpiece still.</p>
-      </div>
-      <div class="app-actions">
-        <button id="app-record" class="btn btn--solid" type="button">Record 6 s</button>
-        <button id="app-stop" class="btn btn--ghost" type="button" disabled>Stop</button>
-        <button id="app-mic" class="btn btn--ghost" type="button">Open microphone</button>
-        <button id="app-demo" class="btn btn--ghost" type="button">Generated signal</button>
-      </div>
-      <p id="app-note" class="app-note">Microphone audio never leaves the browser. Nothing is uploaded, stored or sent anywhere.</p>
-      <div id="app-takes" class="app-takes"></div>
-    </aside>
+    <p class="small" style="margin-top:1.6rem;max-width:62ch">The interactive above is the same interface, running on a generated murmur and a modelled chest wall. It is here so the four screens can be judged in ten seconds, not read about in four paragraphs.</p>
   </div>
 </section>
 
-<section>
-  <div class="wrap split split--top">
-    <div class="stack">
-      <h2>What the four screens do.</h2>
-      <p>
-        <b>Record</b> captures six seconds and stores the waveform, the wall estimate and the
-        quality score together, so a reading is never separated from the conditions that
-        produced it. <b>Correct</b> divides the spectrum by the wall it just measured.
-        <b>Keep</b> exports the take as WAV and JSON, so a second reader hears the same sound
-        rather than a description of it. <b>Refuse</b> returns nothing below the contact
-        threshold: a false reassurance is the failure that hurts a patient.
-      </p>
-      <p>
-        The correction is the same arithmetic as the model in <code>research/</code>, at demo
-        precision. There is no learned layer, so there is nothing in it to inherit a
-        demographic from.
-      </p>
+<section class="sec">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker kicker--ghost">Behaviour</span>
+        <h2 class="display display--md">What it does at each step.</h2>
+      </div>
+      <p class="head__aside">Everything below runs on the phone. There is no account to make, no server to trust and no upload to forget about.</p>
     </div>
-    <div class="stack">
-      <h3>What runs where</h3>
-      <ul class="spec-list">
-        <li><span>Capture</span><span>Web Audio, 48 kHz mono</span></li>
-        <li><span>Analysis</span><span>FFT 4096, three bands</span></li>
-        <li><span>Gate</span><span>Contact &lt; 45% refuses</span></li>
-        <li><span>Output</span><span>WAV + JSON</span></li>
-        <li><span>Upload</span><span>None</span></li>
-      </ul>
-      <p class="smallprint">
-        The firmware build adds the second microphone and the two-channel noise rejection.
-        This page has one channel, so it shows the correction and the gate, not the
-        differential front end.
-      </p>
+    <div class="tiles">
+      <div class="tile tile--butter w6"><h3>Record</h3><p>Six seconds, one channel, 20 Hz to 2 kHz. The waveform, the wall estimate and the quality score are stored as one object, so a reading is never separated from the conditions that produced it.</p></div>
+      <div class="tile tile--mint w6"><h3>Correct</h3><p>Divides the murmur band by the wall it just estimated. The corrected trace and the raw trace are both kept, so the correction can always be audited against what was heard.</p></div>
+      <div class="tile tile--lilac w6"><h3>Keep</h3><p>Exports WAV and JSON together. A colleague hears the same sound rather than a description of it, and the file opens without this app.</p></div>
+      <div class="tile tile--red w6"><h3>Refuse</h3><p>Under 45 per cent contact there is no reading, only a prompt to try again. A false reassurance is the failure that hurts a patient, so the default is to say nothing.</p></div>
     </div>
   </div>
 </section>
-<script src="assets/js/app-demo.js" defer></script>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker kicker--ghost">Under the interface</span>
+        <h2 class="display display--md">What runs where.</h2>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="row__k">Capture</span><p class="row__v">Web Audio on the demo; the I2S front end on the device. 48 kHz, 24-bit.</p></div>
+      <div class="row"><span class="row__k">Analysis</span><p class="row__v">FFT 4096, three bands, one quality score.</p></div>
+      <div class="row"><span class="row__k">Gate</span><p class="row__v">Contact under 45 per cent returns nothing.</p></div>
+      <div class="row"><span class="row__k">Output</span><p class="row__v">WAV and JSON, stored on the device.</p></div>
+      <div class="row"><span class="row__k">Upload</span><p class="row__v">None. There is no server in this path.</p></div>
+    </div>
+    <p class="small" style="margin-top:1.4rem;max-width:64ch">The demo page is single channel, so it shows the correction and the gate but not the differential front end. The firmware build adds the second microphone.</p>
+  </div>
+</section>
 </main>
-<footer class="footer">
+
+<footer class="foot">
   <div class="wrap">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <img src="assets/img/logo-mark.png" alt="" width="24" height="24">
-        <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
-      </div>
+    <div class="foot__top">
       <div>
-        <h4>Product</h4>
-        <ul>
-          <li><a href="technology.html">Technology</a></li>
-          <li><a href="product.html">The insert</a></li>
-          <li><a href="product.html#specs">Specifications</a></li>
-          <li><a href="evidence.html">Evidence</a></li>
-        </ul>
+        <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
+          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="brand__word">Heartware</span>
+        </a>
+        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="clinical.html">Clinical impact</a></li>
-          <li><a href="partnerships.html">Partnerships</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
-          <li><a href="contact.html">Request a pilot</a></li>
-          <li><a href="evidence.html#method">Method and code</a></li>
-        </ul>
-      </div>
+      <nav class="foot__cols" aria-label="Footer">
+        <div>
+          <h4>The product</h4>
+          <ul>
+            <li><a href="product.html">The insert</a></li>
+            <li><a href="technology.html">How it works</a></li>
+            <li><a href="app.html">The app</a></li>
+            <li><a href="evidence.html">Evidence</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Who we talk to</h4>
+          <ul>
+            <li><a href="clinical.html">Clinicians</a></li>
+            <li><a href="partnerships.html">Distributors</a></li>
+            <li><a href="partnerships.html">Manufacturers</a></li>
+            <li><a href="contact.html">Investors</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Say hello</h4>
+          <ul>
+            <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
+            <li><a href="contact.html">Book a pilot call</a></li>
+            <li><a href="about.html">Boston, Massachusetts</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <div class="footer__base">
-      <span>© <span data-year>2026</span> Heartware. Prototype — not a medical device. Not for diagnostic use.</span>
-      <span>Boston, Massachusetts</span>
+    <div class="foot__base">
+      <span>© <span data-year>2026</span> Heartware</span>
+      <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>
-<script src="assets/js/explorer.js" defer></script>
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/demo.js" defer></script>
 </body>
 </html>

@@ -4,131 +4,143 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact · Heartware</title>
-<meta name="description" content="Pilot enquiries, distribution and manufacturing.">
+<meta name="description" content="Pilot enquiries, distribution and manufacturing, to the person who owns the question.">
 <meta property="og:title" content="Contact · Heartware">
-<meta property="og:description" content="Pilot enquiries, distribution and manufacturing.">
+<meta property="og:description" content="Pilot enquiries, distribution and manufacturing, to the person who owns the question.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/pages.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="contact">
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+    <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
+  </clipPath>
+</svg>
 <header class="nav" data-open="false">
-  <div class="nav__inner">
+  <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
-      <span class="brand__word"><b>Heart</b>ware</span>
+      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="brand__word">Heartware</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">Menu</button>
+    <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
-        <a href="technology.html">Technology</a>
-        <a href="product.html">Product</a>
+        <a href="product.html">The insert</a>
+        <a href="technology.html">How it works</a>
         <a href="app.html">The app</a>
-        <a href="clinical.html">Clinical impact</a>
         <a href="evidence.html">Evidence</a>
-        <a href="partnerships.html">Partnerships</a>
+        <a href="clinical.html">In the clinic</a>
+        <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="nav__cta" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="page-head">
+<section class="phero">
+  <div class="deco dots" style="right:1rem;top:2rem;width:200px;height:130px;color:var(--red);opacity:.4"></div>
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h1>Tell us which of the three you are.</h1>
-    <p class="lede">
-      A pilot site, a distributor, or a manufacturer. Each gets a different reply, so the
-      first line of your email is the most useful thing in it.
-    </p>
+    <span class="kicker kicker--red">Contact</span>
+    <h1 class="display">Tell us which of the three you are.</h1>
+    <p class="lede">No form, because a form would put a queue between you and the person who can answer. Pick the address that matches you and it lands in the right inbox.</p>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section class="sec">
+  <div class="wrap tiles">
+    <article class="card card--lilac w4">
+      <span class="kicker kicker--ghost">Clinic or trial</span>
+      <h2 class="display display--sm" style="margin-top:1rem">You have patients and an echo list.</h2>
+      <p class="small" style="margin-top:.7rem">Tell us the heads you use and how many patients you could enrol. We will send a protocol before we ask for a meeting.</p>
+      <p style="margin-top:1.2rem"><a class="btn" href="mailto:pilots@heart-ware.org">pilots@heart-ware.org</a></p>
+    </article>
+    <article class="card card--mint w4">
+      <span class="kicker kicker--ghost">Distribution</span>
+      <h2 class="display display--sm" style="margin-top:1rem">You sell to clinics already.</h2>
+      <p class="small" style="margin-top:.7rem">Tell us the territory and the stethoscope brands you carry. We start with five demo units, and the price list comes with them.</p>
+      <p style="margin-top:1.2rem"><a class="btn" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
+    </article>
+    <article class="card card--butter w4">
+      <span class="kicker kicker--ghost">Manufacturing</span>
+      <h2 class="display display--sm" style="margin-top:1rem">You build heads, or you fund them.</h2>
+      <p class="small" style="margin-top:.7rem">Licensing, tooling or investment. The design files and the bench data are available under an NDA, and the deck is short.</p>
+      <p style="margin-top:1.2rem"><a class="btn" href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></p>
+    </article>
+  </div>
+</section>
+
+<section class="sec">
   <div class="wrap">
-    <div class="split split--top">
-      <div class="stack">
-        <table class="table">
-          <tbody>
-            <tr><td>Email</td><td><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></td></tr>
-            <tr><td>Pilot enquiries</td><td><a href="mailto:pilots@heart-ware.org">pilots@heart-ware.org</a></td></tr>
-            <tr><td>Based in</td><td>Boston, Massachusetts</td></tr>
-            <tr><td>Reply time</td><td>Within a week</td></tr>
-          </tbody>
-        </table>
-        <div class="note-box">
-          <b>Not a medical device.</b> The prototype is not certified for diagnostic use and
-          must not be used to make clinical decisions. It is a research instrument.
+    <div class="tiles">
+      <div class="card card--ink w7">
+        <h2 class="display display--sm">What happens next</h2>
+        <div class="rows" style="margin-top:1rem">
+          <div class="row"><span class="row__k">Within two working days</span><p class="row__v">A reply from a person, with the protocol or the price list attached.</p></div>
+          <div class="row"><span class="row__k">Then a call</span><p class="row__v">Thirty minutes, no deck, with the questions we cannot answer yet written down.</p></div>
+          <div class="row"><span class="row__k">If it fits</span><p class="row__v">Units ship with the protocol and a named contact for the duration of the pilot.</p></div>
         </div>
       </div>
-      <div class="stack">
-        <h3>If you run a clinic or a trial</h3>
-        <p class="small">
-          Tell us whether you have echocardiography on site, roughly how many murmurs you see a
-          month, and who would be the clinical lead. That is enough to scope a pilot.
-        </p>
-        <h3>If you distribute</h3>
-        <p class="small">
-          Tell us which markets and which buying groups. We will send the specification, the
-          price list and the pilot reference when there is one.
-        </p>
-        <h3>If you manufacture</h3>
-        <p class="small">
-          Tell us whether you mould housings for stethoscopes today. The insert is a back-plate
-          variant, so the tooling conversation is smaller than it sounds.
-        </p>
+      <div class="card card--butter w5" style="align-self:start">
+        <h2 class="display display--sm">Or just write to us</h2>
+        <p style="margin-top:.8rem;font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.6rem);letter-spacing:-.03em;word-break:break-word">hello@heart-ware.org</p>
+        <p class="small" style="margin-top:.8rem">Boston, Massachusetts. We answer email faster than anything else.</p>
       </div>
     </div>
   </div>
 </section>
 </main>
-<footer class="footer">
+
+<footer class="foot">
   <div class="wrap">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <img src="assets/img/logo-mark.png" alt="" width="24" height="24">
-        <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
-      </div>
+    <div class="foot__top">
       <div>
-        <h4>Product</h4>
-        <ul>
-          <li><a href="technology.html">Technology</a></li>
-          <li><a href="product.html">The insert</a></li>
-          <li><a href="product.html#specs">Specifications</a></li>
-          <li><a href="evidence.html">Evidence</a></li>
-        </ul>
+        <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
+          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="brand__word">Heartware</span>
+        </a>
+        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="clinical.html">Clinical impact</a></li>
-          <li><a href="partnerships.html">Partnerships</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
-          <li><a href="contact.html">Request a pilot</a></li>
-          <li><a href="evidence.html#method">Method and code</a></li>
-        </ul>
-      </div>
+      <nav class="foot__cols" aria-label="Footer">
+        <div>
+          <h4>The product</h4>
+          <ul>
+            <li><a href="product.html">The insert</a></li>
+            <li><a href="technology.html">How it works</a></li>
+            <li><a href="app.html">The app</a></li>
+            <li><a href="evidence.html">Evidence</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Who we talk to</h4>
+          <ul>
+            <li><a href="clinical.html">Clinicians</a></li>
+            <li><a href="partnerships.html">Distributors</a></li>
+            <li><a href="partnerships.html">Manufacturers</a></li>
+            <li><a href="contact.html">Investors</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Say hello</h4>
+          <ul>
+            <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
+            <li><a href="contact.html">Book a pilot call</a></li>
+            <li><a href="about.html">Boston, Massachusetts</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <div class="footer__base">
-      <span>© <span data-year>2026</span> Heartware. Prototype — not a medical device. Not for diagnostic use.</span>
-      <span>Boston, Massachusetts</span>
+    <div class="foot__base">
+      <span>© <span data-year>2026</span> Heartware</span>
+      <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>
-<script src="assets/js/explorer.js" defer></script>
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/demo.js" defer></script>
 </body>
 </html>

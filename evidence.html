@@ -4,400 +4,160 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Evidence · Heartware</title>
-<meta name="description" content="What is measured, what is modelled, and what is not yet known.">
+<meta name="description" content="Six results, their sample sizes and the limits of each. Including the two that argue against the product.">
 <meta property="og:title" content="Evidence · Heartware">
-<meta property="og:description" content="What is measured, what is modelled, and what is not yet known.">
+<meta property="og:description" content="Six results, their sample sizes and the limits of each. Including the two that argue against the product.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/pages.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gabarito:wght@500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="evidence">
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+    <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
+  </clipPath>
+</svg>
 <header class="nav" data-open="false">
-  <div class="nav__inner">
+  <div class="nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
-      <span class="brand__word"><b>Heart</b>ware</span>
+      <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="brand__word">Heartware</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">Menu</button>
+    <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
-        <a href="technology.html">Technology</a>
-        <a href="product.html">Product</a>
+        <a href="product.html">The insert</a>
+        <a href="technology.html">How it works</a>
         <a href="app.html">The app</a>
-        <a href="clinical.html">Clinical impact</a>
         <a href="evidence.html">Evidence</a>
-        <a href="partnerships.html">Partnerships</a>
+        <a href="clinical.html">In the clinic</a>
+        <a href="partnerships.html">Work with us</a>
         <a href="about.html">About</a>
-        <a class="nav__cta" href="contact.html">Talk to us</a>
+        <a class="btn btn--sm" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="page-head">
+<section class="phero">
+  <div class="deco semi" style="right:1rem;top:-6rem;width:20rem;height:10rem;background:var(--butter)"></div>
   <div class="wrap">
-    <p class="eyebrow">Evidence</p>
-    <h1>Every number and where it comes from.</h1>
-    <p class="lede">
-      Six results. Each carries its figure, its sample size and its failure case, including
-      the two that argue against the product.
-    </p>
+    <span class="kicker">Six results, six limits</span>
+    <h1 class="display">Every number, and where it came from.</h1>
+    <p class="lede">Each result below carries its sample size, the method that produced it, and the thing it does not prove. Two of these results argue against the product, and they are on this page for that reason.</p>
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="index-nav reveal">
-      <a href="#recovery"><span>01</span><b>Recovering the wall</b></a>
-      <a href="#body"><span>02</span><b>Removing the body dependence</b></a>
-      <a href="#ablation"><span>03</span><b>What does the work</b></a>
-      <a href="#robust"><span>04</span><b>When the model is wrong</b></a>
-    </div>
+<section class="sec">
+  <div class="wrap tiles">
+    <article class="tile tile--lilac w7 tile--tall rise">
+      <div><span class="kicker kicker--ghost">Result 1 &middot; in silico</span>
+        <h3 style="margin-top:.9rem;font-size:clamp(1.5rem,3vw,2.2rem)">The wall can be recovered from the recording.</h3>
+        <p>600 synthetic subjects, walls from 9 to 45 mm, murmur present in half. The estimator sees one three-second recording and nothing else. RMS error 3.7 mm, correlation 0.75, 86 per cent within 5 mm.</p>
+      </div>
+      <span class="tile__n">3.7 mm</span>
+    </article>
+    <article class="tile tile--red w5 tile--tall rise">
+      <div><span class="kicker" style="background:var(--paper);color:var(--red)">Result 2 &middot; in silico</span>
+        <h3 style="margin-top:.9rem;font-size:clamp(1.5rem,3vw,2.2rem)">Correction removes the body dependence.</h3>
+        <p>Same murmur, same grade, different habitus. 1.73 dB spread before, 0.25 dB after.</p>
+      </div>
+      <span class="tile__n">1.73 &rarr; 0.25</span>
+    </article>
+    <article class="tile tile--mint w4"><h3>The shortcut fails</h3><p>Scaling by body mass or BMI leaves 1.4 dB of spread. Only the per-record estimate closes it, which is why the insert measures instead of asking.</p></article>
+    <article class="tile tile--butter w4"><h3>A wrong model costs decibels</h3><p>With the physical model deliberately wrong by 15 to 30 per cent, spread lands at 1.75 to 2.80 dB against 1.93 dB exact. It degrades; it does not collapse.</p></article>
+    <article class="tile tile--ink w4"><h3>Bench, not bedside</h3><p>The 6.0 dB noise rejection was measured on the bench, two capsules, one speaker. No patient was in the room.</p></article>
   </div>
 </section>
 
-<section id="recovery" style="padding-top:1rem">
+<section class="band band--ink sec">
   <div class="wrap">
-    <div class="head reveal">
+    <div class="head">
       <div>
-        <p class="eyebrow">Recovery</p>
-        <h2>Recovering wall thickness</h2>
+        <span class="kicker" style="background:var(--paper);color:var(--ink)">The ledger</span>
+        <h2 class="display display--md">Every claim, and what stands behind it.</h2>
       </div>
-      <p class="lede">
-        600 synthetic subjects, walls from 9 to 45 mm, murmur present in half. The estimator
-        sees one three-second recording and nothing else.
-      </p>
+      <p class="head__aside">If a row says not claimed, it is not claimed anywhere on this site.</p>
     </div>
-    <div class="split split--top">
-      <figure class="figure reveal">
-        <img src="assets/figures/fig-02-identity.png" alt="Estimated against true chest-wall thickness for 320 subjects, clustered along the identity line." loading="lazy">
-        <figcaption><b>FIG 02</b> Estimated against true thickness. RMS error 3.7 mm; 86% within 5 mm; correlation 0.75.</figcaption>
-      </figure>
-      <div class="stack">
-        <p>
-          The fit allows an arbitrary gain, tilt and curvature for the unknown source spectrum
-          — otherwise the estimator would be reading the heart, not the wall — and the
-          residual shape then identifies the path.
-        </p>
-        <p>
-          The bias is +1.5 mm, meaning the method tends to over-estimate by about the width of
-          a fingertip. That matters for the correction: over-estimating over-corrects, which
-          is why the inverse is regularised rather than exact.
-        </p>
-        <div class="note-box">
-          <b>Read this correctly.</b> This validates the arithmetic of the inversion. It says
-          nothing about whether a corrected recording finds disease an uncorrected one misses.
-        </div>
-      </div>
+    <div class="rows">
+      <div class="row"><span class="row__k">Wall thickness from the recording</span><p class="row__v">In silico, n = 600, RMS 3.7 mm</p></div>
+      <div class="row"><span class="row__k">Body dependence removed</span><p class="row__v">In silico, n = 600, 1.73 to 0.25 dB</p></div>
+      <div class="row"><span class="row__k">Seats in 44 to 48 mm heads</span><p class="row__v">Three printed revisions, fitted by hand</p></div>
+      <div class="row"><span class="row__k">Second microphone cancels room noise</span><p class="row__v">Architecture built; 6.0 dB on the bench</p></div>
+      <div class="row"><span class="row__k">Finds valve disease an uncorrected recording misses</span><p class="row__v">Not claimed. Needs paired recordings with echo</p></div>
+      <div class="row"><span class="row__k">Sensitivity, specificity or AUC</span><p class="row__v">Not claimed. No such study exists yet</p></div>
     </div>
   </div>
 </section>
 
-<section id="body" class="band-cream">
+<section class="sec">
   <div class="wrap">
-    <div class="head reveal">
+    <div class="head">
       <div>
-        <p class="eyebrow">Body dependence</p>
-        <h2>The same murmur at the same level</h2>
+        <span class="kicker kicker--ghost">Still missing</span>
+        <h2 class="display display--md">What would make this a product.</h2>
       </div>
-      <p class="lede">
-        Split by body habitus. Before correction the murmur falls away as the wall thickens;
-        after correction the three levels sit within a quarter of a decibel.
-      </p>
+      <p class="head__aside">Written down so nobody has to guess how far along this is.</p>
     </div>
-    <div class="split split--top">
-      <figure class="figure reveal">
-        <img src="assets/figures/fig-03-body.png" alt="Murmur level by BMI group: falling with body size when uncorrected, flat when corrected." loading="lazy">
-        <figcaption><b>FIG 03</b> Murmur level in dB against the patient's own S1/S2. Spread 1.73 dB before, 0.25 dB after.</figcaption>
-      </figure>
-      <figure class="figure reveal">
-        <img src="assets/figures/fig-05-waveform.png" alt="The 150-400 Hz envelope of one recording, before and after correction, on the same scale." loading="lazy">
-        <figcaption><b>FIG 05</b> One subject, 30 mm wall: the envelope of the murmur band on the same scale. +4.5 dB.</figcaption>
-      </figure>
-    </div>
-    <p class="tiny" style="margin-top:1.6rem;max-width:66ch">
-      The measure is a ratio against the patient's own valve closures, so it cannot be
-      improved by pressing harder or turning up the volume. Body groups are thirds of a
-      synthetic BMI distribution, mean 22.2, 29.0 and 36.1.
-    </p>
-  </div>
-</section>
-
-<section id="ablation">
-  <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow">Ablation</p>
-        <h2>The obvious shortcut does not work</h2>
-      </div>
-      <p class="lede">
-        Four ways to build the same correction. Assuming one wall thickness for every patient
-        — the cheap version — leaves the body dependence almost exactly where it was.
-      </p>
-    </div>
-    <div class="split split--top">
-      <figure class="figure reveal">
-        <img src="assets/figures/fig-04-ablation.png" alt="Bar chart: spread in murmur level for four correction strategies." loading="lazy">
-        <figcaption><b>FIG 04</b> Spread in murmur level across body types. Only the per-record estimate closes it.</figcaption>
-      </figure>
-      <div class="stack">
-        <p>
-          <b>One fixed thickness</b> gains 1.82 dB on average but leaves 1.69 dB of spread:
-          it lifts everyone, so the difference between bodies survives.
-        </p>
-        <p>
-          <b>Ignoring the resonance</b> — modelling absorption only — does better than a fixed
-          thickness but still leaves 0.60 dB, because the resonance is where the thickness
-          information lives.
-        </p>
-        <p>
-          <b>Estimating per recording</b> is the only variant that reduces the spread to
-          0.25 dB, at a mean gain of 1.93 dB.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="robust" class="band-cream">
-  <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow">Robustness</p>
-        <h2>When the physics is wrong</h2>
-      </div>
-      <p class="lede">
-        The generator and the estimator were made to disagree about absorption and about the
-        resonance. The correction survives all six, which is the useful property of a
-        physical model: it degrades, it does not collapse.
-      </p>
-    </div>
-    <div class="split split--top">
-      <figure class="figure reveal">
-        <img src="assets/figures/fig-06-robustness.png" alt="Murmur gain under six deliberate model errors, all between 1.5 and 2.8 dB." loading="lazy">
-        <figcaption><b>FIG 06</b> Gain with the model deliberately wrong by 15–30%. Range 1.75–2.80 dB against 1.93 dB exact.</figcaption>
-      </figure>
-      <div class="stack">
-        <table class="table">
-          <thead><tr><th>Deliberate error</th><th>Thickness RMS</th><th>Gain</th></tr></thead>
-          <tbody>
-            <tr><td>Absorption +20%</td><td>3.20 mm</td><td>1.92 dB</td></tr>
-            <tr><td>Absorption −20 %</td><td>4.09 mm</td><td>2.17 dB</td></tr>
-            <tr><td>Exponent +15 %</td><td>4.61 mm</td><td>2.30 dB</td></tr>
-            <tr><td>Exponent −15 %</td><td>4.09 mm</td><td>2.17 dB</td></tr>
-            <tr><td>Resonance Q −30 %</td><td>6.58 mm</td><td>2.80 dB</td></tr>
-            <tr><td>Resonance Q +30 %</td><td>3.39 mm</td><td>1.75 dB</td></tr>
-          </tbody>
-        </table>
-        <p class="tiny">150 subjects per row, generator and estimator disagreeing by the stated amount.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow">Claims ledger</p>
-        <h2>Every claim and what stands behind it</h2>
-      </div>
-      <p class="lede">
-        If a claim is not in this table it is not made anywhere on the site. Where the evidence
-        is missing, the row says so.
-      </p>
-    </div>
-
-    <div class="ledger">
-      <div class="ledger__row">
-        <span class="ledger__mark">✓</span>
-        <div class="ledger__claim">The chest wall behaves as a low-pass filter whose resonance falls with thickness</div>
-        <div class="ledger__ev">Physical model, four thicknesses, Fig 01</div>
-        <div class="ledger__state state-yes">Supported</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">✓</span>
-        <div class="ledger__claim">Wall thickness is recoverable from the recording alone</div>
-        <div class="ledger__ev">In-silico, n = 600, RMS 3.7 mm</div>
-        <div class="ledger__state state-yes">Supported</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">✓</span>
-        <div class="ledger__claim">Per-record correction removes the body dependence of murmur level</div>
-        <div class="ledger__ev">In-silico, n = 600, 1.73 → 0.25 dB</div>
-        <div class="ledger__state state-yes">Supported</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">✓</span>
-        <div class="ledger__claim">The insert seats in 44–48 mm chestpieces and the instrument still works without it</div>
-        <div class="ledger__ev">Three printed revisions, fitted by hand</div>
-        <div class="ledger__state state-yes">Measured</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">~</span>
-        <div class="ledger__claim">The second microphone cancels room noise</div>
-        <div class="ledger__ev">Architecture built; dB figure not yet measured</div>
-        <div class="ledger__state state-part">Partial</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">~</span>
-        <div class="ledger__claim">The method survives error in the physical model</div>
-        <div class="ledger__ev">In-silico, six deliberate errors, Fig 06</div>
-        <div class="ledger__state state-part">Partial</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">×</span>
-        <div class="ledger__claim">A corrected recording finds valve disease an uncorrected one misses</div>
-        <div class="ledger__ev">Requires paired recordings with echocardiography</div>
-        <div class="ledger__state state-no">Not yet tested</div>
-      </div>
-      <div class="ledger__row">
-        <span class="ledger__mark">×</span>
-        <div class="ledger__claim">Sensitivity, specificity or AUC against echo</div>
-        <div class="ledger__ev">Not claimed anywhere on this site</div>
-        <div class="ledger__state state-no">Not claimed</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band-navy">
-  <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow">Milestones</p>
-        <h2>Done, under way and next</h2>
-      </div>
-      <p class="lede">
-        Three revisions shipped, a fourth in tooling, and one study between the design and
-        the shelf.
-      </p>
-    </div>
-
-    <div class="timeline">
-      <div class="tl">
-        <p class="tl__when">Completed</p>
-        <h4>The device exists</h4>
-        <ul>
-          <li>Three printed housing revisions, 38.9 mm seat</li>
-          <li>Fitted to 44–48 mm single and double heads</li>
-          <li>Dual-microphone chain capturing at 24-bit</li>
-          <li>Firmware streaming over Bluetooth 5 with a ring buffer</li>
-          <li>App that records, segments, corrects and gates</li>
-          <li>More than 100 people have handled the unit</li>
-        </ul>
-      </div>
-      <div class="tl">
-        <p class="tl__when">Under way</p>
-        <h4>The measurements</h4>
-        <ul>
-          <li>Bench measurement of two-microphone cancellation</li>
-          <li>Contact-pressure protocol and repeatability across operators</li>
-          <li>Recording sessions across body types</li>
-          <li>Photograph of the insert seated in a real chestpiece</li>
-        </ul>
-      </div>
-      <div class="tl tl--future">
-        <p class="tl__when">Next</p>
-        <h4>The clinical claim</h4>
-        <ul>
-          <li>Paired recording and echo study at a partner site</li>
-          <li>Regulatory pathway: 510(k), exempt, or software-only</li>
-          <li>Injection-mould tooling and a contract manufacturer</li>
-          <li>Pilot units at $59 with the app included</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="method">
-  <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow">Method</p>
-        <h2>Check the arithmetic</h2>
-      </div>
-      <p class="lede">
-        The model, the estimator and the figures are one Python file and one plotting file.
-        Run them and every number on this page regenerates.
-      </p>
-    </div>
-    <div class="split split--top">
-      <div class="stack">
-        <table class="table">
-          <tbody>
-            <tr><td>Model and experiment</td><td><code>research/thoracic_model.py</code></td></tr>
-            <tr><td>Figures</td><td><code>research/make_figures.py</code></td></tr>
-            <tr><td>Output</td><td><code>research/results.json</code></td></tr>
-            <tr><td>Seed</td><td>20261106 · reproducible</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="stack">
-        <p class="small">
-          The experiment generates a heart sound with noise, passes it through a modelled
-          chest wall of known thickness, adds a room, and then hides the thickness from the
-          estimator. Every reported number is computed from that pipeline, not written down
-          by hand.
-        </p>
-        <div class="note-box">
-          <b>The next run is the clinical one.</b> Paired recordings with echocardiography in
-          a site that already reads echoes. The protocol, the capture sheet and the analysis
-          ship with the model, so the day the first twenty pairs exist the result is a table,
-          not a start-up.
-        </div>
-      </div>
+    <div class="tiles">
+      <div class="tile tile--pink w6"><h3>The clinical study</h3><p>Twenty to forty patients with an echo already booked. Paired recordings, blinded analysis, and a result that either supports the correction or does not.</p></div>
+      <div class="tile tile--butter w6"><h3>The photograph</h3><p>A finished part in a real chestpiece. Everything on this site is a render until then, and a render is not evidence of a product.</p></div>
+      <div class="tile tile--mint w6"><h3>The regulatory route</h3><p>510(k), exempt, or software only. Not decided, and not decided by us alone.</p></div>
+      <div class="tile tile--lilac w6"><h3>The tooling</h3><p>Injection moulding and a contract manufacturer. The current housing is printed, which is why the fit is by hand.</p></div>
     </div>
   </div>
 </section>
 </main>
-<footer class="footer">
+
+<footer class="foot">
   <div class="wrap">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <img src="assets/img/logo-mark.png" alt="" width="24" height="24">
-        <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
-      </div>
+    <div class="foot__top">
       <div>
-        <h4>Product</h4>
-        <ul>
-          <li><a href="technology.html">Technology</a></li>
-          <li><a href="product.html">The insert</a></li>
-          <li><a href="product.html#specs">Specifications</a></li>
-          <li><a href="evidence.html">Evidence</a></li>
-        </ul>
+        <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
+          <svg class="brand__mark" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="currentColor"/><path d="M11 20.6h6.2l2.7-7 4.1 13.6 2.9-6.6H37" fill="none" stroke="#fffdf7" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="brand__word">Heartware</span>
+        </a>
+        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="clinical.html">Clinical impact</a></li>
-          <li><a href="partnerships.html">Partnerships</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
-          <li><a href="contact.html">Request a pilot</a></li>
-          <li><a href="evidence.html#method">Method and code</a></li>
-        </ul>
-      </div>
+      <nav class="foot__cols" aria-label="Footer">
+        <div>
+          <h4>The product</h4>
+          <ul>
+            <li><a href="product.html">The insert</a></li>
+            <li><a href="technology.html">How it works</a></li>
+            <li><a href="app.html">The app</a></li>
+            <li><a href="evidence.html">Evidence</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Who we talk to</h4>
+          <ul>
+            <li><a href="clinical.html">Clinicians</a></li>
+            <li><a href="partnerships.html">Distributors</a></li>
+            <li><a href="partnerships.html">Manufacturers</a></li>
+            <li><a href="contact.html">Investors</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Say hello</h4>
+          <ul>
+            <li><a href="mailto:hello@heart-ware.org">hello@heart-ware.org</a></li>
+            <li><a href="contact.html">Book a pilot call</a></li>
+            <li><a href="about.html">Boston, Massachusetts</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <div class="footer__base">
-      <span>© <span data-year>2026</span> Heartware. Prototype — not a medical device. Not for diagnostic use.</span>
-      <span>Boston, Massachusetts</span>
+    <div class="foot__base">
+      <span>© <span data-year>2026</span> Heartware</span>
+      <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>
-<script src="assets/js/explorer.js" defer></script>
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/demo.js" defer></script>
 </body>
 </html>
