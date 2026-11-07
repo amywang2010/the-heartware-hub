@@ -5,30 +5,31 @@
    ========================================================================= */
 
 :root {
-  --paper: #FFF7F2;
-  --paper-warm: #FBEAE3;
-  --paper-deep: #F4DCD3;
-  --cream: #FFFCFA;
+  --paper: #EDE7DD;
+  --paper-warm: #E4DCD0;
+  --paper-deep: #D8CEC0;
+  --cream: #F7F3EC;
 
-  --ink: #0F1A2C;
-  --navy: #173D7A;
-  --navy-deep: #0E2857;
-  --navy-soft: #5A6E92;
+  --ink: #10151A;
+  --navy: #16324F;
+  --navy-deep: #0B1D2E;
+  --navy-soft: #4A5C6E;
 
   --red: #C8102E;
   --hot: #E23B55;
   --red-deep: #8C0A22;
 
-  --muted: #5E667A;
-  --line: rgba(15, 26, 44, 0.13);
-  --line-soft: rgba(15, 26, 44, 0.07);
+  --muted: #5A6068;
+  --line: rgba(16, 21, 26, 0.18);
+  --line-soft: rgba(16, 21, 26, 0.09);
 
-  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
-  --r: 14px;
-  --r-lg: 22px;
+  --r: 2px;
+  --r-lg: 3px;
 
   --wrap: 1240px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
@@ -821,3 +822,206 @@ section {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =========================================================================
+   R2 — editorial pass.
+   The first build was soft and beige: rounded cards on cream, italic accents,
+   everything the same weight. This layer strips the softness. Archivo for
+   structure, Newsreader for prose, hairlines instead of boxes, photography
+   instead of illustrations, and a black band so the page has a bottom.
+   ========================================================================= */
+
+body {
+  font-family: var(--serif);
+  font-size: clamp(1.06rem, 0.42vw + 0.99rem, 1.18rem);
+  line-height: 1.58;
+  letter-spacing: 0.002em;
+}
+
+h1, h2, h3, h4, .brand__word, .stat__num, .btn, .eyebrow, nav a {
+  font-family: var(--display);
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.032em;
+  line-height: 1.02;
+}
+
+em, i, .ital {
+  font-style: normal;
+}
+
+h1 em, h2 em, h3 em, .accent {
+  color: var(--red);
+  font-weight: 600;
+}
+
+p { max-width: 62ch; }
+
+.btn, .chip, .tag, .pill { border-radius: 0; }
+.btn { letter-spacing: 0.01em; font-weight: 500; }
+
+img, video { image-rendering: auto; }
+
+/* a photograph, not a card */
+.shot {
+  position: relative;
+  width: 100%;
+  background: var(--paper-warm);
+  overflow: hidden;
+}
+
+.shot img,
+.shot video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shot--bleed { margin-inline: calc(-1 * var(--gutter)); }
+
+.figcap {
+  margin: 0.7rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* the black band: full-width, squared, no gradient */
+.band {
+  background: var(--ink);
+  color: #F3EFE7;
+  padding-block: clamp(3.5rem, 7vw, 7rem);
+}
+
+.band--navy { background: var(--navy-deep); }
+.band--red { background: var(--red); color: #fff; }
+
+.band .eyebrow { color: rgba(243, 239, 231, 0.62); }
+.band .eyebrow::before { background: var(--red); }
+.band h2, .band h3 { color: #F7F3EC; }
+.band p { color: rgba(243, 239, 231, 0.78); }
+.band a { color: #F7F3EC; }
+
+/* ragged, asymmetric two-up: no equal cards */
+.split {
+  display: grid;
+  gap: clamp(1.6rem, 4vw, 4.5rem);
+  grid-template-columns: 1.35fr 1fr;
+  align-items: start;
+}
+
+.split--reverse { grid-template-columns: 1fr 1.35fr; }
+.split--reverse > :first-child { order: 2; }
+
+@media (max-width: 900px) {
+  .split, .split--reverse { grid-template-columns: 1fr; }
+  .split--reverse > :first-child { order: 0; }
+}
+
+/* plates: photographs on paper, caption underneath, hairline between */
+.plates {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: start;
+}
+
+.plates--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.plate { margin: 0; }
+
+.plate .shot {
+  background: #E7DFD3;
+  aspect-ratio: 4 / 3;
+}
+
+.plates--three .plate:first-child .shot { aspect-ratio: 4 / 3; }
+
+.plates__note {
+  border-top: 1px solid var(--line);
+  padding-top: 1.1rem;
+}
+
+.plates__note p { margin-top: 0; font-size: 0.96rem; }
+
+.shot--hero {
+  aspect-ratio: 5 / 6;
+  background: #E7DFD3;
+}
+
+.shot--hero img { object-position: 50% 46%; }
+
+@media (max-width: 900px) {
+  .plates, .plates--three { grid-template-columns: 1fr; }
+}
+
+/* a full-bleed product loop, black band, no chrome over it */
+.reel {
+  background: var(--ink);
+  padding-block: clamp(2.4rem, 5vw, 4.5rem);
+}
+
+.reel video {
+  width: 100%;
+  max-width: 1040px;
+  max-height: 68vh;
+  margin-inline: auto;
+  display: block;
+  background: #000;
+}
+
+.reel figcaption {
+  max-width: 1100px;
+  margin: 1rem auto 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(243, 239, 231, 0.5);
+}
+
+/* R2 hero: the headline has to fit its column, and the photograph has to sit
+   on the paper rather than in a grey box */
+.hero__grid {
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 3.35vw, 3.35rem);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.4rem;
+}
+
+.hero__sub {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  max-width: 44ch;
+}
+
+.shot--hero img {
+  filter: contrast(1.07) saturate(1.06);
+}
+
+.shot--hero {
+  aspect-ratio: 1 / 1.12;
+  background: #E3DACD;
+}
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(2rem, 8.4vw, 2.9rem); }
+}
+
+/* sections were 7.5rem apart at desktop, which read as empty page rather than
+   as room. 4.5rem holds the rhythm without the gaps. */
+section { padding-block: clamp(3rem, 4.6vw, 4.6rem); }

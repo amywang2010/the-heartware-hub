@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/pages.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -68,63 +68,20 @@
         </div>
       </div>
       <figure class="hero__figure">
-        <svg class="chestwall" viewBox="0 0 560 560" role="img" aria-label="A cross-section through the chest wall: the stethoscope head on the skin, and the sound losing its high frequencies as it crosses fat, muscle and rib.">
-  <defs>
-    <clipPath id="cw">
-      <rect x="24" y="104" width="404" height="356" rx="8"/>
-    </clipPath>
-  </defs>
-
-  <g clip-path="url(#cw)">
-    <path d="M28 104 C 160 100 360 108 492 104 L 492 118 C 360 122 160 114 28 118 Z" fill="#F6D8CE"/>
-    <path d="M28 118 C 160 113 360 123 492 118 L 492 210 C 360 215 160 205 28 210 Z" fill="#FBE8DF"/>
-    <path d="M28 210 C 160 205 360 215 492 210 L 492 284 C 360 289 160 279 28 284 Z" fill="#E9B4A6"/>
-    <path d="M28 284 C 160 281 360 287 492 284 L 492 318 C 360 321 160 315 28 318 Z" fill="#D8C9C2"/>
-    <path d="M28 318 C 160 314 360 322 492 318 L 492 340 C 360 344 160 336 28 340 Z" fill="#F3E9E4"/>
-    <path d="M28 340 C 160 334 360 346 492 340 L 492 460 C 360 466 160 454 28 460 Z" fill="#DCE4F1"/>
-  </g>
-  <rect x="24" y="104" width="404" height="356" rx="8" fill="none" stroke="#173D7A" stroke-width="1" opacity="0.18"/>
-
-  <!-- the sound, losing its top end -->
-  <g stroke="#C8102E" fill="none" stroke-linecap="round">
-    <path d="M150 120 C 184 158 116 196 150 232 C 184 268 116 306 150 342" stroke-width="2.8" opacity="0.9"/>
-    <path d="M196 120 C 230 158 162 196 196 232 C 230 268 162 306 196 342" stroke-width="2.1" opacity="0.55"/>
-    <path d="M242 120 C 276 158 208 196 242 232 C 276 268 208 306 242 342" stroke-width="1.4" opacity="0.3"/>
-  </g>
-
-  <!-- stethoscope head -->
-  <g stroke="#173D7A" fill="none" stroke-width="2">
-    <circle cx="150" cy="74" r="32" fill="#FFFCFA"/>
-    <circle cx="150" cy="74" r="21" opacity="0.5"/>
-    <path d="M150 42 L150 10" stroke-linecap="round"/>
-  </g>
-  <circle cx="150" cy="74" r="5" fill="#C8102E"/>
-
-  <!-- labels -->
-  <g font-family="'Instrument Sans', sans-serif" font-size="19" fill="#0F1A2C">
-    <g stroke="#0F1A2C" stroke-width="1" opacity="0.28">
-      <path d="M436 112 H 468"/>
-      <path d="M306 165 H 468"/>
-      <path d="M306 248 H 468"/>
-      <path d="M306 301 H 468"/>
-    </g>
-    <text x="476" y="119">Skin</text>
-    <text x="476" y="172">Fat</text>
-    <text x="476" y="255">Muscle</text>
-    <text x="476" y="308">Rib</text>
-  </g>
-
-  <g font-family="'JetBrains Mono', monospace" font-size="13" fill="#C8102E" letter-spacing="1.5">
-    <text x="24" y="504">−25 dB AT 300 Hz</text>
-  </g>
-  <g font-family="'JetBrains Mono', monospace" font-size="12" fill="#173D7A" opacity="0.55" letter-spacing="1.3">
-    <text x="24" y="534">WHAT A 38 MM WALL TAKES OUT</text>
-  </g>
-</svg>
-        <figcaption class="hero__caption">One murmur, one recording,<br>two different chest walls</figcaption>
+        <div class="shot shot--hero">
+          <img src="assets/img/product-hero.jpg" alt="Heartware insert seated in a stethoscope chestpiece, photographed on paper" width="2000" height="2400">
+        </div>
+        <figcaption class="figcap">Prototype 3 · stock chestpiece, replaceable insert</figcaption>
       </figure>
     </div>
   </div>
+</section>
+
+<section class="reel">
+  <figure class="reveal" style="margin:0">
+    <video src="assets/img/product-loop.mp4" autoplay muted loop playsinline poster="assets/img/product-hero.jpg" aria-label="The insert turning on its axis, fitted in the chestpiece"></video>
+    <figcaption>Prototype 3 · chestpiece and insert, one turn</figcaption>
+  </figure>
 </section>
 
 <section style="padding-block:0">
@@ -329,40 +286,20 @@
       </p>
     </div>
 
-    <div class="drawings">
-      <div class="sheet reveal">
-        <span class="sheet__label">Fig. A · Section, exploded</span>
-        <svg viewBox="0 0 520 470" role="img" aria-label="Exploded section of the insert: six stacked parts, from the diaphragm face to the retention collar.">
-  <line x1="230" y1="40" x2="230" y2="430" stroke="#173D7A" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.4"/>
-  <rect x="155.0" y="60" width="150" height="10" rx="4" fill="#FFFCFA" stroke="#173D7A" stroke-width="1.4"/><path d="M309.0 65.0 H 317.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="321.0" y="69.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">DIAPHRAGM FACE</text><rect x="146.0" y="96" width="168" height="14" rx="4" fill="#FBE8DF" stroke="#173D7A" stroke-width="1.4"/><path d="M318.0 103.0 H 326.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="330.0" y="107.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">ACOUSTIC PORT</text><rect x="142.0" y="136" width="176" height="9" rx="4" fill="#FFFCFA" stroke="#173D7A" stroke-width="1.4"/><path d="M322.0 140.5 H 330.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="334.0" y="144.5" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">DUAL MEMS BOARD</text><rect x="164.0" y="171" width="132" height="12" rx="4" fill="#FBE8DF" stroke="#173D7A" stroke-width="1.4"/><path d="M300.0 177.0 H 308.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="312.0" y="181.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">BATTERY</text><rect x="139.0" y="209" width="182" height="16" rx="4" fill="#FFFCFA" stroke="#173D7A" stroke-width="1.4"/><path d="M325.0 217.0 H 333.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="337.0" y="221.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">BASE SHELL</text><rect x="170.0" y="251" width="120" height="8" rx="4" fill="#FBE8DF" stroke="#173D7A" stroke-width="1.4"/><path d="M294.0 255.0 H 302.0" stroke="#0F1A2C" stroke-width="0.8" opacity="0.35"/><text x="306.0" y="259.0" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0F1A2C" letter-spacing="0.8">RETENTION COLLAR</text>
-  <text x="30" y="448" font-family="'JetBrains Mono', monospace" font-size="9"
-        fill="#173D7A" letter-spacing="1.4">SECTION · SIX PARTS · NO ADHESIVE</text>
-</svg>
-        <span class="sheet__scale">No adhesive · no drilling</span>
-      </div>
-      <div class="stack">
-        <div class="sheet reveal">
-          <span class="sheet__label">Fig. B · Front</span>
-          <svg viewBox="0 0 360 360" role="img" aria-label="Front view of the insert: a circular plate with a collar, a retention latch and the acoustic port.">
-  <g stroke="#173D7A" fill="none" stroke-width="1.5">
-    <circle cx="180" cy="180" r="132" stroke-dasharray="5 6" opacity="0.45"/>
-    <circle cx="180" cy="180" r="118" fill="#FFFCFA"/>
-    <circle cx="180" cy="180" r="96"/>
-    <circle cx="180" cy="180" r="86" opacity="0.5"/>
-    <path d="M180 62 v 22 M180 276 v 22 M62 180 h 22 M276 180 h 22" opacity="0.4"/>
-  </g>
-  <circle cx="180" cy="180" r="14" fill="#C8102E"/>
-  <circle cx="180" cy="180" r="24" fill="none" stroke="#173D7A" stroke-width="1.2"/>
-  <g fill="#173D7A">
-    <circle cx="255" cy="105" r="4"/><circle cx="105" cy="105" r="4"/>
-    <circle cx="255" cy="255" r="4"/><circle cx="105" cy="255" r="4"/>
-  </g>
-  <rect x="168" y="44" width="24" height="12" rx="4" fill="#C8102E"/>
-  <g font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#173D7A" letter-spacing="1.2">
-    <text x="180" y="352" text-anchor="middle">SCALE 1:1 · 44–48 MM SEAT</text>
-  </g>
-</svg>
+    <div class="plates">
+      <figure class="plate reveal">
+        <div class="shot">
+          <img src="assets/img/product-explode.jpg" alt="The insert taken apart: collar, acoustic base, microphone board, cell, logic board and lid, in stack order." width="2200" height="1650" loading="lazy">
         </div>
+        <figcaption class="figcap">Fig. A · Six parts, stack order</figcaption>
+      </figure>
+      <div class="plates__note">
+        <p>
+          The collar threads where the back plate was. The port carries the sound 3 mm to a
+          pair of MEMS microphones, one on the port and one behind a sealed cavity, and the
+          difference between them is the room. The cell, the logic board and the lid stack
+          behind it.
+        </p>
         <a class="btn btn--ghost" href="product.html">The full specification</a>
       </div>
     </div>

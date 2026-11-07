@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/pages.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -253,21 +253,22 @@
         <h2>You never tell it<br>how thick the <em>chest</em> is.</h2>
       </div>
       <p class="lede">
-        Pick a body. The device characterises the path from the recording, then corrects.
-        This is the model in this page, not a recording of a patient.
+        Set the true chest wall — anything from 9 to 45 mm, the range the estimator was
+        tested over. The device is not given that number. It recovers the wall from the
+        recording, and you see the error before you see the correction.
       </p>
     </div>
 
     <div class="explorer reveal" data-explorer>
       <div class="explorer__head">
-        <div class="seg" role="group" aria-label="Body">
-          <button data-body="slim" aria-selected="false">Athletic</button>
-          <button data-body="mid" aria-selected="true">Average</button>
-          <button data-body="broad" aria-selected="false">Broad</button>
+        <div class="wall">
+          <label for="wall-range">True chest wall</label>
+          <input id="wall-range" type="range" min="9" max="45" step="1" value="22" data-wall>
+          <output data-wall-true>22 mm</output>
         </div>
         <div class="small" style="text-align:right">
-          <b data-body-label>Average</b> · <span data-body-mass>78 kg</span><br>
-          <span class="tiny">thickness not supplied to the device</span>
+          <span class="tiny">hidden from the device</span><br>
+          <b>10–45 mm tested</b>
         </div>
       </div>
 

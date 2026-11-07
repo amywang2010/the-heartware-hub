@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Heartware studio</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #efe9e1; overflow: hidden; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from './vendor/RoomEnvironment.js';
+
+/* ============================================================================
+   HEARTWARE STUDIO
+   A single chestpiece modelling the retrofit: the stock cup and rim, and the
+   insert that replaces the back plate and hangs 14 mm behind it.
+
+   Millimetres throughout, scaled by 0.1 at the camera. 43.4 mm head, 38.9 mm
+   seat, 3 mm acoustic port, 14 mm insert. Nothing is imported from viz/.
+   ========================================================================== */
+
+const P = new URLSearchParams(location.search);
+const VIEW = P.get('view') || 'hero';
+const W = Number(P.get('w') || 1600);
+const H = Number(P.get('h') || 1400);
+const TURN = Number(P.get('turn') || 0);
+const EXPLODE = Number(P.get('explode') || 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xefe9e1);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.02).texture;
+scene.environmentIntensity = 0.85;
+
+/* ---------- textures ---------------------------------------------------- */
+function canvas(size, draw) {
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  draw(c.getContext('2d'), size);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 8;
+  return t;
+}
+
+const pcbTex = canvas(1024, (g, s) => {
+  const grd = g.createLinearGradient(0, 0, s, s);
+  grd.addColorStop(0, '#22322c');
+  grd.addColorStop(1, '#16211d');
+  g.fillStyle = grd;
+  g.fillRect(0, 0, s, s);
+  g.strokeStyle = 'rgba(200,160,96,0.5)';
+  g.lineWidth = 2;
+  for (let i = 0; i < 30; i++) {
+    const y = 40 + i * 32;
+    g.beginPath();
+    g.moveTo(80, y);
+    g.bezierCurveTo(320, y, 380, y + 26, 620, y + 26);
+    g.lineTo(700 + (i % 5) * 40, y + 26);
+    g.stroke();
+  }
+  g.fillStyle = 'rgba(224,186,120,0.95)';
+  for (let i = 0; i < 54; i++) {
+    g.beginPath();
+    g.arc(90 + (i * 173) % 840, 90 + (i * 233) % 840, 4.2, 0, 7);
+    g.fill();
+  }
+  g.fillStyle = '#e6e0d4';
+  g.font = '600 30px Helvetica, Arial, sans-serif';
+  g.fillText('HEARTWARE  HV-03', 78, 930);
+  g.font = '400 23px Helvetica, Arial, sans-serif';
+  g.fillStyle = 'rgba(230,224,212,0.62)';
+  g.fillText('TDK ICS-43434 ×2    24-bit    20 Hz – 2 kHz', 78, 968);
+});
+
+const cellTex = canvas(512, (g, s) => {
+  g.fillStyle = '#ece9e2';
+  g.fillRect(0, 0, s, s);
+  g.fillStyle = '#c8102e';
+  g.fillRect(0, 132, s, 26);
+  g.fillStyle = '#1b2a3f';
+  g.font = '700 58px Helvetica, Arial, sans-serif';
+  g.fillText('3.7 V', 38, 104);
+  g.font = '400 30px Helvetica, Arial, sans-serif';
+  g.fillText('300 mAh  Li-po', 38, 210);
+  g.font = '400 21px Helvetica, Arial, sans-serif';
+  g.fillStyle = 'rgba(27,42,63,0.55)';
+  g.fillText('HV-03   20 h nominal   100 exams', 38, 252);
+});
+
+const etchTex = canvas(512, (g, s) => {
+  g.clearRect(0, 0, s, s);
+  g.strokeStyle = 'rgba(96,96,92,0.5)';
+  g.lineWidth = 9;
+  g.lineJoin = 'round';
+  g.beginPath();
+  g.moveTo(120, 210);
+  g.bezierCurveTo(150, 210, 158, 168, 190, 168);
+  g.bezierCurveTo(226, 168, 232, 250, 268, 250);
+  g.bezierCurveTo(304, 250, 312, 150, 348, 150);
+  g.bezierCurveTo(378, 150, 384, 210, 412, 210);
+  g.stroke();
+  g.font = '400 26px Helvetica, Arial, sans-serif';
+  g.fillStyle = 'rgba(96,96,92,0.42)';
+  g.fillText('HEARTWARE', 120, 320);
+});
+
+/* ---------- materials --------------------------------------------------- */
+const M = {
+  polished: new THREE.MeshStandardMaterial({ color: 0xf7f8fa, metalness: 1.0, roughness: 0.035, envMapIntensity: 2.1 }),
+  brushed: new THREE.MeshStandardMaterial({ color: 0xcfd3d8, metalness: 1.0, roughness: 0.31, envMapIntensity: 1.15 }),
+  steel: new THREE.MeshStandardMaterial({ color: 0xdadde0, metalness: 1.0, roughness: 0.18, envMapIntensity: 1.25 }),
+  rubber: new THREE.MeshStandardMaterial({ color: 0x24252a, metalness: 0.0, roughness: 0.72 }),
+  membrane: new THREE.MeshPhysicalMaterial({
+    color: 0xffffff, metalness: 0, roughness: 0.05, transmission: 0.99, thickness: 0.05,
+    ior: 1.48, transparent: true, opacity: 0.09, clearcoat: 1, clearcoatRoughness: 0.03,
+    side: THREE.DoubleSide, envMapIntensity: 1.8
+  }),
+  shell: new THREE.MeshPhysicalMaterial({ color: 0xf6f3ec, metalness: 0.0, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
+  shellMatte: new THREE.MeshStandardMaterial({ color: 0xe2ded6, metalness: 0.0, roughness: 0.62 }),
+  red: new THREE.MeshStandardMaterial({ color: 0xc8102e, metalness: 0.0, roughness: 0.42 }),
+  tube: new THREE.MeshPhysicalMaterial({ color: 0xbe1029, metalness: 0.0, roughness: 0.36, clearcoat: 0.55, clearcoatRoughness: 0.32 }),
+  pcb: new THREE.MeshStandardMaterial({ map: pcbTex, roughness: 0.78, metalness: 0.1 }),
+  chip: new THREE.MeshStandardMaterial({ color: 0x0f1113, metalness: 0.4, roughness: 0.38 }),
+  gold: new THREE.MeshStandardMaterial({ color: 0xcaa464, metalness: 1.0, roughness: 0.26 }),
+  cell: new THREE.MeshStandardMaterial({ map: cellTex, roughness: 0.5, metalness: 0.4 }),
+  led: new THREE.MeshStandardMaterial({ color: 0xff3348, emissive: 0xff2038, emissiveIntensity: 3.2, roughness: 0.25 }),
+  etch: new THREE.MeshStandardMaterial({ map: etchTex, transparent: true, depthWrite: false, roughness: 0.45, metalness: 0.35 })
+};
+
+function lathe(profile, mat, seg = 160) {
+  const m = new THREE.Mesh(
+    new THREE.LatheGeometry(profile.map(([x, y]) => new THREE.Vector2(x, y)), seg),
+    mat
+  );
+  m.castShadow = true;
+  m.receiveShadow = true;
+  return m;
+}
+function disc(r, h, mat, y) {
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 160), mat);
+  m.position.y = y;
+  m.castShadow = true;
+  m.receiveShadow = true;
+  return m;
+}
+
+/* ---------- the stock head ---------------------------------------------- */
+const R = 21.7;        // 43.4 mm across
+const SEAT = 19.45;    // 38.9 mm seat
+const stock = new THREE.Group();
+
+// polymer rim: a thin moulded lip at the edge of the face
+stock.add(lathe([
+  [19.5, 0.35],
+  [20.6, 0.15],
+  [21.6, -0.6],
+  [21.9, -1.5],
+  [21.5, -2.4],
+  [20.6, -2.9],
+  [20.2, -2.2],
+  [20.2, -1.2],
+  [19.5, -0.9],
+  [19.5, 0.35]
+], M.rubber));
+
+// cup: tapers from the face to the back where the insert seats
+stock.add(lathe([
+  [20.2, -2.4],
+  [21.2, -3.3],
+  [21.1, -6.4],
+  [20.4, -9.6],
+  [19.2, -11.6],
+  [18.4, -12.7],
+  [17.4, -12.7],
+  [18.4, -11.4],
+  [19.5, -9.4],
+  [19.8, -3.4],
+  [20.2, -2.4]
+], M.brushed));
+
+// polished reflector behind the diaphragm
+stock.add(disc(19.4, 0.5, M.polished, -1.6));
+
+// diaphragm: a thin, nearly flat membrane so the reflector reads through it
+const membrane = new THREE.Mesh(new THREE.CircleGeometry(19.7, 128), M.membrane);
+membrane.rotation.x = -Math.PI / 2;
+membrane.position.y = -0.45;
+stock.add(membrane);
+
+// stem, angled off the side, with the tube socket
+const stem = new THREE.Group();
+const stemBody = new THREE.Mesh(new THREE.CylinderGeometry(4.5, 3.9, 13, 64), M.brushed);
+stemBody.position.y = -6.5;
+stemBody.castShadow = true;
+stem.add(stemBody);
+const socket = new THREE.Mesh(new THREE.CylinderGeometry(4.9, 4.9, 3.4, 64), M.steel);
+socket.position.y = -12.4;
+socket.castShadow = true;
+stem.add(socket);
+const tubeCurve = new THREE.CatmullRomCurve3([
+  new THREE.Vector3(0, -13.0, 0),
+  new THREE.Vector3(0.6, -21, 1.4),
+  new THREE.Vector3(4.2, -30, 3.4),
+  new THREE.Vector3(12.5, -38, 6.0),
+  new THREE.Vector3(26, -42, 9.0),
+  new THREE.Vector3(44, -40, 12.0),
+  new THREE.Vector3(62, -33, 15.0)
+], false, 'centripetal');
+const tubeMesh = new THREE.Mesh(new THREE.TubeGeometry(tubeCurve, 220, 4.5, 28, false), M.tube);
+tubeMesh.castShadow = true;
+tubeMesh.receiveShadow = true;
+stem.add(tubeMesh);
+
+const tubeCollar = new THREE.Mesh(new THREE.CylinderGeometry(5.2, 5.0, 5.2, 64), M.rubber);
+tubeCollar.position.y = -14.6;
+tubeCollar.castShadow = true;
+stem.add(tubeCollar);
+
+stem.position.set(R - 4.4, -7.4, 0);
+stem.rotation.z = Math.PI * 0.36;
+stock.add(stem);
+
+/* ---------- the insert --------------------------------------------------- */
+const insert = new THREE.Group();
+
+// threaded collar that takes the place of the stock back plate
+insert.add(lathe([
+  [SEAT - 0.15, -12.7],
+  [SEAT - 0.15, -14.9],
+  [SEAT - 1.1, -15.4],
+  [16.2, -15.4],
+  [16.2, -12.7],
+  [SEAT - 0.15, -12.7]
+], M.steel));
+
+// acoustic base: the machined shell that carries the port down to the mic
+insert.add(lathe([
+  [17.4, -15.1],
+  [17.4, -18.9],
+  [16.8, -19.5],
+  [0, -19.5],
+  [0, -15.1],
+  [17.4, -15.1]
+], M.shell));
+
+// 3 mm acoustic port through the base
+const port = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 5, 32), M.rubber);
+port.position.y = -17.4;
+insert.add(port);
+const portLip = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.5, 16, 64), M.red);
+portLip.rotation.x = Math.PI / 2;
+portLip.position.y = -15.2;
+insert.add(portLip);
+
+// microphone board with the two MEMS mics and the sealed reference cavity
+const micBoard = disc(15.4, 0.8, M.pcb, -19.9);
+insert.add(micBoard);
+[-6.6, 6.6].forEach((x) => {
+  const mic = new THREE.Mesh(new THREE.BoxGeometry(3.5, 1.2, 2.8), M.steel);
+  mic.position.set(x, -20.6, 1.6);
+  mic.castShadow = true;
+  insert.add(mic);
+});
+const cavityWell = new THREE.Mesh(new THREE.CylinderGeometry(4.4, 4.4, 2.2, 48, 1, true), M.shellMatte);
+cavityWell.position.y = -20.4;
+insert.add(cavityWell);
+
+// cell
+insert.add(disc(14.2, 3.4, M.cell, -22.0));
+insert.add(disc(14.35, 0.4, M.steel, -20.4));
+insert.add(disc(14.35, 0.4, M.steel, -23.6));
+
+// main board
+insert.add(disc(15.4, 0.8, M.pcb, -24.2));
+const soc = new THREE.Mesh(new THREE.BoxGeometry(6.4, 0.85, 6.4), M.chip);
+soc.position.y = -24.8;
+soc.castShadow = true;
+insert.add(soc);
+for (let i = 0; i < 12; i++) {
+  const a = (i / 12) * Math.PI * 2;
+  const c = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.5, 0.5), M.gold);
+  c.position.set(Math.cos(a) * 10.2, -24.7, Math.sin(a) * 10.2);
+  c.rotation.y = -a;
+  insert.add(c);
+}
+
+// lid: white polymer, LED ring, etched mark
+insert.add(lathe([
+  [17.4, -24.9],
+  [17.4, -27.6],
+  [16.8, -28.2],
+  [0, -28.2],
+  [0, -24.9],
+  [17.4, -24.9]
+], M.shell));
+const ledRing = new THREE.Mesh(new THREE.TorusGeometry(11.4, 0.5, 12, 128), M.led);
+ledRing.rotation.x = Math.PI / 2;
+ledRing.position.y = -28.22;
+insert.add(ledRing);
+const etch = new THREE.Mesh(new THREE.CircleGeometry(10.4, 64), M.etch);
+etch.rotation.x = -Math.PI / 2;
+etch.position.y = -28.26;
+insert.add(etch);
+
+/* ---------- assembly ----------------------------------------------------- */
+const assembly = new THREE.Group();
+assembly.add(stock);
+assembly.add(insert);
+
+if (EXPLODE > 0) {
+  const band = (obj, i) => { if (obj) obj.position.y -= i * 13 * EXPLODE; };
+  const kids = insert.children;
+  // group by physical stack: base group 0, mic board 1, cell 2, main board 3, lid 4
+  kids.slice(0, 5).forEach((o) => band(o, 0));
+  band(micBoard, 1);
+  band(cavityWell, 1);
+  kids.filter((o) => o.material === M.cell || o === kids[kids.length - 9]).forEach((o) => band(o, 2));
+  band(soc, 3);
+  kids.slice(-4).forEach((o) => band(o, 4));
+  stock.position.y += 3 * EXPLODE;
+}
+
+assembly.rotation.y = TURN * Math.PI * 2;
+assembly.rotation.z = -0.03;
+scene.add(assembly);
+
+/* ---------- lighting ----------------------------------------------------- */
+const key = new THREE.DirectionalLight(0xfff6ea, 3.6);
+key.position.set(-34, 58, 42);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 1;
+key.shadow.camera.far = 260;
+key.shadow.camera.left = -60;
+key.shadow.camera.right = 60;
+key.shadow.camera.top = 70;
+key.shadow.camera.bottom = -70;
+key.shadow.bias = -0.0003;
+key.shadow.radius = 5;
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0xe4ecf8, 1.5);
+fill.position.set(58, 16, 30);
+scene.add(fill);
+
+const rimLight = new THREE.DirectionalLight(0xffffff, 2.6);
+rimLight.position.set(10, 30, -50);
+scene.add(rimLight);
+
+const under = new THREE.DirectionalLight(0xfff2e6, 0.7);
+under.position.set(-10, -40, 20);
+scene.add(under);
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc4b6, 0.45));
+
+// a bright softbox above, for the long specular streak that metal needs
+const softbox = new THREE.Mesh(
+  new THREE.PlaneGeometry(90, 34),
+  new THREE.MeshBasicMaterial({ color: 0xffffff })
+);
+softbox.position.set(-6, 74, 18);
+softbox.rotation.x = Math.PI / 2.4;
+scene.add(softbox);
+
+/* ---------- shadow catcher ------------------------------------------------ */
+const catcher = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.ShadowMaterial({ opacity: 0.19 }));
+catcher.rotation.x = -Math.PI / 2;
+catcher.position.y = -29.2;
+catcher.receiveShadow = true;
+scene.add(catcher);
+
+const blob = canvas(512, (g, s) => {
+  const grad = g.createRadialGradient(s / 2, s / 2, 8, s / 2, s / 2, s / 2);
+  grad.addColorStop(0, 'rgba(70,58,48,0.34)');
+  grad.addColorStop(0.5, 'rgba(70,58,48,0.13)');
+  grad.addColorStop(1, 'rgba(70,58,48,0)');
+  g.fillStyle = grad;
+  g.fillRect(0, 0, s, s);
+});
+const softShadow = new THREE.Mesh(
+  new THREE.PlaneGeometry(180, 180),
+  new THREE.MeshBasicMaterial({ map: blob, transparent: true, depthWrite: false })
+);
+softShadow.rotation.x = -Math.PI / 2;
+softShadow.position.y = -29.1;
+scene.add(softShadow);
+
+/* ---------- camera -------------------------------------------------------- */
+const camera = new THREE.PerspectiveCamera(24, W / H, 1, 900);
+const positions = {
+  hero:      { pos: [72, 26, 112],  fov: 25, target: [6, -16, 2] },
+  macro:     { pos: [40, -6, 70],   fov: 19, target: [3, -18, 0] },
+  installed: { pos: [-50, 34, 92],  fov: 22, target: [4, -13, 0] },
+  explode:   { pos: [78, 6, 128],   fov: 25, target: [4, -34, 0] },
+  back:      { pos: [6, 78, 40],    fov: 22, target: [0, -18, 0] }
+};
+const cfg = positions[VIEW] || positions.hero;
+camera.position.set(...cfg.pos);
+camera.fov = cfg.fov;
+camera.lookAt(new THREE.Vector3(...cfg.target));
+camera.updateProjectionMatrix();
+
+renderer.render(scene, camera);
+window.__ready = true;
+window.__shoot = (t) => {
+  assembly.rotation.y = t * Math.PI * 2;
+  renderer.render(scene, camera);
+};
+</script>
+</body>
+</html>

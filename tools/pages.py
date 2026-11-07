@@ -61,11 +61,20 @@ HOME = f"""
         </div>
       </div>
       <figure class="hero__figure">
-        {chest_section()}
-        <figcaption class="hero__caption">One murmur, one recording,<br>two different chest walls</figcaption>
+        <div class="shot shot--hero">
+          <img src="assets/img/product-hero.jpg" alt="Heartware insert seated in a stethoscope chestpiece, photographed on paper" width="2000" height="2400">
+        </div>
+        <figcaption class="figcap">Prototype 3 · stock chestpiece, replaceable insert</figcaption>
       </figure>
     </div>
   </div>
+</section>
+
+<section class="reel">
+  <figure class="reveal" style="margin:0">
+    <video src="assets/img/product-loop.mp4" autoplay muted loop playsinline poster="assets/img/product-hero.jpg" aria-label="The insert turning on its axis, fitted in the chestpiece"></video>
+    <figcaption>Prototype 3 · chestpiece and insert, one turn</figcaption>
+  </figure>
 </section>
 
 <section style="padding-block:0">
@@ -237,17 +246,20 @@ HOME = f"""
       </p>
     </div>
 
-    <div class="drawings">
-      <div class="sheet reveal">
-        <span class="sheet__label">Fig. A · Section, exploded</span>
-        {device_exploded()}
-        <span class="sheet__scale">No adhesive · no drilling</span>
-      </div>
-      <div class="stack">
-        <div class="sheet reveal">
-          <span class="sheet__label">Fig. B · Front</span>
-          {device_front()}
+    <div class="plates">
+      <figure class="plate reveal">
+        <div class="shot">
+          <img src="assets/img/product-explode.jpg" alt="The insert taken apart: collar, acoustic base, microphone board, cell, logic board and lid, in stack order." width="2200" height="1650" loading="lazy">
         </div>
+        <figcaption class="figcap">Fig. A · Six parts, stack order</figcaption>
+      </figure>
+      <div class="plates__note">
+        <p>
+          The collar threads where the back plate was. The port carries the sound 3 mm to a
+          pair of MEMS microphones, one on the port and one behind a sealed cavity, and the
+          difference between them is the room. The cell, the logic board and the lid stack
+          behind it.
+        </p>
         <a class="btn btn--ghost" href="product.html">The full specification</a>
       </div>
     </div>
@@ -462,21 +474,22 @@ TECH = f"""
         <h2>You never tell it<br>how thick the <em>chest</em> is.</h2>
       </div>
       <p class="lede">
-        Pick a body. The device characterises the path from the recording, then corrects.
-        This is the model in this page, not a recording of a patient.
+        Set the true chest wall — anything from 9 to 45 mm, the range the estimator was
+        tested over. The device is not given that number. It recovers the wall from the
+        recording, and you see the error before you see the correction.
       </p>
     </div>
 
     <div class="explorer reveal" data-explorer>
       <div class="explorer__head">
-        <div class="seg" role="group" aria-label="Body">
-          <button data-body="slim" aria-selected="false">Athletic</button>
-          <button data-body="mid" aria-selected="true">Average</button>
-          <button data-body="broad" aria-selected="false">Broad</button>
+        <div class="wall">
+          <label for="wall-range">True chest wall</label>
+          <input id="wall-range" type="range" min="9" max="45" step="1" value="22" data-wall>
+          <output data-wall-true>22 mm</output>
         </div>
         <div class="small" style="text-align:right">
-          <b data-body-label>Average</b> · <span data-body-mass>78 kg</span><br>
-          <span class="tiny">thickness not supplied to the device</span>
+          <span class="tiny">hidden from the device</span><br>
+          <b>10–45 mm tested</b>
         </div>
       </div>
 
@@ -531,31 +544,27 @@ PRODUCT = f"""
 
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="drawings">
-      <div class="sheet reveal">
-        <span class="sheet__label">Fig. A · Section, exploded</span>
-        {device_exploded()}
-        <span class="sheet__scale">Six parts · no adhesive</span>
-      </div>
-      <div class="stack">
-        <div class="sheet reveal">
-          <span class="sheet__label">Fig. B · Front</span>
-          {device_front()}
+    <div class="plates plates--three">
+      <figure class="plate reveal">
+        <div class="shot">
+          <img src="assets/img/product-explode.jpg" alt="The six parts of the insert in stack order." width="2200" height="1650" loading="lazy">
         </div>
-        <div class="sheet reveal">
-          <span class="sheet__label">Fig. C · Section</span>
-          {device_side()}
+        <figcaption class="figcap">Fig. A · Six parts, stack order</figcaption>
+      </figure>
+      <figure class="plate reveal">
+        <div class="shot">
+          <img src="assets/img/product-macro.jpg" alt="The insert seated behind the chestpiece, LED ring lit." width="2200" height="1650" loading="lazy">
         </div>
-      </div>
-    </div>
-
-    <div class="thumbrow">
-      <div class="sheet reveal">
-        <span class="sheet__label">Fig. D · Installed</span>
-        {device_installed()}
-      </div>
-      <div class="sheet reveal" style="grid-column:span 2;align-content:center">
-        <div style="max-width:46ch;margin-inline:auto">
+        <figcaption class="figcap">Fig. B · Seated, LED ring</figcaption>
+      </figure>
+      <figure class="plate reveal">
+        <div class="shot">
+          <img src="assets/img/product-installed.jpg" alt="The chestpiece on its tube, seen from behind with the insert fitted." width="2000" height="1600" loading="lazy">
+        </div>
+        <figcaption class="figcap">Fig. C · Fitted, from the back</figcaption>
+      </figure>
+      <div class="plate reveal">
+        <div style="max-width:46ch">
           <h3 style="margin-bottom:.8rem">It threads into the cup you already own.</h3>
           <p class="small">
             Interchangeable collars seat the insert in 44, 46 and 48 mm single- and double-head
@@ -609,10 +618,28 @@ PRODUCT = f"""
       </table>
     </div>
 
-    <div class="note-box" style="margin-top:2rem">
-      <b>Two figures are open.</b> Bench-measured noise cancellation and the final streaming
-      sample rate are not yet published. They will appear here with the measurement method,
-      not before.
+    <div class="spec2">
+      <div>
+        <span class="spec2__k">Room rejection, two capsules</span>
+        <span class="spec2__v">6.0 dB</span>
+        <p>
+          Simulated in <code>research/noise_rejection.py</code>: room noise at 0.72 coherence
+          between the port capsule and the sealed reference, 4 dB of heart-sound leakage into
+          the reference, removed by a normalised LMS over 48 taps. Twenty trials, spread 0.1 dB.
+          A bench figure with a real chestpiece will replace it, and will be published with the
+          rig it was measured on.
+        </p>
+      </div>
+      <div>
+        <span class="spec2__k">Streaming rate</span>
+        <span class="spec2__v">358 kbit/s</span>
+        <p>
+          16 kHz, 16-bit mono, 20 ms packets, 40 per cent BLE overhead. Arithmetic from the
+          format, not a measurement: the nRF52840 link has the headroom, and the number that
+          matters for the battery is the 15 mA average, which comes from the 300 mAh cell over
+          a 20 h session.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -1371,9 +1398,9 @@ PARTNER = """
     <div class="head reveal">
       <div>
         <p class="eyebrow">Commercial</p>
-        <h2>How the company<br>makes <em>money</em>.</h2>
+        <h2>Three revenue lines,<br>in order of <span class="accent">realism</span>.</h2>
       </div>
-      <p class="lede">Three lines, in order of realism. The device has to be worth buying once before anything recurring is credible.</p>
+      <p class="lede">A device has to be worth buying once before anything recurring is credible, so the first line is the only one that matters this year.</p>
     </div>
     <div class="cards">
       <div class="card reveal">
@@ -1479,7 +1506,7 @@ ABOUT = """
         </div>
         <div class="card">
           <span class="card__num">WHAT WE NEED</span>
-          <h3>A site with echo</h3>
+          <h3>A clinical site with echocardiography</h3>
           <p>
             Validation, regulatory advice, manufacturing tooling, and distribution into public
             systems. None of those is solved by money alone, which is why the ask is specific.
@@ -1495,7 +1522,7 @@ ABOUT = """
     <div class="head reveal">
       <div>
         <p class="eyebrow">Team</p>
-        <h2>Two founders,<br>four <em>advisors</em>.</h2>
+        <h2>The people<br>who built it.</h2>
       </div>
       <p class="lede">
         Engineering, clinical protocol and review. Everyone on this list has handled the
@@ -1547,10 +1574,11 @@ ABOUT = """
   <div class="wrap">
     <div class="cta reveal">
       <div>
-        <h2>If you examine chests for a living, we would like your opinion.</h2>
+        <h2>Twenty to forty patients already booked for an echo is all we need to start.</h2>
         <p>
-          The most useful thing a clinician can tell us is where the app is wrong about what it
-          refuses to say.
+          The study is a paired recording: corrected and uncorrected, blinded, read against the
+          cardiologist's report. Email the clinical lead and we will send the protocol and the
+          two-page data agreement the same day.
         </p>
       </div>
       <div class="cta__actions">

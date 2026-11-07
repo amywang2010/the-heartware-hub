@@ -25,9 +25,13 @@ assets/css/pages.css    page components: pipeline, explorer, phone, ledger, time
 assets/js/site.js       nav, reveals, tabs, counters
 assets/js/explorer.js   the thoracic-correction demonstration
 assets/js/app.js        the companion-app demonstration
-assets/img/             the logo, in its original colours
+assets/img/             logo, product renders, the 6 s product loop
+studio/                 the renderer that made the photographs
 assets/figures/         the six figures on the Evidence page
-research/               the model, the experiment, the plotting code
+research/               the thoracic model, the noise study, the figures
+studio/stage.html       the geometry
+studio/render.mjs       the stills and the loop
+studio/README.md        the model, and what failed on the way there
 tools/                  the page builder and the line artwork
 ```
 

@@ -1,0 +1,6 @@
+{
+  "noise_rejection_db": 6.0,
+  "noise_rejection_sd_db": 0.1,
+  "stream_kbps": 358.0,
+  "stream_ms_per_packet": 20
+}
