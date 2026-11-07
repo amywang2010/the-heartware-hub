@@ -46,18 +46,17 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-/* A neutral seamless, the way a hardware studio shoots a part that has no
-   finish design yet. Not a dark room: the black-void-and-rim-light look is the
-   single thing that made every earlier still read as a render. Grey shows the
-   material and the form, and it hides nothing. */
+/* White seamless, the way a catalogue shoots a part whose finish is not yet
+   settled. The grey gradient this replaced read as a Blender default no matter
+   how carefully it was lit; on white there is nothing to read as a backdrop. */
 scene.background = (() => {
   const c = document.createElement('canvas');
   c.width = 1024; c.height = 1024;
   const g = c.getContext('2d');
   const bg = g.createLinearGradient(0, 0, 0, 1024);
-  bg.addColorStop(0.00, '#b3b1ac');
-  bg.addColorStop(0.55, '#a3a19c');
-  bg.addColorStop(1.00, '#8e8c87');
+  bg.addColorStop(0.00, '#ffffff');
+  bg.addColorStop(0.60, '#fbfbfc');
+  bg.addColorStop(1.00, '#eceeef');
   g.fillStyle = bg; g.fillRect(0, 0, 1024, 1024);
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
@@ -109,12 +108,14 @@ const M = {
      DoubleSide because a lathe profile is a single surface and the winding of
      this one faces inward, which left the walls invisible and the boards on
      show through the part. */
+  /* graphite anodised aluminium: a machined part with a settled finish, not
+     raw bead-blast, which on a white sweep reads as grey plastic */
   bead: new THREE.MeshStandardMaterial({
-    color: 0xa6aaae, metalness: 1.0, roughness: 0.5, envMapIntensity: 0.8,
+    color: 0x33383d, metalness: 0.85, roughness: 0.38, envMapIntensity: 1.0,
     side: THREE.DoubleSide
   }),
   beadFace: new THREE.MeshStandardMaterial({
-    color: 0xa6aaae, metalness: 1.0, roughness: 0.5, envMapIntensity: 0.8,
+    color: 0x33383d, metalness: 0.85, roughness: 0.38, envMapIntensity: 1.0,
     roughnessMap: turnTex, side: THREE.DoubleSide
   }),
   rubber: new THREE.MeshStandardMaterial({ color: 0x24252a, metalness: 0.0, roughness: 0.72 }),
@@ -159,6 +160,16 @@ function disc(r, h, mat, y) {
    clearcoated material they render as a sunburst of streaks across the face.
    That artifact was on the acoustic base and the lid, and it is what made the
    part look like it had a printed fan grille. Faces are circles now. */
+/* An annular face: the top of a threaded collar is a ring, not a disc, and it
+   has to exist or the part reads as an open tube with rings hovering in it. */
+function ring(rOuter, rInner, y, mat, up = true) {
+  const m = new THREE.Mesh(new THREE.RingGeometry(rInner, rOuter, 160, 1), mat);
+  m.rotation.x = up ? -Math.PI / 2 : Math.PI / 2;
+  m.position.y = y;
+  m.castShadow = true;
+  m.receiveShadow = true;
+  return m;
+}
 function face(r, y, mat, up = true) {
   const m = new THREE.Mesh(new THREE.CircleGeometry(r, 160), mat);
   m.rotation.x = up ? -Math.PI / 2 : Math.PI / 2;
@@ -260,16 +271,21 @@ insertShell.add(lathe([
   [18.9, -12.7],
   [18.9, -16.0],
   [18.2, -16.9]
-], M.steel));
-/* the thread itself: four turns, in steel, catching the key light. A collar
-   that only claims to be threaded in the copy is a collar nobody believes. */
+], M.bead));
+/* the thread itself: four shallow turns cut into the collar, in the same
+   anodised finish. Polished steel here read as a coil of wire lying on the
+   part, which is the one thing a thread must not look like. */
 for (let i = 0; i < 4; i++) {
-  const t = new THREE.Mesh(new THREE.TorusGeometry(18.95, 0.42, 10, 140), M.steel);
+  const t = new THREE.Mesh(new THREE.TorusGeometry(18.94, 0.3, 8, 140), M.bead);
   t.rotation.x = Math.PI / 2;
   t.position.y = -13.15 - i * 0.72;
   t.castShadow = true;
   insertShell.add(t);
 }
+
+/* the collar's top face: a closed annulus between the port and the outer rim,
+   so the part is solid from above instead of an open cup */
+insertShell.add(ring(18.9, 1.9, -12.7, M.beadFace));
 
 // upper body: bead-blasted aluminium, turned, chamfered at both ends
 insertShell.add(lathe([
@@ -312,12 +328,12 @@ insertShell.add(lensBezel);
 insertShell.add(face(2.05, -26.71, M.led, false));
 
 // 3 mm acoustic port through the top face, with the red seal around it
-const port = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 4, 32), M.rubber);
-port.position.y = -18.4;
+const port = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 7.7, 32), M.rubber);
+port.position.y = -16.55;
 insertShell.add(port);
 const portLip = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.45, 16, 64), M.red);
 portLip.rotation.x = Math.PI / 2;
-portLip.position.y = -16.95;
+portLip.position.y = -12.75;
 insertShell.add(portLip);
 
 /* internals -- visible only when the body is sectioned */
@@ -433,7 +449,7 @@ scene.add(softbox);
 /* ---------- shadow catcher ------------------------------------------------ */
 const table = new THREE.Mesh(
   new THREE.PlaneGeometry(1600, 1600),
-  new THREE.MeshStandardMaterial({ color: 0x9d9b96, roughness: 0.9, metalness: 0.0 })
+  new THREE.MeshStandardMaterial({ color: 0xf0f1f2, roughness: 0.92, metalness: 0.0 })
 );
 table.rotation.x = -Math.PI / 2;
 /* the insert is 14 mm shallower than the head, so it needs its own table height

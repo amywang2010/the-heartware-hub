@@ -155,10 +155,10 @@ function drawScope() {
   if (!c) return;
   const { g, w, h } = fitCanvas(c);
   g.clearRect(0, 0, w, h);
-  g.fillStyle = '#0B0A09';
+  g.fillStyle = '#ffffff';
   g.fillRect(0, 0, w, h);
 
-  g.strokeStyle = 'rgba(244,240,232,0.07)';
+  g.strokeStyle = 'rgba(20,24,28,0.10)';
   g.lineWidth = 1;
   for (let i = 1; i < 8; i++) {
     g.beginPath(); g.moveTo((w / 8) * i, 0); g.lineTo((w / 8) * i, h); g.stroke();
@@ -201,7 +201,7 @@ function drawScope() {
   g.lineWidth = 1.6;
   g.stroke();
 
-  g.fillStyle = 'rgba(244,240,232,0.45)';
+  g.fillStyle = 'rgba(20,24,28,0.55)';
   g.font = '10px Archivo, sans-serif';
   g.fillText('0.55 s', 8, h - 8);
   g.fillText(`${state.ctx ? (state.ctx.sampleRate / 1000).toFixed(1) : '44.1'} kHz · 24-bit`, w - 96, h - 8);
@@ -212,7 +212,7 @@ function drawSpectrum(res) {
   if (!c) return;
   const { g, w, h } = fitCanvas(c);
   g.clearRect(0, 0, w, h);
-  g.fillStyle = '#0B0A09';
+  g.fillStyle = '#ffffff';
   g.fillRect(0, 0, w, h);
   if (!res) return;
 
@@ -221,7 +221,7 @@ function drawSpectrum(res) {
   const y = (v) => h - Math.min(1, v) * h * 0.92 - 6;
 
   /* band shading, so the reader knows where the murmur lives */
-  g.fillStyle = 'rgba(224,48,30,0.07)';
+  g.fillStyle = 'rgba(150,26,43,0.06)';
   g.fillRect(x(150), 0, x(400) - x(150), h);
 
   const plot = (fn, colour, width) => {
@@ -242,7 +242,7 @@ function drawSpectrum(res) {
   plot((m) => m, 'rgba(244,240,232,0.42)', 1.2);
   plot((m, f) => m * Math.min(correctionGain(f, state.wall), 6) / 2.4, red, 1.8);
 
-  g.fillStyle = 'rgba(244,240,232,0.4)';
+  g.fillStyle = 'rgba(20,24,28,0.55)';
   g.font = '10px Archivo, sans-serif';
   [50, 150, 400, 900].forEach((f) => g.fillText(f + ' Hz', x(f) - 10, h - 4));
 }

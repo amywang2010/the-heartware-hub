@@ -39,7 +39,7 @@ def head(title, description, page):
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/pages.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -51,7 +51,7 @@ def head(title, description, page):
       <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
       <span class="brand__word"><b>Heart</b>ware</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-label="Menu"><span></span></button>
+    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">Menu</button>
     <nav class="nav__links" aria-label="Primary">
 {nav_links}
         <a class="nav__cta" href="contact.html">Talk to us</a>
@@ -68,7 +68,7 @@ def foot():
   <div class="wrap">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="assets/img/logo-full.png" alt="Heartware" width="196" height="160">
+        <img src="assets/img/logo-mark.png" alt="" width="24" height="24">
         <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
       </div>
       <div>

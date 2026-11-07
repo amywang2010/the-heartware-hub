@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/pages.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -23,7 +23,7 @@
       <img src="assets/img/logo-mark.png" alt="" width="64" height="36">
       <span class="brand__word"><b>Heart</b>ware</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-label="Menu"><span></span></button>
+    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">Menu</button>
     <nav class="nav__links" aria-label="Primary">
         <a href="technology.html">Technology</a>
         <a href="product.html">Product</a>
@@ -38,33 +38,27 @@
 </header>
 <main>
 
-<section class="hero hero--type">
+<section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Stethoscope insert · Rev D</p>
+    <p class="eyebrow">Stethoscope insert, Rev D</p>
     <h1 class="hero__display">
-      <span class="line">The same murmur</span>
-      <span class="line">is not the same</span>
-      <span class="line">sound in two</span>
-      <span class="line">bodies.</span>
+      A stethoscope insert that measures the chest wall and corrects for it.
     </h1>
     <div class="hero__foot">
       <p class="hero__sub">
-        A grade 2 murmur arrives at the earpieces 1.73 dB apart in a 60 kg body and a
-        120 kg one, which is a third of the band a clinician is listening in. Heartware
-        is a 14 mm insert that replaces the back plate of the stethoscope already in the
-        room, measures the chest wall from the recording itself, and takes it back out.
-        The same murmur then arrives 0.25 dB apart.
+        A grade 2 murmur reaches the earpieces 1.73 dB apart in a 60 kg body and a 120 kg one,
+        which is a third of the band a clinician listens in. The insert takes the place of the
+        back plate of the stethoscope already in the room, estimates the chest wall from the
+        recording itself, and inverts it. The same murmur then arrives 0.25 dB apart.
       </p>
       <div class="hero__specs">
         <div><b>Fits</b>44–48 mm chestpieces</div>
-        <div><b>Adds</b>14 mm · 45 g</div>
+        <div><b>Adds</b>14 mm, 45 g</div>
         <div><b>Parts</b>$38.25 at 500 units</div>
+        <div><b>Status</b>Rev D, not tooled</div>
         <div class="hero__go">
-          <a class="btn btn--solid" href="evidence.html">
-            Read the measurement
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="btn btn--ghost" href="app.html">Use the app</a>
+          <a class="btn btn--solid" href="evidence.html">Read the measurement</a>
+          <a class="btn btn--ghost" href="product.html">Specification</a>
         </div>
       </div>
     </div>
@@ -72,20 +66,19 @@
 </section>
 
 <figure class="plate-band">
-  <img src="assets/img/product-band.jpg" width="1300" height="500" alt="The stock chestpiece and the insert, sectioned along the same plane, showing the port, board and cell inside the turned body.">
+  <img src="assets/img/product-band.jpg" width="1300" height="500" alt="The stock chestpiece and the insert cut along the same axis, showing the port, the microphone board, the cell and the turned body.">
   <figcaption>
     <span class="wrap">
-      <b>Rev D, sectioned</b>
-      The chestpiece is cut along the axis and the insert cut with it, so the port, the
-      microphone board, the cell and the turned body sit in one plane. A CAD render of Rev D:
-      the part has not been tooled, and the first photographs of it will replace this image.
+      <b>Rev D, sectioned.</b> The chestpiece and the insert are cut along the same axis, so
+      the port, the microphone board, the cell and the turned body sit in one plane. This is a
+      CAD render of Rev D: the part has not been tooled, and the first photographs of it will
+      replace this image.
     </span>
   </figcaption>
 </figure>
 
-<section class="band" style="padding-block:clamp(3rem,5vw,4.4rem)">
+<section>
   <div class="wrap">
-    <p class="eyebrow" style="margin-bottom:2rem">What is on this page, in numbers</p>
     <div class="ledgerline">
       <div><span class="n">1.73 → 0.25</span><span class="k">dB, murmur spread before and after, n = 600</span></div>
       <div><span class="n">3.7 mm</span><span class="k">RMS error recovering chest wall thickness</span></div>
@@ -95,66 +88,55 @@
   </div>
 </section>
 
-
-
 <section>
   <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow"><b>01</b> The measurement</p>
-        <h2>This is not a listening problem. It is a transfer function.</h2>
-      </div>
+    <div class="head">
+      <h2>What the chest wall does to a murmur</h2>
       <p class="lede">
         A stethoscope hears the chest wall before it hears the heart. Fat, muscle and rib
-        attenuate the highs, resonate the lows and add a path of their own — so the same
-        valve arrives at a different amplitude in a 60 kg teenager and a 120 kg adult.
-        A clinician comparing that sound to a remembered one has no way to subtract the
-        difference.
+        attenuate the highs, resonate the lows and add a path of their own, so the same valve
+        arrives at a different amplitude in a 60 kg teenager and a 120 kg adult. A clinician
+        comparing that sound to a remembered one has no way to subtract the difference.
       </p>
     </div>
-
     <div class="split split--top">
+      <figure class="figure">
+        <img src="assets/figures/fig-01-transfer.png" alt="Four transfer curves showing the same heart sound attenuated differently by 12, 20, 28 and 38 mm of chest wall." loading="lazy">
+        <figcaption><b>Figure 1.</b> The wall as a filter. A 38 mm wall loses 25 dB more than a 12 mm wall across the murmur band.</figcaption>
+      </figure>
       <div class="stack">
         <p>
           Digital stethoscopes do not correct this. They reproduce the wall faithfully, at
-          $250–600, which keeps them in cardiology departments while first contact happens
-          in primary care, nursing homes and home visits, where the acoustic stethoscope is
-          still the only instrument in the room.
+          $250–600, which keeps them in cardiology departments while first contact happens in
+          primary care, nursing homes and home visits, where the acoustic stethoscope is still
+          the only instrument in the room.
         </p>
         <p>
-          The fix is not a better microphone or a louder speaker. It is knowing what the
-          wall did to the sound, and undoing it — per recording, from the recording.
+          The fix is not a better microphone or a louder speaker. It is knowing what the wall
+          did to the sound, and undoing it, per recording, from the recording.
         </p>
         <p class="smallprint">
-          Every figure on this page comes from one thoracic model: 600 synthetic subjects,
-          the assumptions written out, and the cases where it fails. The evidence file states
-          which of the six results would move if a clinician disagreed with the wall model, and
-          by how much.
+          Every figure on this page comes from one thoracic model: 600 synthetic subjects, the
+          assumptions written out, and the cases where it fails. The evidence file states which
+          of the six results would move if a clinician disagreed with the wall model, and by how
+          much.
         </p>
       </div>
-      <figure class="figure reveal">
-        <img src="assets/figures/fig-01-transfer.png" alt="Four transfer curves showing the same heart sound attenuated differently by 12, 20, 28 and 38 mm of chest wall." loading="lazy">
-        <figcaption><b>FIG 01</b> The wall as a filter. A 38 mm wall loses 25 dB more than a 12 mm wall across the murmur band.</figcaption>
-      </figure>
     </div>
   </div>
 </section>
 
 <section class="band-cream">
   <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow"><b>02</b> The method</p>
-        <h2>Measure the wall. Then take it out.</h2>
-      </div>
+    <div class="head">
+      <h2>How the correction works</h2>
       <p class="lede">
-        Three things happen between the chestpiece and the screen. None of them is a
-        trained model, and none of them needs to know the patient's weight.
+        Three things happen between the chestpiece and the screen. None of them is a trained
+        model, and none of them needs to know the patient's weight.
       </p>
     </div>
-
     <div class="steps">
-      <div class="step reveal">
+      <div class="step">
         <svg viewBox="0 0 320 120" role="img" aria-label="Two microphones looking into the acoustic channel.">
   <g stroke="#173D7A" fill="none" stroke-width="1.6">
     <rect x="24" y="34" width="86" height="52" rx="10"/>
@@ -170,13 +152,13 @@
 </svg>
         <h3>Characterise the path</h3>
         <p>
-          The valve closures in the recording — S1 and S2 — are broadband transients. Their
-          shape has passed through the wall, so the wall is written into them. Heartware
-          fits the same physical model to those transients and recovers the thickness of the
-          path to within a few millimetres.
+          The valve closures in the recording, S1 and S2, are broadband transients. Their shape
+          has passed through the wall, so the wall is written into them. Heartware fits the same
+          physical model to those transients and recovers the thickness of the path to within a
+          few millimetres.
         </p>
       </div>
-      <div class="step reveal">
+      <div class="step">
         <svg viewBox="0 0 320 120" role="img" aria-label="The reference microphone measures the room, and the room is subtracted.">
   <g stroke="#173D7A" fill="none" stroke-width="1.5" opacity="0.9">
     <path d="M20 40 q 8 -14 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0"/>
@@ -190,12 +172,12 @@
 </svg>
         <h3>Separate the room</h3>
         <p>
-          A second microphone sits behind a sealed cavity. It hears the room and not the
-          heart, so the room can be subtracted rather than filtered. The signal-quality
-          score is computed from the same two channels.
+          A second microphone sits behind a sealed cavity. It hears the room and not the heart,
+          so the room can be subtracted rather than filtered. The signal-quality score is
+          computed from the same two channels.
         </p>
       </div>
-      <div class="step reveal">
+      <div class="step">
         <svg viewBox="0 0 320 120" role="img" aria-label="The wall's transfer function is inverted, and the spectrum is flattened.">
   <g stroke="#173D7A" fill="none" stroke-width="1.5">
     <path d="M24 34 C 90 34 100 96 180 96 C 230 96 250 92 296 92" opacity="0.45"/>
@@ -221,39 +203,31 @@
 
 <section>
   <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow"><b>03</b> Evidence</p>
-        <h2>The correction is arithmetic. Arithmetic can be checked.</h2>
-      </div>
+    <div class="head">
+      <h2>What the results show</h2>
       <p class="lede">
         Four results, with the figure, the sample size and the failure case beside each one.
-        The two that could embarrass us are on this page, not held back for a conversation.
+        The two that argue against the product are on this page, not held back for a
+        conversation.
       </p>
     </div>
-
     <div class="split split--top">
-      <figure class="figure reveal">
+      <figure class="figure">
         <img src="assets/figures/fig-03-body.png" alt="Murmur level by body type, before and after correction. Before, it falls with body size; after, it is flat." loading="lazy">
-        <figcaption><b>FIG 03</b> The same murmur across three body types: 1.73 dB of spread before, 0.25 dB after.</figcaption>
+        <figcaption><b>Figure 2.</b> The same murmur across three body types: 1.73 dB of spread before, 0.25 dB after.</figcaption>
       </figure>
       <div class="stack">
         <div class="cards" style="grid-template-columns:1fr">
           <div class="card">
-            <span class="card__num">01 · RECOVERY</span>
             <h3>3.7 mm</h3>
             <p>RMS error recovering chest-wall thickness from the recording alone, across 600 synthetic subjects. 86% within 5 mm. Nothing about the patient is supplied to the estimator.</p>
           </div>
           <div class="card">
-            <span class="card__num">02 · ABLATION</span>
             <h3>1.69 → 0.25 dB</h3>
-            <p>Correcting with <em>one</em> assumed thickness — the obvious shortcut — barely improves on doing nothing. The per-recording estimate is what removes the body dependence.</p>
+            <p>Correcting with one assumed thickness, the obvious shortcut, barely improves on doing nothing. The per-recording estimate is what removes the body dependence.</p>
           </div>
         </div>
-        <a class="btn btn--ghost" href="evidence.html">
-          All six figures and the claims ledger
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <p style="margin-top:1.2rem"><a class="btn btn--ghost" href="evidence.html">All six figures and the claims ledger</a></p>
       </div>
     </div>
   </div>
@@ -261,34 +235,29 @@
 
 <section class="band-warm">
   <div class="wrap">
-    <div class="head reveal">
-      <div>
-        <p class="eyebrow"><b>04</b> The part</p>
-        <h2>Not another instrument. Six parts and a collar.</h2>
-      </div>
+    <div class="head">
+      <h2>The insert</h2>
       <p class="lede">
-        The insert threads into the cup of the stethoscope a clinic already owns. Interchangeable
-        collars seat it in 44, 46 and 48 mm heads; the acoustic path stays the manufacturer's.
-        Remove it and the instrument is exactly what it was.
+        The insert threads into the cup of the stethoscope a clinic already owns.
+        Interchangeable collars seat it in 44, 46 and 48 mm heads; the acoustic path stays the
+        manufacturer's. Remove it and the instrument is exactly what it was.
       </p>
     </div>
-
     <div class="plates">
-      <figure class="plate reveal">
+      <figure class="plate">
         <div class="shot">
           <img src="assets/img/product-unit.jpg" alt="The insert on its own: threaded collar, turned body, seam and base plate." width="1200" height="1200" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. A · Rev D, stock chestpiece removed</figcaption>
+        <figcaption class="figcap">Rev D with the stock chestpiece removed. CAD render, not a photograph.</figcaption>
       </figure>
       <div class="plates__note">
         <p>
           The collar threads into the seat where the back plate was. The port carries the sound
           down to a pair of MEMS microphones, one at the port and one behind a sealed cavity,
           and the difference between them is the room. The cell and both boards sit inside the
-          turned body, between the port and the four-screw base plate, so the section on top of
-          this page shows them and the exterior does not.
+          turned body, between the port and the four-screw base plate.
         </p>
-        <a class="btn btn--ghost" href="product.html">The full specification</a>
+        <p><a class="btn btn--ghost" href="product.html">Dimensions and specification</a></p>
       </div>
     </div>
   </div>
@@ -296,19 +265,18 @@
 
 <section>
   <div class="wrap">
-    <div class="cta reveal">
+    <div class="cta">
       <div>
-        <h2>One clinic, one protocol, one echocardiogram.</h2>
+        <h2>Where this stands</h2>
         <p>
           The engineering record exists: three printed revisions, a working microphone chain,
-          an app that gates its own output. What is missing is the study that turns a
-          correction into a clinical claim — paired recordings and echo in a site that
-          already reads echoes.
+          an app that gates its own output. What is missing is the study that turns a correction
+          into a clinical claim: paired recordings and echo in a site that already reads echoes.
         </p>
       </div>
       <div class="cta__actions">
-        <a class="btn btn--light" href="partnerships.html">Pilot and partnership</a>
-        <a class="btn btn--ghost btn--on-red" href="contact.html">Talk to us</a>
+        <a class="btn btn--solid" href="partnerships.html">Pilot and partnership</a>
+        <a class="btn btn--ghost" href="contact.html">Talk to us</a>
       </div>
     </div>
   </div>
@@ -318,7 +286,7 @@
   <div class="wrap">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="assets/img/logo-full.png" alt="Heartware" width="196" height="160">
+        <img src="assets/img/logo-mark.png" alt="" width="24" height="24">
         <p>A stethoscope insert that corrects for the chest wall, so every body gives the same heart and lung signal.</p>
       </div>
       <div>
