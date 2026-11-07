@@ -46,24 +46,19 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-/* A lit table in a dark room, not an object floating on a swatch. The gradient
-   is the falloff of one soft lamp over the surface, and it is what stops the
-   metal reading as a CAD viewer screenshot. */
+/* A neutral seamless, the way a hardware studio shoots a part that has no
+   finish design yet. Not a dark room: the black-void-and-rim-light look is the
+   single thing that made every earlier still read as a render. Grey shows the
+   material and the form, and it hides nothing. */
 scene.background = (() => {
   const c = document.createElement('canvas');
   c.width = 1024; c.height = 1024;
   const g = c.getContext('2d');
   const bg = g.createLinearGradient(0, 0, 0, 1024);
-  bg.addColorStop(0.00, '#241C17');
-  bg.addColorStop(0.42, '#171210');
-  bg.addColorStop(0.72, '#0D0B0A');
-  bg.addColorStop(1.00, '#080706');
+  bg.addColorStop(0.00, '#b3b1ac');
+  bg.addColorStop(0.55, '#a3a19c');
+  bg.addColorStop(1.00, '#8e8c87');
   g.fillStyle = bg; g.fillRect(0, 0, 1024, 1024);
-  const pool = g.createRadialGradient(560, 430, 20, 560, 430, 640);
-  pool.addColorStop(0, 'rgba(255,232,205,0.30)');
-  pool.addColorStop(0.45, 'rgba(255,226,196,0.09)');
-  pool.addColorStop(1, 'rgba(255,226,196,0)');
-  g.fillStyle = pool; g.fillRect(0, 0, 1024, 1024);
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   return t;
@@ -71,7 +66,7 @@ scene.background = (() => {
 
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.02).texture;
-scene.environmentIntensity = 0.7;
+scene.environmentIntensity = 0.55;
 
 /* ---------- textures ---------------------------------------------------- */
 function canvas(size, draw) {
@@ -84,89 +79,62 @@ function canvas(size, draw) {
   return t;
 }
 
-const pcbTex = canvas(1024, (g, s) => {
-  const grd = g.createLinearGradient(0, 0, s, s);
-  grd.addColorStop(0, '#22322c');
-  grd.addColorStop(1, '#16211d');
-  g.fillStyle = grd;
+/* Concentric turning marks, for the turned faces. A machined part shows them
+   and a smooth gradient does not; they are drawn as rings, low contrast, so
+   they read as a finish and never as a printed pattern. */
+const turnTex = canvas(1024, (g, s) => {
+  g.fillStyle = '#8a8a8a';
   g.fillRect(0, 0, s, s);
-  g.strokeStyle = 'rgba(200,160,96,0.5)';
-  g.lineWidth = 2;
-  for (let i = 0; i < 30; i++) {
-    const y = 40 + i * 32;
+  for (let r = 3; r < s * 0.72; r += 2.4) {
+    g.strokeStyle = `rgba(255,255,255,${0.05 + 0.05 * ((r * 7) % 3) / 2})`;
+    g.lineWidth = 1;
     g.beginPath();
-    g.moveTo(80, y);
-    g.bezierCurveTo(320, y, 380, y + 26, 620, y + 26);
-    g.lineTo(700 + (i % 5) * 40, y + 26);
+    g.arc(s / 2, s / 2, r, 0, 7);
     g.stroke();
   }
-  g.fillStyle = 'rgba(224,186,120,0.95)';
-  for (let i = 0; i < 54; i++) {
-    g.beginPath();
-    g.arc(90 + (i * 173) % 840, 90 + (i * 233) % 840, 4.2, 0, 7);
-    g.fill();
-  }
-  g.fillStyle = '#e6e0d4';
-  g.font = '600 30px Helvetica, Arial, sans-serif';
-  g.fillText('HEARTWARE  HV-03', 78, 930);
-  g.font = '400 23px Helvetica, Arial, sans-serif';
-  g.fillStyle = 'rgba(230,224,212,0.62)';
-  g.fillText('TDK ICS-43434 ×2    24-bit    20 Hz – 2 kHz', 78, 968);
 });
+turnTex.wrapS = turnTex.wrapT = THREE.ClampToEdgeWrapping;
 
-const cellTex = canvas(512, (g, s) => {
-  g.fillStyle = '#ece9e2';
-  g.fillRect(0, 0, s, s);
-  g.fillStyle = '#c8102e';
-  g.fillRect(0, 132, s, 26);
-  g.fillStyle = '#1b2a3f';
-  g.font = '700 58px Helvetica, Arial, sans-serif';
-  g.fillText('3.7 V', 38, 104);
-  g.font = '400 30px Helvetica, Arial, sans-serif';
-  g.fillText('300 mAh  Li-po', 38, 210);
-  g.font = '400 21px Helvetica, Arial, sans-serif';
-  g.fillStyle = 'rgba(27,42,63,0.55)';
-  g.fillText('HV-03   20 h nominal   100 exams', 38, 252);
-});
-
-const etchTex = canvas(512, (g, s) => {
-  g.clearRect(0, 0, s, s);
-  g.strokeStyle = 'rgba(96,96,92,0.5)';
-  g.lineWidth = 9;
-  g.lineJoin = 'round';
-  g.beginPath();
-  g.moveTo(120, 210);
-  g.bezierCurveTo(150, 210, 158, 168, 190, 168);
-  g.bezierCurveTo(226, 168, 232, 250, 268, 250);
-  g.bezierCurveTo(304, 250, 312, 150, 348, 150);
-  g.bezierCurveTo(378, 150, 384, 210, 412, 210);
-  g.stroke();
-  g.font = '400 26px Helvetica, Arial, sans-serif';
-  g.fillStyle = 'rgba(96,96,92,0.42)';
-  g.fillText('HEARTWARE', 120, 320);
-});
-
+/* The boards and the cell carry no printed artwork. Every earlier still had a
+   silkscreen label and a printed cell wrap baked into a 1024 px texture, mapped
+   onto a 30 mm disc at an oblique angle: at render size that aliased into a
+   radial fan of lines that read as a printed grille, not as a circuit board.
+   A part this small shows its copper and its component bodies, not a label. */
 /* ---------- materials --------------------------------------------------- */
 const M = {
-  polished: new THREE.MeshStandardMaterial({ color: 0xf7f8fa, metalness: 1.0, roughness: 0.035, envMapIntensity: 2.1 }),
-  brushed: new THREE.MeshStandardMaterial({ color: 0xcfd3d8, metalness: 1.0, roughness: 0.31, envMapIntensity: 1.15 }),
-  steel: new THREE.MeshStandardMaterial({ color: 0xdadde0, metalness: 1.0, roughness: 0.18, envMapIntensity: 1.25 }),
+  polished: new THREE.MeshStandardMaterial({ color: 0xe9eaec, metalness: 1.0, roughness: 0.09, envMapIntensity: 1.35 }),
+  brushed: new THREE.MeshStandardMaterial({ color: 0xc6c9cd, metalness: 1.0, roughness: 0.38, envMapIntensity: 0.95 }),
+  steel: new THREE.MeshStandardMaterial({ color: 0xc9ccd0, metalness: 1.0, roughness: 0.34, envMapIntensity: 1.0 }),
+  /* the turned insert body: bead-blasted and anodised aluminium, not chrome.
+     DoubleSide because a lathe profile is a single surface and the winding of
+     this one faces inward, which left the walls invisible and the boards on
+     show through the part. */
+  bead: new THREE.MeshStandardMaterial({
+    color: 0xa6aaae, metalness: 1.0, roughness: 0.5, envMapIntensity: 0.8,
+    side: THREE.DoubleSide
+  }),
+  beadFace: new THREE.MeshStandardMaterial({
+    color: 0xa6aaae, metalness: 1.0, roughness: 0.5, envMapIntensity: 0.8,
+    roughnessMap: turnTex, side: THREE.DoubleSide
+  }),
   rubber: new THREE.MeshStandardMaterial({ color: 0x24252a, metalness: 0.0, roughness: 0.72 }),
   membrane: new THREE.MeshPhysicalMaterial({
     color: 0xffffff, metalness: 0, roughness: 0.05, transmission: 0.99, thickness: 0.05,
     ior: 1.48, transparent: true, opacity: 0.09, clearcoat: 1, clearcoatRoughness: 0.03,
     side: THREE.DoubleSide, envMapIntensity: 1.8
   }),
-  shell: new THREE.MeshPhysicalMaterial({ color: 0xf6f3ec, metalness: 0.0, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
-  shellMatte: new THREE.MeshStandardMaterial({ color: 0xe2ded6, metalness: 0.0, roughness: 0.62 }),
-  red: new THREE.MeshStandardMaterial({ color: 0xc8102e, metalness: 0.0, roughness: 0.42 }),
-  tube: new THREE.MeshPhysicalMaterial({ color: 0xbe1029, metalness: 0.0, roughness: 0.36, clearcoat: 0.55, clearcoatRoughness: 0.32 }),
-  pcb: new THREE.MeshStandardMaterial({ map: pcbTex, roughness: 0.78, metalness: 0.1 }),
-  chip: new THREE.MeshStandardMaterial({ color: 0x0f1113, metalness: 0.4, roughness: 0.38 }),
-  gold: new THREE.MeshStandardMaterial({ color: 0xcaa464, metalness: 1.0, roughness: 0.26 }),
-  cell: new THREE.MeshStandardMaterial({ map: cellTex, roughness: 0.5, metalness: 0.4 }),
-  led: new THREE.MeshStandardMaterial({ color: 0xff3348, emissive: 0xff2038, emissiveIntensity: 3.2, roughness: 0.25 }),
-  etch: new THREE.MeshStandardMaterial({ map: etchTex, transparent: true, depthWrite: false, roughness: 0.45, metalness: 0.35 })
+  shell: new THREE.MeshPhysicalMaterial({ color: 0xf1eee7, metalness: 0.0, roughness: 0.52, clearcoat: 0.12, clearcoatRoughness: 0.45 }),
+  shellMatte: new THREE.MeshStandardMaterial({ color: 0xdedad2, metalness: 0.0, roughness: 0.68 }),
+  red: new THREE.MeshStandardMaterial({ color: 0xb0102a, metalness: 0.0, roughness: 0.52 }),
+  tube: new THREE.MeshPhysicalMaterial({ color: 0x2b2c30, metalness: 0.0, roughness: 0.62, clearcoat: 0.22, clearcoatRoughness: 0.5 }),
+  pcb: new THREE.MeshStandardMaterial({ color: 0x1e2b26, roughness: 0.66, metalness: 0.15 }),
+  chip: new THREE.MeshStandardMaterial({ color: 0x0f1113, metalness: 0.4, roughness: 0.42 }),
+  gold: new THREE.MeshStandardMaterial({ color: 0xbf9b60, metalness: 1.0, roughness: 0.34 }),
+  cell: new THREE.MeshStandardMaterial({ color: 0xe3e0d9, roughness: 0.58, metalness: 0.12 }),
+  led: new THREE.MeshPhysicalMaterial({
+    color: 0x3a0c14, emissive: 0x6e1220, emissiveIntensity: 0.5, roughness: 0.12,
+    clearcoat: 1, clearcoatRoughness: 0.06
+  })
 };
 
 function lathe(profile, mat, seg = 160) {
@@ -180,6 +148,20 @@ function lathe(profile, mat, seg = 160) {
 }
 function disc(r, h, mat, y) {
   const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 160), mat);
+  m.position.y = y;
+  m.castShadow = true;
+  m.receiveShadow = true;
+  return m;
+}
+/* A flat face of a turned part, as its own geometry.
+   A closed lathe profile that runs to x = 0 collapses every vertex of that ring
+   onto the axis; the normals at that ring come out radial, and under a metal or
+   clearcoated material they render as a sunburst of streaks across the face.
+   That artifact was on the acoustic base and the lid, and it is what made the
+   part look like it had a printed fan grille. Faces are circles now. */
+function face(r, y, mat, up = true) {
+  const m = new THREE.Mesh(new THREE.CircleGeometry(r, 160), mat);
+  m.rotation.x = up ? -Math.PI / 2 : Math.PI / 2;
   m.position.y = y;
   m.castShadow = true;
   m.receiveShadow = true;
@@ -263,86 +245,114 @@ stem.rotation.z = Math.PI * 0.36;
 stock.add(stem);
 
 /* ---------- the insert --------------------------------------------------- */
+/* Two groups: the body, which is what a customer sees and what the cutaway
+   sections, and the internals, which are only ever visible through a section.
+   The earlier model stacked every layer as a full exposed disc, so the boards
+   and the cell read as black gaskets in a pancake. A real insert is a closed
+   turned body with a seam and four screws; you do not see its electronics. */
 const insert = new THREE.Group();
+const insertShell = new THREE.Group();
+const insertCore = new THREE.Group();
+insert.add(insertShell, insertCore);
 
 // threaded collar that takes the place of the stock back plate
-insert.add(lathe([
-  [SEAT - 0.15, -12.7],
-  [SEAT - 0.15, -14.9],
-  [SEAT - 1.1, -15.4],
-  [16.2, -15.4],
-  [16.2, -12.7],
-  [SEAT - 0.15, -12.7]
+insertShell.add(lathe([
+  [18.9, -12.7],
+  [18.9, -16.0],
+  [18.2, -16.9]
 ], M.steel));
+/* the thread itself: four turns, in steel, catching the key light. A collar
+   that only claims to be threaded in the copy is a collar nobody believes. */
+for (let i = 0; i < 4; i++) {
+  const t = new THREE.Mesh(new THREE.TorusGeometry(18.95, 0.42, 10, 140), M.steel);
+  t.rotation.x = Math.PI / 2;
+  t.position.y = -13.15 - i * 0.72;
+  t.castShadow = true;
+  insertShell.add(t);
+}
 
-// acoustic base: the machined shell that carries the port down to the mic
-insert.add(lathe([
-  [17.4, -15.1],
-  [17.4, -18.9],
-  [16.8, -19.5],
-  [0, -19.5],
-  [0, -15.1],
-  [17.4, -15.1]
-], M.shell));
+// upper body: bead-blasted aluminium, turned, chamfered at both ends
+insertShell.add(lathe([
+  [18.55, -16.9],
+  [18.6, -17.4],
+  [18.6, -19.5]
+], M.bead));
+insertShell.add(lathe([
+  [18.6, -19.8],
+  [18.6, -25.5],
+  [18.0, -26.3]
+], M.bead));
+insertShell.add(face(18.6, -16.9, M.bead));
 
-// 3 mm acoustic port through the base
-const port = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 5, 32), M.rubber);
-port.position.y = -17.4;
-insert.add(port);
-const portLip = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.5, 16, 64), M.red);
+// the seam between the two turned halves, and the base plate that closes it
+const seam = new THREE.Mesh(new THREE.TorusGeometry(18.58, 0.3, 10, 160), M.rubber);
+seam.rotation.x = Math.PI / 2;
+seam.position.y = -19.65;
+insertShell.add(seam);
+insertShell.add(disc(18.0, 0.4, M.beadFace, -26.5));
+// a turned relief groove just inside the rim, the way a machined base closes
+const relief = new THREE.Mesh(new THREE.TorusGeometry(16.0, 0.18, 8, 160), M.rubber);
+relief.rotation.x = Math.PI / 2;
+relief.position.y = -26.72;
+insertShell.add(relief);
+
+// four recessed hex screws in the base plate
+for (let i = 0; i < 4; i++) {
+  const a = Math.PI / 4 + (i / 4) * Math.PI * 2;
+  const s = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.1, 0.5, 6), M.steel);
+  s.position.set(Math.cos(a) * 14.6, -26.55, Math.sin(a) * 14.6);
+  insertShell.add(s);
+}
+
+// single indicator lens, not a painted ring around the whole face
+const lensBezel = new THREE.Mesh(new THREE.TorusGeometry(2.35, 0.28, 10, 64), M.rubber);
+lensBezel.rotation.x = Math.PI / 2;
+lensBezel.position.y = -26.71;
+insertShell.add(lensBezel);
+insertShell.add(face(2.05, -26.71, M.led, false));
+
+// 3 mm acoustic port through the top face, with the red seal around it
+const port = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 4, 32), M.rubber);
+port.position.y = -18.4;
+insertShell.add(port);
+const portLip = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.45, 16, 64), M.red);
 portLip.rotation.x = Math.PI / 2;
-portLip.position.y = -15.2;
-insert.add(portLip);
+portLip.position.y = -16.95;
+insertShell.add(portLip);
 
-// microphone board with the two MEMS mics and the sealed reference cavity
-const micBoard = disc(15.4, 0.8, M.pcb, -19.9);
-insert.add(micBoard);
+/* internals -- visible only when the body is sectioned */
+const micBoard = disc(15.4, 0.8, M.pcb, -20.3);
+insertCore.add(micBoard);
 [-6.6, 6.6].forEach((x) => {
   const mic = new THREE.Mesh(new THREE.BoxGeometry(3.5, 1.2, 2.8), M.steel);
-  mic.position.set(x, -20.6, 1.6);
+  mic.position.set(x, -21.0, 1.6);
   mic.castShadow = true;
-  insert.add(mic);
+  insertCore.add(mic);
 });
-const cavityWell = new THREE.Mesh(new THREE.CylinderGeometry(4.4, 4.4, 2.2, 48, 1, true), M.shellMatte);
-cavityWell.position.y = -20.4;
-insert.add(cavityWell);
+const cavityWell = new THREE.Mesh(new THREE.CylinderGeometry(4.4, 4.4, 2.0, 48, 1, true), M.shellMatte);
+cavityWell.position.y = -20.8;
+insertCore.add(cavityWell);
 
 // cell
-insert.add(disc(14.2, 3.4, M.cell, -22.0));
-insert.add(disc(14.35, 0.4, M.steel, -20.4));
-insert.add(disc(14.35, 0.4, M.steel, -23.6));
+insertCore.add(disc(14.2, 2.6, M.cell, -22.9));
+insertCore.add(disc(14.35, 0.3, M.steel, -21.5));
+insertCore.add(disc(14.35, 0.3, M.steel, -24.3));
 
 // main board
-insert.add(disc(15.4, 0.8, M.pcb, -24.2));
+insertCore.add(disc(15.4, 0.8, M.pcb, -24.9));
 const soc = new THREE.Mesh(new THREE.BoxGeometry(6.4, 0.85, 6.4), M.chip);
-soc.position.y = -24.8;
+soc.position.y = -25.5;
 soc.castShadow = true;
-insert.add(soc);
+insertCore.add(soc);
 for (let i = 0; i < 12; i++) {
   const a = (i / 12) * Math.PI * 2;
   const c = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.5, 0.5), M.gold);
-  c.position.set(Math.cos(a) * 10.2, -24.7, Math.sin(a) * 10.2);
+  c.position.set(Math.cos(a) * 10.2, -25.4, Math.sin(a) * 10.2);
   c.rotation.y = -a;
-  insert.add(c);
+  insertCore.add(c);
 }
-
-// lid: white polymer, LED ring, etched mark
-insert.add(lathe([
-  [17.4, -24.9],
-  [17.4, -27.6],
-  [16.8, -28.2],
-  [0, -28.2],
-  [0, -24.9],
-  [17.4, -24.9]
-], M.shell));
-const ledRing = new THREE.Mesh(new THREE.TorusGeometry(11.4, 0.5, 12, 128), M.led);
-ledRing.rotation.x = Math.PI / 2;
-ledRing.position.y = -28.22;
-insert.add(ledRing);
-const etch = new THREE.Mesh(new THREE.CircleGeometry(10.4, 64), M.etch);
-etch.rotation.x = -Math.PI / 2;
-etch.position.y = -28.26;
-insert.add(etch);
+/* no printed logo anywhere: at this size an applied decal reads as a sticker,
+   and a lasered mark is not resolved at the size these images are shown */
 
 /* ---------- assembly ----------------------------------------------------- */
 const assembly = new THREE.Group();
@@ -369,17 +379,21 @@ if (HIDE.includes('stock')) stock.visible = false;
 if (CUT) {
   renderer.localClippingEnabled = true;
   const plane = new THREE.Plane(new THREE.Vector3(0, 0, -1), 0);
-  stock.traverse((o) => {
-    if (!o.isMesh) return;
-    o.material = o.material.clone();
-    o.material.clippingPlanes = [plane];
-    o.material.side = THREE.DoubleSide;
-    o.material.clipShadows = true;
-  });
+  /* the stock and the insert body are sectioned; the internals are not, so the
+     section shows the boards inside the part instead of an empty shell */
+  [stock, insertShell].forEach((grp) =>
+    grp.traverse((o) => {
+      if (!o.isMesh) return;
+      o.material = o.material.clone();
+      o.material.clippingPlanes = [plane];
+      o.material.side = THREE.DoubleSide;
+      o.material.clipShadows = true;
+    })
+  );
 }
 
 /* ---------- lighting ----------------------------------------------------- */
-const key = new THREE.DirectionalLight(0xfff6ea, 3.6);
+const key = new THREE.DirectionalLight(0xfffaf2, 3.0);
 key.position.set(-34, 58, 42);
 key.castShadow = true;
 key.shadow.mapSize.set(2048, 2048);
@@ -393,44 +407,46 @@ key.shadow.bias = -0.0003;
 key.shadow.radius = 5;
 scene.add(key);
 
-const fill = new THREE.DirectionalLight(0xe4ecf8, 1.5);
+const fill = new THREE.DirectionalLight(0xe9eef7, 1.2);
 fill.position.set(58, 16, 30);
 scene.add(fill);
 
-const rimLight = new THREE.DirectionalLight(0xffffff, 2.6);
+const rimLight = new THREE.DirectionalLight(0xffffff, 0.9);
 rimLight.position.set(10, 30, -50);
 scene.add(rimLight);
 
-const under = new THREE.DirectionalLight(0xfff2e6, 0.7);
+const under = new THREE.DirectionalLight(0xfff2e6, 0.35);
 under.position.set(-10, -40, 20);
 scene.add(under);
 
-scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc4b6, 0.45));
+scene.add(new THREE.HemisphereLight(0xf2f4f7, 0x8c8a85, 0.85));
 
 // a bright softbox above, for the long specular streak that metal needs
 const softbox = new THREE.Mesh(
-  new THREE.PlaneGeometry(90, 34),
-  new THREE.MeshBasicMaterial({ color: 0xffffff })
+  new THREE.PlaneGeometry(70, 26),
+  new THREE.MeshBasicMaterial({ color: 0xf7f6f3 })
 );
-softbox.position.set(-6, 74, 18);
+softbox.position.set(-6, 88, 22);
 softbox.rotation.x = Math.PI / 2.4;
 scene.add(softbox);
 
 /* ---------- shadow catcher ------------------------------------------------ */
 const table = new THREE.Mesh(
   new THREE.PlaneGeometry(1600, 1600),
-  new THREE.MeshStandardMaterial({ color: 0x2A221C, roughness: 0.42, metalness: 0.45 })
+  new THREE.MeshStandardMaterial({ color: 0x9d9b96, roughness: 0.9, metalness: 0.0 })
 );
 table.rotation.x = -Math.PI / 2;
-table.position.y = -29.2;
+/* the insert is 14 mm shallower than the head, so it needs its own table height
+   or it hangs above the surface in the views that drop the stock */
+table.position.y = HIDE.includes('stock') ? -26.75 : -29.2;
 table.receiveShadow = true;
 if (HIDE.includes('table')) table.visible = false;
 scene.add(table);
 
 const blob = canvas(512, (g, s) => {
   const grad = g.createRadialGradient(s / 2, s / 2, 8, s / 2, s / 2, s / 2);
-  grad.addColorStop(0, 'rgba(0,0,0,0.62)');
-  grad.addColorStop(0.5, 'rgba(0,0,0,0.22)');
+  grad.addColorStop(0, 'rgba(0,0,0,0.34)');
+  grad.addColorStop(0.5, 'rgba(0,0,0,0.12)');
   grad.addColorStop(1, 'rgba(0,0,0,0)');
   g.fillStyle = grad;
   g.fillRect(0, 0, s, s);
@@ -440,7 +456,7 @@ const softShadow = new THREE.Mesh(
   new THREE.MeshBasicMaterial({ map: blob, transparent: true, depthWrite: false })
 );
 softShadow.rotation.x = -Math.PI / 2;
-softShadow.position.y = -29.1;
+softShadow.position.y = HIDE.includes("stock") ? -26.7 : -29.1;
 if (HIDE.includes('stock')) softShadow.visible = false;
 scene.add(softShadow);
 
@@ -451,10 +467,16 @@ const positions = {
   macro:     { pos: [46, -4, 84],   fov: 20, target: [0, -16, 0] },
   installed: { pos: [-64, 40, 118], fov: 24, target: [2, -8, 0] },
   /* the insert on its own: the part the page sells, with nothing hiding it */
-  unit:      { pos: [78, -6, 92],   fov: 30, target: [0, -20, 0] },
+  unit:      { pos: [86, -40, 88],  fov: 26, target: [0, -21, 0] },
+  /* straight down on the lid: port, LED ring, collar thread. A different
+     picture, not the same part at another angle. */
+  detail:    { pos: [30, -70, 58],  fov: 20, target: [0, -22, 0] },
   unitlow:   { pos: [54, -44, 74],  fov: 30, target: [0, -22, 0] },
   /* half the chestpiece removed, so the insert is visible in place */
-  cut:       { pos: [88, 26, 132],  fov: 27, target: [0, -14, 0] },
+  cut:       { pos: [88, 22, 126],  fov: 21, target: [0, -19, 0] },
+  /* composed for a 2.6:1 band across the top of the home page, not a crop of
+     a 4:3 frame */
+  band:      { pos: [96, 30, 138],  fov: 14, target: [0, -17, 0] },
   back:      { pos: [8, 96, 54],    fov: 24, target: [0, -14, 0] }
 };const cfg = positions[VIEW] || positions.hero;
 camera.position.set(...cfg.pos);
@@ -535,6 +557,20 @@ if (P.get('depth')) {
 window.__shoot = (t) => {
   assembly.rotation.y = t * Math.PI * 2;
   renderer.render(scene, camera);
+};
+/* Probe handle for tooling: which mesh owns a pixel, so a shading artefact can
+   be traced to a part instead of guessed at. Not used by the site. */
+window.__probe = (nx, ny) => {
+  const rc = new THREE.Raycaster();
+  rc.setFromCamera(new THREE.Vector2(nx, ny), camera);
+  return rc.intersectObjects(assembly.children, true).map((h) => ({
+    geo: h.object.geometry.type,
+    params: h.object.geometry.parameters ? JSON.stringify(h.object.geometry.parameters).slice(0, 90) : '',
+    mat: h.object.material.color ? '#' + h.object.material.color.getHexString() : 'none',
+    rough: h.object.material.roughness,
+    metal: h.object.material.metalness,
+    seg: h.object.geometry.parameters && (h.object.geometry.parameters.radialSegments || h.object.geometry.parameters.segments)
+  }));
 };
 </script>
 </body>

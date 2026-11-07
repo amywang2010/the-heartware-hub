@@ -1345,3 +1345,26 @@
 
 .app-takes .app-empty { border: 1px dashed rgba(244, 240, 232, 0.14); padding: 0.8rem 0.9rem; background: transparent; color: rgba(244, 240, 232, 0.45); }
 .app-shell .app-note, .app-shell .app-empty { background: none; }
+
+/* the app section on the product page: a live instrument, described */
+.appdraw {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(1.6rem, 4vw, 4rem);
+  border-top: var(--rule);
+  padding-top: 1.8rem;
+}
+.appdraw__text p { margin-top: 0; }
+.appdraw__facts > div { padding: 1.05rem 0; border-bottom: 1px solid var(--line-soft); }
+.appdraw__facts > div:first-child { padding-top: 0; }
+.appdraw__k {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.appdraw__facts p { margin: 0; font-size: 1rem; }
+@media (max-width: 880px) { .appdraw { grid-template-columns: 1fr; } }

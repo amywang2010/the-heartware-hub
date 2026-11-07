@@ -38,42 +38,50 @@
 </header>
 <main>
 
-<section class="hero hero--plate">
-  <img class="hero__bg" src="assets/img/product-cut.jpg" alt="The stock chestpiece cut open along its axis, showing the insert seated inside it." width="1100" height="825">
-  <div class="wrap hero__inner">
-    <div class="hero__grid">
-      <div>
-        <p class="eyebrow">Stethoscope insert · prototype 4</p>
-        <h1>
-          <span class="line">One murmur.</span>
-          <span class="line">Two patients.</span>
-          <span class="line">Two different</span>
-          <span class="line">sounds.</span>
-        </h1>
-        <p class="hero__sub">
-          The same grade 2 murmur arrives at the earpieces 1.73 dB apart in a 60 kg
-          body and a 120 kg one — a third of the band a clinician is listening in.
-          Heartware is a 14 mm insert that replaces the back plate of the stethoscope
-          already in the room, measures the wall from the sound itself, and takes it
-          back out. Same patient, same murmur, 0.25 dB apart.
-        </p>
-        <div class="hero__actions">
+<section class="hero hero--type">
+  <div class="wrap">
+    <p class="eyebrow">Stethoscope insert · Rev D</p>
+    <h1 class="hero__display">
+      <span class="line">The same murmur</span>
+      <span class="line">is not the same</span>
+      <span class="line">sound in two</span>
+      <span class="line">bodies.</span>
+    </h1>
+    <div class="hero__foot">
+      <p class="hero__sub">
+        A grade 2 murmur arrives at the earpieces 1.73 dB apart in a 60 kg body and a
+        120 kg one, which is a third of the band a clinician is listening in. Heartware
+        is a 14 mm insert that replaces the back plate of the stethoscope already in the
+        room, measures the chest wall from the recording itself, and takes it back out.
+        The same murmur then arrives 0.25 dB apart.
+      </p>
+      <div class="hero__specs">
+        <div><b>Fits</b>44–48 mm chestpieces</div>
+        <div><b>Adds</b>14 mm · 45 g</div>
+        <div><b>Parts</b>$38.25 at 500 units</div>
+        <div class="hero__go">
           <a class="btn btn--solid" href="evidence.html">
             Read the measurement
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn--ghost" href="technology.html">How the correction works</a>
-        </div>
-        <div class="hero__meta">
-          <div><b>Fits</b>44–48 mm chestpieces</div>
-          <div><b>Adds</b>14 mm · 45 g</div>
-          <div><b>Parts</b>$38.25 at 500 units</div>
+          <a class="btn btn--ghost" href="app.html">Use the app</a>
         </div>
       </div>
-      <p class="hero__cap">Rev D · the stock chestpiece cut along its axis, insert in place</p>
     </div>
   </div>
 </section>
+
+<figure class="plate-band">
+  <img src="assets/img/product-band.jpg" width="1300" height="500" alt="The stock chestpiece and the insert, sectioned along the same plane, showing the port, board and cell inside the turned body.">
+  <figcaption>
+    <span class="wrap">
+      <b>Rev D, sectioned</b>
+      The chestpiece is cut along the axis and the insert cut with it, so the port, the
+      microphone board, the cell and the turned body sit in one plane. A CAD render of Rev D:
+      the part has not been tooled, and the first photographs of it will replace this image.
+    </span>
+  </figcaption>
+</figure>
 
 <section class="band" style="padding-block:clamp(3rem,5vw,4.4rem)">
   <div class="wrap">
@@ -118,8 +126,10 @@
           wall did to the sound, and undoing it — per recording, from the recording.
         </p>
         <p class="smallprint">
-          Every figure on this page is produced by the model in <code>research/</code>, and the
-          model ships with the site: clone the repository, run it, get the same numbers.
+          Every figure on this page comes from one thoracic model: 600 synthetic subjects,
+          the assumptions written out, and the cases where it fails. The evidence file states
+          which of the six results would move if a clinician disagreed with the wall model, and
+          by how much.
         </p>
       </div>
       <figure class="figure reveal">
@@ -217,9 +227,8 @@
         <h2>The correction is arithmetic. Arithmetic can be checked.</h2>
       </div>
       <p class="lede">
-        Four results from the model in this repository, with the figures, the sample size
-        and the failure cases. Every number regenerates from
-        <code>research/thoracic_model.py</code>.
+        Four results, with the figure, the sample size and the failure case beside each one.
+        The two that could embarrass us are on this page, not held back for a conversation.
       </p>
     </div>
 
@@ -267,16 +276,17 @@
     <div class="plates">
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-unit.jpg" alt="The insert on its own: threaded collar, acoustic base, port lip and LED ring." width="1000" height="1000" loading="lazy">
+          <img src="assets/img/product-unit.jpg" alt="The insert on its own: threaded collar, turned body, seam and base plate." width="1200" height="1200" loading="lazy">
         </div>
         <figcaption class="figcap">Fig. A · Rev D, stock chestpiece removed</figcaption>
       </figure>
       <div class="plates__note">
         <p>
-          The collar threads where the back plate was. The port carries the sound 3 mm to a
-          pair of MEMS microphones, one on the port and one behind a sealed cavity, and the
-          difference between them is the room. The cell, the logic board and the lid stack
-          behind it.
+          The collar threads into the seat where the back plate was. The port carries the sound
+          down to a pair of MEMS microphones, one at the port and one behind a sealed cavity,
+          and the difference between them is the room. The cell and both boards sit inside the
+          turned body, between the port and the four-screw base plate, so the section on top of
+          this page shows them and the exterior does not.
         </p>
         <a class="btn btn--ghost" href="product.html">The full specification</a>
       </div>

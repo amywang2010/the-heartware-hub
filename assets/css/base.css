@@ -1341,3 +1341,73 @@ h3 {
 .viewer__frame iframe { display: block; width: 100%; height: clamp(360px, 52vh, 560px); border: 0; }
 .viewer__hint { position: absolute; left: 0.9rem; bottom: 0.7rem; margin: 0; font: 0.68rem/1 "Archivo", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244, 240, 232, 0.5); pointer-events: none; }
 @media (max-width: 900px) { .viewer { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   Type-first hero. The photograph used to be the background; a photograph of
+   a render, behind type, at full bleed, is the composition every generated
+   landing page has. The claim is set in type now, and the section render sits
+   below it as a plate with a caption that says what it is.
+   ========================================================================= */
+.hero--type { padding-block: clamp(3rem, 6.5vw, 6rem) clamp(1.8rem, 3.4vw, 2.8rem); }
+.hero--type .eyebrow { margin-bottom: clamp(1rem, 2vw, 1.6rem); }
+.hero__display {
+  font-size: clamp(2.5rem, 7.2vw, 6rem);
+  line-height: 0.93;
+  letter-spacing: -0.048em;
+  margin: 0;
+  max-width: 17ch;
+}
+.hero__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.6rem, 4vw, 4rem);
+  align-items: start;
+  margin-top: clamp(1.8rem, 4vw, 3rem);
+  padding-top: 1.5rem;
+  border-top: var(--rule);
+}
+.hero__sub { margin: 0; max-width: 48ch; font-size: clamp(1.02rem, 0.5vw + 0.94rem, 1.16rem); }
+.hero__specs > div {
+  display: flex;
+  gap: 0.8rem;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+.hero__specs b {
+  min-width: 5rem;
+  font-weight: 500;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__specs .hero__go { border: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; padding-top: 1.2rem; }
+@media (max-width: 860px) { .hero__foot { grid-template-columns: 1fr; } }
+
+/* the plate band: a picture with a caption, not wallpaper */
+.plate-band { margin: 0; }
+.plate-band img {
+  width: 100%;
+  height: clamp(260px, 44vw, 600px);
+  object-fit: cover;
+  object-position: 52% 44%;
+}
+.plate-band figcaption { border-top: var(--rule); }
+.plate-band figcaption span {
+  display: block;
+  padding: 1rem 0 1.6rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  line-height: 1.62;
+  color: var(--muted);
+}
+.plate-band figcaption b {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

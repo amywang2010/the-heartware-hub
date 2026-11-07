@@ -24,14 +24,15 @@ const FFMPEG =
   process.env.FFMPEG ||
   'C:/Users/Okapi/eigenpulse-cuff/viz/bin/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe';
 
+/* Three pictures, three jobs. The earlier set was five angles of one part, and
+   a reader noticed before the page got a chance to: the gallery read as the same
+   photograph cropped five ways. Anything added here has to show something the
+   others do not. */
 const STILLS = [
-  /* the page needs to show the product: the cutaway and the unit, not four
-     angles of a stethoscope head */
-  { view: 'hero', w: 2000, h: 2400, cut: 1 },
-  { view: 'cut', w: 2200, h: 1650, cut: 1 },
-  { view: 'unit', w: 2000, h: 2000, hide: 'stock' },
-  { view: 'macro', w: 2200, h: 1650 },
-  { view: 'installed', w: 2000, h: 1600 }
+  { view: 'unit', w: 2400, h: 2400, hide: 'stock' },   // the part, on its own
+  { view: 'cut', w: 2400, h: 1800, cut: 1 },            // the part, in place
+  { view: 'detail', w: 2400, h: 1800, hide: 'stock' },  // the part, from above
+  { view: 'band', w: 2600, h: 1000, cut: 1 }            // the wide plate on the home page
 ];
 
 function serve() {

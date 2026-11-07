@@ -18,12 +18,15 @@ ROOT = Path(__file__).resolve().parent.parent
 IMG = ROOT / "assets" / "img"
 
 # view -> (focus plane in normalised depth, blur strength in px at 1/2 scale)
+# These are renders and they are presented as renders. The earlier stills were
+# dressed as photographs -- heavy defocus, film grain, a vignette -- and that
+# dressing is what made them read as counterfeit rather than as studio stills.
+# What is left is a light sharpen, so the edges resolve at display size.
 SHOTS = {
-    "hero": (0.470, 5.0),
-    "unit": (0.500, 4.0),
-    "cut": (0.480, 5.0),
-    "macro": (0.430, 6.5),
-    "installed": (0.470, 4.5),
+    "unit": (0.500, 1.3),
+    "cut": (0.480, 1.5),
+    "detail": (0.520, 1.7),
+    "band": (0.500, 1.3),
 }
 
 LEVELS = 9
@@ -63,7 +66,7 @@ def dof(rgb: Image.Image, depth: Image.Image, focus: float, strength: float) -> 
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
 
 
-def sharpen(rgb: Image.Image, amount: float = 1.9, radius: float = 1.4) -> Image.Image:
+def sharpen(rgb: Image.Image, amount: float = 1.0, radius: float = 1.1) -> Image.Image:
     """A lens resolves detail; a WebGL frame at this size looks soft next to one."""
     blur = rgb.filter(ImageFilter.GaussianBlur(radius))
     a = np.asarray(rgb, dtype=np.float32)
@@ -72,7 +75,7 @@ def sharpen(rgb: Image.Image, amount: float = 1.9, radius: float = 1.4) -> Image
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
 
 
-def grain(rgb: Image.Image, amount: float = 5.2) -> Image.Image:
+def grain(rgb: Image.Image, amount: float = 1.1) -> Image.Image:
     a = np.asarray(rgb, dtype=np.float32)
     rng = np.random.default_rng(7)
     n = rng.normal(0, 1, a.shape[:2]).astype(np.float32)
@@ -83,7 +86,7 @@ def grain(rgb: Image.Image, amount: float = 5.2) -> Image.Image:
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
 
 
-def vignette(rgb: Image.Image, strength: float = 0.42) -> Image.Image:
+def vignette(rgb: Image.Image, strength: float = 0.0) -> Image.Image:
     w, h = rgb.size
     y, x = np.mgrid[0:h, 0:w].astype(np.float32)
     cx, cy = w / 2, h / 2

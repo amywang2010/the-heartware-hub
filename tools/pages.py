@@ -30,42 +30,50 @@ def page(name, title, desc, key, body):
 # Home
 # --------------------------------------------------------------------------- #
 HOME = f"""
-<section class="hero hero--plate">
-  <img class="hero__bg" src="assets/img/product-cut.jpg" alt="The stock chestpiece cut open along its axis, showing the insert seated inside it." width="1100" height="825">
-  <div class="wrap hero__inner">
-    <div class="hero__grid">
-      <div>
-        <p class="eyebrow">Stethoscope insert · prototype 4</p>
-        <h1>
-          <span class="line">One murmur.</span>
-          <span class="line">Two patients.</span>
-          <span class="line">Two different</span>
-          <span class="line">sounds.</span>
-        </h1>
-        <p class="hero__sub">
-          The same grade 2 murmur arrives at the earpieces 1.73 dB apart in a 60 kg
-          body and a 120 kg one — a third of the band a clinician is listening in.
-          Heartware is a 14 mm insert that replaces the back plate of the stethoscope
-          already in the room, measures the wall from the sound itself, and takes it
-          back out. Same patient, same murmur, 0.25 dB apart.
-        </p>
-        <div class="hero__actions">
+<section class="hero hero--type">
+  <div class="wrap">
+    <p class="eyebrow">Stethoscope insert · Rev D</p>
+    <h1 class="hero__display">
+      <span class="line">The same murmur</span>
+      <span class="line">is not the same</span>
+      <span class="line">sound in two</span>
+      <span class="line">bodies.</span>
+    </h1>
+    <div class="hero__foot">
+      <p class="hero__sub">
+        A grade 2 murmur arrives at the earpieces 1.73 dB apart in a 60 kg body and a
+        120 kg one, which is a third of the band a clinician is listening in. Heartware
+        is a 14 mm insert that replaces the back plate of the stethoscope already in the
+        room, measures the chest wall from the recording itself, and takes it back out.
+        The same murmur then arrives 0.25 dB apart.
+      </p>
+      <div class="hero__specs">
+        <div><b>Fits</b>44–48 mm chestpieces</div>
+        <div><b>Adds</b>14 mm · 45 g</div>
+        <div><b>Parts</b>$38.25 at 500 units</div>
+        <div class="hero__go">
           <a class="btn btn--solid" href="evidence.html">
             Read the measurement
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn--ghost" href="technology.html">How the correction works</a>
-        </div>
-        <div class="hero__meta">
-          <div><b>Fits</b>44–48 mm chestpieces</div>
-          <div><b>Adds</b>14 mm · 45 g</div>
-          <div><b>Parts</b>$38.25 at 500 units</div>
+          <a class="btn btn--ghost" href="app.html">Use the app</a>
         </div>
       </div>
-      <p class="hero__cap">Rev D · the stock chestpiece cut along its axis, insert in place</p>
     </div>
   </div>
 </section>
+
+<figure class="plate-band">
+  <img src="assets/img/product-band.jpg" width="1300" height="500" alt="The stock chestpiece and the insert, sectioned along the same plane, showing the port, board and cell inside the turned body.">
+  <figcaption>
+    <span class="wrap">
+      <b>Rev D, sectioned</b>
+      The chestpiece is cut along the axis and the insert cut with it, so the port, the
+      microphone board, the cell and the turned body sit in one plane. A CAD render of Rev D:
+      the part has not been tooled, and the first photographs of it will replace this image.
+    </span>
+  </figcaption>
+</figure>
 
 <section class="band" style="padding-block:clamp(3rem,5vw,4.4rem)">
   <div class="wrap">
@@ -110,8 +118,10 @@ HOME = f"""
           wall did to the sound, and undoing it — per recording, from the recording.
         </p>
         <p class="smallprint">
-          Every figure on this page is produced by the model in <code>research/</code>, and the
-          model ships with the site: clone the repository, run it, get the same numbers.
+          Every figure on this page comes from one thoracic model: 600 synthetic subjects,
+          the assumptions written out, and the cases where it fails. The evidence file states
+          which of the six results would move if a clinician disagreed with the wall model, and
+          by how much.
         </p>
       </div>
       <figure class="figure reveal">
@@ -176,9 +186,8 @@ HOME = f"""
         <h2>The correction is arithmetic. Arithmetic can be checked.</h2>
       </div>
       <p class="lede">
-        Four results from the model in this repository, with the figures, the sample size
-        and the failure cases. Every number regenerates from
-        <code>research/thoracic_model.py</code>.
+        Four results, with the figure, the sample size and the failure case beside each one.
+        The two that could embarrass us are on this page, not held back for a conversation.
       </p>
     </div>
 
@@ -226,16 +235,17 @@ HOME = f"""
     <div class="plates">
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-unit.jpg" alt="The insert on its own: threaded collar, acoustic base, port lip and LED ring." width="1000" height="1000" loading="lazy">
+          <img src="assets/img/product-unit.jpg" alt="The insert on its own: threaded collar, turned body, seam and base plate." width="1200" height="1200" loading="lazy">
         </div>
         <figcaption class="figcap">Fig. A · Rev D, stock chestpiece removed</figcaption>
       </figure>
       <div class="plates__note">
         <p>
-          The collar threads where the back plate was. The port carries the sound 3 mm to a
-          pair of MEMS microphones, one on the port and one behind a sealed cavity, and the
-          difference between them is the room. The cell, the logic board and the lid stack
-          behind it.
+          The collar threads into the seat where the back plate was. The port carries the sound
+          down to a pair of MEMS microphones, one at the port and one behind a sealed cavity,
+          and the difference between them is the room. The cell and both boards sit inside the
+          turned body, between the port and the four-screw base plate, so the section on top of
+          this page shows them and the exterior does not.
         </p>
         <a class="btn btn--ghost" href="product.html">The full specification</a>
       </div>
@@ -385,7 +395,8 @@ TECH = f"""
       <div class="diagram">{step_correct()}
         <p class="small" style="margin-top:1rem">
           The demonstration on the Evidence page is this model running in your browser.
-          The Python that produced the figures is in the repository.
+          It prints the estimate it recovered and the residual it left behind, so the
+          correction can be inspected rather than taken on trust.
         </p>
       </div>
     </div>
@@ -532,13 +543,13 @@ PRODUCT = f"""
         <div class="shot">
           <img src="assets/img/product-unit.jpg" alt="The insert on its own." width="1000" height="1000" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. B · The insert alone</figcaption>
+        <figcaption class="figcap">Fig. B · The insert alone, collar and seam</figcaption>
       </figure>
       <figure class="plate reveal">
         <div class="shot">
-          <img src="assets/img/product-macro.jpg" alt="The reflector and the insert collar, close." width="1100" height="825" loading="lazy">
+          <img src="assets/img/product-detail.jpg" alt="The base plate from below: four recessed hex screws, a turned relief groove and the indicator lens." width="1100" height="825" loading="lazy">
         </div>
-        <figcaption class="figcap">Fig. C · Reflector and collar, close</figcaption>
+        <figcaption class="figcap">Fig. C · Base plate, four screws, indicator lens</figcaption>
       </figure>
       <div class="plate reveal">
         <div style="max-width:46ch">
@@ -562,8 +573,7 @@ PRODUCT = f"""
         <p class="eyebrow">Turn it over</p>
         <h2>The insert, not the stethoscope around it.</h2>
         <p>
-          The part that replaced the back plate, on its own: the threaded collar, the machined
-          base with the 3 mm port, the cell and boards, the polymer lid with the LED ring.
+          The part that replaced the back plate, on its own: the threaded collar, the turned body with its seam, the four-screw base plate and the indicator lens.
           Drag to rotate: this is the model the stills are rendered from.
         </p>
         <ul class="spec-list">
@@ -654,123 +664,48 @@ PRODUCT = f"""
         <h2>Record, read, keep,<br>or <em>refuse</em>.</h2>
       </div>
       <p class="lede">
-        Four screens, all of them working. Press record. Then switch the contact to loose and
-        press it again — that is the state that matters.
+        The app is the part of this that can be judged today, so it is running rather than
+        described: record a take, watch it correct, and watch it refuse.
       </p>
     </div>
 
-    <div class="appdemo">
-      <div class="phone reveal" data-app>
-        <div class="phone__notch"></div>
-        <div class="phone__screen">
-          <div class="app-head">
-            <span class="app-title">Heartware</span>
-            <div class="app-h" id="app-title">New examination</div>
-          </div>
-
-          <div class="app-body" data-panel="record">
-            <div class="wavebox">
-              <canvas data-wave aria-label="Live waveform"></canvas>
-              <div class="wlabel"><span>Port</span><span id="contact-label">23 dB SNR</span></div>
-            </div>
-
-            <div class="app-row">
-              <div><b>Contact</b><span>chestpiece on skin</span></div>
-              <button class="app-chip" id="contact-toggle" aria-pressed="false">Good contact</button>
-            </div>
-
-            <div id="record-result" hidden>
-              <div class="app-note" id="res-card">
-                <b id="res-title">—</b>
-                <div style="margin-top:.4rem">
-                  Site <b id="res-site">—</b> · Band <b id="res-band">—</b> · Quality
-                  <b id="res-quality">—</b>
-                </div>
-                <div class="tiny" style="margin-top:.3rem"><span id="res-note">—</span></div>
-              </div>
-              <button class="app-btn" id="save-exam">Save to record</button>
-            </div>
-
-            <button class="app-btn" id="record-cta">Record</button>
-            <p class="tiny" style="margin-top:.7rem">
-              Interface demo. Readings are generated by the model on this page — not a patient.
-            </p>
-          </div>
-
-          <div class="app-body" data-panel="findings" hidden>
-            <p class="tiny" style="margin-bottom:.5rem">
-              <b id="findings-count">0</b> findings in this session
-            </p>
-            <div id="findings-list"></div>
-            <p class="tiny" style="margin-top:.8rem">
-              A finding carries its site, its band, its likelihood and its quality. Without all
-              four it is not shown.
-            </p>
-          </div>
-
-          <div class="app-body" data-panel="records" hidden>
-            <div id="records-list"></div>
-            <div id="record-detail" hidden>
-              <div class="app-note" style="margin-top:.8rem">
-                <b id="detail-title">—</b>
-                <div style="margin-top:.35rem">
-                  Site <b id="detail-site">—</b> · Quality <b id="detail-quality">—</b>
-                </div>
-                <div class="tiny" style="margin-top:.3rem" id="detail-finding">—</div>
-              </div>
-            </div>
-            <p class="tiny" style="margin-top:.8rem">
-              Stored on the phone, timestamped, exportable. No patient identifiers.
-            </p>
-          </div>
-
-          <div class="app-body" data-panel="settings" hidden>
-            <div class="app-row"><div><b>Battery</b><span>USB-C</span></div><span class="app-chip">84%</span></div>
-            <div class="app-row"><div><b>Firmware</b><span>nRF52840</span></div><span class="app-chip">0.9.3</span></div>
-            <div class="app-row"><div><b>Microphones</b><span>port + reference</span></div><span class="app-chip">both live</span></div>
-            <div class="app-row"><div><b>Bandwidth</b><span>20 Hz – 2 kHz</span></div><span class="app-chip">24-bit</span></div>
-            <div class="app-row"><div><b>Export</b><span>WAV + JSON</span></div><span class="app-chip">ready</span></div>
-            <p class="tiny" style="margin-top:.9rem">
-              Prototype firmware. Not a certified medical device.
-            </p>
-          </div>
-
-          <nav class="app-nav" aria-label="App">
-            <button data-tab="record" aria-selected="true">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></svg>Record
-            </button>
-            <button data-tab="findings" aria-selected="false">
-              <svg viewBox="0 0 24 24"><path d="M4 16l4-5 3 3 4-7 5 9"/></svg>Findings
-            </button>
-            <button data-tab="records" aria-selected="false">
-              <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M9 9h6M9 13h6"/></svg>Records
-            </button>
-            <button data-tab="settings" aria-selected="false">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>Device
-            </button>
-          </nav>
-        </div>
+    <div class="appdraw">
+      <div class="appdraw__text">
+        <p class="lede" style="max-width:38ch">
+          The panel on the app page is the instrument, not a picture of one. It records from
+          the microphone, filters the take, measures the chest wall out of it, and prints the
+          number it recovered with the error it might carry.
+        </p>
+        <p>
+          Press <b>recording</b> and it listens to the room you are in. Press <b>generated
+          murmur</b> and it runs a signal whose wall thickness it knows, so the estimate can be
+          scored against the truth. It refuses below 45 per cent contact rather than lowering
+          its confidence and carrying on, because the failure that hurts a patient is a
+          confident normal.
+        </p>
+        <p>
+          Nothing is uploaded. A take exports as WAV, on the machine, with no server in the path.
+        </p>
+        <p style="margin-top:1.6rem"><a class="btn btn--solid" href="app.html">Open the app
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></p>
       </div>
-
-      <div class="stack">
-        <div class="card">
-          <span class="card__num">REFUSAL</span>
-          <h3>No reading is a reading.</h3>
-          <p>
-            When contact is lost the app does not lower its confidence and carry on. It returns
-            nothing and asks for another recording, because the failure that hurts a patient is
-            a confident normal.
-          </p>
+      <div class="appdraw__facts">
+        <div>
+          <span class="appdraw__k">Refusal, not confidence</span>
+          <p>Contact below the threshold returns no reading and asks for another recording.
+             No finding is ever shown without its site, its band, its quality and the take
+             it came from.</p>
         </div>
-        <p style="margin-top:1.6rem"><a class="btn btn--solid" href="app.html">Open the app &rarr;</a></p>
-        <div class="card">
-          <span class="card__num">RECORD</span>
-          <h3>Every examination is evidence later.</h3>
-          <p>
-            Site, timestamp, quality and waveform are stored on the phone with no patient
-            identifiers, and export as WAV and JSON — so a specialist can second-read the actual
-            sound rather than a description of it.
-          </p>
+        <div>
+          <span class="appdraw__k">Every take is evidence later</span>
+          <p>Site, time, contact and waveform are kept with the take and export together, so
+             a specialist can second-read the sound rather than a description of it.</p>
+        </div>
+        <div>
+          <span class="appdraw__k">What it does not do</span>
+          <p>It does not name a valve lesion. It reports the wall it measured, the corrected
+             spectrum, and the margin between the two.</p>
         </div>
       </div>
     </div>
@@ -988,8 +923,8 @@ EVIDENCE = f"""
     <p class="eyebrow"><b>03</b> Evidence</p>
     <h1>Every number, and<br>where it comes from.</h1>
     <p class="lede">
-      Six results, each one reproduced by a script in this repository. Run them and you get
-      the same figures, to the digit, on your own machine.
+      Six results. Each carries its figure, its sample size and its failure case, including
+      the two that argue against the product.
     </p>
   </div>
 </section>
