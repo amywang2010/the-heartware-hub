@@ -5,10 +5,22 @@
   var nav = document.querySelector('.nav');
   var toggle = document.querySelector('.nav__toggle');
   if (nav && toggle) {
+    var close = function () {
+      nav.setAttribute('data-open', 'false');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
     toggle.addEventListener('click', function () {
       var open = nav.getAttribute('data-open') === 'true';
       nav.setAttribute('data-open', String(!open));
       toggle.setAttribute('aria-expanded', String(!open));
+      document.body.style.overflow = open ? '' : 'hidden';
+    });
+    nav.querySelectorAll('.nav__links a').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+    addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
     });
   }
 
@@ -34,19 +46,18 @@
     risers.forEach(function (n) { io.observe(n); });
   }
 
-  var orbit = document.querySelector('[data-orbit]');
-  if (orbit && !reduce) {
-    var spin = 0, ticking = false;
-    var move = function () {
-      var box = orbit.getBoundingClientRect();
-      var p = 1 - (box.top + box.height / 2) / innerHeight;
-      spin = p * 300;
-      orbit.style.transform = 'rotate(' + spin.toFixed(2) + 'deg)';
+  /* The seal around the part turns as the page moves, so the words walk
+     around the drawing instead of spinning on their own. */
+  var seal = document.querySelector('.hero__ring svg');
+  if (seal && !reduce) {
+    var ticking = false;
+    var turn = function () {
+      seal.style.transform = 'rotate(' + (scrollY * 0.16).toFixed(2) + 'deg)';
       ticking = false;
     };
     addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(move); }
+      if (!ticking) { ticking = true; requestAnimationFrame(turn); }
     }, { passive: true });
-    move();
+    turn();
   }
 })();

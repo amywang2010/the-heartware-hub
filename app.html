@@ -4,109 +4,109 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The app · Heartware</title>
-<meta name="description" content="Run the recording interface in the browser: listen, measure, correct, accept.">
+<meta name="description" content="The recording interface, running in the browser: listen, measure, correct, accept.">
 <meta property="og:title" content="The app · Heartware">
-<meta property="og:description" content="Run the recording interface in the browser: listen, measure, correct, accept.">
+<meta property="og:description" content="The recording interface, running in the browser: listen, measure, correct, accept.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Bagel+Fat+One&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="app">
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
-    <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
+    <path d="M.5 .98C.47 .95 .02 .66 .02 .34 .02 .13 .16 .01 .33 .01c.08 0 .14 .05 .17 .11C.53 .06 .59 .01 .67 .01c.17 0 .31 .12 .31 .33 0 .32-.45 .61-.48 .64Z"/>
   </clipPath>
 </svg>
 <header class="nav" data-open="false">
-  <div class="nav__in">
+  <div class="wrap nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
-      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
+      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><span class="brand__heart">Heart</span><span class="brand__rest">ware</span></span>
     </a>
     <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
-        <a href="product.html">The insert</a>
-        <a href="technology.html">How it works</a>
-        <a href="app.html">The app</a>
-        <a href="evidence.html">Evidence</a>
-        <a href="clinical.html">In the clinic</a>
-        <a href="partnerships.html">Work with us</a>
-        <a href="about.html">About</a>
-        <a class="btn btn--sm btn--wine" href="contact.html">Talk to us</a>
+      <a href="product.html">The insert</a>
+      <a href="technology.html">How it works</a>
+      <a href="app.html">The app</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="partnerships.html">Work with us</a>
+      <a href="about.html">About</a>
+      <a class="btn btn--wine btn--sm" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
 <main>
 
-<section class="ptop">
+<section class="ptop sec--tight" style="position:relative;overflow:hidden">
+  <div class="blob" style="width:20rem;height:20rem;right:-6rem;top:-8rem;background:#ded5f2;opacity:.7"></div>
   <div class="wrap">
-    <span class="kicker kicker--wine">Companion app</span>
-    <h1 class="display">The phone is the instrument's screen.</h1>
-    <p class="lede">It adds no model and no cloud account. It stores the thing a second reader would want to hear, and refuses when the recording is not worth keeping.</p>
+    <span class="chip chip--sky"><i></i>Companion app</span>
+    <h1 class="mega" style="margin-top:1rem;max-width:16ch">The screen the insert talks to.</h1>
+    <p class="lede" style="margin-top:1rem">One recording screen, one result, and a refusal when the take is not worth keeping. No account, no dashboard, no model of you.</p>
   </div>
 </section>
 
-<section class="band--navy sec">
+<section class="sec--tight">
   <div class="wrap">
-    <div class="split split--75" style="align-items:end;margin-bottom:clamp(1.6rem,3vw,2.4rem)">
-      <h2 class="display display--md">Run it here before you run it on a patient.</h2>
-      <p class="small" style="max-width:32ch;justify-self:end;color:rgba(251,247,240,.72)">Four phases, six seconds of audio, and the numbers the app shows while it works.</p>
-    </div>
-
 <div class="demo" data-demo>
-  <div class="demo__phone">
-    <div class="demo__screen">
-      <div class="demo__bar"><span>Heartware</span><span class="demo__dot" data-demo-dot></span></div>
-      <div class="demo__state" data-demo-state>Ready</div>
-      <div class="demo__big" data-demo-big>&#8212;</div>
-      <canvas class="demo__wave" data-demo-wave aria-label="Waveform of the recorded heart sound"></canvas>
-      <div class="demo__kv"><span>Chest wall estimate</span><span><b data-demo-q>89%</b> quality</span></div>
-      <div class="demo__verdict" data-demo-verdict>Press run to play a generated grade 2 murmur.</div>
-      <button class="btn btn--sm" data-demo-run>Run the demo</button>
+  <div class="phone">
+    <div class="screen">
+      <div class="screen__top"><span>Heartware</span><span>Rev D</span></div>
+      <div class="screen__pat">Bed 4 &middot; M, 68</div>
+      <div class="screen__meta">Aortic area, seated, 6 s</div>
+      <div class="screen__state"><i></i><span data-demo-state>Listening</span></div>
+      <div class="screen__big" data-demo-big>6.0<small>s</small></div>
+      <canvas class="screen__wave" data-demo-wave width="560" height="150" aria-label="Waveform of the recorded heart sound"></canvas>
+      <div class="screen__gate">
+        <span>Chest wall <b data-demo-wall>37 mm</b> &middot; contact <b data-demo-q>89%</b></span>
+        <span class="screen__bar"><b data-demo-bar></b></span>
+      </div>
+      <div class="screen__verdict" data-demo-verdict data-tone="ok">Contact is good. Holding the take.</div>
+      <button class="screen__btn" data-demo-run>Run it again</button>
     </div>
   </div>
   <div>
-    <ol class="demo__steps">
-      <li class="demo__step on" data-demo-step><b>01</b><span>Listen for six seconds. One channel, 20 Hz to 2 kHz.</span></li>
-      <li class="demo__step" data-demo-step><b>02</b><span>Estimate the chest wall from the recording. No tape measure, no input from the user.</span></li>
-      <li class="demo__step" data-demo-step><b>03</b><span>Divide the murmur band by the wall it just measured.</span></li>
-      <li class="demo__step" data-demo-step><b>04</b><span>Keep the take, or refuse it when contact is poor. Nothing uploads.</span></li>
+    <ol class="demo__list">
+      <li class="on" data-demo-step><b>01</b><span>Six seconds, one channel, 20 Hz to 2 kHz. The waveform is drawn as it arrives.</span></li>
+      <li data-demo-step><b>02</b><span>The chest wall is estimated from the recording. No tape measure, no input from the person holding it.</span></li>
+      <li data-demo-step><b>03</b><span>The murmur band is divided by the wall it just measured, so the number that remains is the heart's.</span></li>
+      <li data-demo-step><b>04</b><span>Contact below 45 per cent returns nothing. The take is refused, not guessed at.</span></li>
     </ol>
-    <p class="small" style="margin-top:1.4rem">A generated grade 2 murmur through a modelled chest wall, played in the browser. It shows the interface, it does not measure you.</p>
+    <p class="small" style="margin-top:1.2rem;max-width:42ch">A generated grade 2 murmur through a modelled chest wall, played in the browser. It shows the interface and runs itself. It does not measure you.</p>
   </div>
 </div>
+</div>
+</section>
 
+<section class="sec" style="background:#f2e9db">
+  <div class="wrap mosaic">
+    <div class="card card--sky m4"><span class="card__k">Offline</span><p class="card__n">0</p><h3 style="margin-top:.6rem">Bytes sent.</h3><p class="small">The take stays on the phone. Export is a file someone chooses to send, not a sync that happens anyway.</p></div>
+    <div class="card card--butter m4"><span class="card__k">Refusal</span><p class="card__n">45%</p><h3 style="margin-top:.6rem">Contact gate.</h3><p class="small">Poor contact, loose gasket, a coat over the chest: the app returns nothing rather than a number it cannot defend.</p></div>
+    <div class="card card--sage m4"><span class="card__k">Weight</span><p class="card__n">1</p><h3 style="margin-top:.6rem">Number per take.</h3><p class="small">The corrected murmur level, the wall estimate and the quality score. Not a grade, not a diagnosis, not an alert.</p></div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap split split--57 split--top">
-    <div>
-      <h2 class="display display--md">What it does at each step.</h2>
-      <p class="lede" style="margin-top:1rem">The interface is small on purpose. A clinician should be able to read the state of a recording from across a room, and should never have to guess whether a take was good.</p>
-    </div>
-    <div class="rows">
-      <div class="row"><span class="row__k">Listening</span><span class="row__v">A six second take on one channel. The waveform is drawn as it arrives, so a bad seal is visible before the take ends.</span></div>
-      <div class="row"><span class="row__k">Measuring</span><span class="row__v">The wall estimate climbs as the take fills. No user input, no calibration step.</span></div>
-      <div class="row"><span class="row__k">Correcting</span><span class="row__v">The gain applied to the murmur band, shown as a number rather than hidden in a settings menu.</span></div>
-      <div class="row"><span class="row__k">Accepting</span><span class="row__v">A quality score and a decision. Below 45 per cent contact the app returns nothing and asks for another take.</span></div>
-      <div class="row"><span class="row__k">Storing</span><span class="row__v">WAV and JSON on the phone, exportable to the record the clinic already uses.</span></div>
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Put the phone next to a stethoscope.</h2>
+      <p class="on-dark" style="margin-top:1rem;max-width:40ch">The app is what a pilot site uses first, before the hardware arrives. Ask for the test build and the protocol.</p>
+      <div class="cta__row"><a class="btn btn--wine" href="contact.html">hello@heart-ware.org <span class="btn__arrow">&rarr;</span></a></div>
     </div>
   </div>
 </section>
+
 </main>
-
 <footer class="foot">
-  <svg class="foot__heart" viewBox="0 0 48 44" aria-hidden="true"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
+  <div class="blob" style="width:34rem;height:34rem;right:-12rem;top:-14rem;background:rgba(151,26,44,.32)"></div>
+  <div class="dots" style="color:rgba(251,246,236,.22);inset:auto 0 0 0;height:8rem"></div>
   <div class="wrap">
     <div class="foot__top">
-      <div class="foot__brand">
-        <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
-          <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="319" height="183" decoding="async"><span class="brand__word"><b>Heart</b>ware</span>
-        </a>
+      <div>
+        <p class="foot__mega"><em>Heart</em>ware</p>
         <p class="foot__tag">Innovating cardiac care</p>
         <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>

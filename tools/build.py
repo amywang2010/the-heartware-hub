@@ -15,26 +15,23 @@ NAV = [
     ("technology.html", "How it works"),
     ("app.html", "The app"),
     ("evidence.html", "Evidence"),
-    ("clinical.html", "In the clinic"),
     ("partnerships.html", "Work with us"),
     ("about.html", "About"),
 ]
 
-# The existing mark, cropped out of the supplied logo file so the site uses the
-# company's own drawing rather than a redraw of it.
+# The mark comes out of the supplied logo file, so the site uses the company's
+# own drawing. The wordmark is set in type: Heart in wine, ware in navy, exactly
+# as the logo has it.
 MARK = (
     '<img class="brand__mark" src="assets/img/logo-mark.png" alt="" '
     'width="319" height="183" decoding="async">'
 )
-
-# The wordmark is set in type, in the two logo colours: Heart in wine, ware in
-# navy. The mark carries the artwork.
-LOGO = MARK + '<span class="brand__word"><b>Heart</b>ware</span>'
+LOGO = MARK + '<span class="brand__word"><span class="brand__heart">Heart</span><span class="brand__rest">ware</span></span>'
 
 
 def head(title, description, page):
     nav_links = "\n".join(
-        f'        <a href="{href}">{label}</a>' for href, label in NAV
+        f'      <a href="{href}">{label}</a>' for href, label in NAV
     )
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -49,25 +46,25 @@ def head(title, description, page):
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Bagel+Fat+One&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="{page}">
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
-    <path d="M.5 1C.48 .98 0 .68 0 .34 0 .14 .14 .02 .31 .02c.09 0 .16 .05 .19 .12C.53 .07 .6 .02 .69 .02c.17 0 .31 .12 .31 .32 0 .34-.48 .64-.5 .66Z"/>
+    <path d="M.5 .98C.47 .95 .02 .66 .02 .34 .02 .13 .16 .01 .33 .01c.08 0 .14 .05 .17 .11C.53 .06 .59 .01 .67 .01c.17 0 .31 .12 .31 .33 0 .32-.45 .61-.48 .64Z"/>
   </clipPath>
 </svg>
 <header class="nav" data-open="false">
-  <div class="nav__in">
+  <div class="wrap nav__in">
     <a class="brand" href="index.html" aria-label="Heartware, home">
       {LOGO}
     </a>
     <button class="nav__toggle" aria-expanded="false">Menu</button>
     <nav class="nav__links" aria-label="Primary">
 {nav_links}
-        <a class="btn btn--sm btn--wine" href="contact.html">Talk to us</a>
+      <a class="btn btn--wine btn--sm" href="contact.html">Talk to us</a>
     </nav>
   </div>
 </header>
@@ -76,16 +73,15 @@ def head(title, description, page):
 
 
 def foot():
-    return f"""</main>
-
+    return f"""
+</main>
 <footer class="foot">
-  <svg class="foot__heart" viewBox="0 0 48 44" aria-hidden="true"><path d="M24 41.4C21.7 39.6 3 27.6 3 15.1 3 8.3 8.2 3 14.7 3c4.3 0 7.8 2.1 9.3 5.3C25.5 5.1 29 3 33.3 3 39.8 3 45 8.3 45 15.1c0 12.5-18.7 24.5-21 26.3Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
+  <div class="blob" style="width:34rem;height:34rem;right:-12rem;top:-14rem;background:rgba(151,26,44,.32)"></div>
+  <div class="dots" style="color:rgba(251,246,236,.22);inset:auto 0 0 0;height:8rem"></div>
   <div class="wrap">
     <div class="foot__top">
-      <div class="foot__brand">
-        <a class="brand brand--big" href="index.html" aria-label="Heartware, home">
-          {LOGO}
-        </a>
+      <div>
+        <p class="foot__mega"><em>Heart</em>ware</p>
         <p class="foot__tag">Innovating cardiac care</p>
         <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
       </div>
