@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How it works · Heartware</title>
-<meta name="description" content="Two microphones, one division. The method, the arithmetic and how to check it.">
-<meta property="og:title" content="How it works · Heartware">
-<meta property="og:description" content="Two microphones, one division. The method, the arithmetic and how to check it.">
+<title>How the correction works · Heartware</title>
+<meta name="description" content="The method and arithmetic, and how to check it against the bench recordings.">
+<meta property="og:title" content="How the correction works · Heartware">
+<meta property="og:description" content="The method and arithmetic, and how to check it against the bench recordings.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,17 +44,17 @@
   <div class="blob" style="width:24rem;height:24rem;left:-8rem;top:-9rem;background:#c9dff0;opacity:.8"></div>
   <div class="wrap">
     <span class="chip chip--butter"><i></i>How it works</span>
-    <h1 class="mega" style="margin-top:1rem;max-width:20ch">Two microphones, one division.</h1>
-    <p class="lede" style="margin-top:1rem">The chest wall is a filter sitting between the heart and every microphone you can put on the skin. The insert does not try to model the filter in advance. It measures it from the take, and divides by it.</p>
+    <h1 class="mega" style="margin-top:1rem;max-width:20ch">How the correction works.</h1>
+    <p class="lede" style="margin-top:1rem">The chest wall sits between the heart and every microphone you can put on the skin. The insert estimates its transmission from the recording and divides the signal by it. No trained model and no second sensor.</p>
   </div>
 </section>
 
 <section class="sec--tight">
   <div class="wrap split split--57 split--top">
     <div class="card card--butter">
-      <span class="card__k">The whole method</span>
+      <span class="card__k">The correction</span>
       <p class="formula" style="font-family:var(--disp);font-weight:800;letter-spacing:-.04em;font-size:clamp(2.1rem,4.4vw,3.3rem);line-height:1.05;margin-top:.6rem">H&#770;(f) = H(f) / T(f, d&#770;)</p>
-      <p class="small" style="margin-top:1rem">H(f) is what the capsules recorded, T is the transmission of the wall, and d&#770; is the wall thickness estimated from the same take. Nothing else is fitted, and nothing is applied that a reviewer cannot read.</p>
+      <p class="small" style="margin-top:1rem">H(f) is the recorded signal, T is the estimated transmission of the chest wall, and d&#770; is the wall thickness estimated from the same take. Every term can be checked from the recording.</p>
     </div>
     <div class="artcard" style="background:#cfe0cd;transform:rotate(-1.4deg);box-shadow:12px 12px 0 rgba(16,42,58,.22)">
 <svg viewBox="0 0 660 430" role="img" aria-label="Section through Rev D: outer housing, cavity, microphone board at the base, sealing gasket and threaded collar">
@@ -93,12 +93,12 @@
 
 <section class="sec" style="background:#c9dff0">
   <div class="wrap">
-    <h2 class="display" style="max-width:20ch">What happens in the six seconds.</h2>
+    <h2 class="display" style="max-width:20ch">What happens in six seconds.</h2>
     <div class="steps" style="margin-top:1.6rem">
       <div class="step rise"><span class="step__n">1</span><h3>Listen</h3><p>One channel, 20 Hz to 2 kHz. The reference capsule sits behind the face gasket and hears the room.</p></div>
-      <div class="step rise"><span class="step__n">2</span><h3>Measure</h3><p>The low frequency slope of the take gives the wall. 3.7 mm RMS, against a measured wall, on 111 recordings.</p></div>
-      <div class="step rise"><span class="step__n">3</span><h3>Divide</h3><p>The murmur band is corrected by the estimated transmission. It is a division, not a model.</p></div>
-      <div class="step rise"><span class="step__n">4</span><h3>Decide</h3><p>Contact above 45 per cent keeps the take. Below it, the app says so and offers nothing.</p></div>
+      <div class="step rise"><span class="step__n">2</span><h3>Measure</h3><p>The low frequency slope of the take gives the wall thickness. RMS error is 3.7 mm across 111 recordings.</p></div>
+      <div class="step rise"><span class="step__n">3</span><h3>Divide</h3><p>The murmur band is divided by the estimated transmission. It is arithmetic, not a learned correction.</p></div>
+      <div class="step rise"><span class="step__n">4</span><h3>Decide</h3><p>Contact above 45 per cent keeps the take. Below it, the app returns no result.</p></div>
     </div>
   </div>
 </section>
@@ -107,8 +107,8 @@
   <div class="blob" style="width:26rem;height:26rem;right:-9rem;bottom:-11rem;background:rgba(201,223,240,.14)"></div>
   <div class="wrap split split--57 split--top">
     <div>
-      <h2 class="display" style="max-width:16ch">You can check it in an afternoon.</h2>
-      <p class="on-dark" style="margin-top:1rem;max-width:42ch">None of this asks to be taken on trust. The bench recordings, the estimator and the spreadsheet behind every number on this site are available to anyone who asks, under an NDA if the CAD comes too.</p>
+      <h2 class="display" style="max-width:16ch">Check the method yourself.</h2>
+      <p class="on-dark" style="margin-top:1rem;max-width:42ch">The bench recordings, the estimator and the spreadsheet behind each number are available on request, under NDA if the CAD is included.</p>
     </div>
     <div class="acc">
       <details open>
@@ -120,7 +120,7 @@
         <div class="acc__in"><p class="small on-dark">The wall estimate is a slope fit over 20 to 120 Hz. It has no trained weights and no lookup table: given the same recording it returns the same number, and the residual against the measured wall is 3.7 mm RMS.</p></div>
       </details>
       <details>
-        <summary>Break it<span>a wall that is not there</span></summary>
+        <summary>Test the failure case<span>a wall that is not there</span></summary>
         <div class="acc__in"><p class="small on-dark">Hold the insert off the skin. The estimator should return a wall of near zero and the gate should refuse the take. If it returns a confident number instead, the method is wrong and you should say so.</p></div>
       </details>
     </div>
@@ -135,8 +135,8 @@
     <div class="foot__top">
       <div>
         <p class="foot__mega"><em>Heart</em>ware</p>
-        <p class="foot__tag">Innovating cardiac care</p>
-        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
+        <p class="foot__tag">Chest wall correction for auscultation.</p>
+        <p class="foot__line">A stethoscope insert that estimates the chest wall from the recording and corrects for it.</p>
       </div>
       <nav class="foot__cols" aria-label="Footer">
         <div>
@@ -168,7 +168,7 @@
       </nav>
     </div>
     <div class="foot__base">
-      <span>© <span data-year>2026</span> Heartware</span>
+      <span>© <span data-year>2026</span> Heartware &middot; Photograph: Marek Studzinski / Unsplash</span>
       <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>

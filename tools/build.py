@@ -82,8 +82,8 @@ def foot():
     <div class="foot__top">
       <div>
         <p class="foot__mega"><em>Heart</em>ware</p>
-        <p class="foot__tag">Innovating cardiac care</p>
-        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
+        <p class="foot__tag">Chest wall correction for auscultation.</p>
+        <p class="foot__line">A stethoscope insert that estimates the chest wall from the recording and corrects for it.</p>
       </div>
       <nav class="foot__cols" aria-label="Footer">
         <div>
@@ -115,7 +115,7 @@ def foot():
       </nav>
     </div>
     <div class="foot__base">
-      <span>© <span data-year>2026</span> Heartware</span>
+      <span>© <span data-year>2026</span> Heartware &middot; Photograph: Marek Studzinski / Unsplash</span>
       <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>

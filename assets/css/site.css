@@ -195,8 +195,11 @@ h1,h2,h3,h4{margin:0}
   box-shadow:14px 14px 0 rgba(10,44,74,.55);
 }
 .artcard svg{width:100%;height:auto}
+.hero__shot{position:relative;z-index:1;margin:0;background:var(--paper);border:5px solid var(--paper);box-shadow:16px 16px 0 rgba(10,44,74,.5);transform:rotate(1.6deg)}
+.hero__shot img{width:100%;height:clamp(330px,32vw,470px);object-fit:cover;object-position:34% 52%}
+.hero__shotcap{font-size:.8rem;line-height:1.5;font-weight:600;color:var(--ink);padding:.6rem .2rem .1rem;max-width:48ch}
 .hero__ring{
-  position:absolute;left:-4.6rem;bottom:-3.8rem;width:11.2rem;height:11.2rem;z-index:5;
+  position:absolute;left:-4.4rem;top:-4rem;bottom:auto;width:11.2rem;height:11.2rem;z-index:5;
   background:var(--butter);border:var(--line);border-radius:50%;
   box-shadow:var(--hard-sm);display:grid;place-items:center;
 }
@@ -513,7 +516,7 @@ h1,h2,h3,h4{margin:0}
   .footer{grid-template-columns:1fr}
   .row{grid-template-columns:1fr;gap:.15rem}
   .ticker{margin-inline:-1.2rem;padding:.7rem 0}
-  .hero__ring{width:8.4rem;height:8.4rem;left:auto;right:-1rem;bottom:-2.6rem}
+  .hero__ring{width:8.4rem;height:8.4rem;left:auto;right:-1rem;top:auto;bottom:-2.6rem}
   .artcard{transform:rotate(1.2deg);box-shadow:9px 9px 0 rgba(10,44,74,.55)}
   .price__n{font-size:5rem}
   .statement .display,.statement .h2{max-width:100%}

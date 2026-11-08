@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The app · Heartware</title>
-<meta name="description" content="The recording interface, running in the browser: listen, measure, correct, accept.">
-<meta property="og:title" content="The app · Heartware">
-<meta property="og:description" content="The recording interface, running in the browser: listen, measure, correct, accept.">
+<title>The recording app · Heartware</title>
+<meta name="description" content="The recording interface, running in the browser: listen, estimate, correct, accept.">
+<meta property="og:title" content="The recording app · Heartware">
+<meta property="og:description" content="The recording interface, running in the browser: listen, estimate, correct, accept.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,8 +44,8 @@
   <div class="blob" style="width:20rem;height:20rem;right:-6rem;top:-8rem;background:#ded5f2;opacity:.7"></div>
   <div class="wrap">
     <span class="chip chip--sky"><i></i>Companion app</span>
-    <h1 class="mega" style="margin-top:1rem;max-width:16ch">The screen the insert talks to.</h1>
-    <p class="lede" style="margin-top:1rem">One recording screen, one result, and a refusal when the take is not worth keeping. No account, no dashboard, no model of you.</p>
+    <h1 class="mega" style="margin-top:1rem;max-width:16ch">The recording app.</h1>
+    <p class="lede" style="margin-top:1rem">One screen for a six second take. It shows the waveform, chest wall estimate, contact score and corrected level. It does not grade a murmur or suggest a diagnosis.</p>
   </div>
 </section>
 
@@ -72,8 +72,8 @@
     <ol class="demo__list">
       <li class="on" data-demo-step><b>01</b><span>Six seconds, one channel, 20 Hz to 2 kHz. The waveform is drawn as it arrives.</span></li>
       <li data-demo-step><b>02</b><span>The chest wall is estimated from the recording. No tape measure, no input from the person holding it.</span></li>
-      <li data-demo-step><b>03</b><span>The murmur band is divided by the wall it just measured, so the number that remains is the heart's.</span></li>
-      <li data-demo-step><b>04</b><span>Contact below 45 per cent returns nothing. The take is refused, not guessed at.</span></li>
+      <li data-demo-step><b>03</b><span>The murmur band is divided by the wall it just measured. The result is the corrected murmur level.</span></li>
+      <li data-demo-step><b>04</b><span>Contact below 45 per cent returns no result. The take is refused.</span></li>
     </ol>
     <p class="small" style="margin-top:1.2rem;max-width:42ch">A generated grade 2 murmur through a modelled chest wall, played in the browser. It shows the interface and runs itself. It does not measure you.</p>
   </div>
@@ -83,17 +83,17 @@
 
 <section class="sec" style="background:#f2e9db">
   <div class="wrap mosaic">
-    <div class="card card--sky m4"><span class="card__k">Offline</span><p class="card__n">0</p><h3 style="margin-top:.6rem">Bytes sent.</h3><p class="small">The take stays on the phone. Export is a file someone chooses to send, not a sync that happens anyway.</p></div>
-    <div class="card card--butter m4"><span class="card__k">Refusal</span><p class="card__n">45%</p><h3 style="margin-top:.6rem">Contact gate.</h3><p class="small">Poor contact, loose gasket, a coat over the chest: the app returns nothing rather than a number it cannot defend.</p></div>
-    <div class="card card--sage m4"><span class="card__k">Weight</span><p class="card__n">1</p><h3 style="margin-top:.6rem">Number per take.</h3><p class="small">The corrected murmur level, the wall estimate and the quality score. Not a grade, not a diagnosis, not an alert.</p></div>
+    <div class="card card--sky m4"><span class="card__k">Offline</span><p class="card__n">0</p><h3 style="margin-top:.6rem">Bytes sent.</h3><p class="small">The take stays on the phone. Export is a file you choose to send.</p></div>
+    <div class="card card--butter m4"><span class="card__k">Refusal</span><p class="card__n">45%</p><h3 style="margin-top:.6rem">Contact gate.</h3><p class="small">Poor contact, a loose gasket or clothing over the chest returns no result.</p></div>
+    <div class="card card--sage m4"><span class="card__k">Output</span><p class="card__n">1</p><h3 style="margin-top:.6rem">One number per take.</h3><p class="small">The corrected murmur level, wall estimate and quality score. No grade, diagnosis or alert.</p></div>
   </div>
 </section>
 
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="cta">
-      <h2>Put the phone next to a stethoscope.</h2>
-      <p class="on-dark" style="margin-top:1rem;max-width:40ch">The app is what a pilot site uses first, before the hardware arrives. Ask for the test build and the protocol.</p>
+      <h2>Try the test build.</h2>
+      <p class="on-dark" style="margin-top:1rem;max-width:40ch">Pilot sites get the app before the hardware. Ask for the build and the recording protocol.</p>
       <div class="cta__row"><a class="btn btn--wine" href="contact.html">hello@heart-ware.org <span class="btn__arrow">&rarr;</span></a></div>
     </div>
   </div>
@@ -107,8 +107,8 @@
     <div class="foot__top">
       <div>
         <p class="foot__mega"><em>Heart</em>ware</p>
-        <p class="foot__tag">Innovating cardiac care</p>
-        <p class="foot__line">A stethoscope insert that takes the chest wall out of the recording, so a heart sounds the same in every body.</p>
+        <p class="foot__tag">Chest wall correction for auscultation.</p>
+        <p class="foot__line">A stethoscope insert that estimates the chest wall from the recording and corrects for it.</p>
       </div>
       <nav class="foot__cols" aria-label="Footer">
         <div>
@@ -140,7 +140,7 @@
       </nav>
     </div>
     <div class="foot__base">
-      <span>© <span data-year>2026</span> Heartware</span>
+      <span>© <span data-year>2026</span> Heartware &middot; Photograph: Marek Studzinski / Unsplash</span>
       <span>A prototype. Not a medical device, and not for diagnosis.</span>
     </div>
   </div>
